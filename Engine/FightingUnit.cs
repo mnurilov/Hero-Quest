@@ -27,7 +27,7 @@ namespace Engine
             get { return currentHealth; }
             set
             {
-                if(value > maximumHealth)
+                if (value > maximumHealth)
                 {
                     currentHealth = maximumHealth;
                 }
@@ -44,20 +44,20 @@ namespace Engine
 
         public int MaximumHealth
         {
-            get { return currentHealth; }
+            get { return maximumHealth; }
             set
             {
-                if (value > maximumHealth)
+                if (value > 100)
                 {
-                    currentHealth = maximumHealth;
+                    maximumHealth = 100;
                 }
                 else if (value < 0)
                 {
-                    currentHealth = 0;
+                    maximumHealth = 0;
                 }
                 else
                 {
-                    currentHealth = value;
+                    maximumHealth = value;
                 }
             }
         }
@@ -78,6 +78,26 @@ namespace Engine
                 else
                 {
                     currentMana = value;
+                }
+            }
+        }
+
+        public int MaximumMana
+        {
+            get { return maximumMana; }
+            set
+            {
+                if (value > 100)
+                {
+                    maximumMana = 100;
+                }
+                else if (value < 0)
+                {
+                    maximumMana = 0;
+                }
+                else
+                {
+                    maximumMana = value;
                 }
             }
         }
