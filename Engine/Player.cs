@@ -15,7 +15,7 @@ namespace Engine
         #endregion
 
         #region Properties
-        public string Name;
+        public string Name { get; set; }
 
         public int Level
         {
@@ -76,8 +76,11 @@ namespace Engine
                 }
             }
         }
+
+        public Weapon CurrentWeapon { get; set; }
         #endregion 
 
+        #region Constructor
         public Player(int level, int maximumExperience, int maximumHealth, int maximumMana, int attack,
             int defense, int luck, int speed, int intellect, int resistance) : base(maximumHealth, maximumMana,
                 attack, defense, luck, speed, intellect, resistance)
@@ -86,7 +89,9 @@ namespace Engine
             this.maximumExperience = maximumExperience;
             currentExperience = 0;
         }
+        #endregion
 
+        #region Methods
         public override string ToString()
         {
             string stats = "";
@@ -98,5 +103,6 @@ namespace Engine
 
             return stats;
         }
+        #endregion
     }
 }

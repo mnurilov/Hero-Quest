@@ -223,6 +223,7 @@ namespace Engine
         }
         #endregion 
 
+        #region Constructor
         public FightingUnit(int MaximumHealth, int MaximumMana, int Attack, int Defense, 
             int Luck, int Speed, int Intellect, int Resistance)
         {
@@ -237,7 +238,9 @@ namespace Engine
             CurrentHealth = MaximumHealth;
             CurrentMana = MaximumMana;
         }
+        #endregion
 
+        #region Methods
         public override string ToString()
         {
             string stats = "";
@@ -255,5 +258,6 @@ namespace Engine
 
             return stats;
         }
+        #endregion
     }
 }

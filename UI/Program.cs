@@ -15,6 +15,13 @@ namespace UI
 
             Console.Write(player.ToString());
             Console.ReadKey();
+
+            player.Level = (int)(Convert.ToDouble(Console.ReadLine()));
+
+            Console.Write(player.ToString());
+            Console.ReadKey();
+
+            Weapon weapon = new Weapon(1, "Rusty Sword");
         }
     }
 }
