@@ -8,3 +8,13 @@ C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\UI\obj\Debug\UI.csproj.Co
 C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\UI\obj\Debug\UI.csproj.CopyComplete
 C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\UI\obj\Debug\UI.exe
 C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\UI\obj\Debug\UI.pdb
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\bin\Debug\UI.exe.config
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\bin\Debug\UI.exe
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\bin\Debug\UI.pdb
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\bin\Debug\Engine.dll
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\bin\Debug\Engine.pdb
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\obj\Debug\UI.csprojAssemblyReference.cache
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\obj\Debug\UI.csproj.CoreCompileInputs.cache
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\obj\Debug\UI.csproj.CopyComplete
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\obj\Debug\UI.exe
+C:\Users\Michael\Documents\GitHub\Hero-Quest\UI\obj\Debug\UI.pdb

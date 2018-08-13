@@ -11,15 +11,10 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Player player = new Player(5, 10);
+            Player player = new Player(1, 100, 50, 30, 20, 10, 5, 15, 10, 3);
 
-            Console.WriteLine(player.Health);
+            Console.Write(player.ToString());
             Console.ReadKey();
-
-            Console.WriteLine(player.Level);
-            Console.ReadKey();
-            Console.ReadKey();
-
         }
     }
 }

@@ -8,10 +8,15 @@ namespace Engine
 {
     public class Player : FightingUnit
     {
+        #region Fields
         private int level;
-        private int experience;
+        private int currentExperience;
+        private int maximumExperience;
+        #endregion
 
+        #region Properties
         public string Name;
+
         public int Level
         {
             get { return level; }
@@ -32,9 +37,66 @@ namespace Engine
             }
         }
 
-        public Player(int health, int level) : base(health)
+        public int CurrentExperience
+        {
+            get { return currentExperience; }
+            set
+            {
+                if (value > maximumExperience)
+                {
+                    currentExperience = maximumExperience;
+                }
+                else if (value < 0)
+                {
+                    currentExperience = 0;
+                }
+                else
+                {
+                    currentExperience = value;
+                }
+            }
+        }
+
+        public int MaximumExperience
+        {
+            get { return maximumExperience; }
+            set
+            {
+                if (value > 100)
+                {
+                    maximumExperience = 100;
+                }
+                else if (value < 0)
+                {
+                    maximumExperience = 0;
+                }
+                else
+                {
+                    maximumExperience = value;
+                }
+            }
+        }
+        #endregion 
+
+        public Player(int level, int maximumExperience, int maximumHealth, int maximumMana, int attack,
+            int defense, int luck, int speed, int intellect, int resistance) : base(maximumHealth, maximumMana,
+                attack, defense, luck, speed, intellect, resistance)
         {
             this.level = level;
+            this.maximumExperience = maximumExperience;
+            currentExperience = 0;
+        }
+
+        public override string ToString()
+        {
+            string stats = "";
+
+            stats += ("Level: " + Level.ToString() + "\n");
+            stats += ("Current Experience: " + CurrentExperience.ToString() + "\n");
+            stats += ("Maximum Experience: " + MaximumExperience.ToString() + "\n");
+            stats += base.ToString();
+
+            return stats;
         }
     }
 }

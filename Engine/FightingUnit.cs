@@ -101,11 +101,159 @@ namespace Engine
                 }
             }
         }
+
+        public int Attack
+        {
+            get { return attack; }
+            set
+            {
+                if (value > 50)
+                {
+                    attack = 50;
+                }
+                else if (value < 0)
+                {
+                    attack = 0;
+                }
+                else
+                {
+                    attack = value;
+                }
+            }
+        }
+
+        public int Defense
+        {
+            get { return defense; }
+            set
+            {
+                if (value > 50)
+                {
+                    defense = 50;
+                }
+                else if (value < 0)
+                {
+                    defense = 0;
+                }
+                else
+                {
+                    defense = value;
+                }
+            }
+        }
+
+        public int Luck
+        {
+            get { return luck; }
+            set
+            {
+                if (value > 30)
+                {
+                    luck = 30;
+                }
+                else if (value < 0)
+                {
+                    luck = 0;
+                }
+                else
+                {
+                    luck = value;
+                }
+            }
+        }
+
+        public int Speed
+        {
+            get { return speed; }
+            set
+            {
+                if (value > 100)
+                {
+                    speed = 100;
+                }
+                else if (value < 0)
+                {
+                    speed = 0;
+                }
+                else
+                {
+                    speed = value;
+                }
+            }
+        }
+
+        public int Intellect
+        {
+            get { return intellect; }
+            set
+            {
+                if (value > 1000)
+                {
+                    intellect = 1000;
+                }
+                else if (value < 0)
+                {
+                    intellect = 0;
+                }
+                else
+                {
+                    intellect = value;
+                }
+            }
+        }
+
+        public int Resistance
+        {
+            get { return resistance; }
+            set
+            {
+                if (value > 10)
+                {
+                    resistance = 10;
+                }
+                else if (value < 0)
+                {
+                    resistance = 0;
+                }
+                else
+                {
+                    resistance = value;
+                }
+            }
+        }
         #endregion 
 
-        public FightingUnit(int currentHealth)
+        public FightingUnit(int MaximumHealth, int MaximumMana, int Attack, int Defense, 
+            int Luck, int Speed, int Intellect, int Resistance)
         {
-            this.currentHealth = currentHealth;
+            this.MaximumHealth = MaximumHealth;
+            this.MaximumMana = MaximumMana;
+            this.Attack = Attack;
+            this.Defense = Defense;
+            this.Luck = Luck;
+            this.Speed = Speed;
+            this.Intellect = Intellect;
+            this.Resistance = Resistance;
+            CurrentHealth = MaximumHealth;
+            CurrentMana = MaximumMana;
+        }
+
+        public override string ToString()
+        {
+            string stats = "";
+
+            stats += ("Current Health: " + CurrentHealth.ToString() + "\n");
+            stats += ("Maximum Health: " + MaximumHealth.ToString() + "\n");
+            stats += ("Current Mana: " + CurrentMana.ToString() + "\n");
+            stats += ("Maximum Mana: " + MaximumMana.ToString() + "\n");
+            stats += ("Attack: " + Attack.ToString() + "\n");
+            stats += ("Defense: " + Defense.ToString() + "\n");
+            stats += ("Luck: " + Luck.ToString() + "\n");
+            stats += ("Speed: " + Speed.ToString() + "\n");
+            stats += ("Intellect: " + Intellect.ToString() + "\n");
+            stats += ("Resistance: " + Resistance.ToString() + "\n");
+
+            return stats;
         }
     }
 }
