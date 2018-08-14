@@ -22,6 +22,8 @@ namespace Engine
         #endregion
 
         #region Properties
+        public string Name { get; set; }
+
         public int CurrentHealth
         {
             get { return currentHealth; }

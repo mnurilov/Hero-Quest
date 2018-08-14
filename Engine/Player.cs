@@ -15,7 +15,11 @@ namespace Engine
         #endregion
 
         #region Properties
-        public string Name { get; set; }
+        public Location CurrentLocation { get; set; }
+        public Weapon CurrentWeapon { get; set; }
+        public HeadEquipment CurrentHeadEquipment { get; set; }
+        public ChestEquipment CurrentChestEquipment { get; set; }
+        public LegEquipment CurrentLegEquipment { get; set; }
 
         public int Level
         {
@@ -76,8 +80,6 @@ namespace Engine
                 }
             }
         }
-
-        public Weapon CurrentWeapon { get; set; }
         #endregion 
 
         #region Constructor

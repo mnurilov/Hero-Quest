@@ -1,0 +1,4 @@
+Classes
+Warrior - Sword Shield
+Mage - Staff Tome
+Thief - Duel Wield Dagger

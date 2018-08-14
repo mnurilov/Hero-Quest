@@ -47,10 +47,14 @@
     <Compile Include="HeadEquipment.cs" />
     <Compile Include="Item.cs" />
     <Compile Include="LegEquipment.cs" />
+    <Compile Include="Location.cs" />
     <Compile Include="Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quest.cs" />
+    <Compile Include="RandomNumber.cs" />
+    <Compile Include="Spell.cs" />
     <Compile Include="Weapon.cs" />
+    <Compile Include="World.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

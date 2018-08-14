@@ -16,9 +16,11 @@ namespace UI
             Console.Write(player.ToString());
             Console.ReadKey();
 
-            player.Level = (int)(Convert.ToDouble(Console.ReadLine()));
-
-            Console.Write(player.ToString());
+            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
+            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
+            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
+            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
+            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
             Console.ReadKey();
 
             Weapon weapon = new Weapon(1, "Rusty Sword");
