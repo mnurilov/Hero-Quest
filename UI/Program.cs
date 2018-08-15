@@ -18,14 +18,10 @@ namespace UI
 
             while (true)
             {
-                player.GainExperience(10);
+                player.GainExperience(1000);
                 Console.Write(player.ToString());
                 Console.ReadKey();
             }
-            
-
-
-            Weapon weapon = new Weapon(1, "Rusty Sword");
         }
     }
 }
