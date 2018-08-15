@@ -2,3 +2,5 @@ Classes
 Warrior - Sword Shield
 Mage - Staff Tome
 Thief - Duel Wield Dagger
+
+If you survive with item item goes up a tier dead by daylight

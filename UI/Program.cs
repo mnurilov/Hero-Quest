@@ -11,17 +11,19 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Player player = new Player(1, 100, 50, 30, 20, 10, 5, 15, 10, 3);
+            Player player = new Player(100, 10, 5, 6, 7, 8, 9, 9);
 
             Console.Write(player.ToString());
             Console.ReadKey();
 
-            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
-            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
-            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
-            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
-            Console.WriteLine(RandomNumber.RandomNumberGenerator(1, 10));
-            Console.ReadKey();
+            while (true)
+            {
+                player.GainExperience(10);
+                Console.Write(player.ToString());
+                Console.ReadKey();
+            }
+            
+
 
             Weapon weapon = new Weapon(1, "Rusty Sword");
         }

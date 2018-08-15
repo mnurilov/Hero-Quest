@@ -8,11 +8,11 @@ namespace Engine
 {
     public class Player : FightingUnit
     {
-        #region Fields
+       /* #region Fields
         private int level;
         private int currentExperience;
         private int maximumExperience;
-        #endregion
+        #endregion*/
 
         #region Properties
         public Location CurrentLocation { get; set; }
@@ -21,75 +21,28 @@ namespace Engine
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
 
-        public int Level
-        {
-            get { return level; }
-            set
-            {
-                if(value > 20)
-                {
-                    level = 20;
-                }
-                else if (value < 1)
-                {
-                    level = 1;
-                }
-                else
-                {
-                    level = value;
-                }
-            }
-        }
+        public int Level { get; set; }
+        
 
-        public int CurrentExperience
-        {
-            get { return currentExperience; }
-            set
-            {
-                if (value > maximumExperience)
-                {
-                    currentExperience = maximumExperience;
-                }
-                else if (value < 0)
-                {
-                    currentExperience = 0;
-                }
-                else
-                {
-                    currentExperience = value;
-                }
-            }
-        }
+        public int CurrentExperience { get; set; }
+        
 
-        public int MaximumExperience
-        {
-            get { return maximumExperience; }
-            set
-            {
-                if (value > 100)
-                {
-                    maximumExperience = 100;
-                }
-                else if (value < 0)
-                {
-                    maximumExperience = 0;
-                }
-                else
-                {
-                    maximumExperience = value;
-                }
-            }
-        }
+        public int MaximumExperience { get; set; }
+       
         #endregion 
 
         #region Constructor
-        public Player(int level, int maximumExperience, int maximumHealth, int maximumMana, int attack,
-            int defense, int luck, int speed, int intellect, int resistance) : base(maximumHealth, maximumMana,
+        public Player(int maximumHealth, int maximumMana, int attack, int defense, int luck,
+            int speed, int intellect, int resistance, int level = 1) : base(maximumHealth, maximumMana,
                 attack, defense, luck, speed, intellect, resistance)
         {
-            this.level = level;
-            this.maximumExperience = maximumExperience;
-            currentExperience = 0;
+            this.Level = level;
+            this.MaximumExperience = (int)(10 + (Math.Pow(Level, 3)));
+            this.CurrentExperience = 0; 
+            MaximumHealth = (int)(12 + (Math.Pow(Level, 3)) / 2);
+            CurrentHealth = MaximumHealth;
+            MaximumMana = (int)(12 + (Math.Pow(Level, 3)) / 3);
+            CurrentMana = MaximumMana;
         }
         #endregion
 
@@ -104,6 +57,27 @@ namespace Engine
             stats += base.ToString();
 
             return stats;
+        }
+
+        public void GainExperience(int experience)
+        {
+            CurrentExperience += experience;
+
+            while(CurrentExperience >= MaximumExperience)
+            {
+                LevelUp();
+                CurrentExperience -= MaximumExperience;
+                MaximumExperience = (int)(10 + (Math.Pow(Level, 3)));
+            }
+        }
+
+        public void LevelUp()
+        {
+            Level++;
+            MaximumHealth = (int)(12 + (Math.Pow(Level, 3)) / 2);
+            CurrentHealth = MaximumHealth;
+            MaximumMana = (int)(12 + (Math.Pow(Level, 3)) / 3);
+            CurrentMana = MaximumMana;
         }
         #endregion
     }

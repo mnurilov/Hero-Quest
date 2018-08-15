@@ -8,7 +8,8 @@ namespace Engine
 {
     public class FightingUnit
     {
-        #region Fields
+       /* Removing for the time being not sure if i need them
+        * #region Fields
         private int currentHealth;
         private int maximumHealth;
         private int currentMana;
@@ -19,210 +20,38 @@ namespace Engine
         private int speed;
         private int intellect;
         private int resistance;
-        #endregion
+        #endregion*/
 
         #region Properties
         public string Name { get; set; }
 
-        public int CurrentHealth
-        {
-            get { return currentHealth; }
-            set
-            {
-                if (value > maximumHealth)
-                {
-                    currentHealth = maximumHealth;
-                }
-                else if (value < 0)
-                {
-                    currentHealth = 0;
-                }
-                else
-                {
-                    currentHealth = value;
-                }
-            }
-        }
+        public int CurrentHealth { get; set; }
+        
 
-        public int MaximumHealth
-        {
-            get { return maximumHealth; }
-            set
-            {
-                if (value > 100)
-                {
-                    maximumHealth = 100;
-                }
-                else if (value < 0)
-                {
-                    maximumHealth = 0;
-                }
-                else
-                {
-                    maximumHealth = value;
-                }
-            }
-        }
+        public int MaximumHealth { get; set; }
+        
 
-        public int CurrentMana
-        {
-            get { return currentMana; }
-            set
-            {
-                if (value > maximumMana)
-                {
-                    currentMana = maximumMana;
-                }
-                else if (value < 0)
-                {
-                    currentMana = 0;
-                }
-                else
-                {
-                    currentMana = value;
-                }
-            }
-        }
+        public int CurrentMana { get; set; }
+       
 
-        public int MaximumMana
-        {
-            get { return maximumMana; }
-            set
-            {
-                if (value > 100)
-                {
-                    maximumMana = 100;
-                }
-                else if (value < 0)
-                {
-                    maximumMana = 0;
-                }
-                else
-                {
-                    maximumMana = value;
-                }
-            }
-        }
+        public int MaximumMana { get; set; }
+        
+        public int Attack { get; set; }
+        
+        public int Defense { get; set; }
+       
 
-        public int Attack
-        {
-            get { return attack; }
-            set
-            {
-                if (value > 50)
-                {
-                    attack = 50;
-                }
-                else if (value < 0)
-                {
-                    attack = 0;
-                }
-                else
-                {
-                    attack = value;
-                }
-            }
-        }
+        public int Luck { get; set; }
+        
 
-        public int Defense
-        {
-            get { return defense; }
-            set
-            {
-                if (value > 50)
-                {
-                    defense = 50;
-                }
-                else if (value < 0)
-                {
-                    defense = 0;
-                }
-                else
-                {
-                    defense = value;
-                }
-            }
-        }
+        public int Speed { get; set; }
+        
 
-        public int Luck
-        {
-            get { return luck; }
-            set
-            {
-                if (value > 30)
-                {
-                    luck = 30;
-                }
-                else if (value < 0)
-                {
-                    luck = 0;
-                }
-                else
-                {
-                    luck = value;
-                }
-            }
-        }
+        public int Intellect { get; set; }
+        
 
-        public int Speed
-        {
-            get { return speed; }
-            set
-            {
-                if (value > 100)
-                {
-                    speed = 100;
-                }
-                else if (value < 0)
-                {
-                    speed = 0;
-                }
-                else
-                {
-                    speed = value;
-                }
-            }
-        }
-
-        public int Intellect
-        {
-            get { return intellect; }
-            set
-            {
-                if (value > 1000)
-                {
-                    intellect = 1000;
-                }
-                else if (value < 0)
-                {
-                    intellect = 0;
-                }
-                else
-                {
-                    intellect = value;
-                }
-            }
-        }
-
-        public int Resistance
-        {
-            get { return resistance; }
-            set
-            {
-                if (value > 10)
-                {
-                    resistance = 10;
-                }
-                else if (value < 0)
-                {
-                    resistance = 0;
-                }
-                else
-                {
-                    resistance = value;
-                }
-            }
-        }
+        public int Resistance { get; set; }
+       
         #endregion 
 
         #region Constructor
