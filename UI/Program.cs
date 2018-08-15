@@ -11,14 +11,14 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Player player = new Player(100, 10, 5, 6, 7, 8, 9, 9);
+            Player player = new Player(100, 10, 5, 6, 7, 8, 9, 9, Player.Class.Thief);
 
             Console.Write(player.ToString());
             Console.ReadKey();
 
             while (true)
             {
-                player.GainExperience(1000);
+                player.LevelUp();
                 Console.Write(player.ToString());
                 Console.ReadKey();
             }
