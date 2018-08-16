@@ -8,20 +8,27 @@ namespace Engine
 {
     public static class World
     {
-        #region Properties
-        private const int RAT = 1;
+        private static readonly List<Enemy> enemies = new List<Enemy>();
+        #region Variables
+        private const int EnemyIDRat = 1;
+
         #endregion
 
         static World()
         {
             /*
-            LoadLocations();
-            LoadEnemies();
+            PopulateLocations();
+            PopulateEnemies();
             LoadEquipment();
             LoadSpells();
             LoadItems();
             LoadQuests();
             */
+        }
+
+        private static void PopulateEnemies()
+        {
+
         }
     }
 }

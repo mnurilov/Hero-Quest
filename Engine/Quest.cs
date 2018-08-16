@@ -12,6 +12,7 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public string RequestPlayerHelp { get; set; }
         public bool IsCompleted { get; set; }
 
         public int Requirement { get; set; }

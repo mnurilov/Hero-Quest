@@ -112,6 +112,15 @@ namespace Engine
         public const double ThiefResistanceStatConstant = 4;
         #endregion
 
+        #region ExperiencePointsConstants
+        public const double ExperiencePointsScaleFactor = 2;
+        public const double ExperiencePointsExponent = 2.5;
+        public const double ExperiencePointsConstant = 10;
+
+        public const double CriticalChanceRateScaleFactor = 100.505051;
+        public const double CriticalChanceRateConstant = 100;
+        #endregion
+
         private int level;
         public int Level 
         { 
@@ -136,26 +145,47 @@ namespace Engine
                 }
             }
         }
-        public int CurrentExperience { get; set; }
-        public int MaximumExperience { get; set; }
+
+        private int currentExperiencePoints;
+        public int CurrentExperiencePoints
+        {
+            get
+            {
+                return currentExperiencePoints;
+            }
+            set
+            {
+                if (Level >= 20)
+                {
+                    currentExperiencePoints = 0;
+                }
+                else
+                {
+                    currentExperiencePoints = value;
+                }
+            }
+        }
+        public int MaximumExperiencePoints { get; set; }
+
+        public double CriticalChanceRate { get; set; }
+
         public Location CurrentLocation { get; set; }
         public Weapon CurrentWeapon { get; set; }
         public HeadEquipment CurrentHeadEquipment { get; set; }
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
+        public List<Quest> Quests = new List<Quest>();
 
         public enum Class {Warrior = 1, Mage = 2, Thief = 3}
-        public Class PlayerClass;
+        private Class PlayerClass;
         #endregion 
 
         #region Constructor
-        public Player(int maximumHealth, int maximumMana, int attack, int defense, int luck,
-            int speed, int intellect, int resistance, Class playerClass, int level = 1) : base(maximumHealth, maximumMana,
-                attack, defense, luck, speed, intellect, resistance)
+        public Player(Class playerClass, int level = 1) : base(1, 1, 1, 1, 1, 1, 1, 1)
         {
             this.Level = level;
-            this.MaximumExperience = (int)(10 + (Math.Pow(Level, 3)));
-            this.CurrentExperience = 0;
+            this.MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
+            this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
 
             switch (PlayerClass)
@@ -199,32 +229,20 @@ namespace Engine
                 default:
                     throw new Exception("Error no class selected");
             }
+            CriticalChanceRate = ((CriticalChanceRateScaleFactor * Luck) / (Luck + CriticalChanceRateConstant));
         }
         #endregion
 
         #region Methods
-        public override string ToString()
-        {
-            string stats = "";
-
-            stats += ("Level: " + Level.ToString() + "\n");
-            stats += ("Class: " + PlayerClass.ToString() + "\n");
-            stats += ("Current Experience: " + CurrentExperience.ToString() + "\n");
-            stats += ("Maximum Experience: " + MaximumExperience.ToString() + "\n");
-            stats += base.ToString();
-
-            return stats;
-        }
-
         public void GainExperience(int experience)
         {
-            CurrentExperience += experience;
+            CurrentExperiencePoints += experience;
 
-            while(CurrentExperience >= MaximumExperience)
+            while(CurrentExperiencePoints >= MaximumExperiencePoints)
             {
                 LevelUp();
-                CurrentExperience -= MaximumExperience;
-                MaximumExperience = (int)(10 + (Math.Pow(Level, 3)));
+                CurrentExperiencePoints -= MaximumExperiencePoints;
+                MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
             }
         }
 
@@ -276,6 +294,26 @@ namespace Engine
                 default:
                     throw new Exception("Error no class selected");
             }
+            CriticalChanceRate = ((CriticalChanceRateScaleFactor * Luck) / (Luck + CriticalChanceRateConstant));
+        }
+
+        public void AttackCommand(Enemy enemy)
+        {
+            enemy.Defenbnnnn
+        }
+
+        public override string ToString()
+        {
+            string stats = "";
+
+            stats += ("Level: " + Level.ToString() + "\n");
+            stats += ("Class: " + PlayerClass.ToString() + "\n");
+            stats += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
+            stats += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
+            stats += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
+            stats += base.ToString();
+
+            return stats;
         }
         #endregion
     }
