@@ -25,5 +25,16 @@ namespace Engine
             this.Name = Name;
             this.Description = Description;
         }
+
+        public override string ToString()
+        {
+            string info = "";
+
+            info += ("ID: " + ID.ToString() + "\n");
+            info += ("Name: " + Name.ToString() + "\n");
+            info += ("Description: " + Description.ToString() + "\n");
+
+            return info;
+        }
     }
 }
