@@ -174,7 +174,8 @@ namespace Engine
         public HeadEquipment CurrentHeadEquipment { get; set; }
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
-        public List<Quest> Quests = new List<Quest>();
+        public List<Quest> PlayerQuests = new List<Quest>();
+        public List<Item> PlayerInventory = new List<Item>();
 
         public enum Class {Warrior = 1, Mage = 2, Thief = 3}
         private Class PlayerClass;
@@ -187,6 +188,7 @@ namespace Engine
             this.MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
+            MoveTo(World.FindLocationByID(1));
 
             switch (PlayerClass)
             {
@@ -299,7 +301,45 @@ namespace Engine
 
         public void AttackCommand(Enemy enemy)
         {
-            enemy.Defenbnnnn
+        }
+
+        //Make this private it never needs to be accessed outside the player class
+        public void MoveTo(Location newLocation)
+        {
+            CurrentLocation = newLocation;
+            Console.WriteLine(CurrentLocation.ToString());
+        }
+
+        public void MoveNorth()
+        {
+            if (CurrentLocation.LocationToTheNorth != null)
+            {
+                MoveTo(CurrentLocation.LocationToTheNorth);
+            }
+        }
+
+        public void MoveSouth()
+        {
+            if (CurrentLocation.LocationToTheSouth != null)
+            {
+                MoveTo(CurrentLocation.LocationToTheSouth);
+            }
+        }
+
+        public void MoveWest()
+        {
+            if (CurrentLocation.LocationToTheWest != null)
+            {
+                MoveTo(CurrentLocation.LocationToTheWest);
+            }
+        }
+
+        public void MoveEast()
+        {
+            if (CurrentLocation.LocationToTheEast != null)
+            {
+                MoveTo(CurrentLocation.LocationToTheEast);
+            }
         }
 
         public override string ToString()
