@@ -16,6 +16,8 @@ namespace UI
             Console.Write(player.ToString());
 
             string command = "";
+            
+            World.ViewItems();
 
             while (true)
             {

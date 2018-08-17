@@ -299,6 +299,14 @@ namespace Engine
             CriticalChanceRate = ((CriticalChanceRateScaleFactor * Luck) / (Luck + CriticalChanceRateConstant));
         }
 
+        public void UseItem(Item item)
+        {
+            if (item.GetType() == typeof(HealthReplenishingItem))
+            {
+
+            }
+        }
+
         public void AttackCommand(Enemy enemy)
         {
         }
@@ -342,18 +350,23 @@ namespace Engine
             }
         }
 
+        public void UseItem(int ID)
+        {
+
+        }
+
         public override string ToString()
         {
-            string stats = "";
+            string info = "";
 
-            stats += ("Level: " + Level.ToString() + "\n");
-            stats += ("Class: " + PlayerClass.ToString() + "\n");
-            stats += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
-            stats += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
-            stats += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
-            stats += base.ToString();
+            info += ("Level: " + Level.ToString() + "\n");
+            info += ("Class: " + PlayerClass.ToString() + "\n");
+            info += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
+            info += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
+            info += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
+            info += base.ToString();
 
-            return stats;
+            return info;
         }
         #endregion
     }

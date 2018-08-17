@@ -8,24 +8,48 @@ namespace Engine
 {
     public class FightingUnit
     {
-       /* Removing for the time being not sure if i need them
-        * #region Fields
+        /* Removing for the time being not sure if i need them
+         * #region Fields
+
+         private int maximumHealth;
+         private int currentMana;
+         private int maximumMana;
+         private int attack;
+         private int defense;
+         private int luck;
+         private int speed;
+         private int intellect;
+         private int resistance;
+         #endregion*/
+
         private int currentHealth;
-        private int maximumHealth;
-        private int currentMana;
-        private int maximumMana;
-        private int attack;
-        private int defense;
-        private int luck;
-        private int speed;
-        private int intellect;
-        private int resistance;
-        #endregion*/
 
         #region Properties
         public string Name { get; set; }
 
-        public int CurrentHealth { get; set; }
+        public int CurrentHealth
+        {
+            get
+            {
+                return currentHealth;
+            }
+            set
+            {
+                if (currentHealth > MaximumHealth)
+                {
+                    currentHealth = MaximumHealth;
+                }
+                else if (currentHealth < 0)
+                {
+                    currentHealth = 0;
+                }
+                else
+                {
+                    currentHealth = value;
+                }
+            }
+            
+        }
         
 
         public int MaximumHealth { get; set; }

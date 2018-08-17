@@ -20,5 +20,23 @@ namespace Engine
             this.Name = Name;
         }
         #endregion
+
+        #region Methods
+        public virtual void UseItem()
+        {
+            Console.WriteLine("Base Item");
+            Console.ReadKey();
+        }
+
+        public override string ToString()
+        {
+            string info = "";
+
+            info += ("ID: " + ID.ToString() + "\n");
+            info += ("Name: " + Name + "\n");
+
+            return info;
+        }
+        #endregion
     }
 }
