@@ -12,15 +12,14 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public string RequestPlayerHelp { get; set; }
-        public bool IsCompleted { get; set; }
+        //public bool IsCompleted { get; set; }
 
-        public int Requirement { get; set; }
+        //public int Requirement { get; set; }
 
         public int RewardGold { get; set; }
         public int RewardExperience { get; set; }
-        public Item RewardItem { get; set; }
-        public Equipment RewardEquipment { get; set; }
+        public InventoryItem RewardItem { get; set; }
+        public InventoryEquipment RewardEquipment { get; set; }
         public Spell RewardSpell { get; set; }
         #endregion
 

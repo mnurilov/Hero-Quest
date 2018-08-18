@@ -1,6 +1,19 @@
 Classes
-Warrior - Sword Shield
-Mage - Staff Tome
-Thief - Duel Wield Dagger
+Warrior
+Mage
+Thief
 
 If you survive with item item goes up a tier dead by daylight
+
+Items
+-HP heals
+-MP heals
+-Silence curer
+-Darkness curer
+-Slime curer
+-Stat boosting items?
+
+Weapons
+Sword and Shield - Warrior
+Mage and Tome - Mage
+Dagger and Dagger - Thief

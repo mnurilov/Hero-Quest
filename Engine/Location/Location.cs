@@ -17,8 +17,13 @@ namespace Engine
         public Location LocationToTheSouth;
         public Location LocationToTheWest;
         public Location LocationToTheEast;
+
+        public Vendor VendorInLocation;
+
+        public Quest QuestInLocation;
         #endregion
 
+        //Add the vendor and quest as a constructor later on
         public Location(int ID, string Name, string Description)
         {
             this.ID = ID;

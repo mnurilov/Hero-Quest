@@ -6,13 +6,13 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public static class RandomNumber
+    public static class RandomNumberGenerator
     {
         #region Fields
         private static Random random = new Random();
         #endregion
 
-        public static int RandomNumberGenerator (int minimumValue, int maximumValue)
+        public static int RandomNumberBetween (int minimumValue, int maximumValue)
         {
             return random.Next(minimumValue, maximumValue + 1);
         }

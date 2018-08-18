@@ -8,8 +8,9 @@ namespace Engine
 {
     public class Player : FightingUnit
     {
-        #region Variable
-
+        #region Data Storage
+        //CREATE CONSTANTS FOR CAPS ON THE STATS AND GOLD FOR EXAMPLE MAKE A CONSTANT THAT HOLDS THE GOLD CAP FOR GOLD, EASIER TO MODIFY THAT WAY
+        #region Constants
         #region Warrior Class Constants
         public const double WarriorHealthStatScaleFactor = 6.073588;
         public const double WarriorHealthStatExponent = 1.7;
@@ -112,15 +113,19 @@ namespace Engine
         public const double ThiefResistanceStatConstant = 4;
         #endregion
 
-        #region ExperiencePointsConstants
+        #region Experience Points Constants
         public const double ExperiencePointsScaleFactor = 2;
         public const double ExperiencePointsExponent = 2.5;
         public const double ExperiencePointsConstant = 10;
-
-        public const double CriticalChanceRateScaleFactor = 100.505051;
-        public const double CriticalChanceRateConstant = 100;
         #endregion
 
+        #region Critical Chance Constants
+        public const double CriticalChanceRateScaleFactor = 100.505051;
+        public const double CriticalChanceRateConstant = 100;
+        #endregion 
+        #endregion
+
+        #region Variables
         private int level;
         public int Level 
         { 
@@ -165,20 +170,49 @@ namespace Engine
                 }
             }
         }
+
         public int MaximumExperiencePoints { get; set; }
 
         public double CriticalChanceRate { get; set; }
 
+        private int gold;
+        public int Gold
+        {
+            get
+            {
+                return gold;
+            }
+            set
+            {
+                if(value < 0)
+                {
+                    gold = 0;
+                }
+                if(value > 10000)
+                {
+                    gold = 10000;
+                }
+                else
+                {
+                    gold = value;
+                }
+            }
+        }
+
+        public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
+        private Class PlayerClass;
+        #endregion 
+
+        #region Player Objects
         public Location CurrentLocation { get; set; }
         public Weapon CurrentWeapon { get; set; }
         public HeadEquipment CurrentHeadEquipment { get; set; }
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
         public List<Quest> PlayerQuests = new List<Quest>();
-        public List<Item> PlayerInventory = new List<Item>();
-
-        public enum Class {Warrior = 1, Mage = 2, Thief = 3}
-        private Class PlayerClass;
+        public List<InventoryItem> PlayerItemInventory = new List<InventoryItem>();
+        public List<InventoryEquipment> PlayerEquipmentInventory = new List<InventoryEquipment>();
+        #endregion 
         #endregion 
 
         #region Constructor
@@ -350,7 +384,7 @@ namespace Engine
             }
         }
 
-        public void UseItem(int ID)
+        public void UseItem()
         {
 
         }

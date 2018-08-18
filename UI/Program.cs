@@ -16,8 +16,10 @@ namespace UI
             Console.Write(player.ToString());
 
             string command = "";
+
+            World.ViewEquipment();
             
-            World.ViewItems();
+           // World.ViewItems();
 
             while (true)
             {
@@ -36,6 +38,12 @@ namespace UI
                         break;
                     case "east":
                         player.MoveEast();
+                        break;
+                    case "vendor":
+                        if(player.CurrentLocation.VendorInLocation != null)
+                        {
+                            Console.WriteLine(player.CurrentLocation.VendorInLocation.ToString());
+                        }
                         break;
                     case "100":
                         player.GainExperience(100);

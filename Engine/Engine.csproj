@@ -40,23 +40,33 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ChestEquipment.cs" />
-    <Compile Include="Enemy.cs" />
-    <Compile Include="Equipment.cs" />
-    <Compile Include="FightingUnit.cs" />
-    <Compile Include="HeadEquipment.cs" />
-    <Compile Include="HealthReplenishingItem.cs" />
-    <Compile Include="Item.cs" />
-    <Compile Include="LegEquipment.cs" />
-    <Compile Include="Location.cs" />
-    <Compile Include="ManaReplenishingItem.cs" />
-    <Compile Include="Player.cs" />
+    <Compile Include="EnemyLoot.cs" />
+    <Compile Include="Items\Child Items\Child Equipments\ChestEquipment.cs" />
+    <Compile Include="Fighting Units\Child Fighting Units\Enemy.cs" />
+    <Compile Include="Items\Child Items\Equipment.cs" />
+    <Compile Include="Fighting Units\FightingUnit.cs" />
+    <Compile Include="Quests\Child Quests\GatheringQuest.cs" />
+    <Compile Include="Items\Child Items\Child Equipments\HeadEquipment.cs" />
+    <Compile Include="Items\Child Items\HealthReplenishingItem.cs" />
+    <Compile Include="Inventory\InventoryEquipment.cs" />
+    <Compile Include="Inventory\InventoryLoot.cs" />
+    <Compile Include="Items\Item.cs" />
+    <Compile Include="Quests\Child Quests\KillQuest.cs" />
+    <Compile Include="Items\Child Items\Child Equipments\LegEquipment.cs" />
+    <Compile Include="Location\Location.cs" />
+    <Compile Include="Items\Child Items\ManaReplenishingItem.cs" />
+    <Compile Include="Fighting Units\Child Fighting Units\Player.cs" />
+    <Compile Include="Inventory\InventoryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Quest.cs" />
-    <Compile Include="RandomNumber.cs" />
-    <Compile Include="Spell.cs" />
-    <Compile Include="Weapon.cs" />
-    <Compile Include="World.cs" />
+    <Compile Include="Quests\Quest.cs" />
+    <Compile Include="Random Number Generator\RandomNumberGenerator.cs" />
+    <Compile Include="Items\Child Items\Child Equipments\Shield.cs" />
+    <Compile Include="Spells\Spell.cs" />
+    <Compile Include="Items\Child Items\Child Equipments\Tome.cs" />
+    <Compile Include="Vendor\Vendor.cs" />
+    <Compile Include="Items\Child Items\Child Equipments\Weapon.cs" />
+    <Compile Include="World\World.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
