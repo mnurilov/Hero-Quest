@@ -1,3 +1,21 @@
+Things to do
+-Organize classes into folders so its easier to locate parent and child
+classes
+-Change the variable names to be more easier to understand
+-Refactor the code to make it easy to read and easy to modify
+-Comment the code
+-Region the code
+-Make a status class which holds the aliment 
+-Add gold feature to all the classes that need it
+-Make a monster part class that is derived from item class
+-Then add a mosnter part object in equipment so that that is the 
+requirement for crafting that item 
+-Keep it optional
+
+Ideas
+-Maybe add a chest and a key?
+
+
 Classes
 Warrior
 Mage
@@ -17,3 +35,35 @@ Weapons
 Sword and Shield - Warrior
 Mage and Tome - Mage
 Dagger and Dagger - Thief
+
+Quests
+-What is a quest
+-A quest has several attritubes
+-An entity giving the quest
+-The player choosing whether to accept the quest or not
+-The quest has a name
+-THe quest has a description
+-The quest has a goal
+-The quest has a reward
+-The quest can be only be given once
+
+WHat type of quests can their be and how can we create them?
+-The quest can be a qeust to kill a ceritan monster 5 times
+-The quest can be to kill a certain monster and get a 3 rat tails
+-The quest can be to go to a certain location 
+-The quest can be to give money or something like that
+
+-How can we make the quest class flexible enough so that i can make
+the requirement for any quest rather easily without it taking to long
+
+Possibility teach quest classs as every other class system in the game
+where you make the quest class the base class and you make child classes
+for specific requirements. So a killquest class for quests with killing
+a gatheringquest for quests for gathering a traverse class for trasversing
+to a certain location. This may mean i have to create many classes
+just to make more unique quests but ill have to use this for now
+So far my architecture all follows a pretty similar pattern and it works
+well so i might as well use it when im trying to make quests instead
+of trying to treat it differently
+
+-
