@@ -11,12 +11,27 @@ namespace Engine
         private static readonly List<Enemy> enemies = new List<Enemy>();
         private static readonly List<Location> locations = new List<Location>();
         private static readonly List<Item> items = new List<Item>();
-        //private static readonly List<InventoryItem> items = new List<InventoryItem>();
         private static readonly List<Vendor> vendors = new List<Vendor>();
         private static readonly List<Equipment> equipments = new List<Equipment>();
+        private static readonly List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
+        private static readonly List<Spell> spells = new List<Spell>();
+        private static readonly List<Quest> quests = new List<Quest>();
 
         #region Variables
         private const int EnemyIDRat = 1;
+        private const int EnemyIDSnake = 2;
+        private const int EnemyIDOgre = 3;
+
+        private const int EnemyLootIDRatTail = 1;
+        private const int EnemyLootIDRatCarcass = 2;
+        private const int EnemyLootIDSnakeFang = 3;
+        private const int EnemyLootIDOgreTooth = 4;
+
+        private const int QuestIDCleanTheSewers = 1;
+        private const int QuestIDAntidoteConcoction = 2;
+
+        private const int SpellIDFire = 1;
+        private const int SpellIDCure = 2;
 
         private const int ItemIDBasicPotion = 1;
         private const int ItemIDMegaPotion = 2;
@@ -53,13 +68,18 @@ namespace Engine
         static World()
         {
             PopulateItems();
+            PopulateEnemyLoots();
             PopulateEquipments();
+            PopulateEnemies();
+            PopulateSpells();
+            PopulateQuests();
 
             //Put the vendors after the item and equipment spawns so that it can load the items
             PopulateVendors();
             
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
+          
             /*
             PopulateEnemies();
             LoadEquipment();
@@ -123,7 +143,7 @@ namespace Engine
             items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", 36));
         }
 
-        public static void PopulateEquipments()
+        private static void PopulateEquipments()
         {
             equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", 5, 0, 0, 5, 0, 0, 0, 0));
             equipments.Add(new HeadEquipment(HeadEquipmentIDRuneHelmet, "Rune Helmet", 10, 0, 0, 10, 0, 0, 0, 0));
@@ -170,6 +190,15 @@ namespace Engine
             vendors.Add(Bobby);
         }
 
+        public static void ViewSpells()
+        {
+            foreach (Spell spell in spells)
+            {
+                Console.WriteLine(spell.ToString());
+                Console.ReadKey();
+            }
+        }
+
         public static void ViewItems()
         {
             foreach(Item item in items)
@@ -180,26 +209,121 @@ namespace Engine
         }
         public static void ViewEquipment()
         {
-            foreach (Item equipment in equipments)
+            foreach (Equipment equipment in equipments)
             {
                 Console.WriteLine(equipment.ToString());
                 Console.ReadKey();
             }
         }
 
-        private static void PopulateEnemies()
+        public static void ViewQuests()
         {
-
+            foreach(Quest quest in quests)
+            {
+                Console.WriteLine(quest.ToString());
+                Console.ReadKey();
+            }
         }
 
-        //Finds a specific location based on ID
-        public static Location FindLocationByID(int ID)
+        public static void ViewEnemies()
         {
-            foreach(Location location in locations)
+            foreach(Enemy enemy in enemies)
             {
-                if(location.ID == ID)
+                Console.WriteLine(enemy.ToString());
+                Console.ReadKey();
+            }
+        }
+
+        private static void PopulateEnemyLoots()
+        {
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatCarcass, "Rat Carcass"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDSnakeFang, "Snake Fang"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDOgreTooth, "Ogre Tooth"));
+        }
+
+        private static void PopulateEnemies()
+        {
+            Enemy rat = new Enemy(EnemyIDRat, "Rat", 5, 0, 3, 0, 0, 0, 0, 0);
+            Enemy snake = new Enemy(EnemyIDSnake, "Snake", 5, 0, 5, 5, 10, 0, 0, 5);
+            Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0);
+
+            rat.LootTable.Add(FindEnemyLootByID(1));
+            rat.LootTable.Add(FindEnemyLootByID(2));
+            snake.LootTable.Add(FindEnemyLootByID(3));
+            ogre.LootTable.Add(FindEnemyLootByID(4));
+
+            enemies.Add(rat);
+            enemies.Add(snake);
+            enemies.Add(ogre);
+        }
+
+        private static void PopulateQuests()
+        {
+            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place", FindEnemyByID(1), 3);
+            cleanTheSewers.RewardGold = 10;
+
+            Quest antidoteConcoction = new GatheringQuest(QuestIDAntidoteConcoction, "Antidote Concoction", "Bring me 3 snake fangs so I can make the antidote", FindEnemyLootByID(3), 3);
+
+            quests.Add(cleanTheSewers);
+            quests.Add(antidoteConcoction);
+        }
+
+        private static void PopulateSpells()
+        {
+            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
+            spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
+        }
+
+
+
+        //Finds a specific enemy loot based on ID
+        public static EnemyLoot FindEnemyLootByID(int ID)
+        {
+            foreach (EnemyLoot enemyLoot in enemyLoots)
+            {
+                if (enemyLoot.ID == ID)
                 {
-                    return location;
+                    return enemyLoot;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific enemy based on ID
+        public static Enemy FindEnemyByID(int ID)
+        {
+            foreach(Enemy enemy in enemies)
+            {
+                if(enemy.ID == ID)
+                {
+                    return enemy;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific spell based on ID
+        public static Spell FindSpellByID(int ID)
+        {
+            foreach(Spell spell in spells)
+            {
+                if(spell.ID == ID)
+                {
+                    return spell;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific quest based on ID
+        public static Quest FindQuestByID(int ID)
+        {
+            foreach(Quest quest in quests)
+            {
+                if(quest.ID == ID)
+                {
+                    return quest;
                 }
             }
             return null;
@@ -239,6 +363,19 @@ namespace Engine
                 if(vendor.ID == ID)
                 {
                     return vendor;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific location based on ID
+        public static Location FindLocationByID(int ID)
+        {
+            foreach (Location location in locations)
+            {
+                if (location.ID == ID)
+                {
+                    return location;
                 }
             }
             return null;

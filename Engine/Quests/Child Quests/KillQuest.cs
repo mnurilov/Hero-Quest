@@ -20,5 +20,16 @@ namespace Engine
             this.EnemyRequirement = EnemyRequirement;
             this.Quantity = Quantity;
         }
+
+        public override string ToString()
+        {
+            string info = "";
+
+            info += base.ToString();
+            info += ("Enemy Requirement: " + EnemyRequirement.ToString() + "\n");
+            info += ("Quantity: " + Quantity.ToString() + "\n");
+
+            return info;
+        }
     }
 }

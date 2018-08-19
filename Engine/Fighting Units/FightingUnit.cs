@@ -79,9 +79,10 @@ namespace Engine
         #endregion 
 
         #region Constructor
-        public FightingUnit(int MaximumHealth, int MaximumMana, int Attack, int Defense, 
+        public FightingUnit(string Name, int MaximumHealth, int MaximumMana, int Attack, int Defense, 
             int Luck, int Speed, int Intellect, int Resistance)
         {
+            this.Name = Name;
             this.MaximumHealth = MaximumHealth;
             this.MaximumMana = MaximumMana;
             this.Attack = Attack;
@@ -100,6 +101,7 @@ namespace Engine
         {
             string stats = "";
 
+            stats += ("Name: " + Name + "\n");
             stats += ("Current Health: " + CurrentHealth.ToString() + "\n");
             stats += ("Maximum Health: " + MaximumHealth.ToString() + "\n");
             stats += ("Current Mana: " + CurrentMana.ToString() + "\n");

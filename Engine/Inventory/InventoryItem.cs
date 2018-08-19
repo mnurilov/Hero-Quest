@@ -16,5 +16,19 @@ namespace Engine
             this.Item = Item;
             this.Quantity = Quantity;
         }
+
+        public override string ToString()
+        {
+            if (this != null)
+            {
+                string info = "";
+
+                info += ("Item: " + Item.ToString() + "\n");
+                info += ("Quantity " + Quantity.ToString() + "\n");
+
+                return info;
+            }
+            return "Empty";
+        }
     }
 }

@@ -1,4 +1,5 @@
 Things to do
+-USE ENUMS FOR MORE THINGS ESPECIALLY FOR THE STATUS'S
 -Organize classes into folders so its easier to locate parent and child
 classes
 -Change the variable names to be more easier to understand
@@ -9,11 +10,28 @@ classes
 -Add gold feature to all the classes that need it
 -Make a monster part class that is derived from item class
 -Then add a mosnter part object in equipment so that that is the 
-requirement for crafting that item 
+requirement for crafting that itemS 
 -Keep it optional
+-For now I'm going to keep adding the basic framework and such however,
+almost all the classes so far are very similar I should make a base class/interface that they all
+inherit from for refactoring
+
+Plans
+-I want to add the basics to all the classes basically making the data tpyes of the whole project
+-Then I might refactor the classes to make them better formatted
+-Then I will add actual functionality to the class
 
 Ideas
 -Maybe add a chest and a key?
+-Maybe a paper mario like leveling system and combat system
+-Where when you level up you put your stat points into the attritubtes you want
+Allowing the player to craft their own character
+//I dont think this would be that hard to implement however its my decision whether id want to
+or not 
+
+Concepts 
+
+
 
 
 Classes

@@ -1,9 +1,3 @@
-C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\Engine\bin\Debug\Engine.dll
-C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\Engine\bin\Debug\Engine.pdb
-C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\Engine\obj\Debug\Engine.csprojAssemblyReference.cache
-C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\Engine\obj\Debug\Engine.csproj.CoreCompileInputs.cache
-C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\Engine\obj\Debug\Engine.dll
-C:\Users\Michael\Desktop\C# Programs\HeroQuestSolution\Engine\obj\Debug\Engine.pdb
 C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\bin\Debug\Engine.dll
 C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\bin\Debug\Engine.pdb
 C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\obj\Debug\Engine.csprojAssemblyReference.cache

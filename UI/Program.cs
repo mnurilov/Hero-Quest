@@ -11,15 +11,21 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Player player = new Player(Player.Class.Thief);
+            Player player = new Player("Bobby", Player.Class.Thief);
 
-            Console.Write(player.ToString());
+            //Forcibly run the world static constructor
+            //Type type = typeof(World);
+            //System.Runtime.CompilerServices.RuntimeHelpers.RunClassConstructor(type.TypeHandle);
+
+            // Console.Write(player.ToString());
+
+            World.ViewQuests();
+
 
             string command = "";
 
-            World.ViewEquipment();
-            
-           // World.ViewItems();
+
+
 
             while (true)
             {

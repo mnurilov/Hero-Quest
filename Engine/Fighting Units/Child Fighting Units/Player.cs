@@ -216,13 +216,16 @@ namespace Engine
         #endregion 
 
         #region Constructor
-        public Player(Class playerClass, int level = 1) : base(1, 1, 1, 1, 1, 1, 1, 1)
+        public Player(string Name, Class playerClass, int level = 1) : base(Name, 1, 1, 1, 1, 1, 1, 1, 1)
         {
             this.Level = level;
             this.MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
-            MoveTo(World.FindLocationByID(1));
+            if(World.FindLocationByID(1) != null)
+            {
+                MoveTo(World.FindLocationByID(1));
+            }
 
             switch (PlayerClass)
             {
