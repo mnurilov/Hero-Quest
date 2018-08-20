@@ -123,33 +123,15 @@ namespace Engine
         public const double CriticalChanceRateScaleFactor = 100.505051;
         public const double CriticalChanceRateConstant = 100;
         #endregion 
+
+        #region Dodge Chance Constants
+        public const double DodgeChanceRateScaleFactor = 100.505051;
+        public const double DodgeChanceRateConstant = 100;
+        #endregion
         #endregion
 
         #region Variables
-        private int level;
-        public int Level 
-        { 
-            get
-            {
-                return level;
-            } 
-            set 
-            { 
-                if (value > 20)
-                {
-
-                    level = 20;
-                }
-                else if (value < 1)
-                {
-                    level = 1;
-                }
-                else
-                {
-                    level = value;
-                }
-            }
-        }
+        
 
         private int currentExperiencePoints;
         public int CurrentExperiencePoints
@@ -172,8 +154,8 @@ namespace Engine
         }
 
         public int MaximumExperiencePoints { get; set; }
-
-        public double CriticalChanceRate { get; set; }
+        
+        
 
         private int gold;
         public int Gold
@@ -216,9 +198,9 @@ namespace Engine
         #endregion 
 
         #region Constructor
-        public Player(string Name, Class playerClass, int level = 1) : base(Name, 1, 1, 1, 1, 1, 1, 1, 1)
+        public Player(int Level, string Name, Class playerClass) : base(1, Name, 1, 1, 1, 1, 1, 1, 1, 1)
         {
-            this.Level = level;
+            this.Level = Level;
             this.MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
@@ -269,6 +251,7 @@ namespace Engine
                     throw new Exception("Error no class selected");
             }
             CriticalChanceRate = ((CriticalChanceRateScaleFactor * Luck) / (Luck + CriticalChanceRateConstant));
+            DodgeChanceRate = ((DodgeChanceRateScaleFactor * Luck) / (Luck + DodgeChanceRateConstant));
         }
         #endregion
 
@@ -334,6 +317,7 @@ namespace Engine
                     throw new Exception("Error no class selected");
             }
             CriticalChanceRate = ((CriticalChanceRateScaleFactor * Luck) / (Luck + CriticalChanceRateConstant));
+            DodgeChanceRate = ((DodgeChanceRateScaleFactor * Luck) / (Luck + DodgeChanceRateConstant));
         }
 
         public void UseItem(Item item)
@@ -342,10 +326,6 @@ namespace Engine
             {
 
             }
-        }
-
-        public void AttackCommand(Enemy enemy)
-        {
         }
 
         //Make this private it never needs to be accessed outside the player class
@@ -392,6 +372,59 @@ namespace Engine
 
         }
 
+        public void AttackCommand(Enemy enemy)
+        {
+            int damage = 0;
+
+            //If the enemy would dodge the attack do not calculate damage
+            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= enemy.DodgeChanceRate)
+            {
+                return;
+            }
+
+            //If the player would critical strike the enemy then calculate the damage accordingly
+            if(RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
+            {
+                //Double the damage
+                damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 10) * 2;
+            }
+            else
+            {
+                damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 10;
+            }
+        }
+
+        public void SpellCommand(Enemy enemy)
+        {
+            int spellDamage = 0;
+
+            //If the enemy would dodge the attack do not calculate spell damage
+            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= enemy.DodgeChanceRate)
+            {
+                return;
+            }
+
+            //If the player would critical strike the enemy then calculate the spell damage accordingly
+            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
+            {
+                //Double the spell damage
+                spellDamage = (((Intellect * Intellect) / (Intellect + enemy.Resistance)) * 10) * 2;
+            }
+            else
+            {
+                spellDamage = ((Intellect * Intellect) / (Intellect + enemy.Resistance)) * 10;
+            }
+        }
+
+        public void RunCommand(Enemy enemy)
+        {
+            if(RandomNumberGenerator.RandomNumberBetween(0, Level - enemy.Level) < Level)
+            {
+
+            }
+            double RunChanceRate = ((Level - enemy.Level) + (Speed - enemy.Speed));
+        }
+
         public override string ToString()
         {
             string info = "";
@@ -401,6 +434,7 @@ namespace Engine
             info += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
             info += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
             info += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
+            info += ("Dodge Chance: " + ((int)DodgeChanceRate).ToString() + "%\n");
             info += base.ToString();
 
             return info;

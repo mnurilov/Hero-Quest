@@ -12,6 +12,7 @@ namespace Engine
         public string Name { get; set; }
         public List<InventoryItem> VendorItemInventory = new List<InventoryItem>();
         public List<InventoryEquipment> VendorEquipmentInventory = new List<InventoryEquipment>();
+        public List<Spell> VendorSpellInventory = new List<Spell>();
 
         public Vendor(int ID, string Name)
         {
@@ -32,6 +33,10 @@ namespace Engine
             foreach (InventoryEquipment equipmentItem in VendorEquipmentInventory)
             {
                 info += (equipmentItem.Equipment.Name + ", Quantity: " + equipmentItem.Quantity + "\n");
+            }
+            foreach(Spell inventorySpell in VendorSpellInventory)
+            {
+                info += (inventorySpell.ToString() + "\n");
             }
 
             return info;

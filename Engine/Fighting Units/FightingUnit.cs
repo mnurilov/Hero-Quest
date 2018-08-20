@@ -50,7 +50,32 @@ namespace Engine
             }
             
         }
-        
+
+        private int level;
+        public int Level
+        {
+            get
+            {
+                return level;
+            }
+            set
+            {
+                if (value > 20)
+                {
+
+                    level = 20;
+                }
+                else if (value < 1)
+                {
+                    level = 1;
+                }
+                else
+                {
+                    level = value;
+                }
+            }
+        }
+
 
         public int MaximumHealth { get; set; }
         
@@ -75,13 +100,19 @@ namespace Engine
         
 
         public int Resistance { get; set; }
-       
-        #endregion 
+
+
+
+        public double CriticalChanceRate { get; set; }
+        public double DodgeChanceRate { get; set; }
+
+        #endregion
 
         #region Constructor
-        public FightingUnit(string Name, int MaximumHealth, int MaximumMana, int Attack, int Defense, 
+        public FightingUnit(int Level, string Name, int MaximumHealth, int MaximumMana, int Attack, int Defense, 
             int Luck, int Speed, int Intellect, int Resistance)
         {
+            this.Level = Level;
             this.Name = Name;
             this.MaximumHealth = MaximumHealth;
             this.MaximumMana = MaximumMana;

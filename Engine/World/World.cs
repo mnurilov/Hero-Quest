@@ -244,9 +244,9 @@ namespace Engine
 
         private static void PopulateEnemies()
         {
-            Enemy rat = new Enemy(EnemyIDRat, "Rat", 5, 0, 3, 0, 0, 0, 0, 0);
-            Enemy snake = new Enemy(EnemyIDSnake, "Snake", 5, 0, 5, 5, 10, 0, 0, 5);
-            Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0);
+            Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10);
+            Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 0, 0, 5, 15, 15);
+            Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5);
 
             rat.LootTable.Add(FindEnemyLootByID(1));
             rat.LootTable.Add(FindEnemyLootByID(2));

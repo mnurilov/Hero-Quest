@@ -14,12 +14,15 @@ namespace Engine
         public List<EnemyLoot> LootTable = new List<EnemyLoot>();
         #endregion
 
-        public Enemy (int ID, string Name, int MaximumHealth, int MaximumMana, int Attack, 
-            int Defense, int Luck, int Speed, int Intellect, int Resistance) :
-            base (Name, MaximumHealth, MaximumMana, Attack, Defense, Luck, Speed, 
+        public Enemy (int ID, int Level, string Name, int MaximumHealth, int MaximumMana, int Attack, 
+            int Defense, int Luck, int Speed, int Intellect, int Resistance, double CriticalChanceRate,
+            double DodgeChanceRate) :
+            base (Level, Name, MaximumHealth, MaximumMana, Attack, Defense, Luck, Speed, 
                 Intellect, Resistance)
         {
             this.ID = ID;
+            this.CriticalChanceRate = CriticalChanceRate;
+            this.DodgeChanceRate = DodgeChanceRate;
         }
 
         public override string ToString()
