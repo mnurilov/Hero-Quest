@@ -184,7 +184,7 @@ namespace Engine
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
 
-        private Game.GameState PlayerGameState = Game.GameState.Battle;
+        private GameStateMachine.GameState PlayerGameState = GameStateMachine.GameState.Battle;
         #endregion 
 
         #region Player Objects
@@ -196,6 +196,8 @@ namespace Engine
         public List<Quest> PlayerQuests = new List<Quest>();
         public List<InventoryItem> PlayerItemInventory = new List<InventoryItem>();
         public List<InventoryEquipment> PlayerEquipmentInventory = new List<InventoryEquipment>();
+        public List<InventoryLoot> PlayerLootInventory = new List<InventoryLoot>();
+        public List<Spell> PlayerSpells = new List<Spell>();
         #endregion 
         #endregion 
 
@@ -335,10 +337,9 @@ namespace Engine
         {
             CurrentLocation = newLocation;
             Console.WriteLine(CurrentLocation.ToString());
-            Console.Write(CurrentLocation.EnemiesInLocation[1]);
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 33)
             {
-                Player.Battle(CurrentLocation.EnemiesInLocation[RandomNumberGenerator.RandomNumberBetween(0, CurrentLocation.EnemiesInLocation.Count - 1)]);
+                //Player.Battle(CurrentLocation.EnemiesInLocation[RandomNumberGenerator.RandomNumberBetween(0, CurrentLocation.EnemiesInLocation.Count - 1)]);
             }
         }
 

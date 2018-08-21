@@ -11,7 +11,7 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Player player = new Player(1, "Bobby", Player.Class.Thief);
+            Player player = new Player(1, "Bobby", Player.Class.Warrior);
 
             //Forcibly run the world static constructor
             //Type type = typeof(World);
@@ -23,7 +23,7 @@ namespace UI
             Console.ReadKey();
 
 
-            string command = "";
+            string command = ""; 
 
 
 
