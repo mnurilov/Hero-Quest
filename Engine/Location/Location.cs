@@ -21,6 +21,8 @@ namespace Engine
         public Vendor VendorInLocation;
 
         public Quest QuestInLocation;
+
+        public List<Enemy> EnemiesInLocation = new List<Enemy>();
         #endregion
 
         //Add the vendor and quest as a constructor later on
@@ -39,6 +41,21 @@ namespace Engine
             info += ("Name: " + Name.ToString() + "\n");
             info += ("Description: " + Description.ToString() + "\n");
 
+            if(VendorInLocation != null)
+            {
+                info += ("Vendor Details: " + VendorInLocation.ToString() + "\n");
+            }
+            if(QuestInLocation != null)
+            {
+                info += ("Quest Details: " + QuestInLocation.ToString() + "\n");
+            }
+            if(EnemiesInLocation != null)
+            {
+                foreach(Enemy enemy in EnemiesInLocation)
+                {
+                    info += ("Enemy Details: " + enemy.ToString() + "\n");
+                }
+            }
             return info;
         }
     }

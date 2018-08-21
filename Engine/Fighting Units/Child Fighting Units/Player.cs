@@ -183,6 +183,8 @@ namespace Engine
 
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
+
+        private Game.GameState PlayerGameState = Game.GameState.Battle;
         #endregion 
 
         #region Player Objects
@@ -333,6 +335,11 @@ namespace Engine
         {
             CurrentLocation = newLocation;
             Console.WriteLine(CurrentLocation.ToString());
+            Console.Write(CurrentLocation.EnemiesInLocation[1]);
+            if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 33)
+            {
+                Player.Battle(CurrentLocation.EnemiesInLocation[RandomNumberGenerator.RandomNumberBetween(0, CurrentLocation.EnemiesInLocation.Count - 1)]);
+            }
         }
 
         public void MoveNorth()
@@ -416,13 +423,13 @@ namespace Engine
             }
         }
 
-        public void RunCommand(Enemy enemy)
+        public bool RunCommand(Enemy enemy)
         {
-            if(RandomNumberGenerator.RandomNumberBetween(0, Level - enemy.Level) < Level)
+            if(RandomNumberGenerator.RandomNumberBetween(0, 100) < Speed + Luck)
             {
-
+                return true;
             }
-            double RunChanceRate = ((Level - enemy.Level) + (Speed - enemy.Speed));
+            return false;
         }
 
         public override string ToString()

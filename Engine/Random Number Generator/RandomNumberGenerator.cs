@@ -8,9 +8,7 @@ namespace Engine
 {
     public static class RandomNumberGenerator
     {
-        #region Fields
         private static Random random = new Random();
-        #endregion
 
         public static int RandomNumberBetween (int minimumValue, int maximumValue)
         {
