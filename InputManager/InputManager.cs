@@ -8,11 +8,11 @@ namespace Engine
 {
     public static class InputManager
     {
-        public enum Input { North, South, West, East, Vendor, Quest, Stats, Inventory, Equipment, Spells }
+        public enum TravelInput { North, South, West, East, Vendor, Quest, Stats, Inventory, Equipment, Spells }
 
-        public static void EvaluateInput(Input input, Player player)
-        {
-            switch (input)
+        //public static void EvaluateTravelInput(TravelInput input, Player player)
+        //{
+           /* switch (input)
             {
                 case Input.North:
                     player.MoveNorth();
@@ -29,7 +29,7 @@ namespace Engine
                 case Input.Vendor:
                     
                     break;
-            }
+            }*/
         }
     }
-}
+//}

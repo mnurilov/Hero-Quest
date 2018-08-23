@@ -184,7 +184,7 @@ namespace Engine
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
 
-        private GameStateMachine.GameState PlayerGameState = GameStateMachine.GameState.Battle;
+        //private GameStateMachine.GameState PlayerGameState = GameStateMachine.GameState.Battle;
         #endregion 
 
         #region Player Objects

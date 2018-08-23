@@ -9,13 +9,12 @@ namespace Engine
     public class GameStateMachine
     {
         public enum GameState { Travel, Battle, Shop }
-        public GameState gameState = GameState.Travel;
 
-        public enum Transition { Encounter, Fnas }
+        public enum Transition { Encounter, PlayerDeath, EnemyDeath, RunAway, EnterShop, LeaveShop }
 
         public void Update()
         {
-            switch (gameState)
+            /*switch (gameState)
             {
                 case GameState.Travel:
                     //Display Travel UI();
@@ -34,7 +33,7 @@ namespace Engine
                     break;
                 default:
                     throw new Exception("No game state!");
-            }
+            }*/
         }
     }
 }

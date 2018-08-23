@@ -85,3 +85,44 @@ well so i might as well use it when im trying to make quests instead
 of trying to treat it differently
 
 -
+
+
+
+
+I do not want battle logic to exist in the player class
+for example the player attacking should belong to the player class beacuse the player is the 
+one attacking that is an action he is doing therefore it should belong to him
+whereas the battle state should not belong to the player class
+the player is not the one creating the battle state and controlling its inputs
+the player is just the one doing the actions
+therefore the actions like attack use spell run away and use item
+should all belong to the player due to it being an action the player is taking
+however the state which is existing for the player to commit these actions do not belong 
+to the player
+therefore their should be a class that handles state logic meaning that if the game is in a certian
+state then that logic should be preformed in that class. Now for the sake of making the code 
+easy to make. I would create a game state machine class and make enums describing the states
+and transitions between the states then I will give logic to the states. I will make a switch
+statement and whichever state the game is in will preform that states logic. I am thinking
+i should make a battleState a shopState a  travelState classes and then make them static
+then just have them call their logic in a gamestatelogic 
+my question becomes shoudl i define logic in the gamestate class and make functions
+where all the state logic is and then make a switch statement 
+
+2 options that I have so far for game states
+-Create seperate classes for each game state and then call those states in the game class
+-Create all the state logic in the game state machine class and then create the logic loop there
+-Maybe I can do the classes thing and have the game state machine handle the rough logic
+and call the update method from game state machine on the game class in order to make the 
+code more organized?
+
+Ok so instead of sitting around and not getting any work done with what feels like 4 to 5 days now
+Lets get started
+
+-I am going to create seperate classes for each game state
+-I will have all these classes be static and contain a method called Update
+-I will then in my game state machine class create a switch statement called Update()
+-This will have all the class logic called here
+-I will use this to swap the logics around
+-Then I will call this method on a while true loop in the game class which will be the main class
+-That is the idea for now lets see how it goesS
