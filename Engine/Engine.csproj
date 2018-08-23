@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Game.cs" />
     <Compile Include="GameStateMachine.cs" />
     <Compile Include="InputManager.cs" />
     <Compile Include="Spells\Child Spells\ReplenishingSpell.cs" />

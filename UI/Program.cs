@@ -19,19 +19,19 @@ namespace UI
             string name;
             name = Console.ReadLine();
             bool playerNameIsCorrect = false;
-            string answerToNameQuestion;
+            string answerToNameClarification;
             while (!playerNameIsCorrect)
             {
                 Console.WriteLine("Is " + name + " the correct name?");
                 Console.WriteLine("yes or no");
-                answerToNameQuestion = Console.ReadLine();
-                answerToNameQuestion = answerToNameQuestion.ToLower();
+                answerToNameClarification = Console.ReadLine();
+                answerToNameClarification = answerToNameClarification.ToLower();
 
-                if(answerToNameQuestion == "yes")
+                if(answerToNameClarification == "yes")
                 {
                     playerNameIsCorrect = true;
                 }
-                else if (answerToNameQuestion == "no")
+                else if (answerToNameClarification == "no")
                 {
                     Console.WriteLine("What is your name then unproven hero?");
                     Console.Write("Name:");
@@ -42,34 +42,70 @@ namespace UI
                     
                 }
             }
+
             string classChoice = "";
-            Console.WriteLine("Well " + name + " while thats a pretty terrible name we'll move on.");
+            Console.WriteLine("Well, " + name + " that's a pretty terrible name but, we'll move on.");
             Console.WriteLine("What class would you like to be?");
             Console.WriteLine("Warrior   |   Mage   |   Thief");
             classChoice = Console.ReadLine();
             classChoice = classChoice.ToLower();
             bool classChoiceIsCorrect = false;
+            string answerToClassClarification = "";
+            bool classChoiceIsDone = false;
 
-            while (!classChoiceIsCorrect)
+            while (!classChoiceIsDone)
             {
-                switch (classChoice)
+                if (classChoice != "warrior" && classChoice != "mage" && classChoice != "thief")
                 {
-                    case "warrior":
-                        Console.WriteLine("Is Warrior your class choice?");
-                        
-                        break;
-                    case "mage":
-                        break;
-                    case "thief":
-                        break;
-                    default:
-                        classChoice = Console.ReadLine();
-                        classChoice = classChoice.ToLower();
-                        break;
+                    Console.WriteLine("Invalid class name");
+                    classChoice = Console.ReadLine();
+                    classChoice = classChoice.ToLower();
+                }
+                else
+                {
+                    if (!classChoiceIsCorrect)
+                    {
+                        Console.WriteLine("Is " + classChoice + " the correct class?");
+                        Console.WriteLine("yes or no");
+                        answerToClassClarification = Console.ReadLine();
+                        answerToClassClarification = answerToClassClarification.ToLower();
+
+                        if (answerToClassClarification == "yes")
+                        {
+                            classChoiceIsDone = true;
+                        }
+                        else if (answerToClassClarification == "no")
+                        {
+                            Console.WriteLine("What class are you then unproven hero?");
+                            Console.Write("Class:");
+                            classChoice = Console.ReadLine();
+                        }
+                        else
+                        {
+
+                        }
+                    }
                 }
             }
 
-            Player player = new Player(1, name, Player.Class.Warrior);
+            Player.Class playerClass = Player.Class.Warrior;
+
+            switch (classChoice)
+            {
+                case "warrior":
+                    playerClass = Player.Class.Warrior;
+                    break;
+                case "mage":
+                    playerClass = Player.Class.Mage;
+                    break;
+                case "thief":
+                    playerClass = Player.Class.Thief;
+                    break;
+            }
+
+            Player player = new Player(1, name, playerClass);
+
+            
 
             //Forcibly run the world static constructor
             //Type type = typeof(World);
