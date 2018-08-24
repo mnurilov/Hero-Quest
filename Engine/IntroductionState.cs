@@ -6,18 +6,16 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class TravelState : IState
+    public class IntroductionState : IState
     {
-        string playerInput;
-
         public void Update()
         {
-
+            InputManager.ManageIntroductionStateInput();
         }
+
         public void Update(Player player)
         {
-            playerInput = Console.ReadLine();
-            InputManager.ManageTravelStateInput(player, playerInput);
+            InputManager.ManageIntroductionStateInput();
         }
 
         public void Draw()

@@ -12,121 +12,121 @@ namespace Engine
         //CREATE CONSTANTS FOR CAPS ON THE STATS AND GOLD FOR EXAMPLE MAKE A CONSTANT THAT HOLDS THE GOLD CAP FOR GOLD, EASIER TO MODIFY THAT WAY
         #region Constants
         #region Warrior Class Constants
-        public const double WarriorHealthStatScaleFactor = 6.073588;
-        public const double WarriorHealthStatExponent = 1.7;
-        public const double WarriorHealthStatConstant = 10;
+        private const double WarriorHealthStatScaleFactor = 6.073588;
+        private const double WarriorHealthStatExponent = 1.7;
+        private const double WarriorHealthStatConstant = 10;
 
-        public const double WarriorManaStatScaleFactor = 0.583;
-        public const double WarriorManaStatExponent = 1.7;
-        public const double WarriorManaStatConstant = 5;
+        private const double WarriorManaStatScaleFactor = 0.583;
+        private const double WarriorManaStatExponent = 1.7;
+        private const double WarriorManaStatConstant = 5;
 
-        public const double WarriorAttackStatScaleFactor = 0.58;
-        public const double WarriorAttackStatExponent = 1.7;
-        public const double WarriorAttackStatConstant = 5;
+        private const double WarriorAttackStatScaleFactor = 0.58;
+        private const double WarriorAttackStatExponent = 1.7;
+        private const double WarriorAttackStatConstant = 5;
 
-        public const double WarriorDefenseStatScaleFactor = 0.58;
-        public const double WarriorDefenseStatExponent = 1.7;
-        public const double WarriorDefenseStatConstant = 5;
+        private const double WarriorDefenseStatScaleFactor = 0.58;
+        private const double WarriorDefenseStatExponent = 1.7;
+        private const double WarriorDefenseStatConstant = 5;
 
-        public const double WarriorLuckStatScaleFactor = 0.116681662;
-        public const double WarriorLuckStatExponent = 1.7;
-        public const double WarriorLuckStatConstant = 1;
+        private const double WarriorLuckStatScaleFactor = 0.116681662;
+        private const double WarriorLuckStatExponent = 1.7;
+        private const double WarriorLuckStatConstant = 1;
 
-        public const double WarriorSpeedStatScaleFactor = 0.227222184;
-        public const double WarriorSpeedStatExponent = 1.7;
-        public const double WarriorSpeedStatConstant = 3;
+        private const double WarriorSpeedStatScaleFactor = 0.227222184;
+        private const double WarriorSpeedStatExponent = 1.7;
+        private const double WarriorSpeedStatConstant = 3;
 
-        public const double WarriorIntellectStatScaleFactor = 0.147387363;
-        public const double WarriorIntellectStatExponent = 1.7;
-        public const double WarriorIntellectStatConstant = 1;
+        private const double WarriorIntellectStatScaleFactor = 0.147387363;
+        private const double WarriorIntellectStatExponent = 1.7;
+        private const double WarriorIntellectStatConstant = 1;
 
-        public const double WarriorResistanceStatScaleFactor = 0.147387363;
-        public const double WarriorResistanceStatExponent = 1.7;
-        public const double WarriorResistanceStatConstant = 1;
+        private const double WarriorResistanceStatScaleFactor = 0.147387363;
+        private const double WarriorResistanceStatExponent = 1.7;
+        private const double WarriorResistanceStatConstant = 1;
         #endregion
 
         #region Mage Class Constants
-        public const double MageHealthStatScaleFactor = 3.03372322;
-        public const double MageHealthStatExponent = 1.7;
-        public const double MageHealthStatConstant = 6;
-                            
-        public const double MageManaStatScaleFactor = 6.073588;
-        public const double MageManaStatExponent = 1.7;
-        public const double MageManaStatConstant = 10;
-                            
-        public const double MageAttackStatScaleFactor = 0.147387363;
-        public const double MageAttackStatExponent = 1.7;
-        public const double MageAttackStatConstant = 1;
-                            
-        public const double MageDefenseStatScaleFactor = 0.147387363;
-        public const double MageDefenseStatExponent = 1.7;
-        public const double MageDefenseStatConstant = 1;
-                           
-        public const double MageLuckStatScaleFactor = 0.116681662;
-        public const double MageLuckStatExponent = 1.7;
-        public const double MageLuckStatConstant = 1;
-                            
-        public const double MageSpeedStatScaleFactor = 0.343903846;
-        public const double MageSpeedStatExponent = 1.7;
-        public const double MageSpeedStatConstant = 4;
-                            
-        public const double MageIntellectStatScaleFactor = 0.58;
-        public const double MageIntellectStatExponent = 1.7;
-        public const double MageIntellectStatConstant = 5;
-                            
-        public const double MageResistanceStatScaleFactor = 0.58;
-        public const double MageResistanceStatExponent = 1.7;
-        public const double MageResistanceStatConstant = 5;
+        private const double MageHealthStatScaleFactor = 3.03372322;
+        private const double MageHealthStatExponent = 1.7;
+        private const double MageHealthStatConstant = 6;
+
+        private const double MageManaStatScaleFactor = 6.073588;
+        private const double MageManaStatExponent = 1.7;
+        private const double MageManaStatConstant = 10;
+
+        private const double MageAttackStatScaleFactor = 0.147387363;
+        private const double MageAttackStatExponent = 1.7;
+        private const double MageAttackStatConstant = 1;
+
+        private const double MageDefenseStatScaleFactor = 0.147387363;
+        private const double MageDefenseStatExponent = 1.7;
+        private const double MageDefenseStatConstant = 1;
+
+        private const double MageLuckStatScaleFactor = 0.116681662;
+        private const double MageLuckStatExponent = 1.7;
+        private const double MageLuckStatConstant = 1;
+
+        private const double MageSpeedStatScaleFactor = 0.343903846;
+        private const double MageSpeedStatExponent = 1.7;
+        private const double MageSpeedStatConstant = 4;
+
+        private const double MageIntellectStatScaleFactor = 0.58;
+        private const double MageIntellectStatExponent = 1.7;
+        private const double MageIntellectStatConstant = 5;
+        
+        private const double MageResistanceStatScaleFactor = 0.58;
+        private const double MageResistanceStatExponent = 1.7;
+        private const double MageResistanceStatConstant = 5;
         #endregion
 
         #region Thief Class Constants
-        public const double ThiefHealthStatScaleFactor = 4.2558101;
-        public const double ThiefHealthStatExponent = 1.7;
-        public const double ThiefHealthStatConstant = 7;
-                            
-        public const double ThiefManaStatScaleFactor = 1.20366346;
-        public const double ThiefManaStatExponent = 1.7;
-        public const double ThiefManaStatConstant = 4;
-                            
-        public const double ThiefAttackStatScaleFactor = 0.343903846;
-        public const double ThiefAttackStatExponent = 1.7;
-        public const double ThiefAttackStatConstant = 4;
-                            
-        public const double ThiefDefenseStatScaleFactor = 0.343903846;
-        public const double ThiefDefenseStatExponent = 1.7;
-        public const double ThiefDefenseStatConstant = 4;
-                            
-        public const double ThiefLuckStatScaleFactor = 0.58;
-        public const double ThiefLuckStatExponent = 1.7;
-        public const double ThiefLuckStatConstant = 5;
-                            
-        public const double ThiefSpeedStatScaleFactor = 0.58;
-        public const double ThiefSpeedStatExponent = 1.7;
-        public const double ThiefSpeedStatConstant = 5;
-                            
-        public const double ThiefIntellectStatScaleFactor = 0.227222184;
-        public const double ThiefIntellectStatExponent = 1.7;
-        public const double ThiefIntellectStatConstant = 3;
-                            
-        public const double ThiefResistanceStatScaleFactor = 0.282492445;
-        public const double ThiefResistanceStatExponent = 1.7;
-        public const double ThiefResistanceStatConstant = 4;
+        private const double ThiefHealthStatScaleFactor = 4.2558101;
+        private const double ThiefHealthStatExponent = 1.7;
+        private const double ThiefHealthStatConstant = 7;
+
+        private const double ThiefManaStatScaleFactor = 1.20366346;
+        private const double ThiefManaStatExponent = 1.7;
+        private const double ThiefManaStatConstant = 4;
+
+        private const double ThiefAttackStatScaleFactor = 0.343903846;
+        private const double ThiefAttackStatExponent = 1.7;
+        private const double ThiefAttackStatConstant = 4;
+
+        private const double ThiefDefenseStatScaleFactor = 0.343903846;
+        private const double ThiefDefenseStatExponent = 1.7;
+        private const double ThiefDefenseStatConstant = 4;
+
+        private const double ThiefLuckStatScaleFactor = 0.58;
+        private const double ThiefLuckStatExponent = 1.7;
+        private const double ThiefLuckStatConstant = 5;
+
+        private const double ThiefSpeedStatScaleFactor = 0.58;
+        private const double ThiefSpeedStatExponent = 1.7;
+        private const double ThiefSpeedStatConstant = 5;
+
+        private const double ThiefIntellectStatScaleFactor = 0.227222184;
+        private const double ThiefIntellectStatExponent = 1.7;
+        private const double ThiefIntellectStatConstant = 3;
+
+        private const double ThiefResistanceStatScaleFactor = 0.282492445;
+        private const double ThiefResistanceStatExponent = 1.7;
+        private const double ThiefResistanceStatConstant = 4;
         #endregion
 
         #region Experience Points Constants
-        public const double ExperiencePointsScaleFactor = 2;
-        public const double ExperiencePointsExponent = 2.5;
-        public const double ExperiencePointsConstant = 10;
+        private const double ExperiencePointsScaleFactor = 2;
+        private const double ExperiencePointsExponent = 2.5;
+        private const double ExperiencePointsConstant = 10;
         #endregion
 
         #region Critical Chance Constants
-        public const double CriticalChanceRateScaleFactor = 100.505051;
-        public const double CriticalChanceRateConstant = 100;
+        private const double CriticalChanceRateScaleFactor = 100.505051;
+        private const double CriticalChanceRateConstant = 100;
         #endregion 
 
         #region Dodge Chance Constants
-        public const double DodgeChanceRateScaleFactor = 100.505051;
-        public const double DodgeChanceRateConstant = 100;
+        private const double DodgeChanceRateScaleFactor = 100.505051;
+        private const double DodgeChanceRateConstant = 100;
         #endregion
         #endregion
 
@@ -184,7 +184,8 @@ namespace Engine
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
 
-        //private GameStateMachine.GameState PlayerGameState = GameStateMachine.GameState.Battle;
+        public enum State { Travel, Battle, Shop }
+        public static State PlayerState = State.Travel;
         #endregion 
 
         #region Player Objects
@@ -296,11 +297,14 @@ namespace Engine
         //Make this private it never needs to be accessed outside the player class
         public void MoveTo(Location newLocation)
         {
+            bool changeState = false;
+
             CurrentLocation = newLocation;
             Console.WriteLine(CurrentLocation.ToString());
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 33)
             {
-                //Player.Battle(CurrentLocation.EnemiesInLocation[RandomNumberGenerator.RandomNumberBetween(0, CurrentLocation.EnemiesInLocation.Count - 1)]);
+                PlayerState = State.Battle;
+                Console.WriteLine("You have encountered a random foe");
             }
         }
 

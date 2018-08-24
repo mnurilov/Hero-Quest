@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class TravelState : IState
+    public class BattleState : IState
     {
         string playerInput;
 
@@ -16,8 +16,9 @@ namespace Engine
         }
         public void Update(Player player)
         {
+            Enemy enemy = World.FindEnemyByID(1);
             playerInput = Console.ReadLine();
-            InputManager.ManageTravelStateInput(player, playerInput);
+            InputManager.ManageBattleStateInput(player, enemy, playerInput);
         }
 
         public void Draw()
