@@ -297,8 +297,6 @@ namespace Engine
         //Make this private it never needs to be accessed outside the player class
         public void MoveTo(Location newLocation)
         {
-            bool changeState = false;
-
             CurrentLocation = newLocation;
             Console.WriteLine(CurrentLocation.ToString());
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 33)

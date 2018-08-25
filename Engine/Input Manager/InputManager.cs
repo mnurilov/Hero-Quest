@@ -27,10 +27,11 @@ namespace Engine
                     player.MoveEast();
                     break;
                 case "shop":
+                    Console.WriteLine("You entered the shop!");
                     Player.PlayerState = Player.State.Shop;
                     break;
                 default:
-                    Console.WriteLine("Error invalid input!");
+                    Console.WriteLine("Error invalid input for traveling!");
                     break;
             }
         }
@@ -42,15 +43,22 @@ namespace Engine
             switch (playerInput)
             {
                 case "attack":
+                    Console.WriteLine("You attack");
                     player.AttackCommand(enemy);
                     break;
                 case "spell":
+                    Console.WriteLine("You cast a spell");
                     player.SpellCommand(enemy);
                     break;
                 case "run away":
                     if (player.RunCommand(enemy))
                     {
+                        Console.WriteLine("You run away");
                         Player.PlayerState = Player.State.Travel;
+                    }
+                    else
+                    {
+                        Console.WriteLine("You fail to run away");
                     }
                     break;
                 default:
@@ -169,6 +177,7 @@ namespace Engine
                     Console.WriteLine("Wow you sold the item");
                     break;
                 case "exit":
+                    Console.WriteLine("You exit the shop");
                     Player.PlayerState = Player.State.Travel;
                     break;
                 default:

@@ -40,13 +40,13 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BattleState.cs" />
-    <Compile Include="Game.cs" />
-    <Compile Include="GameStateManager.cs" />
-    <Compile Include="InputManager.cs" />
-    <Compile Include="IntroductionState.cs" />
-    <Compile Include="IState.cs" />
-    <Compile Include="ShopState.cs" />
+    <Compile Include="Game States\Inherited Game States\BattleState.cs" />
+    <Compile Include="Game\Game.cs" />
+    <Compile Include="Game State Manager\GameStateManager.cs" />
+    <Compile Include="Input Manager\InputManager.cs" />
+    <Compile Include="Game States\Inherited Game States\IntroductionState.cs" />
+    <Compile Include="Game States\IState.cs" />
+    <Compile Include="Game States\Inherited Game States\ShopState.cs" />
     <Compile Include="Spells\Child Spells\ReplenishingSpell.cs" />
     <Compile Include="Spells\Child Spells\DamageSpell.cs" />
     <Compile Include="Items\Child Items\EnemyLoot.cs" />
@@ -72,13 +72,11 @@
     <Compile Include="Items\Child Items\Child Equipments\Shield.cs" />
     <Compile Include="Spells\Spell.cs" />
     <Compile Include="Items\Child Items\Child Equipments\Tome.cs" />
-    <Compile Include="TravelState.cs" />
+    <Compile Include="Game States\Inherited Game States\TravelState.cs" />
     <Compile Include="Vendor\Vendor.cs" />
     <Compile Include="Items\Child Items\Child Equipments\Weapon.cs" />
     <Compile Include="World\World.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Game States\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

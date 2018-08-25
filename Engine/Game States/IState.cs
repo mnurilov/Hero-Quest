@@ -13,7 +13,6 @@ namespace Engine
         //void Resume();
 
         //void HandleEvents();
-        void Update();
         void Update(Player player);
         void Draw();
     }

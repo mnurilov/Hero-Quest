@@ -32,10 +32,6 @@ namespace Engine
             states.Peek();
         }
 
-        public static void Update()
-        {
-            states.Peek().Update();
-        }
         public static void Update(Player player)
         {
             states.Peek().Update(player);
