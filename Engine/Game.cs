@@ -11,13 +11,13 @@ namespace Engine
     {
         public static void Run()
         {
-            Player player;
+            Player player = new Player(1, "Bob", Player.Class.Thief);
 
             IntroductionState introductionState = new IntroductionState();
             TravelState ts = new TravelState();
             BattleState bs = new BattleState();
-            GameStateManager.Push(introductionState);
-            player = GameStateManager.Update();
+            ShopState ss = new ShopState();
+            GameStateManager.Push(ts);
             
 
             while (true)
@@ -29,6 +29,9 @@ namespace Engine
                         break;
                     case Player.State.Battle:
                         GameStateManager.Set(bs);
+                        break;
+                    case Player.State.Shop:
+                        GameStateManager.Set(ss);
                         break;
                 }
                 GameStateManager.Update(player);

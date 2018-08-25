@@ -391,7 +391,7 @@ namespace Engine
 
         public bool RunCommand(Enemy enemy)
         {
-            if(RandomNumberGenerator.RandomNumberBetween(0, 100) < Speed + Luck)
+            if(RandomNumberGenerator.RandomNumberBetween(0, 100) < 50)
             {
                 return true;
             }

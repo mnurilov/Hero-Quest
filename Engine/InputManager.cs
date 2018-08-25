@@ -26,6 +26,9 @@ namespace Engine
                 case "east":
                     player.MoveEast();
                     break;
+                case "shop":
+                    Player.PlayerState = Player.State.Shop;
+                    break;
                 default:
                     Console.WriteLine("Error invalid input!");
                     break;
@@ -45,7 +48,10 @@ namespace Engine
                     player.SpellCommand(enemy);
                     break;
                 case "run away":
-                    player.RunCommand(enemy);
+                    if (player.RunCommand(enemy))
+                    {
+                        Player.PlayerState = Player.State.Travel;
+                    }
                     break;
                 default:
                     Console.WriteLine("Invalid input for battle command!");
@@ -148,6 +154,27 @@ namespace Engine
             }
 
             return new Player(1, name, playerClass);
+        }
+
+        public static void ManageShopStateInput(Player player, string playerInput)
+        {
+            playerInput = playerInput.ToLower();
+
+            switch (playerInput)
+            {
+                case "buy":
+                    Console.WriteLine("wow you bought the item");
+                    break;
+                case "sell":
+                    Console.WriteLine("Wow you sold the item");
+                    break;
+                case "exit":
+                    Player.PlayerState = Player.State.Travel;
+                    break;
+                default:
+                    Console.WriteLine("Invalid input for shop command!");
+                    break;
+            }
         }
     }
 }

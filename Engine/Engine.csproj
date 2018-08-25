@@ -46,6 +46,7 @@
     <Compile Include="InputManager.cs" />
     <Compile Include="IntroductionState.cs" />
     <Compile Include="IState.cs" />
+    <Compile Include="ShopState.cs" />
     <Compile Include="Spells\Child Spells\ReplenishingSpell.cs" />
     <Compile Include="Spells\Child Spells\DamageSpell.cs" />
     <Compile Include="Items\Child Items\EnemyLoot.cs" />
