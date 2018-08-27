@@ -299,7 +299,7 @@ namespace Engine
         {
             CurrentLocation = newLocation;
             Console.WriteLine(CurrentLocation.ToString());
-            if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 33)
+            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= CurrentLocation.EncounterChance)
             {
                 PlayerState = State.Battle;
                 Console.WriteLine("You have encountered a random foe");

@@ -126,3 +126,20 @@ Lets get started
 -I will use this to swap the logics around
 -Then I will call this method on a while true loop in the game class which will be the main class
 -That is the idea for now lets see how it goesS
+
+Encounter rate 
+The location has a general encounter rate if this encounter rate is reached
+then a battle will occur 
+Next we will check the enemies if their are three enemies on the locations
+enemy list then it will pick on of the randomly
+However I do not like that
+I dont want a random enemy selected I was them to have percentages
+that influence their selection
+such as defining the the first enemy has 20 % and the second as 80%
+therefore 4/5 i should encounter  the second enemy
+how should i do that though?
+if i roll and see if the number reaches the first one then re roll and 
+hits the second
+would not work
+because if the roll that didnt rreach the first enemy then it will
+not hmmmmmmmmmmm

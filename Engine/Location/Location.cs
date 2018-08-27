@@ -12,6 +12,7 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int EncounterChance { get; set; }
 
         public Location LocationToTheNorth;
         public Location LocationToTheSouth;
@@ -23,14 +24,16 @@ namespace Engine
         public Quest QuestInLocation;
 
         public List<Enemy> EnemiesInLocation = new List<Enemy>();
+        public List<int> EnemiesEncounterChance = new List<int>();
         #endregion
 
         //Add the vendor and quest as a constructor later on
-        public Location(int ID, string Name, string Description)
+        public Location(int ID, string Name, string Description, int EncounterChance)
         {
             this.ID = ID;
             this.Name = Name;
             this.Description = Description;
+            this.EncounterChance = EncounterChance;
         }
 
         public override string ToString()

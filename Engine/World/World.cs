@@ -93,12 +93,12 @@ namespace Engine
         private static void PopulateLocations()
         {
             //Creation of locations
-            Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!");
-            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains");
-            Location town = new Location(LocationIDTown, "Town", "What a beautiful town");
-            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone");
-            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here");
-            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!");
+            Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0);
+            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 50);
+            Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0);
+            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 50);
+            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 50);
+            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 100);
 
 
             //Linking up the locations
