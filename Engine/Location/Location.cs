@@ -36,6 +36,39 @@ namespace Engine
             this.EncounterChance = EncounterChance;
         }
 
+        public void 
+
+        public Enemy GetEnemyFromList()
+        {
+            int randNum = RandomNumberGenerator.RandomNumberBetween(1, 100);
+
+            for (int i = 0; i < EnemiesInLocation.Count; i++)
+            {
+                if(i == 0)
+                {
+                    continue;
+                }
+
+                EnemiesInLocation[i].EncounterRate = EnemiesInLocation[i].EncounterRate + EnemiesInLocation[i - 1].EncounterRate;
+            }
+
+            for (int i = 0; i < EnemiesInLocation.Count; i++)
+            {
+                if(i == 0)
+                {
+                    if(randNum > 0 && randNum <= EnemiesInLocation[i].EncounterRate)
+                    {
+
+                    }
+                }
+                else if(randNum > EnemiesInLocation[i].EncounterRate && randNum <= EnemiesInLocation[i + 1].EncounterRate)
+                {
+
+                }
+            }
+            return new Enemy();
+        }
+
         public override string ToString()
         {
             string info = "";
