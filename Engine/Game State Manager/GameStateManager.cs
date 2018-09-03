@@ -10,13 +10,12 @@ namespace Engine
     {
         public static Stack<IState> states = new Stack<IState>();
 
-
         public static void Push(IState state)
         {
             states.Push(state);
         }
 
-        public static  void Pop()
+        public static void Pop()
         {
             states.Pop();
         }

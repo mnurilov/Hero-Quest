@@ -143,3 +143,9 @@ hits the second
 would not work
 because if the roll that didnt rreach the first enemy then it will
 not hmmmmmmmmmmm
+
+
+THINGS TO DO NEXT TIME:
+-FIX HOW ENEMIES WORK IN LOCATIONS
+-MAKE NEW ENEMIES CURRENT EACH TIME A LOCATION IS VISITED
+

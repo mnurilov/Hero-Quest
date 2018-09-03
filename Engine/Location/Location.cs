@@ -23,8 +23,9 @@ namespace Engine
 
         public Quest QuestInLocation;
 
-        public List<Enemy> EnemiesInLocation = new List<Enemy>();
-        public List<int> EnemiesEncounterChance = new List<int>();
+        public LocationEnemy CurrentEnemy;
+
+        public List<LocationEnemy> EnemiesInLocation = new List<LocationEnemy>();
         #endregion
 
         //Add the vendor and quest as a constructor later on
@@ -36,11 +37,48 @@ namespace Engine
             this.EncounterChance = EncounterChance;
         }
 
-        public void 
-
-        public Enemy GetEnemyFromList()
+        public bool EncounterTriggered()
         {
-            int randNum = RandomNumberGenerator.RandomNumberBetween(1, 100);
+            if (RandomNumberGenerator.RandomNumberBetween(0, 99) < EncounterChance)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SetLocationEnemy()
+        {
+            CurrentEnemy = GetLocationEnemy();
+        }
+
+        public LocationEnemy GetLocationEnemy()
+        {
+            int totalWeight = 0;
+            foreach (LocationEnemy lc in EnemiesInLocation)
+            {
+                totalWeight += lc.Weight;
+            }
+
+            int randomNum = RandomNumberGenerator.RandomNumberBetween(0, totalWeight - 1);
+
+            LocationEnemy selectedLocationEnemy = null;
+
+            foreach (LocationEnemy lc in EnemiesInLocation)
+            {
+                if (randomNum < lc.Weight)
+                {
+                    selectedLocationEnemy = lc;
+                    break;
+                }
+
+                randomNum = randomNum - lc.Weight;
+            }
+
+            return selectedLocationEnemy;
+            /*int randNum = RandomNumberGenerator.RandomNumberBetween(1, 100);
 
             for (int i = 0; i < EnemiesInLocation.Count; i++)
             {
@@ -66,7 +104,7 @@ namespace Engine
 
                 }
             }
-            return new Enemy();
+            return new Enemy();*/
         }
 
         public override string ToString()

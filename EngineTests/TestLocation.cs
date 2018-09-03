@@ -1,21 +1,20 @@
-﻿using Engine;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using Engine;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
-namespace UI
+namespace EngineTests
 {
-    class Program
+    [TestClass]
+    public class TestLocation
     {
-        static void Main(string[] args)
+        [TestMethod]
+        public void TestEnemyEncounter()
         {
             Location testHouse = new Location(10, "Test House", "It is the land of tests", 50);
             List<LocationEnemy> locationEnemies = new List<LocationEnemy>();
             locationEnemies.Add(new LocationEnemy(World.CreateEnemy(1), 10));
             locationEnemies.Add(new LocationEnemy(World.CreateEnemy(2), 20));
-            locationEnemies.Add(new LocationEnemy(World.CreateEnemy(3), 30));
             testHouse.EnemiesInLocation = locationEnemies;
 
             int totalWeight = 0;
@@ -45,14 +44,32 @@ namespace UI
                     }
                 }
             }
+            
 
-            foreach (KeyValuePair<string, int> enemy in result)
+            if (result["Rat"] >= (100000 / 3) - 300 && result["Rat"] <= (100000 / 3) + 300)
             {
-                Console.WriteLine("Key: {0}\t Value: {1}\t", enemy.Key, enemy.Value);
+                correct = true;
             }
-            Console.ReadKey();
+            Assert.IsTrue(correct);
+        }
 
-            Game.Run();
+        [TestMethod]
+        public void TestLocationEncounterChance()
+        {
+            bool correct = false;
+            Player player = new Player(1, "Test", Player.Class.Warrior);
+
+
+            for (int i = 0; i < 100000; i++)
+            {
+                player.MoveTo(World.FindLocationByID(2));
+            }
+
+            if(player.TEST >= (100000/2) - 300 && player.TEST <= (100000/2) + 300)
+            {
+                correct = true;
+            }
+            Assert.IsTrue(correct);
         }
     }
 }

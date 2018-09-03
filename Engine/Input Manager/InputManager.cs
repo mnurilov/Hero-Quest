@@ -50,6 +50,9 @@ namespace Engine
                     Console.WriteLine("You cast a spell");
                     player.SpellCommand(enemy);
                     break;
+                case "view stats":
+                    Console.WriteLine(enemy.ToString());
+                    break;
                 case "run away":
                     if (player.RunCommand(enemy))
                     {

@@ -8,19 +8,12 @@ namespace Engine
 {
     public static class World
     {
-        private static readonly List<Enemy> enemies = new List<Enemy>();
-        private static readonly List<Location> locations = new List<Location>();
-        private static readonly List<Item> items = new List<Item>();
-        private static readonly List<Vendor> vendors = new List<Vendor>();
-        private static readonly List<Equipment> equipments = new List<Equipment>();
-        private static readonly List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
-        private static readonly List<Spell> spells = new List<Spell>();
-        private static readonly List<Quest> quests = new List<Quest>();
-
-        #region Variables
+        #region Data Storage
+        #region Constants
         private const int EnemyIDRat = 1;
         private const int EnemyIDSnake = 2;
         private const int EnemyIDOgre = 3;
+        private const int EnemyIDDragon = 4;
 
         private const int EnemyLootIDRatTail = 1;
         private const int EnemyLootIDRatCarcass = 2;
@@ -62,7 +55,18 @@ namespace Engine
         private const int ShieldEquipmentIDRuneShield = 10;
         private const int TomeEquipmentIDBronzeTome = 11;
         private const int TomeEquipmentIDRuneTome = 12;
+        #endregion
 
+        #region World Objects
+        private static readonly List<Enemy> enemies = new List<Enemy>();
+        private static readonly List<Location> locations = new List<Location>();
+        private static readonly List<Item> items = new List<Item>();
+        private static readonly List<Vendor> vendors = new List<Vendor>();
+        private static readonly List<Equipment> equipments = new List<Equipment>();
+        private static readonly List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
+        private static readonly List<Spell> spells = new List<Spell>();
+        private static readonly List<Quest> quests = new List<Quest>();
+        #endregion
         #endregion
 
         static World()
@@ -79,15 +83,6 @@ namespace Engine
             
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
-          
-            /*
-            PopulateEnemies();
-            LoadEquipment();
-            LoadSpells();
-            LoadItems();
-            LoadQuests();
-            PopulateVendors();
-            */
         }
         
         private static void PopulateLocations()
@@ -122,6 +117,19 @@ namespace Engine
             //Added vendors to the locations
             town.VendorInLocation = FindVendorByID(1);
             farmHut.VendorInLocation = FindVendorByID(2);
+
+
+            //Add enemies to the locations
+            grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 10));
+            grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 20));
+
+            farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(3), 10));
+            farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
+
+            barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 100));
+            barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
+
+            farmHut.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 1));
 
 
             //Add the locations to list
@@ -189,6 +197,48 @@ namespace Engine
             vendors.Add(John);
             vendors.Add(Bobby);
         }
+        private static void PopulateEnemyLoots()
+        {
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatCarcass, "Rat Carcass"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDSnakeFang, "Snake Fang"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDOgreTooth, "Ogre Tooth"));
+        }
+
+        private static void PopulateEnemies()
+        {
+            Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10);
+            Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 0, 0, 5, 15, 15);
+            Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5);
+            Enemy dragon = new Enemy(EnemyIDDragon, 20, "Dragon", 300, 50, 100, 50, 0, 0, 0, 50, 10, 10);
+
+            rat.LootTable.Add(FindEnemyLootByID(1));
+            rat.LootTable.Add(FindEnemyLootByID(2));
+            snake.LootTable.Add(FindEnemyLootByID(3));
+            ogre.LootTable.Add(FindEnemyLootByID(4));
+
+            enemies.Add(rat);
+            enemies.Add(snake);
+            enemies.Add(ogre);
+            enemies.Add(dragon);
+        }
+
+        private static void PopulateQuests()
+        {
+            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place", FindEnemyByID(1), 3);
+            cleanTheSewers.RewardGold = 10;
+
+            Quest antidoteConcoction = new GatheringQuest(QuestIDAntidoteConcoction, "Antidote Concoction", "Bring me 3 snake fangs so I can make the antidote", FindEnemyLootByID(3), 3);
+
+            quests.Add(cleanTheSewers);
+            quests.Add(antidoteConcoction);
+        }
+
+        private static void PopulateSpells()
+        {
+            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
+            spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
+        }
 
         public static void ViewSpells()
         {
@@ -233,49 +283,6 @@ namespace Engine
                 Console.ReadKey();
             }
         }
-
-        private static void PopulateEnemyLoots()
-        {
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatCarcass, "Rat Carcass"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDSnakeFang, "Snake Fang"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDOgreTooth, "Ogre Tooth"));
-        }
-
-        private static void PopulateEnemies()
-        {
-            Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10);
-            Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 0, 0, 5, 15, 15);
-            Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5);
-
-            rat.LootTable.Add(FindEnemyLootByID(1));
-            rat.LootTable.Add(FindEnemyLootByID(2));
-            snake.LootTable.Add(FindEnemyLootByID(3));
-            ogre.LootTable.Add(FindEnemyLootByID(4));
-
-            enemies.Add(rat);
-            enemies.Add(snake);
-            enemies.Add(ogre);
-        }
-
-        private static void PopulateQuests()
-        {
-            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place", FindEnemyByID(1), 3);
-            cleanTheSewers.RewardGold = 10;
-
-            Quest antidoteConcoction = new GatheringQuest(QuestIDAntidoteConcoction, "Antidote Concoction", "Bring me 3 snake fangs so I can make the antidote", FindEnemyLootByID(3), 3);
-
-            quests.Add(cleanTheSewers);
-            quests.Add(antidoteConcoction);
-        }
-
-        private static void PopulateSpells()
-        {
-            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
-            spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
-        }
-
-
 
         //Finds a specific enemy loot based on ID
         public static EnemyLoot FindEnemyLootByID(int ID)
@@ -376,6 +383,20 @@ namespace Engine
                 if (location.ID == ID)
                 {
                     return location;
+                }
+            }
+            return null;
+        }
+
+        public static Enemy CreateEnemy(int ID)
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if(enemy.ID == ID)
+                {
+                    return new Enemy(enemy.ID, enemy.Level, enemy.Name, enemy.MaximumHealth, enemy.MaximumMana, enemy.Attack,
+                        enemy.Defense, enemy.Luck, enemy.Speed, enemy.Intellect, enemy.Resistance, enemy.CriticalChanceRate,
+                        enemy.DodgeChanceRate);
                 }
             }
             return null;

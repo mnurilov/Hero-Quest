@@ -16,9 +16,28 @@ namespace Engine
         }
         public void Update(Player player)
         {
-            Enemy enemy = World.FindEnemyByID(1);
+            bool playerTurn = true;
             playerInput = Console.ReadLine();
-            InputManager.ManageBattleStateInput(player, enemy, playerInput);
+            
+            if (playerTurn)
+            {
+                InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
+                playerTurn = false;
+                if(player.CurrentLocation.CurrentEnemy.CurrentHealth <= 0)
+                {
+                    Console.WriteLine("{0} killed a {1}", player.Name, player.CurrentLocation.CurrentEnemy.Name);
+                    Player.PlayerState = Player.State.Travel;
+                }
+            }
+            else
+            {
+                player.CurrentLocation.CurrentEnemy.AttackCommand(player);
+                if (player.CurrentHealth <= 0)
+                {
+                    Console.WriteLine("{0} was killed by a {1}", player.Name, player.CurrentLocation.CurrentEnemy.Name);
+                    Player.PlayerState = Player.State.Travel;
+                }
+            }
         }
 
         public void Draw()

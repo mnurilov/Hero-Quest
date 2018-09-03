@@ -8,25 +8,10 @@ namespace Engine
 {
     public class FightingUnit
     {
-        /* Removing for the time being not sure if i need them
-         * #region Fields
-
-         private int maximumHealth;
-         private int currentMana;
-         private int maximumMana;
-         private int attack;
-         private int defense;
-         private int luck;
-         private int speed;
-         private int intellect;
-         private int resistance;
-         #endregion*/
-
-        private int currentHealth;
-
-        #region Properties
+        #region Data Storage
         public string Name { get; set; }
 
+        private int currentHealth;
         public int CurrentHealth
         {
             get
@@ -76,36 +61,18 @@ namespace Engine
             }
         }
 
-
         public int MaximumHealth { get; set; }
-        
-
         public int CurrentMana { get; set; }
-       
-
         public int MaximumMana { get; set; }
-        
         public int Attack { get; set; }
-        
         public int Defense { get; set; }
-       
-
         public int Luck { get; set; }
-        
-
         public int Speed { get; set; }
-        
-
         public int Intellect { get; set; }
-        
-
         public int Resistance { get; set; }
-
-
 
         public double CriticalChanceRate { get; set; }
         public double DodgeChanceRate { get; set; }
-
         #endregion
 
         #region Constructor
