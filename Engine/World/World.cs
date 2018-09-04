@@ -69,6 +69,7 @@ namespace Engine
         #endregion
         #endregion
 
+        #region Constructor
         static World()
         {
             PopulateItems();
@@ -84,7 +85,9 @@ namespace Engine
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
         }
-        
+        #endregion
+
+        #region Population Functions
         private static void PopulateLocations()
         {
             //Creation of locations
@@ -239,7 +242,9 @@ namespace Engine
             spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
             spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
         }
+        #endregion
 
+        #region View Functions
         public static void ViewSpells()
         {
             foreach (Spell spell in spells)
@@ -283,7 +288,9 @@ namespace Engine
                 Console.ReadKey();
             }
         }
+        #endregion
 
+        #region Find X by ID Functions
         //Finds a specific enemy loot based on ID
         public static EnemyLoot FindEnemyLootByID(int ID)
         {
@@ -387,6 +394,7 @@ namespace Engine
             }
             return null;
         }
+        #endregion
 
         public static Enemy CreateEnemy(int ID)
         {
@@ -400,6 +408,15 @@ namespace Engine
                 }
             }
             return null;
+        }
+
+        public static LocationEnemy CreateNewLocationEnemy(LocationEnemy locationEnemy)
+        {
+            return new LocationEnemy(new Enemy(locationEnemy.ID, locationEnemy.Level, locationEnemy.Name,
+                locationEnemy.MaximumHealth, locationEnemy.MaximumMana, locationEnemy.Attack,
+                locationEnemy.Defense, locationEnemy.Luck, locationEnemy.Speed, locationEnemy.Intellect,
+                 locationEnemy.Resistance, locationEnemy.CriticalChanceRate, locationEnemy.DodgeChanceRate),
+                  locationEnemy.Weight);
         }
     }
 }

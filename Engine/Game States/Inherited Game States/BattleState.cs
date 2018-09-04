@@ -9,20 +9,16 @@ namespace Engine
     public class BattleState : IState
     {
         string playerInput;
+        bool playerTurn = true;
 
-        public void Update()
-        {
-
-        }
         public void Update(Player player)
         {
-            bool playerTurn = true;
             playerInput = Console.ReadLine();
             
             if (playerTurn)
             {
-                InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
                 playerTurn = false;
+                InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
                 if(player.CurrentLocation.CurrentEnemy.CurrentHealth <= 0)
                 {
                     Console.WriteLine("{0} killed a {1}", player.Name, player.CurrentLocation.CurrentEnemy.Name);
@@ -31,6 +27,7 @@ namespace Engine
             }
             else
             {
+                playerTurn = true;
                 player.CurrentLocation.CurrentEnemy.AttackCommand(player);
                 if (player.CurrentHealth <= 0)
                 {

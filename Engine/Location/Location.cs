@@ -52,6 +52,7 @@ namespace Engine
         public void SetLocationEnemy()
         {
             CurrentEnemy = GetLocationEnemy();
+            CurrentEnemy = World.CreateNewLocationEnemy(CurrentEnemy);
         }
 
         public LocationEnemy GetLocationEnemy()

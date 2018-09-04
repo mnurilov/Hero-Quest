@@ -314,8 +314,8 @@ namespace Engine
             Console.WriteLine(CurrentLocation.ToString());
             if (CurrentLocation.EncounterTriggered())
             {
-                Console.WriteLine("You have encountered a random {0}", CurrentLocation.GetLocationEnemy().Name);
                 CurrentLocation.SetLocationEnemy();
+                Console.WriteLine("You have encountered a random {0}", CurrentLocation.CurrentEnemy.Name);
                 PlayerState = State.Battle;
                 TEST++;
             }
@@ -372,11 +372,11 @@ namespace Engine
             if(RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
             {
                 //Double the damage
-                damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 10) * 2;
+                damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 2) * 2;
             }
             else
             {
-                damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 10;
+                damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 2;
             }
             enemy.CurrentHealth -= damage;
             Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);

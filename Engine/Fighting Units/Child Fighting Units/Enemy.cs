@@ -42,11 +42,11 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
             {
                 //Double the damage
-                damage = (((Attack * Attack) / (Attack + player.Defense)) * 10) * 2;
+                damage = (((Attack * Attack) / (Attack + player.Defense)) * 2) * 2;
             }
             else
             {
-                damage = ((Attack * Attack) / (Attack + player.Defense)) * 10;
+                damage = ((Attack * Attack) / (Attack + player.Defense)) * 2;
             }
             player.CurrentHealth -= damage;
             Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, player.Name);

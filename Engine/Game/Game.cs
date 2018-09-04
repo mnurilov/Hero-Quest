@@ -18,7 +18,6 @@ namespace Engine
             BattleState bs = new BattleState();
             ShopState ss = new ShopState();
             GameStateManager.Push(ts);
-            
 
             while (true)
             {
