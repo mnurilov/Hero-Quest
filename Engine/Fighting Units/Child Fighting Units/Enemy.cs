@@ -10,6 +10,8 @@ namespace Engine
     {
         #region Data Storage
         public int ID { get; set; }
+        public int Gold { get; set; }
+        public int ExperiencePoints { get; set; }
 
         public List<EnemyLoot> LootTable = new List<EnemyLoot>();
         #endregion
@@ -17,13 +19,15 @@ namespace Engine
         #region Constructor
         public Enemy (int ID, int Level, string Name, int MaximumHealth, int MaximumMana, int Attack, 
             int Defense, int Luck, int Speed, int Intellect, int Resistance, double CriticalChanceRate,
-            double DodgeChanceRate) :
+            double DodgeChanceRate, int Gold, int ExperiencePoints) :
             base (Level, Name, MaximumHealth, MaximumMana, Attack, Defense, Luck, Speed, 
                 Intellect, Resistance)
         {
             this.ID = ID;
             this.CriticalChanceRate = CriticalChanceRate;
             this.DodgeChanceRate = DodgeChanceRate;
+            this.Gold = Gold;
+            this.ExperiencePoints = ExperiencePoints;
         }
         #endregion
 
@@ -35,6 +39,7 @@ namespace Engine
             //If the enemy would dodge the attack do not calculate damage
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= player.DodgeChanceRate)
             {
+                Console.WriteLine("{0} missed", Name);
                 return;
             }
 
@@ -43,13 +48,14 @@ namespace Engine
             {
                 //Double the damage
                 damage = (((Attack * Attack) / (Attack + player.Defense)) * 2) * 2;
+                Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, player.Name);
             }
             else
             {
                 damage = ((Attack * Attack) / (Attack + player.Defense)) * 2;
+                Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, player.Name);
             }
             player.CurrentHealth -= damage;
-            Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, player.Name);
         }
 
         public override string ToString()

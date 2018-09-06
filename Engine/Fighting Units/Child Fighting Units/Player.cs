@@ -180,7 +180,7 @@ namespace Engine
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
 
-        public enum State { Travel, Battle, Shop }
+        public enum State { Travel, Battle, Shop, GameOver}
         public static State PlayerState = State.Travel;
         #endregion 
 
@@ -365,6 +365,7 @@ namespace Engine
             //If the enemy would dodge the attack do not calculate damage
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= enemy.DodgeChanceRate)
             {
+                Console.WriteLine("{0} missed", Name);
                 return;
             }
 
@@ -373,13 +374,14 @@ namespace Engine
             {
                 //Double the damage
                 damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 2) * 2;
+                Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
             else
             {
                 damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 2;
+                Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
             enemy.CurrentHealth -= damage;
-            Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
         }
 
         public void SpellCommand(Enemy enemy)

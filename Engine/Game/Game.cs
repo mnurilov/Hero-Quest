@@ -17,6 +17,7 @@ namespace Engine
             TravelState ts = new TravelState();
             BattleState bs = new BattleState();
             ShopState ss = new ShopState();
+            GameOverState gos = new GameOverState();
             GameStateManager.Push(ts);
 
             while (true)
@@ -31,6 +32,9 @@ namespace Engine
                         break;
                     case Player.State.Shop:
                         GameStateManager.Set(ss);
+                        break;
+                    case Player.State.GameOver:
+                        GameStateManager.Set(gos);
                         break;
                 }
                 GameStateManager.Update(player);

@@ -210,10 +210,10 @@ namespace Engine
 
         private static void PopulateEnemies()
         {
-            Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10);
-            Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 0, 0, 5, 15, 15);
-            Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5);
-            Enemy dragon = new Enemy(EnemyIDDragon, 20, "Dragon", 300, 50, 100, 50, 0, 0, 0, 50, 10, 10);
+            Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10);
+            Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 0, 0, 5, 15, 15, 15, 15);
+            Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100);
+            Enemy dragon = new Enemy(EnemyIDDragon, 20, "Dragon", 300, 50, 100, 50, 0, 0, 0, 50, 10, 10, 1000, 1000);
 
             rat.LootTable.Add(FindEnemyLootByID(1));
             rat.LootTable.Add(FindEnemyLootByID(2));
@@ -404,7 +404,7 @@ namespace Engine
                 {
                     return new Enemy(enemy.ID, enemy.Level, enemy.Name, enemy.MaximumHealth, enemy.MaximumMana, enemy.Attack,
                         enemy.Defense, enemy.Luck, enemy.Speed, enemy.Intellect, enemy.Resistance, enemy.CriticalChanceRate,
-                        enemy.DodgeChanceRate);
+                        enemy.DodgeChanceRate, enemy.Gold, enemy.ExperiencePoints);
                 }
             }
             return null;
@@ -415,7 +415,8 @@ namespace Engine
             return new LocationEnemy(new Enemy(locationEnemy.ID, locationEnemy.Level, locationEnemy.Name,
                 locationEnemy.MaximumHealth, locationEnemy.MaximumMana, locationEnemy.Attack,
                 locationEnemy.Defense, locationEnemy.Luck, locationEnemy.Speed, locationEnemy.Intellect,
-                 locationEnemy.Resistance, locationEnemy.CriticalChanceRate, locationEnemy.DodgeChanceRate),
+                 locationEnemy.Resistance, locationEnemy.CriticalChanceRate, locationEnemy.DodgeChanceRate,
+                 locationEnemy.Gold, locationEnemy.ExperiencePoints),
                   locationEnemy.Weight);
         }
     }

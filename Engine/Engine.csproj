@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Game States\Inherited Game States\BattleState.cs" />
+    <Compile Include="Game States\Inherited Game States\GameOverState.cs" />
     <Compile Include="Game\Game.cs" />
     <Compile Include="Game State Manager\GameStateManager.cs" />
     <Compile Include="Input Manager\InputManager.cs" />

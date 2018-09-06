@@ -12,7 +12,7 @@ namespace Engine
 
         public LocationEnemy(Enemy enemy, int weight) : base(enemy.ID, enemy.Level, enemy.Name, enemy.MaximumHealth,
             enemy.MaximumMana, enemy.Attack, enemy.Defense, enemy.Luck, enemy.Speed, enemy.Intellect, enemy.Resistance,
-            enemy.CriticalChanceRate, enemy.DodgeChanceRate)
+            enemy.CriticalChanceRate, enemy.DodgeChanceRate, enemy.Gold, enemy.ExperiencePoints)
         {
             this.Weight = weight;
         }

@@ -14,6 +14,8 @@ namespace Engine
         public void Update(Player player)
         {
             playerInput = Console.ReadLine();
+
+            
             
             if (playerTurn)
             {
@@ -22,6 +24,7 @@ namespace Engine
                 if(player.CurrentLocation.CurrentEnemy.CurrentHealth <= 0)
                 {
                     Console.WriteLine("{0} killed a {1}", player.Name, player.CurrentLocation.CurrentEnemy.Name);
+                    player.GainExperience(player.CurrentLocation.CurrentEnemy.ExperiencePoints);
                     Player.PlayerState = Player.State.Travel;
                 }
             }
@@ -32,7 +35,7 @@ namespace Engine
                 if (player.CurrentHealth <= 0)
                 {
                     Console.WriteLine("{0} was killed by a {1}", player.Name, player.CurrentLocation.CurrentEnemy.Name);
-                    Player.PlayerState = Player.State.Travel;
+                    Player.PlayerState = Player.State.GameOver;
                 }
             }
         }
