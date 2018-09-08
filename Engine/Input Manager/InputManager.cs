@@ -42,22 +42,7 @@ namespace Engine
         public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
         {
             playerInput = playerInput.ToLower();
-            bool playerInputIsValid = false;
-
-            while (!playerInputIsValid)
-            {
-                if (playerInput != "attack" && playerInput != "spell" && playerInput != "view stats" && playerInput != "run away")
-                {
-                    Console.WriteLine("Wrong command given, please enter a new command");
-                    playerInput = Console.ReadLine();
-                    playerInput = playerInput.ToLower();
-                }
-                else
-                {
-                    playerInputIsValid = true;
-                }
-            }
-
+            
             switch (playerInput)
             {
                 case "attack":

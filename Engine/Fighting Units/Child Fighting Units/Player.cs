@@ -363,14 +363,14 @@ namespace Engine
             int damage = 0;
 
             //If the enemy would dodge the attack do not calculate damage
-            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= enemy.DodgeChanceRate)
+            if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
                 Console.WriteLine("{0} missed", Name);
                 return;
             }
 
             //If the player would critical strike the enemy then calculate the damage accordingly
-            if(RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
+            if(RandomNumberGenerator.RandomNumberBetween(1, 100) <= CriticalChanceRate)
             {
                 //Double the damage
                 damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 2) * 2;

@@ -50,6 +50,8 @@
   <ItemGroup>
     <Compile Include="TestLocation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestPlayer.cs" />
+    <Compile Include="TestStates.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
