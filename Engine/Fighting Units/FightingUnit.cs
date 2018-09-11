@@ -20,11 +20,11 @@ namespace Engine
             }
             set
             {
-                if (currentHealth > MaximumHealth)
+                if (value > MaximumHealth)
                 {
                     currentHealth = MaximumHealth;
                 }
-                else if (currentHealth < 0)
+                else if (value < 0)
                 {
                     currentHealth = 0;
                 }

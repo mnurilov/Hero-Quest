@@ -1,45 +1,11 @@
-Things to do
--USE ENUMS FOR MORE THINGS ESPECIALLY FOR THE STATUS'S
--Organize classes into folders so its easier to locate parent and child
-classes
--Change the variable names to be more easier to understand
--Refactor the code to make it easy to read and easy to modify
--Comment the code
--Region the code
--Make a status class which holds the aliment 
--Add gold feature to all the classes that need it
--Make a monster part class that is derived from item class
--Then add a mosnter part object in equipment so that that is the 
-requirement for crafting that itemS 
--Keep it optional
--For now I'm going to keep adding the basic framework and such however,
-almost all the classes so far are very similar I should make a base class/interface that they all
-inherit from for refactoring
-
-Plans
--I want to add the basics to all the classes basically making the data tpyes of the whole project
--Then I might refactor the classes to make them better formatted
--Then I will add actual functionality to the class
-
 Ideas
 -Maybe add a chest and a key?
 -Maybe a paper mario like leveling system and combat system
 -Where when you level up you put your stat points into the attritubtes you want
 Allowing the player to craft their own character
-//I dont think this would be that hard to implement however its my decision whether id want to
+-I dont think this would be that hard to implement however its my decision whether id want to
 or not 
-
-Concepts 
-
-
-
-
-Classes
-Warrior
-Mage
-Thief
-
-If you survive with item item goes up a tier dead by daylight
+-If you survive with item item goes up a tier dead by daylight
 
 Items
 -HP heals
@@ -55,96 +21,36 @@ Mage and Tome - Mage
 Dagger and Dagger - Thief
 
 Quests
--What is a quest
--A quest has several attritubes
--An entity giving the quest
--The player choosing whether to accept the quest or not
--The quest has a name
--THe quest has a description
--The quest has a goal
--The quest has a reward
--The quest can be only be given once
-
-WHat type of quests can their be and how can we create them?
--The quest can be a qeust to kill a ceritan monster 5 times
--The quest can be to kill a certain monster and get a 3 rat tails
--The quest can be to go to a certain location 
--The quest can be to give money or something like that
-
--How can we make the quest class flexible enough so that i can make
-the requirement for any quest rather easily without it taking to long
-
-Possibility teach quest classs as every other class system in the game
-where you make the quest class the base class and you make child classes
-for specific requirements. So a killquest class for quests with killing
-a gatheringquest for quests for gathering a traverse class for trasversing
-to a certain location. This may mean i have to create many classes
-just to make more unique quests but ill have to use this for now
-So far my architecture all follows a pretty similar pattern and it works
-well so i might as well use it when im trying to make quests instead
-of trying to treat it differently
-
--
-
-
-
-
-I do not want battle logic to exist in the player class
-for example the player attacking should belong to the player class beacuse the player is the 
-one attacking that is an action he is doing therefore it should belong to him
-whereas the battle state should not belong to the player class
-the player is not the one creating the battle state and controlling its inputs
-the player is just the one doing the actions
-therefore the actions like attack use spell run away and use item
-should all belong to the player due to it being an action the player is taking
-however the state which is existing for the player to commit these actions do not belong 
-to the player
-therefore their should be a class that handles state logic meaning that if the game is in a certian
-state then that logic should be preformed in that class. Now for the sake of making the code 
-easy to make. I would create a game state machine class and make enums describing the states
-and transitions between the states then I will give logic to the states. I will make a switch
-statement and whichever state the game is in will preform that states logic. I am thinking
-i should make a battleState a shopState a  travelState classes and then make them static
-then just have them call their logic in a gamestatelogic 
-my question becomes shoudl i define logic in the gamestate class and make functions
-where all the state logic is and then make a switch statement 
-
-2 options that I have so far for game states
--Create seperate classes for each game state and then call those states in the game class
--Create all the state logic in the game state machine class and then create the logic loop there
--Maybe I can do the classes thing and have the game state machine handle the rough logic
-and call the update method from game state machine on the game class in order to make the 
-code more organized?
-
-Ok so instead of sitting around and not getting any work done with what feels like 4 to 5 days now
-Lets get started
-
--I am going to create seperate classes for each game state
--I will have all these classes be static and contain a method called Update
--I will then in my game state machine class create a switch statement called Update()
--This will have all the class logic called here
--I will use this to swap the logics around
--Then I will call this method on a while true loop in the game class which will be the main class
--That is the idea for now lets see how it goesS
-
-Encounter rate 
-The location has a general encounter rate if this encounter rate is reached
-then a battle will occur 
-Next we will check the enemies if their are three enemies on the locations
-enemy list then it will pick on of the randomly
-However I do not like that
-I dont want a random enemy selected I was them to have percentages
-that influence their selection
-such as defining the the first enemy has 20 % and the second as 80%
-therefore 4/5 i should encounter  the second enemy
-how should i do that though?
-if i roll and see if the number reaches the first one then re roll and 
-hits the second
-would not work
-because if the roll that didnt rreach the first enemy then it will
-not hmmmmmmmmmmm
-
+-Kill Quest
+-Gather Quest
+-Travel Quest
+-Interact Quest
 
 THINGS TO DO NEXT TIME:
 -MAKE VENDORS WORK
+-MAKE THE INPUT MANAGER JUST CORRECT THE INPUT AND RETURN IT TO THE STATE
+-THE STATE WILL DECIDE WHAT TO DO WITH THE INPUT
+
+
+buy item quantity
+
+buy bronze shield 
+
+super basic combat check
+super basic item buying 
+super basic item usage
+super basic quest
+super basic spell
+
+
+
+
+
+
+
+
+
+
+
+
 

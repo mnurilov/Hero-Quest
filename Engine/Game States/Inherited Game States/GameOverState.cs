@@ -8,7 +8,6 @@ namespace Engine
 {
     public class GameOverState : IState
     {
-
         public void Update(Player player)
         {
             Console.WriteLine("Game Over!");

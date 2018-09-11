@@ -303,8 +303,56 @@ namespace Engine
         {
             if (item.GetType() == typeof(HealthReplenishingItem))
             {
-
+                foreach (InventoryItem ii in PlayerItemInventory)
+                {
+                    if (ii.Item.ID == item.ID)
+                    {
+                        if (ii.Quantity > 0)
+                        {
+                            CurrentHealth += ((HealthReplenishingItem)ii.Item).HealthReplenishingValue;
+                            ii.Quantity--;
+                        }
+                    }
+                }
             }
+        }
+
+        public void AddItem(Item item)
+        {
+            if (item.GetType() == typeof(HealthReplenishingItem))
+            {
+                if (PlayerItemInventory.Count > 0)
+                {
+                    foreach (InventoryItem ii in PlayerItemInventory)
+                    {
+                        if (ii.Item.ID == item.ID)
+                        {
+                            if (ii.Quantity > 0)
+                            {
+                                ii.Quantity++;
+                            }
+                        }
+                        else
+                        {
+                            PlayerItemInventory.Add(new InventoryItem(item, 1));
+                        }
+                    }
+                }
+                else
+                {
+                    PlayerItemInventory.Add(new InventoryItem(item, 1));
+                }
+            }
+        }
+
+        public void BuyItem()
+        {
+
+        }
+
+        public void SellItem()
+        {
+
         }
 
         //Make this private it never needs to be accessed outside the player class
@@ -351,11 +399,6 @@ namespace Engine
             {
                 MoveTo(CurrentLocation.LocationToTheEast);
             }
-        }
-
-        public void UseItem()
-        {
-
         }
 
         public void AttackCommand(Enemy enemy)

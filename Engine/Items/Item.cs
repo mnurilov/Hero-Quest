@@ -11,6 +11,7 @@ namespace Engine
         #region Properties
         public int ID { get; set; }
         public string Name { get; set; }
+        public string Description { get; set; }
         #endregion
 
         #region Constructor
@@ -34,6 +35,7 @@ namespace Engine
 
             info += ("ID: " + ID.ToString() + "\n");
             info += ("Name: " + Name + "\n");
+            info += ("Description: " + Description + "\n");
 
             return info;
         }

@@ -16,6 +16,7 @@ namespace Engine
         }
         public void Update(Player player)
         {
+            
             playerInput = Console.ReadLine();
             InputManager.ManageShopStateInput(player, playerInput);
         }

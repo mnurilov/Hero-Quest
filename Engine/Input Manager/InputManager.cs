@@ -27,11 +27,30 @@ namespace Engine
                     player.MoveEast();
                     break;
                 case "shop":
-                    Console.WriteLine("You entered the shop!");
-                    Player.PlayerState = Player.State.Shop;
+                    if(player.CurrentLocation.VendorInLocation != null)
+                    {
+                        Console.WriteLine("You entered the shop!");
+                        Player.PlayerState = Player.State.Shop;
+                    }
+                    else
+                    {
+                        Console.WriteLine("There is no vendor in this location");
+                    }
                     break;
                 case "view stats":
                     Console.WriteLine(player.ToString());
+                    break;
+                case "view inventory":
+                    foreach (InventoryItem ii in player.PlayerItemInventory)
+                    {
+                        Console.WriteLine(ii.ToString());
+                    }
+                    break;
+                case "use potion":
+                    player.UseItem(World.FindItemByID(1));
+                    break;
+                case "add potion":
+                    player.AddItem(World.FindItemByID(1));
                     break;
                 default:
                     Console.WriteLine("Error invalid input for traveling!");
@@ -181,6 +200,9 @@ namespace Engine
                     break;
                 case "sell":
                     Console.WriteLine("Wow you sold the item");
+                    break;
+                case "view items":
+                    Console.WriteLine(player.CurrentLocation.VendorInLocation.ToString());
                     break;
                 case "exit":
                     Console.WriteLine("You exit the shop");
