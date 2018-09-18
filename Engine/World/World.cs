@@ -24,7 +24,8 @@ namespace Engine
         private const int QuestIDAntidoteConcoction = 2;
 
         private const int SpellIDFire = 1;
-        private const int SpellIDCure = 2;
+        private const int SpellIDThunder = 2;
+        private const int SpellIDCure = 3;
 
         private const int ItemIDBasicPotion = 1;
         private const int ItemIDMegaPotion = 2;
@@ -200,6 +201,7 @@ namespace Engine
             vendors.Add(John);
             vendors.Add(Bobby);
         }
+
         private static void PopulateEnemyLoots()
         {
             enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail"));
@@ -240,6 +242,7 @@ namespace Engine
         private static void PopulateSpells()
         {
             spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
+            spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 10, 50));
             spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
         }
         #endregion
@@ -262,6 +265,7 @@ namespace Engine
                 Console.ReadKey();
             }
         }
+
         public static void ViewEquipment()
         {
             foreach (Equipment equipment in equipments)

@@ -52,6 +52,12 @@ namespace Engine
                 case "add potion":
                     player.AddItem(World.FindItemByID(1));
                     break;
+                case "add fire":
+                    player.AddSpell(World.FindSpellByID(1));
+                    break;
+                case "add thunder":
+                    player.AddSpell(World.FindSpellByID(2));
+                    break;
                 default:
                     Console.WriteLine("Error invalid input for traveling!");
                     break;
@@ -68,9 +74,27 @@ namespace Engine
                     Console.WriteLine("You attack");
                     player.AttackCommand(enemy);
                     break;
-                case "spell":
-                    Console.WriteLine("You cast a spell");
-                    player.SpellCommand(enemy);
+                case "cast fire":
+                    if (player.PlayerSpells.Contains(World.FindSpellByID(1)))
+                    {
+                        Console.WriteLine("You cast fire");
+                        player.SpellCommand(enemy, World.FindSpellByID(1));
+                    }
+                    else
+                    {
+                        Console.WriteLine("You don't have fire!");
+                    }
+                    break;
+                case "cast thunder":
+                    if (player.PlayerSpells.Contains(World.FindSpellByID(2)))
+                    {
+                        Console.WriteLine("You cast thunder");
+                        player.SpellCommand(enemy, World.FindSpellByID(2));
+                    }
+                    else
+                    {
+                        Console.WriteLine("You don't have thunder!");
+                    }
                     break;
                 case "view stats":
                     Console.WriteLine(enemy.ToString());

@@ -41,16 +41,3 @@ super basic item buying
 super basic item usage
 super basic quest
 super basic spell
-
-
-
-
-
-
-
-
-
-
-
-
-

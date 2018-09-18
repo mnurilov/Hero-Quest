@@ -331,16 +331,45 @@ namespace Engine
                             {
                                 ii.Quantity++;
                             }
+                            break;
                         }
                         else
                         {
                             PlayerItemInventory.Add(new InventoryItem(item, 1));
+                            break;
                         }
                     }
                 }
                 else
                 {
                     PlayerItemInventory.Add(new InventoryItem(item, 1));
+                }
+            }
+        }
+
+        public void AddSpell(Spell spell)
+        {
+            if (spell.GetType() == typeof(DamageSpell))
+            {
+                if (PlayerSpells.Count > 0)
+                {
+                    foreach (Spell sp in PlayerSpells)
+                    {
+                        if (sp.ID == spell.ID)
+                        {
+                            Console.WriteLine("You already have that spell");
+                            break;
+                        }
+                        else
+                        {
+                            PlayerSpells.Add(spell);
+                            break;
+                        }
+                    }
+                }
+                else
+                {
+                    PlayerSpells.Add(spell);
                 }
             }
         }
@@ -427,26 +456,30 @@ namespace Engine
             enemy.CurrentHealth -= damage;
         }
 
-        public void SpellCommand(Enemy enemy)
+        public void SpellCommand(Enemy enemy, Spell spell)
         {
             int spellDamage = 0;
 
             //If the enemy would dodge the attack do not calculate spell damage
-            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= enemy.DodgeChanceRate)
+            if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
+                Console.WriteLine("{0} missed", Name);
                 return;
             }
 
             //If the player would critical strike the enemy then calculate the spell damage accordingly
-            if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
+            if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= CriticalChanceRate)
             {
                 //Double the spell damage
-                spellDamage = (((Intellect * Intellect) / (Intellect + enemy.Resistance)) * 10) * 2;
+                spellDamage = (((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2) * 2;
+                Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
             else
             {
-                spellDamage = ((Intellect * Intellect) / (Intellect + enemy.Resistance)) * 10;
+                spellDamage = ((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2;
+                Console.WriteLine("{0} did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
+            enemy.CurrentHealth -= spellDamage;
         }
 
         public bool RunCommand(Enemy enemy)

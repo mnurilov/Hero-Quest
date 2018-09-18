@@ -42,7 +42,8 @@ namespace Engine
 
             while (!playerInputIsValid)
             {
-                if (playerInput != "attack" && playerInput != "spell" && playerInput != "view stats" && playerInput != "run away")
+                if (playerInput != "attack" && playerInput != "spell" && playerInput != "view stats" && playerInput != "run away"
+                    && playerInput != "cast fire" && playerInput != "cast thunder")
                 {
                     Console.WriteLine("Wrong command given, please enter a new command");
                     playerInput = Console.ReadLine();
