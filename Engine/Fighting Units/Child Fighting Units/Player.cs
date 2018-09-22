@@ -128,6 +128,10 @@ namespace Engine
         private const double DodgeChanceRateScaleFactor = 100.505051;
         private const double DodgeChanceRateConstant = 100;
         #endregion
+
+        #region Gold Cap Constants
+        private const int GoldCap = 10000;
+        #endregion
         #endregion
 
         #region Variables
@@ -166,9 +170,9 @@ namespace Engine
                 {
                     gold = 0;
                 }
-                if(value > 10000)
+                if(value > GoldCap)
                 {
-                    gold = 10000;
+                    gold = GoldCap;
                 }
                 else
                 {
@@ -291,9 +295,7 @@ namespace Engine
             }
         }
 
-        //Make this class private so that it cannot be accessed outside the class it is 
-        //dangerous to leave it public because experience wont get updated
-        public void LevelUp()
+        private void LevelUp()
         {
             Level++;
             UpdatePlayerStats();
@@ -384,8 +386,8 @@ namespace Engine
 
         }
 
-        //Make this private it never needs to be accessed outside the player class
-        public void MoveTo(Location newLocation)
+        //Moves the player to a different location
+        private void MoveTo(Location newLocation)
         {
             CurrentLocation = newLocation;
             Console.WriteLine(CurrentLocation.ToString());
@@ -430,6 +432,7 @@ namespace Engine
             }
         }
 
+
         public void AttackCommand(Enemy enemy)
         {
             int damage = 0;
@@ -453,6 +456,8 @@ namespace Engine
                 damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 2;
                 Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
+
+            //This is bad the player shouldnt affect the enemy health from inside in the class it should just calculate the damage
             enemy.CurrentHealth -= damage;
         }
 
@@ -479,9 +484,13 @@ namespace Engine
                 spellDamage = ((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2;
                 Console.WriteLine("{0} did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
+
+            //Same thing with this one as in attack command
             enemy.CurrentHealth -= spellDamage;
         }
 
+
+        //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEM
         public bool RunCommand(Enemy enemy)
         {
             if(RandomNumberGenerator.RandomNumberBetween(0, 100) < 50)

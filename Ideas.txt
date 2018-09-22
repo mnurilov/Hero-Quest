@@ -1,3 +1,9 @@
+THINGS TO DO NEXT TIME:
+-I want modulary or whatever its called
+-I don't think player should change anything in enemy I think the player should calculate its dmage
+and whatever class that operation is being called from can determine what to do with that data
+-I don't think the classes should affect each other to allow for modifiability
+
 Ideas
 -Maybe add a chest and a key?
 -Maybe a paper mario like leveling system and combat system
@@ -26,18 +32,8 @@ Quests
 -Travel Quest
 -Interact Quest
 
-THINGS TO DO NEXT TIME:
--MAKE VENDORS WORK
--MAKE THE INPUT MANAGER JUST CORRECT THE INPUT AND RETURN IT TO THE STATE
--THE STATE WILL DECIDE WHAT TO DO WITH THE INPUT
-
-
 buy item quantity
 
 buy bronze shield 
 
-super basic combat check
-super basic item buying 
-super basic item usage
-super basic quest
-super basic spell
+copy what super adventure did

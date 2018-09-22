@@ -11,6 +11,8 @@ namespace Engine
         string playerInput;
         public bool playerTurn = true;
 
+
+        //Determines who goes first in the turn 
         public void DetermineTurn(Player player, Enemy enemy)
         {
             if(player.Speed > enemy.Speed)

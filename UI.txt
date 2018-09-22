@@ -1,2 +1,0 @@
-Travel
-Type help for commands during any time
