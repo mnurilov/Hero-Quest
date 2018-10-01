@@ -144,7 +144,7 @@ namespace Engine
             }
             set
             {
-                if (Level >= 20)
+                if (Level >= MaximumLevel)
                 {
                     currentExperiencePoints = 0;
                 }
@@ -208,12 +208,18 @@ namespace Engine
         public Player(int Level, string Name, Class playerClass) : base(1, Name, 1, 1, 1, 1, 1, 1, 1, 1)
         {
             this.Level = Level;
-            this.MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
+            this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
+
+            //Set starting location of player to "House"
             if(World.FindLocationByID(1) != null)
             {
                 MoveTo(World.FindLocationByID(1));
+            }
+            else
+            {
+                throw new Exception("Player's starting location cannot be set to \"House\"");
             }
 
             UpdatePlayerStats();
@@ -283,6 +289,11 @@ namespace Engine
             DodgeChanceRate = ((DodgeChanceRateScaleFactor * Luck) / (Luck + DodgeChanceRateConstant));
         }
 
+        private int GetUpdatedMaximumExperience() 
+        {
+            return (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
+        }
+
         public void GainExperience(int experience)
         {
             CurrentExperiencePoints += experience;
@@ -291,7 +302,7 @@ namespace Engine
             {
                 LevelUp();
                 CurrentExperiencePoints -= MaximumExperiencePoints;
-                MaximumExperiencePoints = (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
+                MaximumExperiencePoints = GetUpdatedMaximumExperience();
             }
         }
 
@@ -433,7 +444,7 @@ namespace Engine
         }
 
 
-        public void AttackCommand(Enemy enemy)
+        public int AttackCommand(Enemy enemy)
         {
             int damage = 0;
 
@@ -441,7 +452,7 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
                 Console.WriteLine("{0} missed", Name);
-                return;
+                return 0;
             }
 
             //If the player would critical strike the enemy then calculate the damage accordingly
@@ -458,10 +469,10 @@ namespace Engine
             }
 
             //This is bad the player shouldnt affect the enemy health from inside in the class it should just calculate the damage
-            enemy.CurrentHealth -= damage;
+            return damage;
         }
 
-        public void SpellCommand(Enemy enemy, Spell spell)
+        public int SpellCommand(Enemy enemy, Spell spell)
         {
             int spellDamage = 0;
 
@@ -469,7 +480,7 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
                 Console.WriteLine("{0} missed", Name);
-                return;
+                return 0;
             }
 
             //If the player would critical strike the enemy then calculate the spell damage accordingly
@@ -486,7 +497,7 @@ namespace Engine
             }
 
             //Same thing with this one as in attack command
-            enemy.CurrentHealth -= spellDamage;
+            return spellDamage;
         }
 
 
@@ -508,8 +519,6 @@ namespace Engine
             info += ("Class: " + PlayerClass.ToString() + "\n");
             info += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
             info += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
-            info += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
-            info += ("Dodge Chance: " + ((int)DodgeChanceRate).ToString() + "%\n");
             info += base.ToString();
 
             return info;

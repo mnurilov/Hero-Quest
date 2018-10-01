@@ -72,13 +72,14 @@ namespace Engine
             {
                 case "attack":
                     Console.WriteLine("You attack");
-                    player.AttackCommand(enemy);
+                    enemy.CurrentHealth -= player.AttackCommand(enemy);
+
                     break;
                 case "cast fire":
                     if (player.PlayerSpells.Contains(World.FindSpellByID(1)))
                     {
                         Console.WriteLine("You cast fire");
-                        player.SpellCommand(enemy, World.FindSpellByID(1));
+                        enemy.CurrentHealth -= player.SpellCommand(enemy, World.FindSpellByID(1));
                     }
                     else
                     {
@@ -89,7 +90,7 @@ namespace Engine
                     if (player.PlayerSpells.Contains(World.FindSpellByID(2)))
                     {
                         Console.WriteLine("You cast thunder");
-                        player.SpellCommand(enemy, World.FindSpellByID(2));
+                        enemy.CurrentHealth -= player.SpellCommand(enemy, World.FindSpellByID(2));
                     }
                     else
                     {

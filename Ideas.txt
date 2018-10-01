@@ -3,6 +3,7 @@ THINGS TO DO NEXT TIME:
 -I don't think player should change anything in enemy I think the player should calculate its dmage
 and whatever class that operation is being called from can determine what to do with that data
 -I don't think the classes should affect each other to allow for modifiability
+-DEBUG MODE where a variable is set on and when it is you can see all the output
 
 Ideas
 -Maybe add a chest and a key?

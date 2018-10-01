@@ -9,6 +9,11 @@ namespace Engine
     public class FightingUnit
     {
         #region Data Storage
+        #region Constants
+        protected const int MinimumLevel = 1;
+        protected const int MaximumLevel = 20;
+        #endregion
+
         public string Name { get; set; }
 
         private int currentHealth;
@@ -33,7 +38,6 @@ namespace Engine
                     currentHealth = value;
                 }
             }
-            
         }
 
         private int level;
@@ -45,14 +49,14 @@ namespace Engine
             }
             set
             {
-                if (value > 20)
+                if (value > MaximumLevel)
                 {
 
-                    level = 20;
+                    level = MaximumLevel;
                 }
-                else if (value < 1)
+                else if (value < MinimumLevel)
                 {
-                    level = 1;
+                    level = MinimumLevel;
                 }
                 else
                 {
@@ -110,6 +114,8 @@ namespace Engine
             stats += ("Speed: " + Speed.ToString() + "\n");
             stats += ("Intellect: " + Intellect.ToString() + "\n");
             stats += ("Resistance: " + Resistance.ToString() + "\n");
+            stats += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
+            stats += ("Dodge Chance: " + ((int)DodgeChanceRate).ToString() + "%\n");
 
             return stats;
         }
