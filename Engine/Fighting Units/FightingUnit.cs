@@ -80,21 +80,21 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public FightingUnit(int Level, string Name, int MaximumHealth, int MaximumMana, int Attack, int Defense, 
-            int Luck, int Speed, int Intellect, int Resistance)
+        public FightingUnit(int level, string name, int maximumHealth, int maximumMana, int attack, int defense, 
+            int luck, int speed, int intellect, int resistance)
         {
-            this.Level = Level;
-            this.Name = Name;
-            this.MaximumHealth = MaximumHealth;
-            this.MaximumMana = MaximumMana;
-            this.Attack = Attack;
-            this.Defense = Defense;
-            this.Luck = Luck;
-            this.Speed = Speed;
-            this.Intellect = Intellect;
-            this.Resistance = Resistance;
-            CurrentHealth = MaximumHealth;
-            CurrentMana = MaximumMana;
+            this.Level = level;
+            this.Name = name;
+            this.MaximumHealth = maximumHealth;
+            this.MaximumMana = maximumMana;
+            this.Attack = attack;
+            this.Defense = defense;
+            this.Luck = luck;
+            this.Speed = speed;
+            this.Intellect = intellect;
+            this.Resistance = resistance;
+            CurrentHealth = maximumHealth;
+            CurrentMana = maximumMana;
         }
         #endregion
 

@@ -11,14 +11,15 @@ namespace Engine
         public Item Item;
         public int Quantity;
 
-        public InventoryItem(Item Item, int Quantity)
+        public InventoryItem(Item item, int quantity)
         {
-            this.Item = Item;
-            this.Quantity = Quantity;
+            this.Item = item;
+            this.Quantity = quantity;
         }
 
         public override string ToString()
         {
+            //Why is this if statement here check this out latter
             if (this != null)
             {
                 string info = "";

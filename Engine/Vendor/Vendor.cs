@@ -20,6 +20,7 @@ namespace Engine
             this.Name = Name;
         }
 
+        //Make this show item description 
         public override string ToString()
         {
             string info = "";

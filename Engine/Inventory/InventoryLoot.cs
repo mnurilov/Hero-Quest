@@ -11,10 +11,20 @@ namespace Engine
         public EnemyLoot EnemyLoot;
         public int Quantity;
 
-        public InventoryLoot(EnemyLoot EnemyLoot, int Quantity)
+        public InventoryLoot(EnemyLoot enemyLoot, int quantity)
         {
-            this.EnemyLoot = EnemyLoot;
-            this.Quantity = Quantity;
+            this.EnemyLoot = enemyLoot;
+            this.Quantity = quantity;
+        }
+
+        public override string ToString()
+        {
+            string info = "";
+            
+            info += ("Enemy Loot: " + EnemyLoot.ToString() + "\n");
+            info += ("Quantity " + Quantity.ToString() + "\n");
+
+            return info;
         }
     }
 }

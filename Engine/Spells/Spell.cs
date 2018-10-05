@@ -16,12 +16,12 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public Spell(int ID, string Name, string Description, int ManaCost)
+        public Spell(int id, string name, string description, int manaCost)
         {
-            this.ID = ID;
-            this.Name = Name;
-            this.Description = Description;
-            this.ManaCost = ManaCost;
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
+            this.ManaCost = manaCost;
         }
         #endregion
 

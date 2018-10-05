@@ -9,7 +9,7 @@ namespace Engine
     public class EnemyLoot : Item
     {
         #region Constructor
-        public EnemyLoot(int ID, string Name) : base(ID, Name)
+        public EnemyLoot(int id, string name, string description) : base(id, name, description) 
         {
 
         }

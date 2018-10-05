@@ -147,28 +147,28 @@ namespace Engine
 
         private static void PopulateItems()
         {
-            items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", 5));
-            items.Add(new HealthReplenishingItem(ItemIDMegaPotion, "Mega Potion", 15));
-            items.Add(new HealthReplenishingItem(ItemIDHyperPotion, "Hyper Potion", 30));
-            items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", 4));
-            items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", 16));
-            items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", 36));
+            items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", "It's a basic potion", 5));
+            items.Add(new HealthReplenishingItem(ItemIDMegaPotion, "Mega Potion", "It's a mega potion", 15));
+            items.Add(new HealthReplenishingItem(ItemIDHyperPotion, "Hyper Potion", "It's a hyper potion", 30));
+            items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", "It's a basic ether", 4));
+            items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", "It's a mega ether", 16));
+            items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", "It's a hyper ether", 36));
         }
 
         private static void PopulateEquipments()
         {
-            equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", 5, 0, 0, 5, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(HeadEquipmentIDRuneHelmet, "Rune Helmet", 10, 0, 0, 10, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ChestEquipmentIDBronzeChestPlate, "Bronze Chest Plate", 15, 0, 0, 15, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ChestEquipmentIDRuneChestPlate, "Rune Chest Plate", 30, 0, 0, 30, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", 10, 0, 0, 10, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(LegEquipmentIDRuneLeggings, "Rune Leggings", 20, 0, 0, 20, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(WeaponEquipmentIDBronzeSword, "Bronze Sword", 0, 0, 10, 0, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(WeaponEquipmentIDRuneSword, "Rune Sword", 0, 0, 0, 30, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ShieldEquipmentIDBronzeShield, "Bronze Shield", 0, 0, 0, 0, 10, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ShieldEquipmentIDRuneShield, "Rune Shield", 5, 0, 0, 0, 30, 0, 0, 0));
-            equipments.Add(new HeadEquipment(TomeEquipmentIDBronzeTome, "Bronze Tome", 0, 10, 0, 0, 0, 0, 15, 0));
-            equipments.Add(new HeadEquipment(TomeEquipmentIDRuneTome, "Rune Tome", 0, 30, 0, 5, 0, 0, 30, 0));
+            equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", "It's a bronze helmet", 5, 0, 0, 5, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(HeadEquipmentIDRuneHelmet, "Rune Helmet", "It's a rune helmet", 10, 0, 0, 10, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(ChestEquipmentIDBronzeChestPlate, "Bronze Chest Plate", "It's a bronze chest plate", 15, 0, 0, 15, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(ChestEquipmentIDRuneChestPlate, "Rune Chest Plate", "It's a rune chest plate", 30, 0, 0, 30, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", "It's a bronze leggings", 10, 0, 0, 10, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(LegEquipmentIDRuneLeggings, "Rune Leggings", "It's a rune legs", 20, 0, 0, 20, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(WeaponEquipmentIDBronzeSword, "Bronze Sword", "It's a dumb sword", 0, 0, 10, 0, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(WeaponEquipmentIDRuneSword, "Rune Sword", "It's a dope sword", 0, 0, 0, 30, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(ShieldEquipmentIDBronzeShield, "Bronze Shield", "It's a not good shield", 0, 0, 0, 0, 10, 0, 0, 0));
+            equipments.Add(new HeadEquipment(ShieldEquipmentIDRuneShield, "Rune Shield", "It's a great shield", 5, 0, 0, 0, 30, 0, 0, 0));
+            equipments.Add(new HeadEquipment(TomeEquipmentIDBronzeTome, "Bronze Tome", "It's a okay tome", 0, 10, 0, 0, 0, 0, 15, 0));
+            equipments.Add(new HeadEquipment(TomeEquipmentIDRuneTome, "Rune Tome", "It's a nice tome", 0, 30, 0, 5, 0, 0, 30, 0));
         }
 
         private static void PopulateVendors()
@@ -204,10 +204,10 @@ namespace Engine
 
         private static void PopulateEnemyLoots()
         {
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatCarcass, "Rat Carcass"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDSnakeFang, "Snake Fang"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDOgreTooth, "Ogre Tooth"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail", "ew its a icky rat tail"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatCarcass, "Rat Carcass", "super ew its a rat carass"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDSnakeFang, "Snake Fang", "a sharp tooth"));
+            enemyLoots.Add(new EnemyLoot(EnemyLootIDOgreTooth, "Ogre Tooth", "thats a lot of calcium"));
         }
 
         private static void PopulateEnemies()

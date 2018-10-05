@@ -11,10 +11,10 @@ namespace Engine
         public Equipment Equipment;
         public int Quantity { get; set; }
 
-        public InventoryEquipment(Equipment Equipment, int Quantity)
+        public InventoryEquipment(Equipment equipment, int quantity)
         {
-            this.Equipment = Equipment;
-            this.Quantity = Quantity;
+            this.Equipment = equipment;
+            this.Quantity = quantity;
         }
 
         public override string ToString()
