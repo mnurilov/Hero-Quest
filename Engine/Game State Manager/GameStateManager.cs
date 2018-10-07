@@ -8,9 +8,12 @@ namespace Engine
 {
     public static class GameStateManager
     {
-        public static Stack<IState> states = new Stack<IState>();
+        public enum State { Travel, Battle, Shop, GameOver };
+        public static State GameState = State.Travel;
 
-        public static void Push(IState state)
+        public static Stack<State> states = new Stack<State>();
+
+        public static void Push(State state)
         {
             states.Push(state);
         }
@@ -20,7 +23,7 @@ namespace Engine
             states.Pop();
         }
 
-        public static void Set(IState state)
+        public static void Set(State state)
         {
             states.Pop();
             states.Push(state);

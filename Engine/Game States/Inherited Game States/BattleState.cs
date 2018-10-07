@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class BattleState : IState
+    public class BattleState : State
     {
         string playerInput;
         public bool playerTurn = true;
@@ -37,7 +37,7 @@ namespace Engine
             }
         }
 
-        public void Update(Player player)
+        public override void Update(Player player)
         {
             playerInput = Console.ReadLine();
             bool playerInputIsValid = false;
@@ -103,11 +103,6 @@ namespace Engine
                     return;
                 }
             }
-        }
-
-        public void Draw()
-        {
-
         }
     }
 }

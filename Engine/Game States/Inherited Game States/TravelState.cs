@@ -6,23 +6,14 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class TravelState : IState
+    public class TravelState : State
     {
         string playerInput;
 
-        public void Update()
-        {
-
-        }
-        public void Update(Player player)
+        public override void Update(Player player)
         {
             playerInput = Console.ReadLine();
             InputManager.ManageTravelStateInput(player, playerInput);
-        }
-
-        public void Draw()
-        {
-
         }
     }
 }

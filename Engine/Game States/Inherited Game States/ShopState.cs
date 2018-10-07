@@ -6,24 +6,14 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class ShopState : IState
+    public class ShopState : State
     {
         string playerInput;
 
-        public void Update()
+        public override void Update(Player player)
         {
-
-        }
-        public void Update(Player player)
-        {
-            
             playerInput = Console.ReadLine();
             InputManager.ManageShopStateInput(player, playerInput);
-        }
-
-        public void Draw()
-        {
-
         }
     }
 }

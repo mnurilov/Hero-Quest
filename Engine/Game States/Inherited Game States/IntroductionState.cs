@@ -6,21 +6,11 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class IntroductionState : IState
+    public class IntroductionState : State
     {
-        public void Update()
+        public override void Update(Player player)
         {
             InputManager.ManageIntroductionStateInput();
-        }
-
-        public void Update(Player player)
-        {
-            InputManager.ManageIntroductionStateInput();
-        }
-
-        public void Draw()
-        {
-
         }
     }
 }

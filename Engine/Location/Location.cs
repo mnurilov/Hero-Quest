@@ -36,7 +36,8 @@ namespace Engine
             this.Description = description;
             this.EncounterChance = encounterChance;
         }
-
+        
+        //Checks if an encounter will be triggered 
         public bool EncounterTriggered()
         {
             if (RandomNumberGenerator.RandomNumberBetween(0, 99) < EncounterChance)

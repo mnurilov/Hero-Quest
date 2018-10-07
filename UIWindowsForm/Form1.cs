@@ -21,16 +21,6 @@ namespace UIWindowsForm
             
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            lblHitPoints.Text = bob.CurrentHealth.ToString();
-        }
-
-        private void button1_Click_1(object sender, EventArgs e)
-        {
-
-        }
-
         private void btnNorth_Click(object sender, EventArgs e)
         {
             bob.MoveNorth();
@@ -55,6 +45,9 @@ namespace UIWindowsForm
             rtbLocation.Text = bob.CurrentLocation.ToString();
         }
 
+        private void Form1_Load(object sender, EventArgs e)
+        {
 
+        }
     }
 }

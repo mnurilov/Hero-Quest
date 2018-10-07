@@ -183,9 +183,6 @@ namespace Engine
 
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
-
-        public enum State { Travel, Battle, Shop, GameOver}
-        public static State PlayerState = State.Travel;
         #endregion 
 
         #region Player Objects

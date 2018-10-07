@@ -6,17 +6,13 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class GameOverState : IState
+    public class GameOverState : State
     {
-        public void Update(Player player)
+        public override void Update(Player player)
         {
             Console.WriteLine("Game Over!");
             Console.ReadKey();
             Environment.Exit(0);
-        }
-
-        public void Draw()
-        {
         }
     }
 }

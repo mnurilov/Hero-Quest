@@ -12,8 +12,9 @@ namespace Engine
         public static void Run()
         {
             Player player = new Player(1, "Bob", Player.Class.Thief);
+            
 
-            IntroductionState introductionState = new IntroductionState();
+        IntroductionState introductionState = new IntroductionState();
             TravelState ts = new TravelState();
             BattleState bs = new BattleState();
             ShopState ss = new ShopState();
