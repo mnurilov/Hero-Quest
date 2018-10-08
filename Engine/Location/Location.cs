@@ -29,12 +29,12 @@ namespace Engine
         #endregion
 
         //Add the vendor and quest as a constructor later on
-        public Location(int id, string name, string description, int encounterChance)
+        public Location(int ID, string Name, string Description, int EncounterChance)
         {
-            this.ID = id;
-            this.Name = name;
-            this.Description = description;
-            this.EncounterChance = encounterChance;
+            this.ID = ID;
+            this.Name = Name;
+            this.Description = Description;
+            this.EncounterChance = EncounterChance;
         }
         
         //Checks if an encounter will be triggered 

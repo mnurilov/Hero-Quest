@@ -8,12 +8,11 @@ namespace Engine
 {
     public class ReplenishingSpell : Spell
     {
-        public int ReplenishingAmount { get; set; }
+        public int ReplenishingAmount;
 
-        public ReplenishingSpell(int id, string name, string description, int manaCost, int replenishingAmount)
-            : base(id, name, description, manaCost)
+        public ReplenishingSpell(int ID, string Name, string Description, int ManaCost, int ReplenishingAmount) : base(ID, Name, Description, ManaCost)
         {
-            this.ReplenishingAmount = replenishingAmount;
+            this.ReplenishingAmount = ReplenishingAmount;
         }
 
         public override string ToString()

@@ -202,9 +202,9 @@ namespace Engine
         #endregion 
 
         #region Constructor
-        public Player(int level, string name, Class playerClass) : base(1, name, 1, 1, 1, 1, 1, 1, 1, 1)
+        public Player(int Level, string Name, Class playerClass) : base(1, Name, 1, 1, 1, 1, 1, 1, 1, 1)
         {
-            this.Level = level;
+            this.Level = Level;
             this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;

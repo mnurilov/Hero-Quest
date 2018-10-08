@@ -15,11 +15,10 @@ namespace Engine
         public int Quantity { get; set; }
         #endregion
 
-        public GatheringQuest(int id, string name, string description, EnemyLoot enemyLootRequirement, int quantity)
-            : base(id, name, description)
+        public GatheringQuest(int ID, string Name, string Description, EnemyLoot EnemyLootRequirement, int Quantity) : base(ID, Name, Description)
         {
-            this.EnemyLootRequirement = enemyLootRequirement;
-            this.Quantity = quantity;
+            this.EnemyLootRequirement = EnemyLootRequirement;
+            this.Quantity = Quantity;
         }
 
         public override string ToString()

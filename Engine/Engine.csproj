@@ -40,7 +40,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Items\Child Items\EnemyLoot.cs" />
     <Compile Include="Game States\Inherited Game States\BattleState.cs" />
     <Compile Include="Game States\Inherited Game States\GameOverState.cs" />
     <Compile Include="Game\Game.cs" />
@@ -52,6 +51,7 @@
     <Compile Include="Fighting Units\Child Fighting Units\Child Enemies\LocationEnemy.cs" />
     <Compile Include="Spells\Child Spells\ReplenishingSpell.cs" />
     <Compile Include="Spells\Child Spells\DamageSpell.cs" />
+    <Compile Include="Items\Child Items\EnemyLoot.cs" />
     <Compile Include="Items\Child Items\Child Equipments\ChestEquipment.cs" />
     <Compile Include="Fighting Units\Child Fighting Units\Enemy.cs" />
     <Compile Include="Items\Child Items\Equipment.cs" />

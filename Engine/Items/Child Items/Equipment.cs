@@ -20,19 +20,18 @@ namespace Engine
         #endregion
 
         #region Constructor
-        //Equipments bonus's are set to 0 so that you only have to set the attributes that you want to a value and the rest become 0
-        public Equipment(int id, string name, string description, int healthBonus = 0, int manaBonus = 0, 
-            int attackBonus = 0, int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0,
-            int resistanceBonus = 0) : base(id, name, description)
+        public Equipment(int ID, string Name, int HealthBonus = 0, int ManaBonus = 0, int AttackBonus = 0,
+            int DefenseBonus = 0, int LuckBonus = 0, int SpeedBonus = 0, int IntellectBonus = 0,
+            int ResistanceBonus = 0) : base(ID, Name)
         {
-            this.HealthBonus = healthBonus;
-            this.ManaBonus = manaBonus;
-            this.AttackBonus = attackBonus;
-            this.DefenseBonus = defenseBonus;
-            this.LuckBonus = luckBonus;
-            this.SpeedBonus = speedBonus;
-            this.IntellectBonus = intellectBonus;
-            this.ResistanceBonus = resistanceBonus;
+            this.HealthBonus = HealthBonus;
+            this.ManaBonus = ManaBonus;
+            this.AttackBonus = AttackBonus;
+            this.DefenseBonus = DefenseBonus;
+            this.LuckBonus = LuckBonus;
+            this.SpeedBonus = SpeedBonus;
+            this.IntellectBonus = IntellectBonus;
+            this.ResistanceBonus = ResistanceBonus;
         }
         #endregion 
 

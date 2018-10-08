@@ -13,10 +13,10 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public HeadEquipment(int id, string name, string description, int healthBonus = 0, int manaBonus = 0, 
-            int attackBonus = 0, int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0,
-            int resistanceBonus = 0) : base(id, name, description, healthBonus, manaBonus, attackBonus, defenseBonus,
-                luckBonus, speedBonus, intellectBonus, resistanceBonus)
+        public HeadEquipment(int ID, string Name, int HealthBonus = 0, int ManaBonus = 0, int AttackBonus = 0,
+            int DefenseBonus = 0, int LuckBonus = 0, int SpeedBonus = 0, int IntellectBonus = 0,
+            int ResistanceBonus = 0) : base(ID, Name, HealthBonus, ManaBonus, AttackBonus, DefenseBonus,
+                LuckBonus, SpeedBonus, IntellectBonus, ResistanceBonus)
         {
         }
         #endregion 

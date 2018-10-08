@@ -17,17 +17,17 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public Enemy (int id, int level, string name, int maximumHealth, int maximumMana, int attack, 
-            int defense, int luck, int speed, int intellect, int resistance, double criticalChanceRate,
-            double dodgeChanceRate, int gold, int experiencePoints) :
-            base (level, name, maximumHealth, maximumMana, attack, defense, luck, speed, 
-                intellect, resistance)
+        public Enemy (int ID, int Level, string Name, int MaximumHealth, int MaximumMana, int Attack, 
+            int Defense, int Luck, int Speed, int Intellect, int Resistance, double CriticalChanceRate,
+            double DodgeChanceRate, int Gold, int ExperiencePoints) :
+            base (Level, Name, MaximumHealth, MaximumMana, Attack, Defense, Luck, Speed, 
+                Intellect, Resistance)
         {
-            this.ID = id;
-            this.CriticalChanceRate = criticalChanceRate;
-            this.DodgeChanceRate = dodgeChanceRate;
-            this.Gold = gold;
-            this.ExperiencePoints = experiencePoints;
+            this.ID = ID;
+            this.CriticalChanceRate = CriticalChanceRate;
+            this.DodgeChanceRate = DodgeChanceRate;
+            this.Gold = Gold;
+            this.ExperiencePoints = ExperiencePoints;
         }
         #endregion
 

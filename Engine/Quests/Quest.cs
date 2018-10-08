@@ -12,8 +12,8 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-
         //public bool IsCompleted { get; set; }
+
         //public int Requirement { get; set; }
 
         public int RewardGold { get; set; }
@@ -24,11 +24,11 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public Quest(int id, string name, string description)
+        public Quest(int ID, string Name, string Description)
         {
-            this.ID = id;
-            this.Name = name;
-            this.Description = description;
+            this.ID = ID;
+            this.Name = Name;
+            this.Description = Description;
         }
         #endregion
 

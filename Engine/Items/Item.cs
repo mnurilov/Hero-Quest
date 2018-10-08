@@ -15,17 +15,14 @@ namespace Engine
         #endregion
 
         #region Constructor
-        public Item (int id, string name, string description)
+        public Item (int ID, string Name)
         {
-            this.ID = id;
-            this.Name = name;
-            this.Description = description;
+            this.ID = ID;
+            this.Name = Name;
         }
         #endregion
 
         #region Methods
-        //An item cannot use itself this should probably be moved to whoever is using the item 
-        //Then again if using an item would belong to the item itself it would allow other classes to use it 
         public virtual void UseItem()
         {
             Console.WriteLine("Base Item");

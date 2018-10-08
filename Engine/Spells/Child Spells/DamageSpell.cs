@@ -8,13 +8,12 @@ namespace Engine
 {
     public class DamageSpell : Spell
     {
-        public int SpellDamage { get; set; }
+        public int SpellDamage;
 
         #region Constructor
-        public DamageSpell(int id, string name, string description, int manaCost, int spellDamage)
-            : base(id, name, description, manaCost)
+        public DamageSpell(int ID, string Name, string Description, int ManaCost, int SpellDamage) : base(ID, Name, Description, ManaCost)
         {
-            this.SpellDamage = spellDamage;
+            this.SpellDamage = SpellDamage;
         }
         #endregion
 
