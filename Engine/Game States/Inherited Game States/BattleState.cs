@@ -62,7 +62,7 @@ namespace Engine
             if (playerTurn)
             {
                 playerTurn = false;
-                InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
+                //InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
                 if(Player.PlayerState == Player.State.Travel)
                 {
                     return;
@@ -94,7 +94,7 @@ namespace Engine
                     return;
                 }
 
-                InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
+                //InputManager.ManageBattleStateInput(player, player.CurrentLocation.CurrentEnemy, playerInput);
                 if (player.CurrentLocation.CurrentEnemy.CurrentHealth <= 0)
                 {
                     Console.WriteLine("{0} killed a {1}", player.Name, player.CurrentLocation.CurrentEnemy.Name);

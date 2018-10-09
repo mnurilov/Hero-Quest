@@ -13,7 +13,7 @@ namespace Engine
         public override void Update(Player player)
         {
             playerInput = Console.ReadLine();
-            InputManager.ManageShopStateInput(player, playerInput);
+            //InputManager.ManageShopStateInput(player, playerInput);
         }
     }
 }

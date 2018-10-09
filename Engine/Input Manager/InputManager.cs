@@ -8,7 +8,11 @@ namespace Engine
 {
     public static class InputManager
     {
-        public static void ManageTravelStateInput(Player player, string playerInput)
+        public delegate void MyInputEventHandler();
+
+        public static event MyInputEventHandler AttackCommand;
+
+        /*public static void ManageTravelStateInput(Player player, string playerInput)
         {
             playerInput = playerInput.ToLower();
 
@@ -62,15 +66,23 @@ namespace Engine
                     Console.WriteLine("Error invalid input for traveling!");
                     break;
             }
+        }*/
+
+        private static void Attack()
+        {
+
         }
 
-        public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
+        /*public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
         {
             playerInput = playerInput.ToLower();
             
-            switch (playerInput)
+            switch (AttackCommand)
             {
+                case Attack:
+                    break;
                 case "attack":
+                    AttackCommand();
                     Console.WriteLine("You attack");
                     enemy.CurrentHealth -= player.AttackCommand(enemy);
 
@@ -115,9 +127,9 @@ namespace Engine
                     Console.WriteLine("Invalid input for battle command!");
                     break;
             }
-        }
+        }*/
 
-        public static Player ManageIntroductionStateInput()
+        /*public static Player ManageIntroductionStateInput()
         {
             Console.WriteLine("Welcome to the World of Blarg!");
             Console.WriteLine("You are a hero on a quest, what a surprise!");
@@ -212,9 +224,9 @@ namespace Engine
             }
 
             return new Player(1, name, playerClass);
-        }
+        }*/
 
-        public static void ManageShopStateInput(Player player, string playerInput)
+        /*public static void ManageShopStateInput(Player player, string playerInput)
         {
             playerInput = playerInput.ToLower();
 
@@ -237,6 +249,6 @@ namespace Engine
                     Console.WriteLine("Invalid input for shop command!");
                     break;
             }
-        }
+        }*/
     }
 }

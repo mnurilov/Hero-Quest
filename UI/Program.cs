@@ -11,7 +11,7 @@ namespace UI
     {
         static void Main(string[] args)
         {
-            Game.Run();
+            GameStateManager.Run();
         }
     }
 }

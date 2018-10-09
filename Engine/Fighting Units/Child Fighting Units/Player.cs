@@ -135,25 +135,7 @@ namespace Engine
         #endregion
 
         #region Variables
-        private int currentExperiencePoints;
-        public int CurrentExperiencePoints
-        {
-            get
-            {
-                return currentExperiencePoints;
-            }
-            set
-            {
-                if (Level >= MaximumLevel)
-                {
-                    currentExperiencePoints = 0;
-                }
-                else
-                {
-                    currentExperiencePoints = value;
-                }
-            }
-        }
+        
 
         public int MaximumExperiencePoints { get; set; }
 
@@ -183,6 +165,14 @@ namespace Engine
 
         public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
         private Class PlayerClass;
+
+        public Class GetClass()
+        {
+            return PlayerClass;
+        }
+
+        public enum State { Travel, Battle, Shop, GameOver };
+        public static State PlayerState = State.Travel;
         #endregion 
 
         #region Player Objects
@@ -197,8 +187,6 @@ namespace Engine
         public List<InventoryLoot> PlayerLootInventory = new List<InventoryLoot>();
         public List<Spell> PlayerSpells = new List<Spell>();
         #endregion 
-
-        public int TEST = 0;
         #endregion 
 
         #region Constructor
@@ -394,6 +382,16 @@ namespace Engine
 
         }
 
+        public void EnterShop()
+        {
+            PlayerState = State.Shop;
+        }
+
+        public void ExitShop()
+        {
+            PlayerState = State.Travel;
+        }
+
         //Moves the player to a different location
         private void MoveTo(Location newLocation)
         {
@@ -404,7 +402,6 @@ namespace Engine
                 CurrentLocation.SetLocationEnemy();
                 Console.WriteLine("You have encountered a random {0}", CurrentLocation.CurrentEnemy.Name);
                 PlayerState = State.Battle;
-                TEST++;
             }
         }
 
@@ -501,8 +498,10 @@ namespace Engine
         //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEM
         public bool RunCommand(Enemy enemy)
         {
-            if(RandomNumberGenerator.RandomNumberBetween(0, 100) < 50)
+           // float runPercentage = (Level * Level) / (Level + enemy.Level) * ;
+            if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 50)
             {
+                PlayerState = State.Travel;
                 return true;
             }
             return false;

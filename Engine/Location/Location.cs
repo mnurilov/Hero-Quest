@@ -117,7 +117,7 @@ namespace Engine
             info += ("Name: " + Name.ToString() + "\n");
             info += ("Description: " + Description.ToString() + "\n");
 
-            if(VendorInLocation != null)
+            /*if(VendorInLocation != null)
             {
                 info += ("Vendor Details: " + VendorInLocation.ToString() + "\n");
             }
@@ -131,7 +131,7 @@ namespace Engine
                 {
                     info += ("Enemy Details: " + enemy.ToString() + "\n");
                 }
-            }
+            }*/
             return info;
         }
     }

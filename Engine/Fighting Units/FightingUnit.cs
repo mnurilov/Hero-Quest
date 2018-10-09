@@ -8,6 +8,9 @@ namespace Engine
 {
     public class FightingUnit
     {
+        public delegate void PropertyChangedHandler();
+
+        public event PropertyChangedHandler StatsChanged;
         #region Data Storage
         #region Constants
         protected const int MinimumLevel = 1;
@@ -37,6 +40,10 @@ namespace Engine
                 {
                     currentHealth = value;
                 }
+                if (StatsChanged != null)
+                {
+                    StatsChanged();
+                }
             }
         }
 
@@ -62,11 +69,66 @@ namespace Engine
                 {
                     level = value;
                 }
+                if (StatsChanged != null)
+                {
+                    StatsChanged();
+                }
+            }
+        }
+
+        private int currentMana;
+        public int CurrentMana 
+        {
+            get
+            {
+                return currentMana;
+            }
+            set
+            {
+                if (value > MaximumMana)
+                {
+                    currentMana = MaximumMana;
+                }
+                else if (value < 0)
+                {
+                    currentMana = 0;
+                }
+                else
+                {
+                    currentMana = value;
+                }
+                if (StatsChanged != null)
+                {
+                    StatsChanged();
+                }
+            }
+        }
+
+        private int currentExperiencePoints;
+        public int CurrentExperiencePoints
+        {
+            get
+            {
+                return currentExperiencePoints;
+            }
+            set
+            {
+                if (Level >= MaximumLevel)
+                {
+                    currentExperiencePoints = 0;
+                }
+                else
+                {
+                    currentExperiencePoints = value;
+                }
+                if (StatsChanged != null)
+                {
+                    StatsChanged();
+                }
             }
         }
 
         public int MaximumHealth { get; set; }
-        public int CurrentMana { get; set; }
         public int MaximumMana { get; set; }
         public int Attack { get; set; }
         public int Defense { get; set; }

@@ -6,37 +6,40 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+    //Game class where all the game states will be organized
     public static class GameStateManager
     {
-        public enum State { Travel, Battle, Shop, GameOver };
-        public static State GameState = State.Travel;
-
-        public static Stack<State> states = new Stack<State>();
-
-        public static void Push(State state)
+        public static void Run()
         {
-            states.Push(state);
-        }
+            Player player = new Player(1, "Bob", Player.Class.Thief);
+            
 
-        public static void Pop()
-        {
-            states.Pop();
-        }
+            IntroductionState introductionState = new IntroductionState();
+            TravelState ts = new TravelState();
+            BattleState bs = new BattleState();
+            ShopState ss = new ShopState();
+            GameOverState gos = new GameOverState();
+            GameStateStack.Push(ts);
 
-        public static void Set(State state)
-        {
-            states.Pop();
-            states.Push(state);
-        }
-
-        public static void Peek()
-        {
-            states.Peek();
-        }
-
-        public static void Update(Player player)
-        {
-            states.Peek().Update(player);
+            while (true)
+            {
+                switch (Player.PlayerState)
+                {
+                    case Player.State.Travel:
+                        GameStateStack.Set(ts);
+                        break;
+                    case Player.State.Battle:
+                        GameStateStack.Set(bs);
+                        break;
+                    case Player.State.Shop:
+                        GameStateStack.Set(ss);
+                        break;
+                    case Player.State.GameOver:
+                        GameStateStack.Set(gos);
+                        break;
+                }
+                GameStateStack.Update(player);
+            }
         }
     }
 }
