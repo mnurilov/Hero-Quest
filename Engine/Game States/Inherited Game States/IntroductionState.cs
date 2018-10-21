@@ -10,7 +10,7 @@ namespace Engine
     {
         public override void Update(Player player)
         {
-           // InputManager.ManageIntroductionStateInput();
+            
         }
     }
 }

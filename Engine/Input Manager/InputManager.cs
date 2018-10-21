@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
+   // public delegate void MyInputEventHandler();
+
     public static class InputManager
     {
         public delegate void MyInputEventHandler();
@@ -73,13 +75,14 @@ namespace Engine
 
         }
 
-        /*public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
+        public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
         {
             playerInput = playerInput.ToLower();
+            object generic = "";
             
-            switch (AttackCommand)
+            switch (generic)
             {
-                case Attack:
+                case AttackCommand:
                     break;
                 case "attack":
                     AttackCommand();
@@ -127,7 +130,7 @@ namespace Engine
                     Console.WriteLine("Invalid input for battle command!");
                     break;
             }
-        }*/
+        }
 
         /*public static Player ManageIntroductionStateInput()
         {

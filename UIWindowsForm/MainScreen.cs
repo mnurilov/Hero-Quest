@@ -14,9 +14,13 @@ namespace UIWindowsForm
     public partial class MainScreen : Form
     {
         public Player Player = new Player(1, "Bob", Player.Class.Thief);
-
+        private void HandleApplicationIdle(object sender, EventArgs e)
+        {
+            GameStateManager.Run();
+        }
         public MainScreen()
         {
+            Application.Idle += HandleApplicationIdle;
             InitializeComponent();
             Player.StatsChanged += UpdateStats;
             rtbLocation.Text = Player.CurrentLocation.ToString();
