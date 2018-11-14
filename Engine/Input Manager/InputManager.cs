@@ -78,12 +78,9 @@ namespace Engine
         public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
         {
             playerInput = playerInput.ToLower();
-            object generic = "";
             
-            switch (generic)
+            switch (playerInput)
             {
-                case AttackCommand:
-                    break;
                 case "attack":
                     AttackCommand();
                     Console.WriteLine("You attack");

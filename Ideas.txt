@@ -1,18 +1,14 @@
 THINGS TO DO NEXT TIME:
--I want modulary or whatever its called
--I don't think player should change anything in enemy I think the player should calculate its dmage
-and whatever class that operation is being called from can determine what to do with that data
--I don't think the classes should affect each other to allow for modifiability
 -DEBUG MODE where a variable is set on and when it is you can see all the output
 
 Ideas
+-Game Creator App where I make a simple app that allows the user to create the world for the game
+and then the app converts it into xml files/this will need to be done after the game is complete
 -Maybe add a chest and a key?
 -Maybe a paper mario like leveling system and combat system
 -Where when you level up you put your stat points into the attritubtes you want
 Allowing the player to craft their own character
--I dont think this would be that hard to implement however its my decision whether id want to
-or not 
--If you survive with item item goes up a tier dead by daylight
+-If you survive with item, item goes up a tier dead by daylight
 
 Items
 -HP heals
@@ -32,9 +28,3 @@ Quests
 -Gather Quest
 -Travel Quest
 -Interact Quest
-
-buy item quantity
-
-buy bronze shield 
-
-copy what super adventure did

@@ -43,6 +43,7 @@
     <Compile Include="Game States\Inherited Game States\BattleState.cs" />
     <Compile Include="Game States\Inherited Game States\GameOverState.cs" />
     <Compile Include="Game State Manager\GameStateManager.cs" />
+    <Compile Include="GameSession.cs" />
     <Compile Include="Game\GameStateStack.cs" />
     <Compile Include="Input Manager\InputManager.cs" />
     <Compile Include="Game States\Inherited Game States\IntroductionState.cs" />

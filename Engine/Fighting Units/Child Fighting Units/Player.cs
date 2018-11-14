@@ -1,13 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Player : FightingUnit
+    public class Player : FightingUnit, INotifyPropertyChanged
     {
+        //Tessting
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged(string propertyName) 
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
+
+
+
         #region Data Storage
         //CREATE CONSTANTS FOR CAPS ON THE STATS AND GOLD FOR EXAMPLE MAKE A CONSTANT THAT HOLDS THE GOLD CAP FOR GOLD, EASIER TO MODIFY THAT WAY
         #region Constants
@@ -437,7 +448,7 @@ namespace Engine
             }
         }
 
-
+    
         public int AttackCommand(Enemy enemy)
         {
             int damage = 0;

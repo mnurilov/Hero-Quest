@@ -13,49 +13,46 @@ namespace UIWindowsForm
 {
     public partial class MainScreen : Form
     {
-        public Player Player = new Player(1, "Bob", Player.Class.Thief);
-        private void HandleApplicationIdle(object sender, EventArgs e)
-        {
-            GameStateManager.Run();
-        }
+        GameSession gameSession = new GameSession();
+
         public MainScreen()
         {
-            Application.Idle += HandleApplicationIdle;
+            //Application.Idle += HandleApplicationIdle;
             InitializeComponent();
-            Player.StatsChanged += UpdateStats;
-            rtbLocation.Text = Player.CurrentLocation.ToString();
+            gameSession.CurrentPlayer.StatsChanged += UpdateStats;
+            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnNorth_Click(object sender, EventArgs e)
         {
-            Player.MoveNorth();
-            rtbLocation.Text = Player.CurrentLocation.ToString();
+            gameSession.CurrentPlayer.MoveNorth();
+            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnSouth_Click(object sender, EventArgs e)
         {
-            Player.MoveSouth();
-            rtbLocation.Text = Player.CurrentLocation.ToString();
+            gameSession.CurrentPlayer.MoveSouth();
+            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnWest_Click(object sender, EventArgs e)
         {
-            Player.MoveWest();
-            rtbLocation.Text = Player.CurrentLocation.ToString();
+            gameSession.CurrentPlayer.MoveWest();
+            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnEast_Click(object sender, EventArgs e)
         {
-            Player.MoveEast();
-            rtbLocation.Text = Player.CurrentLocation.ToString();
+            gameSession.CurrentPlayer.MoveEast();
+            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
             UpdateButtons();
             UpdateStats();
         }
@@ -67,8 +64,8 @@ namespace UIWindowsForm
 
         private void btnShop_Click(object sender, EventArgs e)
         {
-            Player.EnterShop();
-            rtbShop.Text = Player.CurrentLocation.VendorInLocation.ToString();
+            gameSession.CurrentPlayer.EnterShop();
+            rtbShop.Text = gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.ToString();
             btnShop.Visible = false;
             btnShopExit.Visible = true;
             UpdateButtons();
@@ -76,7 +73,7 @@ namespace UIWindowsForm
 
         private void btnTrade_Click(object sender, EventArgs e)
         {
-            Player.GainExperience(100);
+            gameSession.CurrentPlayer.GainExperience(100);
         }
 
         private void UpdateButtons()
@@ -84,27 +81,27 @@ namespace UIWindowsForm
             switch (Player.PlayerState)
             {
                 case Player.State.Travel:
-                    if (Player.CurrentLocation.LocationToTheNorth == null)
+                    if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth == null)
                         btnNorth.Enabled = false;
                     else
                         btnNorth.Enabled = true;
 
-                    if (Player.CurrentLocation.LocationToTheSouth == null)
+                    if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheSouth == null)
                         btnSouth.Enabled = false;
                     else
                         btnSouth.Enabled = true;
 
-                    if (Player.CurrentLocation.LocationToTheWest == null)
+                    if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheWest == null)
                         btnWest.Enabled = false;
                     else
                         btnWest.Enabled = true;
 
-                    if (Player.CurrentLocation.LocationToTheEast == null)
+                    if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheEast == null)
                         btnEast.Enabled = false;
                     else
                         btnEast.Enabled = true;
 
-                    if (Player.CurrentLocation.VendorInLocation == null)
+                    if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation == null)
                     {
                         btnShop.Enabled = false;
                         btnShopExit.Visible = false;
@@ -128,7 +125,7 @@ namespace UIWindowsForm
                     btnRun.Visible = false;
                     break;
                 case Player.State.Battle:
-                    rtbBattle.Text = Player.CurrentLocation.CurrentEnemy.ToString();
+                    rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
                     btnWest.Enabled = false;
@@ -144,22 +141,22 @@ namespace UIWindowsForm
 
         private void UpdateStats()
         {
-            lblClass.Text = Player.GetClass().ToString();
-            lblLevel.Text = Player.Level.ToString();
-            lblExperience.Text = Player.CurrentExperiencePoints.ToString() + "/" + Player.MaximumExperiencePoints.ToString();
-            lblHealth.Text = Player.CurrentHealth.ToString() + "/" + Player.MaximumHealth.ToString();
-            lblMana.Text = Player.CurrentMana.ToString() + "/" + Player.MaximumMana.ToString();
-            lblAttack.Text = Player.Attack.ToString();
-            lblDefense.Text = Player.Defense.ToString();
-            lblLuck.Text = Player.Luck.ToString();
-            lblSpeed.Text = Player.Speed.ToString();
-            lblIntellect.Text = Player.Intellect.ToString();
-            lblResistance.Text = Player.Resistance.ToString();
+            lblClass.Text = gameSession.CurrentPlayer.GetClass().ToString();
+            lblLevel.Text = gameSession.CurrentPlayer.Level.ToString();
+            lblExperience.Text = gameSession.CurrentPlayer.CurrentExperiencePoints.ToString() + "/" + gameSession.CurrentPlayer.MaximumExperiencePoints.ToString();
+            lblHealth.Text = gameSession.CurrentPlayer.CurrentHealth.ToString() + "/" + gameSession.CurrentPlayer.MaximumHealth.ToString();
+            lblMana.Text = gameSession.CurrentPlayer.CurrentMana.ToString() + "/" + gameSession.CurrentPlayer.MaximumMana.ToString();
+            lblAttack.Text = gameSession.CurrentPlayer.Attack.ToString();
+            lblDefense.Text = gameSession.CurrentPlayer.Defense.ToString();
+            lblLuck.Text = gameSession.CurrentPlayer.Luck.ToString();
+            lblSpeed.Text = gameSession.CurrentPlayer.Speed.ToString();
+            lblIntellect.Text = gameSession.CurrentPlayer.Intellect.ToString();
+            lblResistance.Text = gameSession.CurrentPlayer.Resistance.ToString();
         }
 
         private void btnShopExit_Click(object sender, EventArgs e)
         {
-            Player.ExitShop();
+            gameSession.CurrentPlayer.ExitShop();
             rtbShop.Text = "You left the shop";
             btnShop.Visible = true;
             btnShopExit.Visible = false;
@@ -168,26 +165,30 @@ namespace UIWindowsForm
 
         private void btnRun_Click(object sender, EventArgs e)
         {
-            Player.RunCommand(Player.CurrentLocation.CurrentEnemy);
+            gameSession.CurrentPlayer.RunCommand(gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy);
             UpdateButtons();
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            Player.AttackCommand(Player.CurrentLocation.CurrentEnemy);
+            gameSession.CurrentPlayer.AttackCommand(gameSession.CurrentLocationEnemy);
             UpdateButtons();
         }
 
         private void btnSpell_Click(object sender, EventArgs e)
         {
-            Player.SpellCommand(Player.CurrentLocation.CurrentEnemy, World.FindSpellByID(1));
+            gameSession.CurrentPlayer.SpellCommand(gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy, World.FindSpellByID(1));
             UpdateButtons();
         }
 
         private void btnItem_Click(object sender, EventArgs e)
         {
-            Player.UseItem(World.FindItemByID(1));
+            gameSession.CurrentPlayer.UseItem(World.FindItemByID(1));
             UpdateButtons();
         }
+        /*private void HandleApplicationIdle(object sender, EventArgs e)
+        {
+            GameStateManager.Run();
+        }*/
     }
 }
