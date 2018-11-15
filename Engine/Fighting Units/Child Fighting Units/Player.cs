@@ -449,14 +449,15 @@ namespace Engine
         }
 
     
-        public int AttackCommand(Enemy enemy)
+        public int AttackCommand(Enemy enemy, ref string attackResult)
         {
             int damage = 0;
 
             //If the enemy would dodge the attack do not calculate damage
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
-                Console.WriteLine("{0} missed", Name);
+                attackResult = "Missed";
+                //Console.WriteLine("{0} missed", Name);
                 return 0;
             }
 
@@ -465,12 +466,14 @@ namespace Engine
             {
                 //Double the damage
                 damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 2) * 2;
-                Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, enemy.Name);
+                attackResult = "Critical";
+                //Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
             else
             {
                 damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 2;
-                Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
+                attackResult = "Normal";
+                //Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
 
             //This is bad the player shouldnt affect the enemy health from inside in the class it should just calculate the damage

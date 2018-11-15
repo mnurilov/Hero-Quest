@@ -20,6 +20,7 @@ namespace UIWindowsForm
             //Application.Idle += HandleApplicationIdle;
             InitializeComponent();
             gameSession.CurrentPlayer.StatsChanged += UpdateStats;
+            gameSession.OnMessagedRaised += DisplayBattleText;
             rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
             UpdateButtons();
             UpdateStats();
@@ -125,7 +126,7 @@ namespace UIWindowsForm
                     btnRun.Visible = false;
                     break;
                 case Player.State.Battle:
-                    rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
+                    //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
                     btnWest.Enabled = false;
@@ -171,7 +172,7 @@ namespace UIWindowsForm
 
         private void btnAttack_Click(object sender, EventArgs e)
         {
-            gameSession.CurrentPlayer.AttackCommand(gameSession.CurrentLocationEnemy);
+            gameSession.AttackCommand();
             UpdateButtons();
         }
 
@@ -190,5 +191,10 @@ namespace UIWindowsForm
         {
             GameStateManager.Run();
         }*/
+
+        private void DisplayBattleText(object o, MessageEventArgs e)
+        {
+            rtbBattle.Text = e.Message;
+        }
     }
 }

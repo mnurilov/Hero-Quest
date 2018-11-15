@@ -78,13 +78,16 @@ namespace Engine
         public static void ManageBattleStateInput(Player player, Enemy enemy, string playerInput)
         {
             playerInput = playerInput.ToLower();
+
+            //Remove later
+            string test = "";
             
             switch (playerInput)
             {
                 case "attack":
                     AttackCommand();
                     Console.WriteLine("You attack");
-                    enemy.CurrentHealth -= player.AttackCommand(enemy);
+                    enemy.CurrentHealth -= player.AttackCommand(enemy, ref test);
 
                     break;
                 case "cast fire":
