@@ -1,3 +1,21 @@
+When creating the game you need to draw these things out
+-World Map on Paper
+-Item List on Paper
+-Enemy List on Paper
+-Equipment List on Paper
+-Spell List on Paper
+-Vendor List on Paper
+-Quest List on Paper
+
+
+Format
+Player should just do the functions hes given
+Game Session should control which functions hes allowed to do at a given time
+this includes changing the players game state
+The UI should just reflect the Game Session's state but the UI should not control the game state's
+like it kinda currently does
+
+
 THINGS TO DO NEXT TIME:
 -DEBUG MODE where a variable is set on and when it is you can see all the output
 

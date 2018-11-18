@@ -480,14 +480,15 @@ namespace Engine
             return damage;
         }
 
-        public int SpellCommand(Enemy enemy, Spell spell)
+        public int SpellCommand(Enemy enemy, Spell spell, ref string spellResult)
         {
             int spellDamage = 0;
 
             //If the enemy would dodge the attack do not calculate spell damage
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
-                Console.WriteLine("{0} missed", Name);
+                spellResult = "Missed";
+                //Console.WriteLine("{0} missed", Name);
                 return 0;
             }
 
@@ -495,13 +496,15 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= CriticalChanceRate)
             {
                 //Double the spell damage
+                spellResult = "Critical";
                 spellDamage = (((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2) * 2;
-                Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
+                //Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
             else
             {
+                spellResult = "Normal";
                 spellDamage = ((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2;
-                Console.WriteLine("{0} did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
+                //Console.WriteLine("{0} did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
 
             //Same thing with this one as in attack command

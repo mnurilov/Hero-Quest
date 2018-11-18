@@ -94,7 +94,7 @@ namespace Engine
                     if (player.PlayerSpells.Contains(World.FindSpellByID(1)))
                     {
                         Console.WriteLine("You cast fire");
-                        enemy.CurrentHealth -= player.SpellCommand(enemy, World.FindSpellByID(1));
+                        //enemy.CurrentHealth -= player.SpellCommand(enemy, World.FindSpellByID(1));
                     }
                     else
                     {
@@ -105,7 +105,7 @@ namespace Engine
                     if (player.PlayerSpells.Contains(World.FindSpellByID(2)))
                     {
                         Console.WriteLine("You cast thunder");
-                        enemy.CurrentHealth -= player.SpellCommand(enemy, World.FindSpellByID(2));
+                        //enemy.CurrentHealth -= player.SpellCommand(enemy, World.FindSpellByID(2));
                     }
                     else
                     {

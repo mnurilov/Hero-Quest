@@ -37,13 +37,75 @@ namespace Engine
                         RaiseMessage(CurrentPlayer.Name + " missed");
                         break;
                     case "Normal":
-                        RaiseMessage(CurrentPlayer.Name + " does " + damage + " point of damage");
+                        RaiseMessage(CurrentPlayer.Name + " does " + damage + " points of damage");
                         break;
                     case "Critical":
-                        RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " point of damage");
+                        RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " points of damage");
                         break;
                 }
             }
+        }
+
+        //NEED TO DO: Add a way for the player to choose a spell currently it just picks the first spell which is fire
+        public void SpellCommand()
+        {
+            string spellResult = "";
+
+            if (CurrentLocationEnemy != null)
+            {
+                int damage = CurrentPlayer.SpellCommand(CurrentLocationEnemy, World.FindSpellByID(1), ref spellResult);
+
+                CurrentLocationEnemy.CurrentHealth -= damage;
+
+                switch (spellResult)
+                {
+                    case "Missed":
+                        RaiseMessage(CurrentPlayer.Name + " missed his magical attack");
+                        break;
+                    case "Normal":
+                        RaiseMessage(CurrentPlayer.Name + " does " + damage + " points of magical damage");
+                        break;
+                    case "Critical":
+                        RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " points of magical damage");
+                        break;
+                }
+            }
+        }
+
+        public void RunCommand()
+        {
+            if(CurrentPlayer.RunCommand(CurrentPlayer.CurrentLocation.CurrentEnemy) == true)
+            { 
+                RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
+            }
+            else
+            {
+                RaiseMessage(CurrentPlayer.Name + " failed to run away from the fight");
+            }
+        }
+
+        public void MoveNorthCommand()
+        {
+            CurrentPlayer.MoveNorth();
+            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+        }
+
+        public void MoveSouthCommand()
+        {
+            CurrentPlayer.MoveSouth();
+            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+        }
+
+        public void MoveWestCommand()
+        {
+            CurrentPlayer.MoveWest();
+            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+        }
+
+        public void MoveEastCommand()
+        {
+            CurrentPlayer.MoveEast();
+            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
         }
 
         public void RaiseMessage(string message)
@@ -52,4 +114,3 @@ namespace Engine
         }
     }
 }
-

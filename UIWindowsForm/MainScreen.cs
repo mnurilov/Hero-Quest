@@ -21,43 +21,61 @@ namespace UIWindowsForm
             InitializeComponent();
             gameSession.CurrentPlayer.StatsChanged += UpdateStats;
             gameSession.OnMessagedRaised += DisplayBattleText;
-            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
+            //Include a message for the playing being at the home
             UpdateButtons();
             UpdateStats();
         }
 
+        //Uses game session to control player instead of the player itself
         private void btnNorth_Click(object sender, EventArgs e)
         {
-            gameSession.CurrentPlayer.MoveNorth();
-            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
+            gameSession.MoveNorthCommand();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnSouth_Click(object sender, EventArgs e)
         {
-            gameSession.CurrentPlayer.MoveSouth();
-            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
+            gameSession.MoveSouthCommand();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnWest_Click(object sender, EventArgs e)
         {
-            gameSession.CurrentPlayer.MoveWest();
-            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
+            gameSession.MoveWestCommand();
             UpdateButtons();
             UpdateStats();
         }
 
         private void btnEast_Click(object sender, EventArgs e)
         {
-            gameSession.CurrentPlayer.MoveEast();
-            rtbLocation.Text = gameSession.CurrentPlayer.CurrentLocation.ToString();
+            gameSession.MoveEastCommand();
             UpdateButtons();
             UpdateStats();
         }
 
+        private void btnAttack_Click(object sender, EventArgs e)
+        {
+            gameSession.AttackCommand();
+            UpdateButtons();
+        }
+
+        private void btnSpell_Click(object sender, EventArgs e)
+        {
+            gameSession.SpellCommand();
+            UpdateButtons();
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            gameSession.RunCommand();
+            UpdateButtons();
+        }
+
+
+
+        //Have not used game session yet on these
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -164,23 +182,6 @@ namespace UIWindowsForm
             UpdateButtons();
         }
 
-        private void btnRun_Click(object sender, EventArgs e)
-        {
-            gameSession.CurrentPlayer.RunCommand(gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy);
-            UpdateButtons();
-        }
-
-        private void btnAttack_Click(object sender, EventArgs e)
-        {
-            gameSession.AttackCommand();
-            UpdateButtons();
-        }
-
-        private void btnSpell_Click(object sender, EventArgs e)
-        {
-            gameSession.CurrentPlayer.SpellCommand(gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy, World.FindSpellByID(1));
-            UpdateButtons();
-        }
 
         private void btnItem_Click(object sender, EventArgs e)
         {
