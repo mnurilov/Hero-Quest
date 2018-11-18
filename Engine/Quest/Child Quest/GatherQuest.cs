@@ -25,7 +25,7 @@ namespace Engine
             info += base.ToString();
             foreach (KeyValuePair<EnemyLoot, int> requiredEnemyLoot in RequiredEnemyLoots)
             {
-                info += ("Enemy Loot: " + requiredEnemyLoot.Key + "Quantity: " + requiredEnemyLoot.Value + "\n");
+                info += ("Enemy Loot: " + requiredEnemyLoot.Key.Name + "\t" + "Quantity: " + requiredEnemyLoot.Value + "\n");
             }
 
             return info;

@@ -193,9 +193,9 @@ namespace Engine
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
         public List<Quest> PlayerQuests = new List<Quest>();
-        public List<InventoryItem> PlayerItemInventory = new List<InventoryItem>();
-        public List<InventoryEquipment> PlayerEquipmentInventory = new List<InventoryEquipment>();
-        public List<InventoryLoot> PlayerLootInventory = new List<InventoryLoot>();
+        //public List<InventoryItem> PlayerItemInventory = new List<InventoryItem>();
+        //public List<InventoryEquipment> PlayerEquipmentInventory = new List<InventoryEquipment>();
+        //public List<InventoryLoot> PlayerLootInventory = new List<InventoryLoot>();
         public List<Spell> PlayerSpells = new List<Spell>();
         #endregion 
         #endregion 

@@ -10,14 +10,21 @@ namespace Engine
     {
         public int ID { get; set; }
         public string Name { get; set; }
-        public List<InventoryItem> VendorItemInventory = new List<InventoryItem>();
-        public List<InventoryEquipment> VendorEquipmentInventory = new List<InventoryEquipment>();
-        public List<Spell> VendorSpellInventory = new List<Spell>();
+        public string Description { get; set; }
+        //Key is the item, Value is the quantity of the item
+        public Dictionary<Item, int> VendorItemInventory { get; set; }
+        public List<Equipment> VendorEquipmentInventory { get; set; }
+        public List<Spell> VendorSpellInventory { get; set; }
 
-        public Vendor(int ID, string Name)
+        public Vendor(int id, string name, string description, Dictionary<Item, int> vendorItemInventory = null, 
+            List<Equipment> vendorEquipmentInventory = null, List<Spell> vendorSpellInventory = null)
         {
-            this.ID = ID;
-            this.Name = Name;
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
+            this.VendorItemInventory = vendorItemInventory;
+            this.VendorEquipmentInventory = vendorEquipmentInventory;
+            this.VendorSpellInventory = vendorSpellInventory;
         }
 
         public override string ToString()
@@ -26,17 +33,18 @@ namespace Engine
 
             info += ("ID: " + ID.ToString() + "\n");
             info += ("Name: " + Name.ToString() + "\n");
-            foreach(InventoryItem inventoryItem in VendorItemInventory)
+            info += ("Description " + Description.ToString() + "\n");
+            foreach(KeyValuePair<Item, int> vendorItem in VendorItemInventory)
             {
-                info += (inventoryItem.Item.Name + ", Quantity: " + inventoryItem.Quantity + "\n");
+                info += ("Item: " + vendorItem.Key.Name + "\t" + "Quantity: " + vendorItem.Value + "\n");
             }
-            foreach (InventoryEquipment equipmentItem in VendorEquipmentInventory)
+            foreach(Equipment equipmentItem in VendorEquipmentInventory)
             {
-                info += (equipmentItem.Equipment.Name + ", Quantity: " + equipmentItem.Quantity + "\n");
+                info += ("Equipment: " + equipmentItem.Name + "\n");
             }
             foreach(Spell inventorySpell in VendorSpellInventory)
             {
-                info += (inventorySpell.ToString() + "\n");
+                info += ("Spell: " + inventorySpell.Name + "\n");
             }
 
             return info;

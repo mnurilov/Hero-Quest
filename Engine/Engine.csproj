@@ -67,15 +67,12 @@
     <Compile Include="Fighting Units\FightingUnit.cs" />
     <Compile Include="Equipment\Child Equipment\HeadEquipment.cs" />
     <Compile Include="Item\Child Item\HealthReplenishingItem.cs" />
-    <Compile Include="Inventory\InventoryEquipment.cs" />
-    <Compile Include="Inventory\InventoryLoot.cs" />
     <Compile Include="Item\Item.cs" />
     <Compile Include="Quest\Child Quest\KillQuest.cs" />
     <Compile Include="Equipment\Child Equipment\LegEquipment.cs" />
     <Compile Include="Location\Location.cs" />
     <Compile Include="Item\Child Item\ManaReplenishingItem.cs" />
     <Compile Include="Fighting Units\Child Fighting Units\Player.cs" />
-    <Compile Include="Inventory\InventoryItem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quest\Quest.cs" />
     <Compile Include="Random Number Generator\RandomNumberGenerator.cs" />

@@ -8,34 +8,27 @@ namespace Engine
 {
     public class Location
     {
-        #region Properties
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public int EncounterChance { get; set; }
-        public string ImageLocation { get; set; }
-
+        //Connects the locations together
         public Location LocationToTheNorth;
         public Location LocationToTheSouth;
         public Location LocationToTheWest;
         public Location LocationToTheEast;
-
         public Vendor VendorInLocation;
-
         public Quest QuestInLocation;
-
         public LocationEnemy CurrentEnemy;
-
         public List<LocationEnemy> EnemiesInLocation = new List<LocationEnemy>();
-        #endregion
 
         //Add the vendor and quest as a constructor later on
-        public Location(int ID, string Name, string Description, int EncounterChance)
+        public Location(int id, string name, string description, int encounterChance)
         {
-            this.ID = ID;
-            this.Name = Name;
-            this.Description = Description;
-            this.EncounterChance = EncounterChance;
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
+            this.EncounterChance = encounterChance;
         }
         
         //Checks if an encounter will be triggered 
