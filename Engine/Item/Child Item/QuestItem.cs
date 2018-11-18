@@ -6,13 +6,11 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class EnemyLoot : Item
+    public class QuestItem : Item
     {
-        #region Constructor
-        public EnemyLoot(int ID, string Name) : base(ID, Name)
+        public QuestItem(int id, string name, string description) : base(id, name, description)
         {
 
         }
-        #endregion
     }
 }

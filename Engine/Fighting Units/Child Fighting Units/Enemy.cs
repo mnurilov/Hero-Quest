@@ -12,6 +12,7 @@ namespace Engine
         public int ID { get; set; }
         public int Gold { get; set; }
         public int ExperiencePoints { get; set; }
+        public string ImageName { get; set; }
 
         public List<EnemyLoot> LootTable = new List<EnemyLoot>();
         #endregion

@@ -88,24 +88,29 @@ namespace Engine
         {
             CurrentPlayer.MoveNorth();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
         }
 
         public void MoveSouthCommand()
         {
             CurrentPlayer.MoveSouth();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
         }
 
         public void MoveWestCommand()
         {
             CurrentPlayer.MoveWest();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
         }
 
         public void MoveEastCommand()
         {
             CurrentPlayer.MoveEast();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+
         }
 
         public void RaiseMessage(string message)

@@ -10,16 +10,9 @@ namespace Engine
     {
         public int ManaReplenishingValue { get; set; }
 
-        public ManaReplenishingItem(int ID, string Name, int ManaReplenishingValue) : base(ID, Name)
+        public ManaReplenishingItem(int id, string name, string description, int manaReplenishingValue) : base(id, name, description)
         {
-            this.ManaReplenishingValue = ManaReplenishingValue;
-        }
-
-        #region Methods
-        public override void UseItem()
-        {
-            Console.WriteLine("Mana Item");
-            Console.ReadKey();
+            this.ManaReplenishingValue = manaReplenishingValue;
         }
 
         public override string ToString()
@@ -31,6 +24,5 @@ namespace Engine
 
             return info;
         }
-        #endregion
     }
 }

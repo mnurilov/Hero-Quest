@@ -6,9 +6,11 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Equipment : Item
+    public class Equipment
     {
-        #region Properties
+        public int ID { get; set; }
+        public string Name { get; set; }
+        public string Description { get; set; }
         public int HealthBonus { get; set; }
         public int ManaBonus { get; set; }
         public int AttackBonus { get; set; }
@@ -17,30 +19,30 @@ namespace Engine
         public int SpeedBonus { get; set; }
         public int IntellectBonus { get; set; }
         public int ResistanceBonus { get; set; }
-        #endregion
 
-        #region Constructor
-        public Equipment(int ID, string Name, int HealthBonus = 0, int ManaBonus = 0, int AttackBonus = 0,
-            int DefenseBonus = 0, int LuckBonus = 0, int SpeedBonus = 0, int IntellectBonus = 0,
-            int ResistanceBonus = 0) : base(ID, Name)
+        public Equipment(int id, string name, string description, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
+            int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0, int resistanceBonus = 0)
         {
-            this.HealthBonus = HealthBonus;
-            this.ManaBonus = ManaBonus;
-            this.AttackBonus = AttackBonus;
-            this.DefenseBonus = DefenseBonus;
-            this.LuckBonus = LuckBonus;
-            this.SpeedBonus = SpeedBonus;
-            this.IntellectBonus = IntellectBonus;
-            this.ResistanceBonus = ResistanceBonus;
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
+            this.HealthBonus = healthBonus;
+            this.ManaBonus = manaBonus;
+            this.AttackBonus = attackBonus;
+            this.DefenseBonus = defenseBonus;
+            this.LuckBonus = luckBonus;
+            this.SpeedBonus = speedBonus;
+            this.IntellectBonus = intellectBonus;
+            this.ResistanceBonus = resistanceBonus;
         }
-        #endregion 
 
-        #region Method
         public override string ToString()
         {
             string info = "";
 
-            info += base.ToString();
+            info += ("ID: " + ID.ToString() + "\n");
+            info += ("Name: " + Name + "\n");
+            info += ("Description: " + Description + "\n");
             info += ("Health Bonus: " + HealthBonus.ToString() + "\n");
             info += ("Mana Bonus: " + ManaBonus.ToString() + "\n");
             info += ("Attack Bonus: " + AttackBonus.ToString() + "\n");
@@ -52,6 +54,5 @@ namespace Engine
 
             return info;
         }
-        #endregion
     }
 }

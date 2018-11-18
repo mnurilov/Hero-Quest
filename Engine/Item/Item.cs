@@ -8,25 +8,15 @@ namespace Engine
 {
     public class Item
     {
-        #region Properties
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        #endregion
 
-        #region Constructor
-        public Item (int ID, string Name)
+        public Item(int id, string name, string description)
         {
-            this.ID = ID;
-            this.Name = Name;
-        }
-        #endregion
-
-        #region Methods
-        public virtual void UseItem()
-        {
-            Console.WriteLine("Base Item");
-            Console.ReadKey();
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
         }
 
         public override string ToString()
@@ -39,6 +29,5 @@ namespace Engine
 
             return info;
         }
-        #endregion
     }
 }

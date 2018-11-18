@@ -13,6 +13,7 @@ namespace Engine
         public string Name { get; set; }
         public string Description { get; set; }
         public int EncounterChance { get; set; }
+        public string ImageLocation { get; set; }
 
         public Location LocationToTheNorth;
         public Location LocationToTheSouth;
@@ -55,6 +56,8 @@ namespace Engine
             CurrentEnemy = GetLocationEnemy();
             CurrentEnemy = World.CreateNewLocationEnemy(CurrentEnemy);
         }
+
+       
 
         public LocationEnemy GetLocationEnemy()
         {

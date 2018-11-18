@@ -10,16 +10,9 @@ namespace Engine
     {
         public int HealthReplenishingValue { get; set; }
 
-        public HealthReplenishingItem(int ID, string Name, int HealthReplenishingValue) : base(ID, Name)
+        public HealthReplenishingItem(int id, string name, string description, int healthReplenishingValue) : base(id, name, description)
         {
-            this.HealthReplenishingValue = HealthReplenishingValue;
-        }
-
-        #region Methods
-        public override void UseItem()
-        {
-            Console.WriteLine("Healing Item");
-            Console.ReadKey();
+            this.HealthReplenishingValue = healthReplenishingValue;
         }
 
         public override string ToString()
@@ -31,6 +24,5 @@ namespace Engine
 
             return info;
         }
-        #endregion
     }
 }

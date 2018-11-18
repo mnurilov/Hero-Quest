@@ -28,13 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.rtbLocation = new System.Windows.Forms.RichTextBox();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             this.btnNorth = new System.Windows.Forms.Button();
             this.btnSouth = new System.Windows.Forms.Button();
             this.btnWest = new System.Windows.Forms.Button();
             this.btnEast = new System.Windows.Forms.Button();
             this.btnShop = new System.Windows.Forms.Button();
-            this.rtbShop = new System.Windows.Forms.RichTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.lblLevel = new System.Windows.Forms.Label();
             this.lblExperience = new System.Windows.Forms.Label();
@@ -58,26 +57,25 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblClass = new System.Windows.Forms.Label();
             this.rtbBattle = new System.Windows.Forms.RichTextBox();
-            this.btnTrade = new System.Windows.Forms.Button();
             this.btnShopExit = new System.Windows.Forms.Button();
             this.btnAttack = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnSpell = new System.Windows.Forms.Button();
             this.btnRun = new System.Windows.Forms.Button();
+            this.btnMap = new System.Windows.Forms.Button();
+            this.lblLocationName = new System.Windows.Forms.Label();
+            this.lblLocationDescription = new System.Windows.Forms.Label();
+            this.lblEnemyName = new System.Windows.Forms.Label();
+            this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
+            this.pbLocationPicture = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).BeginInit();
             this.SuspendLayout();
-            // 
-            // rtbLocation
-            // 
-            this.rtbLocation.Location = new System.Drawing.Point(558, 12);
-            this.rtbLocation.Name = "rtbLocation";
-            this.rtbLocation.Size = new System.Drawing.Size(338, 171);
-            this.rtbLocation.TabIndex = 2;
-            this.rtbLocation.Text = "";
             // 
             // btnNorth
             // 
             this.btnNorth.Enabled = false;
-            this.btnNorth.Location = new System.Drawing.Point(666, 414);
+            this.btnNorth.Location = new System.Drawing.Point(681, 396);
             this.btnNorth.Name = "btnNorth";
             this.btnNorth.Size = new System.Drawing.Size(102, 37);
             this.btnNorth.TabIndex = 3;
@@ -87,7 +85,7 @@
             // 
             // btnSouth
             // 
-            this.btnSouth.Location = new System.Drawing.Point(666, 487);
+            this.btnSouth.Location = new System.Drawing.Point(681, 482);
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(102, 37);
             this.btnSouth.TabIndex = 4;
@@ -97,7 +95,7 @@
             // 
             // btnWest
             // 
-            this.btnWest.Location = new System.Drawing.Point(558, 453);
+            this.btnWest.Location = new System.Drawing.Point(573, 439);
             this.btnWest.Name = "btnWest";
             this.btnWest.Size = new System.Drawing.Size(102, 37);
             this.btnWest.TabIndex = 6;
@@ -107,7 +105,7 @@
             // 
             // btnEast
             // 
-            this.btnEast.Location = new System.Drawing.Point(774, 453);
+            this.btnEast.Location = new System.Drawing.Point(789, 439);
             this.btnEast.Name = "btnEast";
             this.btnEast.Size = new System.Drawing.Size(102, 37);
             this.btnEast.TabIndex = 5;
@@ -117,21 +115,13 @@
             // 
             // btnShop
             // 
-            this.btnShop.Location = new System.Drawing.Point(474, 427);
+            this.btnShop.Location = new System.Drawing.Point(120, 348);
             this.btnShop.Name = "btnShop";
             this.btnShop.Size = new System.Drawing.Size(78, 110);
             this.btnShop.TabIndex = 7;
             this.btnShop.Text = "Shop";
             this.btnShop.UseVisualStyleBackColor = true;
             this.btnShop.Click += new System.EventHandler(this.btnShop_Click);
-            // 
-            // rtbShop
-            // 
-            this.rtbShop.Location = new System.Drawing.Point(558, 189);
-            this.rtbShop.Name = "rtbShop";
-            this.rtbShop.Size = new System.Drawing.Size(338, 219);
-            this.rtbShop.TabIndex = 8;
-            this.rtbShop.Text = "";
             // 
             // label1
             // 
@@ -322,25 +312,15 @@
             // 
             // rtbBattle
             // 
-            this.rtbBattle.Location = new System.Drawing.Point(234, 12);
+            this.rtbBattle.Location = new System.Drawing.Point(566, 12);
             this.rtbBattle.Name = "rtbBattle";
-            this.rtbBattle.Size = new System.Drawing.Size(318, 271);
+            this.rtbBattle.Size = new System.Drawing.Size(330, 350);
             this.rtbBattle.TabIndex = 31;
             this.rtbBattle.Text = "";
             // 
-            // btnTrade
-            // 
-            this.btnTrade.Location = new System.Drawing.Point(19, 385);
-            this.btnTrade.Name = "btnTrade";
-            this.btnTrade.Size = new System.Drawing.Size(75, 23);
-            this.btnTrade.TabIndex = 21;
-            this.btnTrade.Text = "Trade";
-            this.btnTrade.UseVisualStyleBackColor = true;
-            this.btnTrade.Click += new System.EventHandler(this.btnTrade_Click);
-            // 
             // btnShopExit
             // 
-            this.btnShopExit.Location = new System.Drawing.Point(393, 427);
+            this.btnShopExit.Location = new System.Drawing.Point(39, 348);
             this.btnShopExit.Name = "btnShopExit";
             this.btnShopExit.Size = new System.Drawing.Size(75, 110);
             this.btnShopExit.TabIndex = 32;
@@ -350,7 +330,7 @@
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(234, 289);
+            this.btnAttack.Location = new System.Drawing.Point(218, 426);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(153, 50);
             this.btnAttack.TabIndex = 33;
@@ -360,7 +340,7 @@
             // 
             // btnItem
             // 
-            this.btnItem.Location = new System.Drawing.Point(234, 358);
+            this.btnItem.Location = new System.Drawing.Point(218, 495);
             this.btnItem.Name = "btnItem";
             this.btnItem.Size = new System.Drawing.Size(153, 50);
             this.btnItem.TabIndex = 34;
@@ -370,7 +350,7 @@
             // 
             // btnSpell
             // 
-            this.btnSpell.Location = new System.Drawing.Point(399, 289);
+            this.btnSpell.Location = new System.Drawing.Point(383, 426);
             this.btnSpell.Name = "btnSpell";
             this.btnSpell.Size = new System.Drawing.Size(153, 50);
             this.btnSpell.TabIndex = 35;
@@ -380,7 +360,7 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(399, 358);
+            this.btnRun.Location = new System.Drawing.Point(383, 495);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(153, 50);
             this.btnRun.TabIndex = 36;
@@ -388,12 +368,78 @@
             this.btnRun.UseVisualStyleBackColor = true;
             this.btnRun.Click += new System.EventHandler(this.btnRun_Click);
             // 
+            // btnMap
+            // 
+            this.btnMap.Enabled = false;
+            this.btnMap.Location = new System.Drawing.Point(681, 439);
+            this.btnMap.Name = "btnMap";
+            this.btnMap.Size = new System.Drawing.Size(102, 37);
+            this.btnMap.TabIndex = 39;
+            this.btnMap.Text = "Map";
+            this.btnMap.UseVisualStyleBackColor = true;
+            // 
+            // lblLocationName
+            // 
+            this.lblLocationName.AutoSize = true;
+            this.lblLocationName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationName.Location = new System.Drawing.Point(226, -3);
+            this.lblLocationName.Name = "lblLocationName";
+            this.lblLocationName.Size = new System.Drawing.Size(0, 23);
+            this.lblLocationName.TabIndex = 40;
+            this.lblLocationName.Click += new System.EventHandler(this.label5_Click);
+            // 
+            // lblLocationDescription
+            // 
+            this.lblLocationDescription.AutoSize = true;
+            this.lblLocationDescription.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationDescription.Location = new System.Drawing.Point(226, 182);
+            this.lblLocationDescription.Name = "lblLocationDescription";
+            this.lblLocationDescription.Size = new System.Drawing.Size(0, 21);
+            this.lblLocationDescription.TabIndex = 41;
+            this.lblLocationDescription.Click += new System.EventHandler(this.lblLocationDescription_Click);
+            // 
+            // lblEnemyName
+            // 
+            this.lblEnemyName.AutoSize = true;
+            this.lblEnemyName.Font = new System.Drawing.Font("Century Gothic", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnemyName.Location = new System.Drawing.Point(226, 252);
+            this.lblEnemyName.Name = "lblEnemyName";
+            this.lblEnemyName.Size = new System.Drawing.Size(0, 23);
+            this.lblEnemyName.TabIndex = 42;
+            this.lblEnemyName.Click += new System.EventHandler(this.lblEnemyName_Click);
+            // 
+            // pbEnemyPicture
+            // 
+            this.pbEnemyPicture.Location = new System.Drawing.Point(306, 270);
+            this.pbEnemyPicture.Name = "pbEnemyPicture";
+            this.pbEnemyPicture.Size = new System.Drawing.Size(150, 150);
+            this.pbEnemyPicture.TabIndex = 43;
+            this.pbEnemyPicture.TabStop = false;
+            // 
+            // pbLocationPicture
+            // 
+            this.pbLocationPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.pbLocationPicture.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\House.png";
+            this.pbLocationPicture.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbLocationPicture.InitialImage")));
+            this.pbLocationPicture.Location = new System.Drawing.Point(306, 57);
+            this.pbLocationPicture.Name = "pbLocationPicture";
+            this.pbLocationPicture.Size = new System.Drawing.Size(150, 150);
+            this.pbLocationPicture.TabIndex = 37;
+            this.pbLocationPicture.TabStop = false;
+            this.pbLocationPicture.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(908, 549);
+            this.Controls.Add(this.pbEnemyPicture);
+            this.Controls.Add(this.lblEnemyName);
+            this.Controls.Add(this.lblLocationDescription);
+            this.Controls.Add(this.lblLocationName);
+            this.Controls.Add(this.btnMap);
+            this.Controls.Add(this.pbLocationPicture);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.btnSpell);
             this.Controls.Add(this.btnItem);
@@ -422,14 +468,11 @@
             this.Controls.Add(this.label4);
             this.Controls.Add(this.lblLevel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.rtbShop);
             this.Controls.Add(this.btnShop);
             this.Controls.Add(this.btnWest);
             this.Controls.Add(this.btnEast);
             this.Controls.Add(this.btnSouth);
             this.Controls.Add(this.btnNorth);
-            this.Controls.Add(this.rtbLocation);
-            this.Controls.Add(this.btnTrade);
             this.Cursor = System.Windows.Forms.Cursors.Hand;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.MaximizeBox = false;
@@ -437,6 +480,8 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hero Quest";
             this.Load += new System.EventHandler(this.Form1_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -444,13 +489,11 @@
 
 
         #endregion
-        private System.Windows.Forms.RichTextBox rtbLocation;
         private System.Windows.Forms.Button btnNorth;
         private System.Windows.Forms.Button btnSouth;
         private System.Windows.Forms.Button btnWest;
         private System.Windows.Forms.Button btnEast;
         private System.Windows.Forms.Button btnShop;
-        private System.Windows.Forms.RichTextBox rtbShop;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblLevel;
         private System.Windows.Forms.Label lblExperience;
@@ -474,12 +517,17 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblClass;
         private System.Windows.Forms.RichTextBox rtbBattle;
-        private System.Windows.Forms.Button btnTrade;
         private System.Windows.Forms.Button btnShopExit;
         private System.Windows.Forms.Button btnAttack;
         private System.Windows.Forms.Button btnItem;
         private System.Windows.Forms.Button btnSpell;
         private System.Windows.Forms.Button btnRun;
+        private System.Windows.Forms.PictureBox pbLocationPicture;
+        private System.Windows.Forms.Button btnMap;
+        private System.Windows.Forms.Label lblLocationName;
+        private System.Windows.Forms.Label lblLocationDescription;
+        private System.Windows.Forms.Label lblEnemyName;
+        private System.Windows.Forms.PictureBox pbEnemyPicture;
     }
 }
 

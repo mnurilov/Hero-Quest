@@ -32,6 +32,8 @@ namespace UIWindowsForm
             gameSession.MoveNorthCommand();
             UpdateButtons();
             UpdateStats();
+            UpdateLocation();
+            UpdateEnemy();
         }
 
         private void btnSouth_Click(object sender, EventArgs e)
@@ -39,6 +41,8 @@ namespace UIWindowsForm
             gameSession.MoveSouthCommand();
             UpdateButtons();
             UpdateStats();
+            UpdateLocation();
+            UpdateEnemy();
         }
 
         private void btnWest_Click(object sender, EventArgs e)
@@ -46,13 +50,17 @@ namespace UIWindowsForm
             gameSession.MoveWestCommand();
             UpdateButtons();
             UpdateStats();
+            UpdateLocation();
+            UpdateEnemy();
         }
 
         private void btnEast_Click(object sender, EventArgs e)
         {
             gameSession.MoveEastCommand();
             UpdateButtons();
-            UpdateStats();
+            UpdateStats(); 
+            UpdateLocation();
+            UpdateEnemy();
         }
 
         private void btnAttack_Click(object sender, EventArgs e)
@@ -84,7 +92,7 @@ namespace UIWindowsForm
         private void btnShop_Click(object sender, EventArgs e)
         {
             gameSession.CurrentPlayer.EnterShop();
-            rtbShop.Text = gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.ToString();
+            //rtbShop.Text = gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.ToString();
             btnShop.Visible = false;
             btnShopExit.Visible = true;
             UpdateButtons();
@@ -176,12 +184,27 @@ namespace UIWindowsForm
         private void btnShopExit_Click(object sender, EventArgs e)
         {
             gameSession.CurrentPlayer.ExitShop();
-            rtbShop.Text = "You left the shop";
+            //rtbShop.Text = "You left the shop";
             btnShop.Visible = true;
             btnShopExit.Visible = false;
             UpdateButtons();
         }
 
+        private void UpdateLocation()
+        {
+            lblLocationName.Text = gameSession.CurrentPlayer.CurrentLocation.Name;
+            lblLocationDescription.Text = gameSession.CurrentPlayer.CurrentLocation.Description;
+            pbLocationPicture.ImageLocation = gameSession.CurrentPlayer.CurrentLocation.ImageLocation;
+        }
+
+        private void UpdateEnemy()
+        {
+            if(gameSession.CurrentLocationEnemy != null)
+            {
+                lblEnemyName.Text = gameSession.CurrentLocationEnemy.Name;
+                pbEnemyPicture.ImageLocation = gameSession.CurrentLocationEnemy.ImageName;
+            }
+        }
 
         private void btnItem_Click(object sender, EventArgs e)
         {
@@ -196,6 +219,26 @@ namespace UIWindowsForm
         private void DisplayBattleText(object o, MessageEventArgs e)
         {
             rtbBattle.Text = e.Message;
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label5_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblLocationDescription_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblEnemyName_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

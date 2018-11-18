@@ -93,7 +93,9 @@ namespace Engine
         {
             //Creation of locations
             Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0);
+            home.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\House.png";
             Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 50);
+            grassPlains.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\Forest.png";
             Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0);
             Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 50);
             Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 50);
@@ -213,7 +215,9 @@ namespace Engine
         private static void PopulateEnemies()
         {
             Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10);
+            rat.ImageName = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\Rat.png";
             Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15);
+            snake.ImageName = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\Snake.png";
             Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100);
             Enemy dragon = new Enemy(EnemyIDDragon, 20, "Dragon", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000);
 
