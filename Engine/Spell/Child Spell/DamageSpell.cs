@@ -8,21 +8,19 @@ namespace Engine
 {
     public class DamageSpell : Spell
     {
-        public int SpellDamage;
+        public int DamageAmount { get; set; }
 
-        #region Constructor
-        public DamageSpell(int ID, string Name, string Description, int ManaCost, int SpellDamage) : base(ID, Name, Description, ManaCost)
+        public DamageSpell(int id, string name, string description, int manaCost, int damageAmount) : base(id, name, description, manaCost)
         {
-            this.SpellDamage = SpellDamage;
+            this.DamageAmount = damageAmount;
         }
-        #endregion
 
         public override string ToString()
         {
             string info = "";
 
             info += base.ToString();
-            info += ("Spell Damage: " + SpellDamage.ToString() + "\n");
+            info += ("Damage Amount: " + DamageAmount.ToString() + "\n");
 
             return info;
         }

@@ -8,29 +8,31 @@ namespace Engine
 {
     public class Quest
     {
-        #region Properties
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        //public bool IsCompleted { get; set; }
-
-        //public int Requirement { get; set; }
-
+        public bool IsCompleted { get; set; }
+        public Person Person { get; set; }
         public int RewardGold { get; set; }
         public int RewardExperience { get; set; }
-        public InventoryItem RewardItem { get; set; }
-        public InventoryEquipment RewardEquipment { get; set; }
+        public Item RewardItem { get; set; }
+        public Equipment RewardEquipment { get; set; }
         public Spell RewardSpell { get; set; }
-        #endregion
 
-        #region Constructor
-        public Quest(int ID, string Name, string Description)
+        public Quest(int id, string name, string description, Person person, int rewardGold = 0, int rewardExperience = 0,
+            Item rewardItem = null, Equipment rewardEquipment = null, Spell rewardSpell = null)
         {
-            this.ID = ID;
-            this.Name = Name;
-            this.Description = Description;
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
+            IsCompleted = false;
+            this.Person = person;
+            this.RewardGold = rewardGold;
+            this.RewardExperience = rewardExperience;
+            this.RewardItem = rewardItem;
+            this.RewardEquipment = rewardEquipment;
+            this.RewardSpell = rewardSpell;
         }
-        #endregion
 
         public override string ToString()
         {
@@ -39,6 +41,8 @@ namespace Engine
             info += ("ID: " + ID.ToString() + "\n");
             info += ("Name: " + Name + "\n");
             info += ("Description: " + Description + "\n");
+            info += ("Is Completed: " + IsCompleted + "\n");
+            info += ("Person: " + Person.Name + "\n");
             info += ("Reward Gold: " + RewardGold.ToString() + "\n");
             info += ("Reward Experience: " + RewardExperience.ToString() + "\n");
             if(RewardItem != null)

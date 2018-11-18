@@ -497,13 +497,13 @@ namespace Engine
             {
                 //Double the spell damage
                 spellResult = "Critical";
-                spellDamage = (((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2) * 2;
+               // spellDamage = (((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2) * 2;
                 //Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
             else
             {
                 spellResult = "Normal";
-                spellDamage = ((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2;
+                //spellDamage = ((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2;
                 //Console.WriteLine("{0} did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
             }
 

@@ -6,24 +6,20 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Spell
+    public class Person
     {
-        #region Properties
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int ManaCost { get; set; }
-        #endregion
+        public string Statement { get; set; }
 
-        #region Constructor
-        public Spell(int ID, string Name, string Description, int ManaCost)
+        public Person(int id, string name, string description, string statement)
         {
-            this.ID = ID;
-            this.Name = Name;
-            this.Description = Description;
-            this.ManaCost = ManaCost;
+            this.ID = id;
+            this.Name = name;
+            this.Description = description;
+            this.Statement = statement;
         }
-        #endregion
 
         public override string ToString()
         {
@@ -32,7 +28,7 @@ namespace Engine
             info += ("ID: " + ID.ToString() + "\n");
             info += ("Name: " + Name + "\n");
             info += ("Description: " + Description + "\n");
-            info += ("Mana Cost: " + ManaCost.ToString() + "\n");
+            info += ("Statement: " + Statement + "\n");
 
             return info;
         }

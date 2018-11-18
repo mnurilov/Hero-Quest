@@ -72,7 +72,7 @@ namespace Engine
 
         #region Constructor
         static World()
-        {
+        {/*
             PopulateItems();
             PopulateEnemyLoots();
             PopulateEquipments();
@@ -81,21 +81,21 @@ namespace Engine
             PopulateQuests();
 
             //Put the vendors after the item and equipment spawns so that it can load the items
-            PopulateVendors();
+            PopulateVendors();*/
             
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
         }
         #endregion
 
-        #region Population Functions
+        
         private static void PopulateLocations()
         {
             //Creation of locations
             Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0);
             home.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\House.png";
             Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 50);
-            grassPlains.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\Forest.png";
+            grassPlains.ImageLocation = "Hero-Quest\\Test\\Forest.png";
             Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0);
             Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 50);
             Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 50);
@@ -121,21 +121,21 @@ namespace Engine
 
 
             //Added vendors to the locations
-            town.VendorInLocation = FindVendorByID(1);
-            farmHut.VendorInLocation = FindVendorByID(2);
+            //town.VendorInLocation = FindVendorByID(1);
+            //farmHut.VendorInLocation = FindVendorByID(2);
 
 
-            //Add enemies to the locations
-            grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 10));
-            grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 20));
+            ////Add enemies to the locations
+            //grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 10));
+            //grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 20));
 
-            farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(3), 10));
-            farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
+            //farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(3), 10));
+            //farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
 
-            barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 100));
-            barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
+            //barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 100));
+            //barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
 
-            farmHut.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 1));
+            //farmHut.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 1));
 
 
             //Add the locations to list
@@ -147,6 +147,7 @@ namespace Engine
             locations.Add(farmHut);
         }
 
+        /*
         private static void PopulateItems()
         {
             items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", 5));
@@ -250,6 +251,8 @@ namespace Engine
             spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
         }
         #endregion
+    */
+
 
         #region View Functions
         public static void ViewSpells()
