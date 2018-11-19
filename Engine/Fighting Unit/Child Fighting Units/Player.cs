@@ -7,22 +7,9 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Player : FightingUnit, INotifyPropertyChanged
+    public class Player : FightingUnit
     {
-        //Tessting
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected virtual void OnPropertyChanged(string propertyName) 
-        {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }
-
-
-
-        #region Data Storage
-        //CREATE CONSTANTS FOR CAPS ON THE STATS AND GOLD FOR EXAMPLE MAKE A CONSTANT THAT HOLDS THE GOLD CAP FOR GOLD, EASIER TO MODIFY THAT WAY
-        #region Constants
-        #region Warrior Class Constants
+        //Warrior Class Constants
         private const double WarriorHealthStatScaleFactor = 6.073588;
         private const double WarriorHealthStatExponent = 1.7;
         private const double WarriorHealthStatConstant = 10;
@@ -31,9 +18,9 @@ namespace Engine
         private const double WarriorManaStatExponent = 1.7;
         private const double WarriorManaStatConstant = 5;
 
-        private const double WarriorAttackStatScaleFactor = 0.58;
-        private const double WarriorAttackStatExponent = 1.7;
-        private const double WarriorAttackStatConstant = 5;
+        private const double WarriorStrengthStatScaleFactor = 0.58;
+        private const double WarriorStrengthStatExponent = 1.7;
+        private const double WarriorStrengthStatConstant = 5;
 
         private const double WarriorDefenseStatScaleFactor = 0.58;
         private const double WarriorDefenseStatExponent = 1.7;
@@ -54,9 +41,9 @@ namespace Engine
         private const double WarriorResistanceStatScaleFactor = 0.147387363;
         private const double WarriorResistanceStatExponent = 1.7;
         private const double WarriorResistanceStatConstant = 1;
-        #endregion
 
-        #region Mage Class Constants
+
+        //Mage Class Constants
         private const double MageHealthStatScaleFactor = 3.03372322;
         private const double MageHealthStatExponent = 1.7;
         private const double MageHealthStatConstant = 6;
@@ -65,9 +52,9 @@ namespace Engine
         private const double MageManaStatExponent = 1.7;
         private const double MageManaStatConstant = 10;
 
-        private const double MageAttackStatScaleFactor = 0.147387363;
-        private const double MageAttackStatExponent = 1.7;
-        private const double MageAttackStatConstant = 1;
+        private const double MageStrengthStatScaleFactor = 0.147387363;
+        private const double MageStrengthStatExponent = 1.7;
+        private const double MageStrengthStatConstant = 1;
 
         private const double MageDefenseStatScaleFactor = 0.147387363;
         private const double MageDefenseStatExponent = 1.7;
@@ -88,9 +75,9 @@ namespace Engine
         private const double MageResistanceStatScaleFactor = 0.58;
         private const double MageResistanceStatExponent = 1.7;
         private const double MageResistanceStatConstant = 5;
-        #endregion
 
-        #region Thief Class Constants
+
+        //Thief Class Constants
         private const double ThiefHealthStatScaleFactor = 4.2558101;
         private const double ThiefHealthStatExponent = 1.7;
         private const double ThiefHealthStatConstant = 7;
@@ -99,9 +86,9 @@ namespace Engine
         private const double ThiefManaStatExponent = 1.7;
         private const double ThiefManaStatConstant = 4;
 
-        private const double ThiefAttackStatScaleFactor = 0.343903846;
-        private const double ThiefAttackStatExponent = 1.7;
-        private const double ThiefAttackStatConstant = 4;
+        private const double ThiefStrengthStatScaleFactor = 0.343903846;
+        private const double ThiefStrengthStatExponent = 1.7;
+        private const double ThiefStrengthStatConstant = 4;
 
         private const double ThiefDefenseStatScaleFactor = 0.343903846;
         private const double ThiefDefenseStatExponent = 1.7;
@@ -122,31 +109,75 @@ namespace Engine
         private const double ThiefResistanceStatScaleFactor = 0.282492445;
         private const double ThiefResistanceStatExponent = 1.7;
         private const double ThiefResistanceStatConstant = 4;
-        #endregion
 
-        #region Experience Points Constants
+
+        //Experience Points Constants
         private const double ExperiencePointsScaleFactor = 2;
         private const double ExperiencePointsExponent = 2.5;
         private const double ExperiencePointsConstant = 10;
-        #endregion
 
-        #region Critical Chance Constants
+
+        //Critical Chance Constants
         private const double CriticalChanceRateScaleFactor = 100.505051;
         private const double CriticalChanceRateConstant = 100;
-        #endregion 
 
-        #region Dodge Chance Constants
+
+        //Dodge Change Constants
         private const double DodgeChanceRateScaleFactor = 100.505051;
         private const double DodgeChanceRateConstant = 100;
-        #endregion
 
-        #region Gold Cap Constants
+
+        //Gold Constants
         private const int GoldCap = 10000;
-        #endregion
-        #endregion
 
-        #region Variables
+
+        //Level Constants
+        private const int MinimumLevel = 1;
+        private const int MaximumLevel = 20;
         
+        private int level;
+        public int Level
+        {
+            get
+            {
+                return level;
+            }
+            set
+            {
+                if(value < MinimumLevel)
+                {
+                    level = MinimumLevel;
+                }
+                else if(value > MaximumLevel)
+                {
+                    level = MaximumLevel;
+                }
+                else
+                {
+                    level = value;
+                }
+            }
+        }
+
+        private int currentExperiencePoints;
+        public int CurrentExperiencePoints
+        {
+            get
+            {
+                return currentExperiencePoints;
+            }
+            set
+            {
+                if(level == MaximumLevel)
+                {
+                    currentExperiencePoints = 0;
+                }
+                else
+                {
+                    currentExperiencePoints = value;
+                }
+            }
+        }
 
         public int MaximumExperiencePoints { get; set; }
 
@@ -181,12 +212,7 @@ namespace Engine
         {
             return PlayerClass;
         }
-
-        public enum State { Travel, Battle, Shop, GameOver };
-        public static State PlayerState = State.Travel;
-        #endregion 
-
-        #region Player Objects
+        
         public Location CurrentLocation { get; set; }
         public Weapon CurrentWeapon { get; set; }
         public HeadEquipment CurrentHeadEquipment { get; set; }
@@ -197,13 +223,11 @@ namespace Engine
         //public List<InventoryEquipment> PlayerEquipmentInventory = new List<InventoryEquipment>();
         //public List<InventoryLoot> PlayerLootInventory = new List<InventoryLoot>();
         public List<Spell> PlayerSpells = new List<Spell>();
-        #endregion 
-        #endregion 
 
-        #region Constructor
-        public Player(int Level, string Name, Class playerClass) : base(1, Name, 1, 1, 1, 1, 1, 1, 1, 1)
+
+        public Player(int level, string name, Class playerClass) : base(name, 1, 1, 1, 1, 1, 1, 1, 1, 1.0, 1.0)
         {
-            this.Level = Level;
+            this.Level = level;
             this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
@@ -220,16 +244,14 @@ namespace Engine
 
             UpdatePlayerStats();
         }
-        #endregion
 
-        #region Methods
         private void UpdateWarriorStats()
         {
             MaximumHealth = (int)(Math.Round((WarriorHealthStatScaleFactor * (Math.Pow(Level, WarriorHealthStatExponent))) + WarriorHealthStatConstant));
             CurrentHealth = MaximumHealth;
             MaximumMana = (int)(Math.Round((WarriorManaStatScaleFactor * (Math.Pow(Level, WarriorManaStatExponent))) + WarriorManaStatConstant));
             CurrentMana = MaximumMana;
-            Attack = (int)(Math.Round((WarriorAttackStatScaleFactor * (Math.Pow(Level, WarriorAttackStatExponent))) + WarriorAttackStatConstant));
+            Strength = (int)(Math.Round((WarriorStrengthStatScaleFactor * (Math.Pow(Level, WarriorStrengthStatExponent))) + WarriorStrengthStatConstant));
             Defense = (int)(Math.Round((WarriorDefenseStatScaleFactor * (Math.Pow(Level, WarriorDefenseStatExponent))) + WarriorDefenseStatConstant));
             Luck = (int)(Math.Round((WarriorLuckStatScaleFactor * (Math.Pow(Level, WarriorLuckStatExponent))) + WarriorLuckStatConstant));
             Speed = (int)(Math.Round((WarriorSpeedStatScaleFactor * (Math.Pow(Level, WarriorSpeedStatExponent))) + WarriorSpeedStatConstant));
@@ -243,7 +265,7 @@ namespace Engine
             CurrentHealth = MaximumHealth;
             MaximumMana = (int)(Math.Round((MageManaStatScaleFactor * (Math.Pow(Level, MageManaStatExponent))) + MageManaStatConstant));
             CurrentMana = MaximumMana;
-            Attack = (int)(Math.Round((MageAttackStatScaleFactor * (Math.Pow(Level, MageAttackStatExponent))) + MageAttackStatConstant));
+            Strength = (int)(Math.Round((MageStrengthStatScaleFactor * (Math.Pow(Level, MageStrengthStatExponent))) + MageStrengthStatConstant));
             Defense = (int)(Math.Round((MageDefenseStatScaleFactor * (Math.Pow(Level, MageDefenseStatExponent))) + MageDefenseStatConstant));
             Luck = (int)(Math.Round((MageLuckStatScaleFactor * (Math.Pow(Level, MageLuckStatExponent))) + MageLuckStatConstant));
             Speed = (int)(Math.Round((MageSpeedStatScaleFactor * (Math.Pow(Level, MageSpeedStatExponent))) + MageSpeedStatConstant));
@@ -257,7 +279,7 @@ namespace Engine
             CurrentHealth = MaximumHealth;
             MaximumMana = (int)(Math.Round((ThiefManaStatScaleFactor * (Math.Pow(Level, ThiefManaStatExponent))) + ThiefManaStatConstant));
             CurrentMana = MaximumMana;
-            Attack = (int)(Math.Round((ThiefAttackStatScaleFactor * (Math.Pow(Level, ThiefAttackStatExponent))) + ThiefAttackStatConstant));
+            Strength = (int)(Math.Round((ThiefStrengthStatScaleFactor * (Math.Pow(Level, ThiefStrengthStatExponent))) + ThiefStrengthStatConstant));
             Defense = (int)(Math.Round((ThiefDefenseStatScaleFactor * (Math.Pow(Level, ThiefDefenseStatExponent))) + ThiefDefenseStatConstant));
             Luck = (int)(Math.Round((ThiefLuckStatScaleFactor * (Math.Pow(Level, ThiefLuckStatExponent))) + ThiefLuckStatConstant));
             Speed = (int)(Math.Round((ThiefSpeedStatScaleFactor * (Math.Pow(Level, ThiefSpeedStatExponent))) + ThiefSpeedStatConstant));
@@ -308,6 +330,7 @@ namespace Engine
             UpdatePlayerStats();
         }
 
+        /*
         public void UseItem(Item item)
         {
             if (item.GetType() == typeof(HealthReplenishingItem))
@@ -326,6 +349,7 @@ namespace Engine
             }
         }
 
+        
         public void AddItem(Item item)
         {
             if (item.GetType() == typeof(HealthReplenishingItem))
@@ -355,6 +379,7 @@ namespace Engine
                 }
             }
         }
+        */
 
         public void AddSpell(Spell spell)
         {
@@ -395,12 +420,12 @@ namespace Engine
 
         public void EnterShop()
         {
-            PlayerState = State.Shop;
+            //PlayerState = State.Shop;
         }
 
         public void ExitShop()
         {
-            PlayerState = State.Travel;
+            //PlayerState = State.Travel;
         }
 
         //Moves the player to a different location
@@ -410,9 +435,9 @@ namespace Engine
             Console.WriteLine(CurrentLocation.ToString());
             if (CurrentLocation.EncounterTriggered())
             {
-                CurrentLocation.SetLocationEnemy();
+                CurrentLocation.SetEnemy();
                 Console.WriteLine("You have encountered a random {0}", CurrentLocation.CurrentEnemy.Name);
-                PlayerState = State.Battle;
+                //PlayerState = State.Battle;
             }
         }
 
@@ -449,7 +474,7 @@ namespace Engine
         }
 
     
-        public int AttackCommand(Enemy enemy, ref string attackResult)
+        public int Attack(Enemy enemy, ref string attackResult)
         {
             int damage = 0;
 
@@ -465,13 +490,13 @@ namespace Engine
             if(RandomNumberGenerator.RandomNumberBetween(1, 100) <= CriticalChanceRate)
             {
                 //Double the damage
-                damage = (((Attack * Attack) / (Attack + enemy.Defense)) * 2) * 2;
+                damage = (((Strength * Strength) / (Strength + enemy.Defense)) * 2) * 2;
                 attackResult = "Critical";
                 //Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
             else
             {
-                damage = ((Attack * Attack) / (Attack + enemy.Defense)) * 2;
+                damage = ((Strength * Strength) / (Strength + enemy.Defense)) * 2;
                 attackResult = "Normal";
                 //Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
@@ -480,7 +505,7 @@ namespace Engine
             return damage;
         }
 
-        public int SpellCommand(Enemy enemy, Spell spell, ref string spellResult)
+        public int Spell(Enemy enemy, Spell spell, ref string spellResult)
         {
             int spellDamage = 0;
 
@@ -513,12 +538,12 @@ namespace Engine
 
 
         //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEM
-        public bool RunCommand(Enemy enemy)
+        public bool Run(Enemy enemy)
         {
            // float runPercentage = (Level * Level) / (Level + enemy.Level) * ;
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 50)
             {
-                PlayerState = State.Travel;
+                //PlayerState = State.Travel;
                 return true;
             }
             return false;
@@ -530,12 +555,12 @@ namespace Engine
 
             info += ("Level: " + Level.ToString() + "\n");
             info += ("Class: " + PlayerClass.ToString() + "\n");
+            info += ("Gold: " + Gold.ToString() + "\n");
             info += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
             info += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
             info += base.ToString();
 
             return info;
         }
-        #endregion
     }
 }

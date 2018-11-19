@@ -8,15 +8,6 @@ namespace Engine
 {
     public class FightingUnit
     {
-        public delegate void PropertyChangedHandler();
-
-        public event PropertyChangedHandler StatsChanged;
-        #region Data Storage
-        #region Constants
-        protected const int MinimumLevel = 1;
-        protected const int MaximumLevel = 20;
-        #endregion
-
         public string Name { get; set; }
 
         private int currentHealth;
@@ -39,39 +30,6 @@ namespace Engine
                 else
                 {
                     currentHealth = value;
-                }
-                if (StatsChanged != null)
-                {
-                    StatsChanged();
-                }
-            }
-        }
-
-        private int level;
-        public int Level
-        {
-            get
-            {
-                return level;
-            }
-            set
-            {
-                if (value > MaximumLevel)
-                {
-
-                    level = MaximumLevel;
-                }
-                else if (value < MinimumLevel)
-                {
-                    level = MinimumLevel;
-                }
-                else
-                {
-                    level = value;
-                }
-                if (StatsChanged != null)
-                {
-                    StatsChanged();
                 }
             }
         }
@@ -97,40 +55,12 @@ namespace Engine
                 {
                     currentMana = value;
                 }
-                if (StatsChanged != null)
-                {
-                    StatsChanged();
-                }
-            }
-        }
-
-        private int currentExperiencePoints;
-        public int CurrentExperiencePoints
-        {
-            get
-            {
-                return currentExperiencePoints;
-            }
-            set
-            {
-                if (Level >= MaximumLevel)
-                {
-                    currentExperiencePoints = 0;
-                }
-                else
-                {
-                    currentExperiencePoints = value;
-                }
-                if (StatsChanged != null)
-                {
-                    StatsChanged();
-                }
             }
         }
 
         public int MaximumHealth { get; set; }
         public int MaximumMana { get; set; }
-        public int Attack { get; set; }
+        public int Strength { get; set; }
         public int Defense { get; set; }
         public int Luck { get; set; }
         public int Speed { get; set; }
@@ -139,28 +69,25 @@ namespace Engine
 
         public double CriticalChanceRate { get; set; }
         public double DodgeChanceRate { get; set; }
-        #endregion
 
-        #region Constructor
-        public FightingUnit(int Level, string Name, int MaximumHealth, int MaximumMana, int Attack, int Defense, 
-            int Luck, int Speed, int Intellect, int Resistance)
+        public FightingUnit(string name, int maximumHealth, int maximumMana, int strength, int defense, 
+            int luck, int speed, int intellect, int resistance, double criticalChanceRate, double dodgeChanceRate)
         {
-            this.Level = Level;
-            this.Name = Name;
-            this.MaximumHealth = MaximumHealth;
-            this.MaximumMana = MaximumMana;
-            this.Attack = Attack;
-            this.Defense = Defense;
-            this.Luck = Luck;
-            this.Speed = Speed;
-            this.Intellect = Intellect;
-            this.Resistance = Resistance;
+            this.Name = name;
+            this.MaximumHealth = maximumHealth;
+            this.MaximumMana = maximumMana;
+            this.Strength = strength;
+            this.Defense = defense;
+            this.Luck = luck;
+            this.Speed = speed;
+            this.Intellect = intellect;
+            this.Resistance = resistance;
+            this.CriticalChanceRate = criticalChanceRate;
+            this.DodgeChanceRate = dodgeChanceRate;
             CurrentHealth = MaximumHealth;
             CurrentMana = MaximumMana;
         }
-        #endregion
 
-        #region Methods
         public override string ToString()
         {
             string stats = "";
@@ -170,7 +97,7 @@ namespace Engine
             stats += ("Maximum Health: " + MaximumHealth.ToString() + "\n");
             stats += ("Current Mana: " + CurrentMana.ToString() + "\n");
             stats += ("Maximum Mana: " + MaximumMana.ToString() + "\n");
-            stats += ("Attack: " + Attack.ToString() + "\n");
+            stats += ("Strength: " + Strength.ToString() + "\n");
             stats += ("Defense: " + Defense.ToString() + "\n");
             stats += ("Luck: " + Luck.ToString() + "\n");
             stats += ("Speed: " + Speed.ToString() + "\n");
@@ -181,6 +108,5 @@ namespace Engine
 
             return stats;
         }
-        #endregion
     }
 }

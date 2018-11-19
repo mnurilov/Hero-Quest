@@ -8,25 +8,32 @@ namespace Engine
 {
     public static class World
     {
-        #region Data Storage
-        #region Constants
+        //Enemy ID's
         private const int EnemyIDRat = 1;
         private const int EnemyIDSnake = 2;
         private const int EnemyIDOgre = 3;
         private const int EnemyIDDragon = 4;
 
+
+        //Enemy Loot ID's
         private const int EnemyLootIDRatTail = 1;
         private const int EnemyLootIDRatCarcass = 2;
         private const int EnemyLootIDSnakeFang = 3;
         private const int EnemyLootIDOgreTooth = 4;
 
+
+        //Quest ID's
         private const int QuestIDCleanTheSewers = 1;
         private const int QuestIDAntidoteConcoction = 2;
 
+
+        //Spell ID's
         private const int SpellIDFire = 1;
         private const int SpellIDThunder = 2;
         private const int SpellIDCure = 3;
 
+
+        //Item ID's
         private const int ItemIDBasicPotion = 1;
         private const int ItemIDMegaPotion = 2;
         private const int ItemIDHyperPotion = 3;
@@ -34,6 +41,8 @@ namespace Engine
         private const int ItemIDMegaEther = 5;
         private const int ItemIDHyperEther = 6;
 
+
+        //Location ID's
         private const int LocationIDHome = 1;
         private const int LocationIDGrassPlains = 2;
         private const int LocationIDTown = 3;
@@ -41,9 +50,13 @@ namespace Engine
         private const int LocationIDBarn = 5;
         private const int LocationIDFarmHut = 6;
 
+
+        //Vendor ID's
         private const int VendorIDJohn = 1;
         private const int VendorIDBobby = 2;
 
+
+        //Equipment ID's
         private const int HeadEquipmentIDBronzeHelmet = 1;
         private const int HeadEquipmentIDRuneHelmet = 2;
         private const int ChestEquipmentIDBronzeChestPlate = 3;
@@ -56,9 +69,7 @@ namespace Engine
         private const int ShieldEquipmentIDRuneShield = 10;
         private const int TomeEquipmentIDBronzeTome = 11;
         private const int TomeEquipmentIDRuneTome = 12;
-        #endregion
 
-        #region World Objects
         private static readonly List<Enemy> enemies = new List<Enemy>();
         private static readonly List<Location> locations = new List<Location>();
         private static readonly List<Item> items = new List<Item>();
@@ -67,10 +78,7 @@ namespace Engine
         private static readonly List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
         private static readonly List<Spell> spells = new List<Spell>();
         private static readonly List<Quest> quests = new List<Quest>();
-        #endregion
-        #endregion
 
-        #region Constructor
         static World()
         {/*
             PopulateItems();
@@ -86,16 +94,13 @@ namespace Engine
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
         }
-        #endregion
 
         
         private static void PopulateLocations()
         {
             //Creation of locations
             Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0);
-            home.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\House.png";
             Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 50);
-            grassPlains.ImageLocation = "Hero-Quest\\Test\\Forest.png";
             Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0);
             Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 50);
             Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 50);
@@ -250,11 +255,9 @@ namespace Engine
             spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 10, 50));
             spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
         }
-        #endregion
     */
 
 
-        #region View Functions
         public static void ViewSpells()
         {
             foreach (Spell spell in spells)
@@ -299,9 +302,7 @@ namespace Engine
                 Console.ReadKey();
             }
         }
-        #endregion
 
-        #region Find X by ID Functions
         //Finds a specific enemy loot based on ID
         public static EnemyLoot FindEnemyLootByID(int ID)
         {
@@ -405,9 +406,8 @@ namespace Engine
             }
             return null;
         }
-        #endregion
 
-        public static Enemy CreateEnemy(int ID)
+        /*public static Enemy CreateEnemy(int ID)
         {
             foreach (Enemy enemy in enemies)
             {
@@ -419,16 +419,6 @@ namespace Engine
                 }
             }
             return null;
-        }
-
-        public static LocationEnemy CreateNewLocationEnemy(LocationEnemy locationEnemy)
-        {
-            return new LocationEnemy(new Enemy(locationEnemy.ID, locationEnemy.Level, locationEnemy.Name,
-                locationEnemy.MaximumHealth, locationEnemy.MaximumMana, locationEnemy.Attack,
-                locationEnemy.Defense, locationEnemy.Luck, locationEnemy.Speed, locationEnemy.Intellect,
-                 locationEnemy.Resistance, locationEnemy.CriticalChanceRate, locationEnemy.DodgeChanceRate,
-                 locationEnemy.Gold, locationEnemy.ExperiencePoints),
-                  locationEnemy.Weight);
-        }
+        }*/
     }
 }

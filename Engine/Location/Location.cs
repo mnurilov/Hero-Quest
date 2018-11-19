@@ -11,30 +11,31 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
-        public int EncounterChance { get; set; }
+        public int EncounterRate { get; set; }
         //Connects the locations together
-        public Location LocationToTheNorth;
-        public Location LocationToTheSouth;
-        public Location LocationToTheWest;
-        public Location LocationToTheEast;
-        public Vendor VendorInLocation;
-        public Quest QuestInLocation;
-        public LocationEnemy CurrentEnemy;
-        public List<LocationEnemy> EnemiesInLocation = new List<LocationEnemy>();
+        public Location LocationToTheNorth { get; set; }
+        public Location LocationToTheSouth { get; set; }
+        public Location LocationToTheWest { get; set; }
+        public Location LocationToTheEast { get; set; }
+        public Vendor VendorInLocation { get; set; }
+        public Quest QuestInLocation { get; set; }
+        public Enemy CurrentEnemy { get; set; }
+        //Key is the enemy, Value is the weight (The appearance rate of the enemy)
+        public Dictionary<Enemy, int> EnemiesInLocation { get; set; }
 
         //Add the vendor and quest as a constructor later on
-        public Location(int id, string name, string description, int encounterChance)
+        public Location(int id, string name, string description, int encounterRate)
         {
             this.ID = id;
             this.Name = name;
             this.Description = description;
-            this.EncounterChance = encounterChance;
+            this.EncounterRate = encounterRate;
         }
         
         //Checks if an encounter will be triggered 
         public bool EncounterTriggered()
         {
-            if (RandomNumberGenerator.RandomNumberBetween(0, 99) < EncounterChance)
+            if (RandomNumberGenerator.RandomNumberBetween(0, 99) < EncounterRate)
             {
                 return true;
             }
@@ -44,65 +45,36 @@ namespace Engine
             }
         }
 
-        public void SetLocationEnemy()
+        public void SetEnemy()
         {
-            CurrentEnemy = GetLocationEnemy();
-            CurrentEnemy = World.CreateNewLocationEnemy(CurrentEnemy);
+            CurrentEnemy = GetEnemy();
         }
 
-       
-
-        public LocationEnemy GetLocationEnemy()
+        //Selects an enemy based on the weights given to them
+        private Enemy GetEnemy()
         {
             int totalWeight = 0;
-            foreach (LocationEnemy lc in EnemiesInLocation)
+            Enemy selectedEnemy = null;
+
+            foreach (KeyValuePair<Enemy, int> weightedEnemy in EnemiesInLocation)
             {
-                totalWeight += lc.Weight;
+                totalWeight += weightedEnemy.Value;
             }
 
             int randomNum = RandomNumberGenerator.RandomNumberBetween(0, totalWeight - 1);
 
-            LocationEnemy selectedLocationEnemy = null;
-
-            foreach (LocationEnemy lc in EnemiesInLocation)
+            foreach (KeyValuePair<Enemy, int> weightedEnemy in EnemiesInLocation)
             {
-                if (randomNum < lc.Weight)
+                if (randomNum < weightedEnemy.Value)
                 {
-                    selectedLocationEnemy = lc;
+                    selectedEnemy = weightedEnemy.Key;
                     break;
                 }
 
-                randomNum = randomNum - lc.Weight;
+                randomNum = randomNum - weightedEnemy.Value;
             }
 
-            return selectedLocationEnemy;
-            /*int randNum = RandomNumberGenerator.RandomNumberBetween(1, 100);
-
-            for (int i = 0; i < EnemiesInLocation.Count; i++)
-            {
-                if(i == 0)
-                {
-                    continue;
-                }
-
-                EnemiesInLocation[i].EncounterRate = EnemiesInLocation[i].EncounterRate + EnemiesInLocation[i - 1].EncounterRate;
-            }
-
-            for (int i = 0; i < EnemiesInLocation.Count; i++)
-            {
-                if(i == 0)
-                {
-                    if(randNum > 0 && randNum <= EnemiesInLocation[i].EncounterRate)
-                    {
-
-                    }
-                }
-                else if(randNum > EnemiesInLocation[i].EncounterRate && randNum <= EnemiesInLocation[i + 1].EncounterRate)
-                {
-
-                }
-            }
-            return new Enemy();*/
+            return selectedEnemy;
         }
 
         public override string ToString()
@@ -110,24 +82,40 @@ namespace Engine
             string info = "";
 
             info += ("ID: " + ID.ToString() + "\n");
-            info += ("Name: " + Name.ToString() + "\n");
-            info += ("Description: " + Description.ToString() + "\n");
-
-            /*if(VendorInLocation != null)
+            info += ("Name: " + Name + "\n");
+            info += ("Description: " + Description + "\n");
+            info += ("Encounter Rate: " + EncounterRate.ToString() + "\n");
+            if(LocationToTheNorth != null)
             {
-                info += ("Vendor Details: " + VendorInLocation.ToString() + "\n");
+                info += ("Location to the north: " + LocationToTheNorth.Name + "\n");
+            }
+            if(LocationToTheSouth != null)
+            {
+                info += ("Location to the south: " + LocationToTheSouth.Name + "\n");
+            }
+            if(LocationToTheWest != null)
+            {
+                info += ("Location to the west: " + LocationToTheWest.Name + "\n");
+            }
+            if(LocationToTheEast != null)
+            {
+                info += ("Location to the east: " + LocationToTheEast.Name + "\n");
+            }
+            if(VendorInLocation != null)
+            {
+                info += ("Vendor Name: " + VendorInLocation.Name + "\n");
             }
             if(QuestInLocation != null)
             {
-                info += ("Quest Details: " + QuestInLocation.ToString() + "\n");
+                info += ("Quest Name: " + QuestInLocation.Name + "\n");
             }
             if(EnemiesInLocation != null)
             {
-                foreach(Enemy enemy in EnemiesInLocation)
+                foreach(KeyValuePair<Enemy, int> weightedEnemy in EnemiesInLocation)
                 {
-                    info += ("Enemy Details: " + enemy.ToString() + "\n");
+                    info += ("Enemy Name: " + weightedEnemy.Key.Name + "\n");
                 }
-            }*/
+            }
             return info;
         }
     }

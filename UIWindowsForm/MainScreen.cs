@@ -19,7 +19,7 @@ namespace UIWindowsForm
         {
             //Application.Idle += HandleApplicationIdle;
             InitializeComponent();
-            gameSession.CurrentPlayer.StatsChanged += UpdateStats;
+            //gameSession.CurrentPlayer.StatsChanged += UpdateStats;
             gameSession.OnMessagedRaised += DisplayBattleText;
             //Include a message for the playing being at the home
             UpdateButtons();
@@ -105,6 +105,7 @@ namespace UIWindowsForm
 
         private void UpdateButtons()
         {
+            /*
             switch (Player.PlayerState)
             {
                 case Player.State.Travel:
@@ -164,6 +165,7 @@ namespace UIWindowsForm
                     btnRun.Visible = true;
                     break;
             }
+            */
         }
 
         private void UpdateStats()
@@ -173,7 +175,7 @@ namespace UIWindowsForm
             lblExperience.Text = gameSession.CurrentPlayer.CurrentExperiencePoints.ToString() + "/" + gameSession.CurrentPlayer.MaximumExperiencePoints.ToString();
             lblHealth.Text = gameSession.CurrentPlayer.CurrentHealth.ToString() + "/" + gameSession.CurrentPlayer.MaximumHealth.ToString();
             lblMana.Text = gameSession.CurrentPlayer.CurrentMana.ToString() + "/" + gameSession.CurrentPlayer.MaximumMana.ToString();
-            lblAttack.Text = gameSession.CurrentPlayer.Attack.ToString();
+            lblAttack.Text = gameSession.CurrentPlayer.Strength.ToString();
             lblDefense.Text = gameSession.CurrentPlayer.Defense.ToString();
             lblLuck.Text = gameSession.CurrentPlayer.Luck.ToString();
             lblSpeed.Text = gameSession.CurrentPlayer.Speed.ToString();
@@ -194,27 +196,22 @@ namespace UIWindowsForm
         {
             lblLocationName.Text = gameSession.CurrentPlayer.CurrentLocation.Name;
             lblLocationDescription.Text = gameSession.CurrentPlayer.CurrentLocation.Description;
-            pbLocationPicture.ImageLocation = gameSession.CurrentPlayer.CurrentLocation.ImageLocation;
+            //pbLocationPicture.ImageLocation = gameSession.CurrentPlayer.CurrentLocation.ImageLocation;
         }
 
         private void UpdateEnemy()
         {
-            if(gameSession.CurrentLocationEnemy != null)
+            if(gameSession.CurrentEnemy != null)
             {
-                lblEnemyName.Text = gameSession.CurrentLocationEnemy.Name;
-                pbEnemyPicture.ImageLocation = gameSession.CurrentLocationEnemy.ImageName;
+                lblEnemyName.Text = gameSession.CurrentEnemy.Name;
             }
         }
 
         private void btnItem_Click(object sender, EventArgs e)
         {
-            gameSession.CurrentPlayer.UseItem(World.FindItemByID(1));
+            //gameSession.CurrentPlayer.UseItem(World.FindItemByID(1));
             UpdateButtons();
         }
-        /*private void HandleApplicationIdle(object sender, EventArgs e)
-        {
-            GameStateManager.Run();
-        }*/
 
         private void DisplayBattleText(object o, MessageEventArgs e)
         {

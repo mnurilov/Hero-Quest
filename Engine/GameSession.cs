@@ -11,25 +11,25 @@ namespace Engine
     public class GameSession
     {
         public Player CurrentPlayer;
-        public LocationEnemy CurrentLocationEnemy;
+        public Enemy CurrentEnemy;
         //public Vendor CurrentVendor;
         public event MyEventHandler OnMessagedRaised;
 
         public GameSession()
         {
             CurrentPlayer = new Player(1, "Bob", Player.Class.Thief);
-            CurrentLocationEnemy = World.CreateNewLocationEnemy(new LocationEnemy(World.FindEnemyByID(1), 10));
+            //CurrentEnemy = World.CreateNewLocationEnemy(new Enemy(World.FindEnemyByID(1), 10));
         }
 
         public void AttackCommand()
         {
             string attackResult = "";
 
-            if (CurrentLocationEnemy != null)
+            if (CurrentEnemy != null)
             {
-                int damage = CurrentPlayer.AttackCommand(CurrentLocationEnemy, ref attackResult);
+                int damage = CurrentPlayer.Attack(CurrentEnemy, ref attackResult);
 
-                CurrentLocationEnemy.CurrentHealth -= damage;
+                CurrentEnemy.CurrentHealth -= damage;
 
                 switch (attackResult)
                 {
@@ -51,11 +51,11 @@ namespace Engine
         {
             string spellResult = "";
 
-            if (CurrentLocationEnemy != null)
+            if (CurrentEnemy != null)
             {
-                int damage = CurrentPlayer.SpellCommand(CurrentLocationEnemy, World.FindSpellByID(1), ref spellResult);
+                int damage = CurrentPlayer.Spell(CurrentEnemy, World.FindSpellByID(1), ref spellResult);
 
-                CurrentLocationEnemy.CurrentHealth -= damage;
+                CurrentEnemy.CurrentHealth -= damage;
 
                 switch (spellResult)
                 {
@@ -74,7 +74,7 @@ namespace Engine
 
         public void RunCommand()
         {
-            if(CurrentPlayer.RunCommand(CurrentPlayer.CurrentLocation.CurrentEnemy) == true)
+            if(CurrentPlayer.Run(CurrentPlayer.CurrentLocation.CurrentEnemy) == true)
             { 
                 RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
             }
@@ -88,28 +88,28 @@ namespace Engine
         {
             CurrentPlayer.MoveNorth();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
         }
 
         public void MoveSouthCommand()
         {
             CurrentPlayer.MoveSouth();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
         }
 
         public void MoveWestCommand()
         {
             CurrentPlayer.MoveWest();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
         }
 
         public void MoveEastCommand()
         {
             CurrentPlayer.MoveEast();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentLocationEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
 
         }
 

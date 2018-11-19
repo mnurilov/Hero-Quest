@@ -1,3 +1,6 @@
+I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
+
+
 When creating the game you need to draw these things out
 -World Map on Paper
 -Item List on Paper
@@ -6,6 +9,8 @@ When creating the game you need to draw these things out
 -Spell List on Paper
 -Vendor List on Paper
 -Quest List on Paper
+
+Add a cap on the gold like a Constant cap
 
 
 Format
