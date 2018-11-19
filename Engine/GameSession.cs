@@ -23,26 +23,26 @@ namespace Engine
         }
 
 
-        /*
+        
         public void AttackCommand()
         {
-            string attackResult = "";
+            BattleResult battleResult = BattleResult.Normal;
 
             if (CurrentEnemy != null)
             {
-                int damage = CurrentPlayer.Attack(CurrentEnemy, ref attackResult);
+                int damage = CurrentPlayer.Attack(CurrentEnemy, ref battleResult);
 
                 CurrentEnemy.CurrentHealth -= damage;
 
-                switch (attackResult)
+                switch (battleResult)
                 {
-                    case "Missed":
+                    case BattleResult.Missed:
                         RaiseMessage(CurrentPlayer.Name + " missed");
                         break;
-                    case "Normal":
+                    case BattleResult.Normal:
                         RaiseMessage(CurrentPlayer.Name + " does " + damage + " points of damage");
                         break;
-                    case "Critical":
+                    case BattleResult.Critical:
                         RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " points of damage");
                         break;
                 }
@@ -50,25 +50,25 @@ namespace Engine
         }
 
         //NEED TO DO: Add a way for the player to choose a spell currently it just picks the first spell which is fire
-        public void SpellCommand()
+        public void CastSpellCommand()
         {
-            string spellResult = "";
+            BattleResult battleResult = BattleResult.Normal;
 
             if (CurrentEnemy != null)
             {
-                int damage = CurrentPlayer.Spell(CurrentEnemy, World.FindSpellByID(1), ref spellResult);
+                int damage = CurrentPlayer.CastSpell(CurrentEnemy, (DamageSpell)World.FindSpellByID(1), ref battleResult);
 
                 CurrentEnemy.CurrentHealth -= damage;
 
-                switch (spellResult)
+                switch (battleResult)
                 {
-                    case "Missed":
+                    case BattleResult.Missed:
                         RaiseMessage(CurrentPlayer.Name + " missed his magical attack");
                         break;
-                    case "Normal":
+                    case BattleResult.Normal:
                         RaiseMessage(CurrentPlayer.Name + " does " + damage + " points of magical damage");
                         break;
-                    case "Critical":
+                    case BattleResult.Critical:
                         RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " points of magical damage");
                         break;
                 }
@@ -120,6 +120,6 @@ namespace Engine
         {
             OnMessagedRaised?.Invoke(this, new MessageEventArgs(message));
         }
-        */
+        
     }
 }

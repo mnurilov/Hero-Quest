@@ -121,7 +121,6 @@
             this.btnShop.TabIndex = 7;
             this.btnShop.Text = "Shop";
             this.btnShop.UseVisualStyleBackColor = true;
-            this.btnShop.Click += new System.EventHandler(this.btnShop_Click);
             // 
             // label1
             // 
@@ -326,7 +325,6 @@
             this.btnShopExit.TabIndex = 32;
             this.btnShopExit.Text = "Exit";
             this.btnShopExit.UseVisualStyleBackColor = true;
-            this.btnShopExit.Click += new System.EventHandler(this.btnShopExit_Click);
             // 
             // btnAttack
             // 

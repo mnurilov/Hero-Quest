@@ -205,7 +205,8 @@ namespace Engine
             }
         }
 
-        public enum Class { Warrior = 1, Mage = 2, Thief = 3 }
+        //Player Class
+        public enum Class { Warrior, Mage, Thief }
         private Class PlayerClass;
 
         public Class GetClass()
@@ -214,14 +215,19 @@ namespace Engine
         }
         
         public Location CurrentLocation { get; set; }
+
+        //Equipment
         public Weapon CurrentWeapon { get; set; }
+        public SideArm CurrentSideArm { get; set; }
         public HeadEquipment CurrentHeadEquipment { get; set; }
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
+
+        //Inventory
         public List<Quest> PlayerQuests = new List<Quest>();
-        //public List<InventoryItem> PlayerItemInventory = new List<InventoryItem>();
-        //public List<InventoryEquipment> PlayerEquipmentInventory = new List<InventoryEquipment>();
-        //public List<InventoryLoot> PlayerLootInventory = new List<InventoryLoot>();
+        public List<Equipment> PlayerEquipments = new List<Equipment>();
+        //Key is the item, Value is the quantity of the item
+        public Dictionary<Item, int> PlayerItems = new Dictionary<Item, int>();
         public List<Spell> PlayerSpells = new List<Spell>();
 
 
@@ -232,19 +238,21 @@ namespace Engine
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
 
-            //Set starting location of player to "House"
-            if(World.FindLocationByID(1) != null)
+            UpdatePlayerStats();
+
+            //Set the starting location of the player
+            if (World.FindLocationByID(1) != null)
             {
                 MoveTo(World.FindLocationByID(1));
             }
             else
             {
-                throw new Exception("Player's starting location cannot be set to \"House\"");
+                throw new Exception("Player's starting location cannot be set");
             }
-
-            UpdatePlayerStats();
         }
 
+
+        //Leveling, Experience, and Stats Functions
         private void UpdateWarriorStats()
         {
             MaximumHealth = (int)(Math.Round((WarriorHealthStatScaleFactor * (Math.Pow(Level, WarriorHealthStatExponent))) + WarriorHealthStatConstant));
@@ -330,6 +338,7 @@ namespace Engine
             UpdatePlayerStats();
         }
 
+
         /*
         public void UseItem(Item item)
         {
@@ -381,7 +390,7 @@ namespace Engine
         }
         */
 
-        public void AddSpell(Spell spell)
+        /*public void AddSpell(Spell spell)
         {
             if (spell.GetType() == typeof(DamageSpell))
             {
@@ -426,19 +435,14 @@ namespace Engine
         public void ExitShop()
         {
             //PlayerState = State.Travel;
-        }
+        }*/
 
+
+        //Movement Functions
         //Moves the player to a different location
         private void MoveTo(Location newLocation)
         {
             CurrentLocation = newLocation;
-            Console.WriteLine(CurrentLocation.ToString());
-            if (CurrentLocation.EncounterTriggered())
-            {
-                //CurrentLocation.SetEnemy();
-                //Console.WriteLine("You have encountered a random {0}", CurrentLocation.CurrentEnemy.Name);
-                //PlayerState = State.Battle;
-            }
         }
 
         public void MoveNorth()
@@ -473,7 +477,8 @@ namespace Engine
             }
         }
 
-    
+
+        //Battle Functions
         public int Attack(Enemy enemy, ref GameSession.BattleResult battleResult)
         {
             int damage = 0;
@@ -502,15 +507,14 @@ namespace Engine
             return damage;
         }
 
-        public int Spell(Enemy enemy, Spell spell, ref string spellResult)
+        public int CastSpell(Enemy enemy, DamageSpell damageSpell, ref GameSession.BattleResult battleResult)
         {
             int spellDamage = 0;
 
             //If the enemy would dodge the attack do not calculate spell damage
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
-                spellResult = "Missed";
-                //Console.WriteLine("{0} missed", Name);
+                battleResult = GameSession.BattleResult.Missed;
                 return 0;
             }
 
@@ -518,18 +522,16 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= CriticalChanceRate)
             {
                 //Double the spell damage
-                spellResult = "Critical";
-               // spellDamage = (((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2) * 2;
-                //Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
+                battleResult = GameSession.BattleResult.Critical;
+                spellDamage = (((Intellect + damageSpell.DamageAmount) / (Intellect + enemy.Resistance) * 2) * 2);
             }
+            //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
-                spellResult = "Normal";
-                //spellDamage = ((Intellect * Intellect) + ((DamageSpell)spell).SpellDamage/ (Intellect + enemy.Resistance)) * 2;
-                //Console.WriteLine("{0} did {1} points of damage to {2}", Name, spellDamage, enemy.Name);
+                battleResult = GameSession.BattleResult.Normal;
+                spellDamage = ((Intellect + damageSpell.DamageAmount) / (Intellect + enemy.Resistance) * 2);
             }
 
-            //Same thing with this one as in attack command
             return spellDamage;
         }
 
@@ -537,12 +539,11 @@ namespace Engine
         //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEM
         public bool Run(Enemy enemy)
         {
-           // float runPercentage = (Level * Level) / (Level + enemy.Level) * ;
-            if (RandomNumberGenerator.RandomNumberBetween(0, 100) < 50)
+            if (RandomNumberGenerator.RandomNumberBetween(0, 99) < 50)
             {
-                //PlayerState = State.Travel;
                 return true;
             }
+
             return false;
         }
 

@@ -71,7 +71,7 @@ namespace UIWindowsForm
 
         private void btnSpell_Click(object sender, EventArgs e)
         {
-            gameSession.SpellCommand();
+            gameSession.CastSpellCommand();
             UpdateButtons();
         }
 
@@ -89,14 +89,14 @@ namespace UIWindowsForm
 
         }
 
-        private void btnShop_Click(object sender, EventArgs e)
+        /*private void btnShop_Click(object sender, EventArgs e)
         {
             gameSession.CurrentPlayer.EnterShop();
             //rtbShop.Text = gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.ToString();
             btnShop.Visible = false;
             btnShopExit.Visible = true;
             UpdateButtons();
-        }
+        }*/
 
         private void btnTrade_Click(object sender, EventArgs e)
         {
@@ -183,14 +183,14 @@ namespace UIWindowsForm
             lblResistance.Text = gameSession.CurrentPlayer.Resistance.ToString();
         }
 
-        private void btnShopExit_Click(object sender, EventArgs e)
+        /*private void btnShopExit_Click(object sender, EventArgs e)
         {
             gameSession.CurrentPlayer.ExitShop();
             //rtbShop.Text = "You left the shop";
             btnShop.Visible = true;
             btnShopExit.Visible = false;
             UpdateButtons();
-        }
+        }*/
 
         private void UpdateLocation()
         {

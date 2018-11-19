@@ -8,31 +8,6 @@ namespace Engine
 {
     public static class World
     {
-        //Enemy ID's
-        private const int EnemyIDRat = 1;
-        private const int EnemyIDSnake = 2;
-        private const int EnemyIDOgre = 3;
-        private const int EnemyIDDragon = 4;
-
-
-        //Enemy Loot ID's
-        private const int EnemyLootIDRatTail = 1;
-        private const int EnemyLootIDRatCarcass = 2;
-        private const int EnemyLootIDSnakeFang = 3;
-        private const int EnemyLootIDOgreTooth = 4;
-
-
-        //Quest ID's
-        private const int QuestIDCleanTheSewers = 1;
-        private const int QuestIDAntidoteConcoction = 2;
-
-
-        //Spell ID's
-        private const int SpellIDFire = 1;
-        private const int SpellIDThunder = 2;
-        private const int SpellIDCure = 3;
-
-
         //Item ID's
         private const int ItemIDBasicPotion = 1;
         private const int ItemIDMegaPotion = 2;
@@ -40,21 +15,10 @@ namespace Engine
         private const int ItemIDBasicEther = 4;
         private const int ItemIDMegaEther = 5;
         private const int ItemIDHyperEther = 6;
-
-
-        //Location ID's
-        private const int LocationIDHome = 1;
-        private const int LocationIDGrassPlains = 2;
-        private const int LocationIDTown = 3;
-        private const int LocationIDFarm = 4;
-        private const int LocationIDBarn = 5;
-        private const int LocationIDFarmHut = 6;
-
-
-        //Vendor ID's
-        private const int VendorIDJohn = 1;
-        private const int VendorIDBobby = 2;
-
+        private const int ItemIDRatTail = 7;
+        private const int ItemIDRatCarcass = 8;
+        private const int ItemIDSnakeFang = 9;
+        private const int ItemIDOgreTooth = 10;
 
         //Equipment ID's
         private const int HeadEquipmentIDBronzeHelmet = 1;
@@ -69,33 +33,128 @@ namespace Engine
         private const int ShieldEquipmentIDRuneShield = 10;
         private const int TomeEquipmentIDBronzeTome = 11;
         private const int TomeEquipmentIDRuneTome = 12;
+        
+        //Spell ID's
+        private const int SpellIDFire = 1;
+        private const int SpellIDThunder = 2;
+        private const int SpellIDCure = 3;
+        
+        //Enemy ID's
+        private const int EnemyIDRat = 1;
+        private const int EnemyIDSnake = 2;
+        private const int EnemyIDOgre = 3;
+        private const int EnemyIDDragon = 4;
 
+        //Person ID's
+        private const int PersonIDBob = 1;
+        private const int PersonIDMary = 2;
+
+        //Quest ID's
+        private const int QuestIDCleanTheSewers = 1;
+        private const int QuestIDAntidoteConcoction = 2;
+
+        //Vendor ID's
+        private const int VendorIDJohn = 1;
+        private const int VendorIDBobby = 2;
+
+        //Location ID's
+        private const int LocationIDHome = 1;
+        private const int LocationIDGrassPlains = 2;
+        private const int LocationIDTown = 3;
+        private const int LocationIDFarm = 4;
+        private const int LocationIDBarn = 5;
+        private const int LocationIDFarmHut = 6;
+
+        
+
+
+        private static readonly List<Item> items = new List<Item>();
         private static readonly List<Enemy> enemies = new List<Enemy>();
         private static readonly List<Location> locations = new List<Location>();
-        private static readonly List<Item> items = new List<Item>();
         private static readonly List<Vendor> vendors = new List<Vendor>();
         private static readonly List<Equipment> equipments = new List<Equipment>();
-        private static readonly List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
         private static readonly List<Spell> spells = new List<Spell>();
         private static readonly List<Quest> quests = new List<Quest>();
 
         static World()
-        {/*
+        {
             PopulateItems();
-            PopulateEnemyLoots();
             PopulateEquipments();
-            PopulateEnemies();
             PopulateSpells();
+            PopulateEnemies();
             PopulateQuests();
-
             //Put the vendors after the item and equipment spawns so that it can load the items
-            PopulateVendors();*/
-            
+            PopulateVendors(); 
+
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
         }
 
-        
+        private static void PopulateItems()
+        {
+            items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", "A simple potion", 5));
+            items.Add(new HealthReplenishingItem(ItemIDMegaPotion, "Mega Potion", "An advanced potion", 15));
+            items.Add(new HealthReplenishingItem(ItemIDHyperPotion, "Hyper Potion", "An elite potion", 30));
+            items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", "A simple ether", 4));
+            items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", "An advanced ether", 16));
+            items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", "An elite ether", 36));
+        }
+
+        private static void PopulateEquipments()
+        {
+            equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", "A crummy helmet", 5, 0, 0, 5, 0, 0, 0, 0));
+            equipments.Add(new ChestEquipment(ChestEquipmentIDBronzeChestPlate, "Bronze Chest Plate", "A crummy chest plate", 15, 0, 0, 15, 0, 0, 0, 0));
+            equipments.Add(new LegEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", "A crummy leggings", 0, 0, 0, 10, 0, 0, 0, 0));
+            equipments.Add(new Sword(WeaponEquipmentIDBronzeSword, "Bronze Sword", "A crummy sword", 0, 0, 10, 0, 0, 0, 0, 0));
+            equipments.Add(new Shield(ShieldEquipmentIDBronzeShield, "Bronze Shield", "A crummy shield", 0, 0, 0, 10, 0, 0, 0, 0));
+        }
+
+        private static void PopulateSpells()
+        {
+            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
+            spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 10, 50));
+            spells.Add(new ReplenishSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
+        }
+
+        private static void PopulateEnemies()
+        {
+            List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
+            enemyLoots.Add((EnemyLoot)FindItemByID(7));
+            
+            Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, enemyLoots);
+            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15);
+            Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100);
+            Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000);
+
+            enemies.Add(rat);
+            enemies.Add(snake);
+            enemies.Add(ogre);
+            enemies.Add(dragon);
+        }
+
+        private static void PopulateQuests()
+        {
+            Person bob = new Person(PersonIDBob, "Bob", "An average joe", "Hey help I got rats!");
+            Person mary = new Person(PersonIDMary, "Mary", "A sassy child", "Hey I lost my pet snake");
+
+            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place",
+                bob, new Dictionary<Enemy, int>{ {FindEnemyByID(1), 3} }, 10, 5);
+
+            Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction", 
+                "Bring me 3 snake fangs so I can make the antidote", mary, new Dictionary<EnemyLoot, int> { { (EnemyLoot)FindItemByID(9), 3 } },
+                5, 10);
+
+            quests.Add(cleanTheSewers);
+            quests.Add(antidoteConcoction);
+        }
+
+        private static void PopulateVendors()
+        {
+            Vendor John = new Vendor(VendorIDJohn, "John", "A business man at heart", new Dictionary<Item, int>{ { FindItemByID(1), 4} });
+            
+            vendors.Add(John);
+        }
+
         private static void PopulateLocations()
         {
             //Creation of locations
@@ -126,22 +185,11 @@ namespace Engine
 
 
             //Added vendors to the locations
-            //town.VendorInLocation = FindVendorByID(1);
-            //farmHut.VendorInLocation = FindVendorByID(2);
+            town.VendorInLocation = FindVendorByID(1);
 
 
-            ////Add enemies to the locations
-            //grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 10));
-            //grassPlains.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 20));
-
-            //farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(3), 10));
-            //farm.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
-
-            //barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(1), 100));
-            //barn.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(4), 100));
-
-            //farmHut.EnemiesInLocation.Add(new LocationEnemy(CreateEnemy(2), 1));
-
+            //Add enemies to the locations
+            grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 }, { FindEnemyByID(2), 10 } };
 
             //Add the locations to list
             locations.Add(home);
@@ -150,121 +198,6 @@ namespace Engine
             locations.Add(farm);
             locations.Add(barn);
             locations.Add(farmHut);
-        }
-
-        /*
-        private static void PopulateItems()
-        {
-            items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", 5));
-            items.Add(new HealthReplenishingItem(ItemIDMegaPotion, "Mega Potion", 15));
-            items.Add(new HealthReplenishingItem(ItemIDHyperPotion, "Hyper Potion", 30));
-            items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", 4));
-            items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", 16));
-            items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", 36));
-        }
-
-        private static void PopulateEquipments()
-        {
-            equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", 5, 0, 0, 5, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(HeadEquipmentIDRuneHelmet, "Rune Helmet", 10, 0, 0, 10, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ChestEquipmentIDBronzeChestPlate, "Bronze Chest Plate", 15, 0, 0, 15, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ChestEquipmentIDRuneChestPlate, "Rune Chest Plate", 30, 0, 0, 30, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", 10, 0, 0, 10, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(LegEquipmentIDRuneLeggings, "Rune Leggings", 20, 0, 0, 20, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(WeaponEquipmentIDBronzeSword, "Bronze Sword", 0, 0, 10, 0, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(WeaponEquipmentIDRuneSword, "Rune Sword", 0, 0, 0, 30, 0, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ShieldEquipmentIDBronzeShield, "Bronze Shield", 0, 0, 0, 0, 10, 0, 0, 0));
-            equipments.Add(new HeadEquipment(ShieldEquipmentIDRuneShield, "Rune Shield", 5, 0, 0, 0, 30, 0, 0, 0));
-            equipments.Add(new HeadEquipment(TomeEquipmentIDBronzeTome, "Bronze Tome", 0, 10, 0, 0, 0, 0, 15, 0));
-            equipments.Add(new HeadEquipment(TomeEquipmentIDRuneTome, "Rune Tome", 0, 30, 0, 5, 0, 0, 30, 0));
-        }
-
-        private static void PopulateVendors()
-        {
-            Vendor John = new Vendor(VendorIDJohn, "John");
-            Vendor Bobby = new Vendor(VendorIDBobby, "Bobby");
-
-            John.VendorItemInventory.Add(new InventoryItem(FindItemByID(1), 5));
-            John.VendorItemInventory.Add(new InventoryItem(FindItemByID(2), 3));
-            John.VendorItemInventory.Add(new InventoryItem(FindItemByID(3), 2));
-
-            John.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(1), 1));
-            John.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(2), 1));
-            John.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(3), 1));
-            John.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(4), 17));
-            John.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(5), 6));
-            John.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(6), 3));
-
-            Bobby.VendorItemInventory.Add(new InventoryItem(FindItemByID(4), 9));
-            Bobby.VendorItemInventory.Add(new InventoryItem(FindItemByID(5), 7));
-            Bobby.VendorItemInventory.Add(new InventoryItem(FindItemByID(6), 1)); 
-
-            Bobby.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(7), 12));
-            Bobby.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(8), 13));
-            Bobby.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(9), 4));
-            Bobby.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(10), 1));
-            Bobby.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(11), 9));
-            Bobby.VendorEquipmentInventory.Add(new InventoryEquipment(FindEquipmentByID(12), 4));
-
-            vendors.Add(John);
-            vendors.Add(Bobby);
-        }
-
-        private static void PopulateEnemyLoots()
-        {
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatTail, "Rat Tail"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDRatCarcass, "Rat Carcass"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDSnakeFang, "Snake Fang"));
-            enemyLoots.Add(new EnemyLoot(EnemyLootIDOgreTooth, "Ogre Tooth"));
-        }
-
-        private static void PopulateEnemies()
-        {
-            Enemy rat = new Enemy(EnemyIDRat, 1, "Rat", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10);
-            rat.ImageName = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\Rat.png";
-            Enemy snake = new Enemy(EnemyIDSnake, 3, "Snake", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15);
-            snake.ImageName = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\Snake.png";
-            Enemy ogre = new Enemy(EnemyIDOgre, 10, "Ogre", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100);
-            Enemy dragon = new Enemy(EnemyIDDragon, 20, "Dragon", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000);
-
-            rat.LootTable.Add(FindEnemyLootByID(1));
-            rat.LootTable.Add(FindEnemyLootByID(2));
-            snake.LootTable.Add(FindEnemyLootByID(3));
-            ogre.LootTable.Add(FindEnemyLootByID(4));
-
-            enemies.Add(rat);
-            enemies.Add(snake);
-            enemies.Add(ogre);
-            enemies.Add(dragon);
-        }
-
-        private static void PopulateQuests()
-        {
-            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place", FindEnemyByID(1), 3);
-            cleanTheSewers.RewardGold = 10;
-
-            Quest antidoteConcoction = new GatheringQuest(QuestIDAntidoteConcoction, "Antidote Concoction", "Bring me 3 snake fangs so I can make the antidote", FindEnemyLootByID(3), 3);
-
-            quests.Add(cleanTheSewers);
-            quests.Add(antidoteConcoction);
-        }
-
-        private static void PopulateSpells()
-        {
-            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
-            spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 10, 50));
-            spells.Add(new ReplenishingSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
-        }
-    */
-
-
-        public static void ViewSpells()
-        {
-            foreach (Spell spell in spells)
-            {
-                Console.WriteLine(spell.ToString());
-                Console.ReadKey();
-            }
         }
 
         public static void ViewItems()
@@ -281,6 +214,15 @@ namespace Engine
             foreach (Equipment equipment in equipments)
             {
                 Console.WriteLine(equipment.ToString());
+                Console.ReadKey();
+            }
+        }
+
+        public static void ViewSpells()
+        {
+            foreach (Spell spell in spells)
+            {
+                Console.WriteLine(spell.ToString());
                 Console.ReadKey();
             }
         }
@@ -303,19 +245,6 @@ namespace Engine
             }
         }
 
-        //Finds a specific enemy loot based on ID
-        public static EnemyLoot FindEnemyLootByID(int ID)
-        {
-            foreach (EnemyLoot enemyLoot in enemyLoots)
-            {
-                if (enemyLoot.ID == ID)
-                {
-                    return enemyLoot;
-                }
-            }
-            return null;
-        }
-
         //Finds a specific enemy based on ID
         public static Enemy FindEnemyByID(int ID)
         {
@@ -324,6 +253,32 @@ namespace Engine
                 if(enemy.ID == ID)
                 {
                     return enemy;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific item based on ID
+        public static Item FindItemByID(int ID)
+        {
+            foreach (Item item in items)
+            {
+                if (item.ID == ID)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific equipment piece based on ID
+        public static Equipment FindEquipmentByID(int ID)
+        {
+            foreach (Equipment equipment in equipments)
+            {
+                if (equipment.ID == ID)
+                {
+                    return equipment;
                 }
             }
             return null;
@@ -355,31 +310,6 @@ namespace Engine
             return null;
         }
 
-        //Finds a specific item based on ID
-        public static Item FindItemByID(int ID)
-        {
-            foreach(Item item in items)
-            {
-                if(item.ID == ID)
-                {
-                    return item;
-                }
-            }
-            return null;
-        }
-
-        //Finds a specific equipment piece based on ID
-        public static Equipment FindEquipmentByID(int ID)
-        {
-            foreach(Equipment equipment in equipments)
-            {
-                if(equipment.ID == ID)
-                {
-                    return equipment;
-                }
-            }
-            return null;
-        }
 
         //Finds a specific vendor based on ID
         public static Vendor FindVendorByID(int ID)
@@ -406,19 +336,5 @@ namespace Engine
             }
             return null;
         }
-
-        /*public static Enemy CreateEnemy(int ID)
-        {
-            foreach (Enemy enemy in enemies)
-            {
-                if(enemy.ID == ID)
-                {
-                    return new Enemy(enemy.ID, enemy.Level, enemy.Name, enemy.MaximumHealth, enemy.MaximumMana, enemy.Attack,
-                        enemy.Defense, enemy.Luck, enemy.Speed, enemy.Intellect, enemy.Resistance, enemy.CriticalChanceRate,
-                        enemy.DodgeChanceRate, enemy.Gold, enemy.ExperiencePoints);
-                }
-            }
-            return null;
-        }*/
     }
 }
