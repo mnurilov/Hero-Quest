@@ -28,15 +28,14 @@ namespace Engine
             this.LootTable = lootTable;
         }
 
-        //WORK NEEDS TO BE DONE
-        public int Attack(Player player)
+        public int Attack(Player player, ref GameSession.BattleResult battleResult)
         {
             int damage = 0;
 
             //If the player would dodge the attack do not calculate the damage
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= player.DodgeChanceRate)
             {
-                Console.WriteLine("{0} missed", Name);
+                battleResult = GameSession.BattleResult.Missed;
                 return damage;
             }
 
@@ -44,14 +43,16 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(0, 100) <= CriticalChanceRate)
             {
                 //Double the damage
+                battleResult = GameSession.BattleResult.Critical;
                 damage = (((Strength * Strength) / (Strength + player.Defense)) * 2) * 2;
-                Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, player.Name);
             }
+            //Else the enemy would normally strike the player then calculate the damage accordingly
             else
             {
+                battleResult = GameSession.BattleResult.Normal;
                 damage = ((Strength * Strength) / (Strength + player.Defense)) * 2;
-                Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, player.Name);
             }
+
             return damage;
         }
 

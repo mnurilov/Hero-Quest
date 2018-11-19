@@ -21,7 +21,6 @@ namespace Engine
 
         public Vendor VendorInLocation { get; set; }
         public Quest QuestInLocation { get; set; }
-        public Enemy CurrentEnemy { get; set; }
         //Key is the enemy, Value is the weight (The appearance rate of the enemy)
         public Dictionary<Enemy, int> EnemiesInLocation { get; set; }
 
@@ -48,13 +47,8 @@ namespace Engine
             }
         }
 
-        public void SetEnemy()
-        {
-            CurrentEnemy = GetEnemy();
-        }
-
         //Selects an enemy based on the weights given to them
-        private Enemy GetEnemy()
+        public Enemy SelectEnemy()
         {
             int totalWeight = 0;
             Enemy selectedEnemy = null;

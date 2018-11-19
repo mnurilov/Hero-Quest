@@ -12,7 +12,8 @@ namespace Engine
     {
         public Player CurrentPlayer;
         public Enemy CurrentEnemy;
-        //public Vendor CurrentVendor;
+        //Holds the result of a battle whether an entity missed, normally hit, or critical hit their opponent
+        public enum BattleResult { Missed, Normal, Critical}
         public event MyEventHandler OnMessagedRaised;
 
         public GameSession()
@@ -21,6 +22,8 @@ namespace Engine
             //CurrentEnemy = World.CreateNewLocationEnemy(new Enemy(World.FindEnemyByID(1), 10));
         }
 
+
+        /*
         public void AttackCommand()
         {
             string attackResult = "";
@@ -74,7 +77,7 @@ namespace Engine
 
         public void RunCommand()
         {
-            if(CurrentPlayer.Run(CurrentPlayer.CurrentLocation.CurrentEnemy) == true)
+            if(CurrentPlayer.Run(CurrentEnemy) == true)
             { 
                 RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
             }
@@ -88,28 +91,28 @@ namespace Engine
         {
             CurrentPlayer.MoveNorth();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
         }
 
         public void MoveSouthCommand()
         {
             CurrentPlayer.MoveSouth();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
         }
 
         public void MoveWestCommand()
         {
             CurrentPlayer.MoveWest();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
         }
 
         public void MoveEastCommand()
         {
             CurrentPlayer.MoveEast();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.CurrentEnemy;
+            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
 
         }
 
@@ -117,5 +120,6 @@ namespace Engine
         {
             OnMessagedRaised?.Invoke(this, new MessageEventArgs(message));
         }
+        */
     }
 }

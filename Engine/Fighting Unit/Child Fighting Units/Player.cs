@@ -435,8 +435,8 @@ namespace Engine
             Console.WriteLine(CurrentLocation.ToString());
             if (CurrentLocation.EncounterTriggered())
             {
-                CurrentLocation.SetEnemy();
-                Console.WriteLine("You have encountered a random {0}", CurrentLocation.CurrentEnemy.Name);
+                //CurrentLocation.SetEnemy();
+                //Console.WriteLine("You have encountered a random {0}", CurrentLocation.CurrentEnemy.Name);
                 //PlayerState = State.Battle;
             }
         }
@@ -474,15 +474,14 @@ namespace Engine
         }
 
     
-        public int Attack(Enemy enemy, ref string attackResult)
+        public int Attack(Enemy enemy, ref GameSession.BattleResult battleResult)
         {
             int damage = 0;
 
             //If the enemy would dodge the attack do not calculate damage
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
-                attackResult = "Missed";
-                //Console.WriteLine("{0} missed", Name);
+                battleResult = GameSession.BattleResult.Missed;
                 return 0;
             }
 
@@ -490,18 +489,16 @@ namespace Engine
             if(RandomNumberGenerator.RandomNumberBetween(1, 100) <= CriticalChanceRate)
             {
                 //Double the damage
+                battleResult = GameSession.BattleResult.Critical;
                 damage = (((Strength * Strength) / (Strength + enemy.Defense)) * 2) * 2;
-                attackResult = "Critical";
-                //Console.WriteLine("{0} critical hit and did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
+            //Else the player would normally strike the enemy then calculate the damage accordingly
             else
             {
+                battleResult = GameSession.BattleResult.Normal;
                 damage = ((Strength * Strength) / (Strength + enemy.Defense)) * 2;
-                attackResult = "Normal";
-                //Console.WriteLine("{0} did {1} points of damage to {2}", Name, damage, enemy.Name);
             }
 
-            //This is bad the player shouldnt affect the enemy health from inside in the class it should just calculate the damage
             return damage;
         }
 
