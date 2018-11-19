@@ -10,6 +10,7 @@ namespace Engine
     {
         public int DamageAmount { get; set; }
 
+
         public DamageSpell(int id, string name, string description, int manaCost, int damageAmount) : base(id, name, description, manaCost)
         {
             this.DamageAmount = damageAmount;

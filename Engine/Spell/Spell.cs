@@ -13,6 +13,7 @@ namespace Engine
         public string Description { get; set; }
         public int ManaCost { get; set; }
 
+
         public Spell(int id, string name, string description, int manaCost)
         {
             this.ID = id;

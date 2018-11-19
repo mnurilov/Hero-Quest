@@ -10,6 +10,7 @@ namespace Engine
     {
         private static Random random = new Random();
 
+
         public static int RandomNumberBetween (int minimumValue, int maximumValue)
         {
             return random.Next(minimumValue, maximumValue + 1);

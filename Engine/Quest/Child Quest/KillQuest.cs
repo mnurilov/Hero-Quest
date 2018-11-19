@@ -11,6 +11,7 @@ namespace Engine
         //Key is the enemy, Value is quantity of the enemy
         public Dictionary<Enemy, int> RequiredEnemies { get; set; }
         
+
         public KillQuest(int id, string name, string description, Person person, Dictionary<Enemy, int> requiredEnemies,
             int rewardGold = 0, int rewardExperience = 0, Item rewardItem = null, Equipment rewardEquipment = null, 
             Spell rewardSpell = null): base(id, name, description, person, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)

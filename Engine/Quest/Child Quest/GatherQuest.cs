@@ -11,6 +11,7 @@ namespace Engine
         //Key is the enemy loot, Value is quantity of the enemy loot
         public Dictionary<EnemyLoot, int> RequiredEnemyLoots { get; set; }
 
+
         public GatherQuest(int id, string name, string description, Person person, Dictionary<EnemyLoot, int> requiredEnemyLoots,
             int rewardGold = 0, int rewardExperience = 0, Item rewardItem = null, Equipment rewardEquipment = null,
             Spell rewardSpell = null) : base(id, name, description, person, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)

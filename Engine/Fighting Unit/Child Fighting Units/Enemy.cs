@@ -14,6 +14,7 @@ namespace Engine
         public int RewardExperiencePoints { get; set; }
         public List<EnemyLoot> LootTable { get; set; }
 
+
         public Enemy (int id, string name, string description, int maximumHealth, int maximumMana, int strength, 
             int defense, int luck, int speed, int intellect, int resistance, double criticalChanceRate,
             double dodgeChanceRate, int rewardGold, int rewardExperiencePoints, List<EnemyLoot> lootTable = null)

@@ -11,6 +11,7 @@ namespace Engine
         //Required location to complete the quest
         public Location RequiredLocation { get; set; }
         
+
         public TravelQuest(int id, string name, string description, Person person, Location requiredLocation,
             int rewardGold = 0, int rewardExperience = 0, Item rewardItem = null, Equipment rewardEquipment = null,
             Spell rewardSpell = null) : base(id, name, description, person, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)

@@ -12,16 +12,19 @@ namespace Engine
         public string Name { get; set; }
         public string Description { get; set; }
         public int EncounterRate { get; set; }
+
         //Connects the locations together
         public Location LocationToTheNorth { get; set; }
         public Location LocationToTheSouth { get; set; }
         public Location LocationToTheWest { get; set; }
         public Location LocationToTheEast { get; set; }
+
         public Vendor VendorInLocation { get; set; }
         public Quest QuestInLocation { get; set; }
         public Enemy CurrentEnemy { get; set; }
         //Key is the enemy, Value is the weight (The appearance rate of the enemy)
         public Dictionary<Enemy, int> EnemiesInLocation { get; set; }
+
 
         //Add the vendor and quest as a constructor later on
         public Location(int id, string name, string description, int encounterRate)

@@ -10,6 +10,7 @@ namespace Engine
     {
         public int ReplenishAmount { get; set; }
 
+
         public ReplenishSpell(int id, string name, string description, int manaCost, int replenishAmount) : base(id, name, description, manaCost)
         {
             this.ReplenishAmount = replenishAmount;

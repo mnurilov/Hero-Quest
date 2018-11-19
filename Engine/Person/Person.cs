@@ -13,6 +13,7 @@ namespace Engine
         public string Description { get; set; }
         public string Statement { get; set; }
 
+
         public Person(int id, string name, string description, string statement)
         {
             this.ID = id;

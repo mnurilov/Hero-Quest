@@ -11,10 +11,13 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //Vendor's stuff that is for sale
         //Key is the item, Value is the quantity of the item
         public Dictionary<Item, int> VendorItemInventory { get; set; }
         public List<Equipment> VendorEquipmentInventory { get; set; }
         public List<Spell> VendorSpellInventory { get; set; }
+
 
         public Vendor(int id, string name, string description, Dictionary<Item, int> vendorItemInventory = null, 
             List<Equipment> vendorEquipmentInventory = null, List<Spell> vendorSpellInventory = null)

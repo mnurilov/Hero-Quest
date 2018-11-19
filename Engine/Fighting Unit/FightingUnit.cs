@@ -70,6 +70,7 @@ namespace Engine
         public double CriticalChanceRate { get; set; }
         public double DodgeChanceRate { get; set; }
 
+
         public FightingUnit(string name, int maximumHealth, int maximumMana, int strength, int defense, 
             int luck, int speed, int intellect, int resistance, double criticalChanceRate, double dodgeChanceRate)
         {

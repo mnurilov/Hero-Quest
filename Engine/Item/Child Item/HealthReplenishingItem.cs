@@ -10,6 +10,7 @@ namespace Engine
     {
         public int HealthReplenishingValue { get; set; }
 
+
         public HealthReplenishingItem(int id, string name, string description, int healthReplenishingValue) : base(id, name, description)
         {
             this.HealthReplenishingValue = healthReplenishingValue;
