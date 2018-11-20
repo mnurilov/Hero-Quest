@@ -17,11 +17,8 @@ namespace UIWindowsForm
 
         public MainScreen()
         {
-            //Application.Idle += HandleApplicationIdle;
             InitializeComponent();
-            //gameSession.CurrentPlayer.StatsChanged += UpdateStats;
             gameSession.OnMessagedRaised += DisplayBattleText;
-            //Include a message for the playing being at the home
             UpdateButtons();
             UpdateStats();
         }
@@ -105,10 +102,9 @@ namespace UIWindowsForm
 
         private void UpdateButtons()
         {
-            /*
-            switch (Player.PlayerState)
+            switch (gameSession.GameStates)
             {
-                case Player.State.Travel:
+                case GameSession.GameState.Travel:
                     if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth == null)
                         btnNorth.Enabled = false;
                     else
@@ -142,7 +138,7 @@ namespace UIWindowsForm
                     btnItem.Visible = false;
                     btnRun.Visible = false;
                     break;
-                case Player.State.Shop:
+                case GameSession.GameState.Shop:
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
                     btnWest.Enabled = false;
@@ -152,7 +148,7 @@ namespace UIWindowsForm
                     btnItem.Visible = false;
                     btnRun.Visible = false;
                     break;
-                case Player.State.Battle:
+                case GameSession.GameState.Battle:
                     //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
@@ -165,7 +161,6 @@ namespace UIWindowsForm
                     btnRun.Visible = true;
                     break;
             }
-            */
         }
 
         private void UpdateStats()

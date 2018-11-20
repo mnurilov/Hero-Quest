@@ -53,6 +53,11 @@ namespace Engine
             int totalWeight = 0;
             Enemy selectedEnemy = null;
 
+            if (EnemiesInLocation == null)
+            {
+                return selectedEnemy;
+            }
+
             foreach (KeyValuePair<Enemy, int> weightedEnemy in EnemiesInLocation)
             {
                 totalWeight += weightedEnemy.Value;

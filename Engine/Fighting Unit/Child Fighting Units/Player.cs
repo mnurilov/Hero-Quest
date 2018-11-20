@@ -535,7 +535,6 @@ namespace Engine
             return spellDamage;
         }
 
-
         //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEM
         public bool Run(Enemy enemy)
         {

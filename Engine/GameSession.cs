@@ -13,16 +13,35 @@ namespace Engine
         public Player CurrentPlayer;
         public Enemy CurrentEnemy;
         //Holds the result of a battle whether an entity missed, normally hit, or critical hit their opponent
-        public enum BattleResult { Missed, Normal, Critical}
+        public enum BattleResult { Missed, Normal, Critical }
+        public enum GameState { Introduction, Travel, Battle, Shop, GameOver }
+        public enum Transition { CreatePlayer, Encounter, ExitBattle, EnterShop, ExitShop, Death }
+        public GameState GameStates;
+        public Transition Transitions;
         public event MyEventHandler OnMessagedRaised;
 
         public GameSession()
         {
             CurrentPlayer = new Player(1, "Bob", Player.Class.Thief);
-            //CurrentEnemy = World.CreateNewLocationEnemy(new Enemy(World.FindEnemyByID(1), 10));
         }
 
+        public void Action()
+        {
+            switch (GameStates)
+            {
+                case GameState.Introduction:
+                    break;
+                case GameState.Travel:
 
+                    break;
+                case GameState.Battle:
+                    break;
+                case GameState.Shop:
+                    break;
+                case GameState.GameOver:
+                    break;
+            }
+        }
         
         public void AttackCommand()
         {
@@ -113,13 +132,11 @@ namespace Engine
             CurrentPlayer.MoveEast();
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
             CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
-
         }
 
         public void RaiseMessage(string message)
         {
             OnMessagedRaised?.Invoke(this, new MessageEventArgs(message));
         }
-        
     }
 }

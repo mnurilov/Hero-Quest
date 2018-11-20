@@ -98,6 +98,8 @@ namespace Engine
             items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", "A simple ether", 4));
             items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", "An advanced ether", 16));
             items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", "An elite ether", 36));
+            items.Add(new EnemyLoot(ItemIDRatTail, "Rat Tail", "A severed tail"));
+            items.Add(new EnemyLoot(ItemIDSnakeFang, "Snake Fang", "A fang of a snake"));
         }
 
         private static void PopulateEquipments()
