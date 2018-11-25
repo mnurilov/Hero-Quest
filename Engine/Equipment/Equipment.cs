@@ -11,6 +11,7 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public int GoldValue { get; set; }
 
         //Bonuses offered by the equipment piece
         public int HealthBonus { get; set; }
@@ -23,12 +24,13 @@ namespace Engine
         public int ResistanceBonus { get; set; }
 
 
-        public Equipment(int id, string name, string description, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
+        public Equipment(int id, string name, string description, int goldValue, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
             int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0, int resistanceBonus = 0)
         {
             this.ID = id;
             this.Name = name;
             this.Description = description;
+            this.GoldValue = goldValue;
             this.HealthBonus = healthBonus;
             this.ManaBonus = manaBonus;
             this.AttackBonus = attackBonus;

@@ -19,6 +19,9 @@ namespace UIWindowsForm
         {
             InitializeComponent();
             gameSession.OnMessagedRaised += DisplayBattleText;
+            //Introduction introduction = new Introduction();
+            //introduction.StartPosition = FormStartPosition.CenterParent;
+            //introduction.ShowDialog(this);
             UpdateButtons();
             UpdateStats();
         }
@@ -127,11 +130,11 @@ namespace UIWindowsForm
 
                     if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation == null)
                     {
-                        btnShop.Enabled = false;
+                        btnShop.Visible = false;
                         btnShopExit.Visible = false;
                     }
                     else
-                        btnShop.Enabled = true;
+                        btnShop.Visible = true;
 
                     btnAttack.Visible = false;
                     btnSpell.Visible = false;
@@ -147,6 +150,8 @@ namespace UIWindowsForm
                     btnSpell.Visible = false;
                     btnItem.Visible = false;
                     btnRun.Visible = false;
+                    btnShop.Enabled = false;
+                    btnShopExit.Visible = true;
                     break;
                 case GameSession.GameState.Battle:
                     //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
@@ -154,7 +159,7 @@ namespace UIWindowsForm
                     btnSouth.Enabled = false;
                     btnWest.Enabled = false;
                     btnEast.Enabled = false;
-                    btnShop.Enabled = false;
+                    btnShop.Visible = false;
                     btnAttack.Visible = true;
                     btnSpell.Visible = true;
                     btnItem.Visible = true;
@@ -199,6 +204,7 @@ namespace UIWindowsForm
             if(gameSession.CurrentEnemy != null)
             {
                 lblEnemyName.Text = gameSession.CurrentEnemy.Name;
+                lblEnemyDescription.Text = gameSession.CurrentEnemy.Description;
             }
         }
 
@@ -210,7 +216,7 @@ namespace UIWindowsForm
 
         private void DisplayBattleText(object o, MessageEventArgs e)
         {
-            rtbBattle.Text = e.Message;
+            rtbBattle.Text += e.Message + "\n";
         }
 
         private void pictureBox1_Click(object sender, EventArgs e)
@@ -231,6 +237,45 @@ namespace UIWindowsForm
         private void lblEnemyName_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void dgv_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+        }
+
+        private void btnData_Click(object sender, EventArgs e)
+        {
+            dgvItems.Rows.Clear();
+            foreach (KeyValuePair<Item, int> kvp in gameSession.CurrentPlayer.PlayerItems)
+            {
+                if (!CheckIfInDGV(kvp.Key.ID))
+                {
+                    dgvItems.Rows.Add(kvp.Key.ID, kvp.Key.Name, kvp.Key.Description, kvp.Value);
+                }
+            }
+        }
+
+        private bool CheckIfInDGV(int id)
+        {
+            foreach (DataGridViewRow row in dgvItems.Rows)
+            {
+                if(row.Cells[0].Value != null)
+                {
+                    if (row.Cells[0].Value.ToString() == id.ToString())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void btnShop_Click(object sender, EventArgs e)
+        {
+            gameSession.EnterShop();
+            TradingScreen tradingScreen = new TradingScreen(gameSession);
+            tradingScreen.StartPosition = FormStartPosition.CenterParent;
+            tradingScreen.ShowDialog(this);
         }
     }
 }

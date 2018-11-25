@@ -11,7 +11,8 @@ namespace Engine
         public int ManaReplenishingValue { get; set; }
 
 
-        public ManaReplenishingItem(int id, string name, string description, int manaReplenishingValue) : base(id, name, description)
+        public ManaReplenishingItem(int id, string name, string description, int manaReplenishingValue, int goldValue)
+            : base(id, name, description, goldValue)
         {
             this.ManaReplenishingValue = manaReplenishingValue;
         }

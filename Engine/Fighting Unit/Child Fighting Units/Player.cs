@@ -338,6 +338,38 @@ namespace Engine
             UpdatePlayerStats();
         }
 
+        public void GainEnemyRewards(Enemy enemy)
+        {
+            Gold += enemy.RewardGold;
+            GainExperience(enemy.RewardExperiencePoints);
+        }
+
+        //Check is if is the player's turn, return true if it is
+        public bool IsPlayerTurn(Enemy enemy)
+        {
+            //Determines player's turn based on speed
+            if (Speed > enemy.Speed)
+            {
+                return true;
+            }
+            else if (Speed < enemy.Speed)
+            {
+                return false;
+            }
+            //If the speeds are equal decide randomly
+            else
+            {
+                int turnDecider = RandomNumberGenerator.RandomNumberBetween(1, 100);
+                if (turnDecider > 50)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
 
         /*
         public void UseItem(Item item)
@@ -546,6 +578,83 @@ namespace Engine
             return false;
         }
 
+
+        //Shop Functions
+        //Returns true if player successfully bought the item, false otherwise
+        public bool BuyItem(Item item)
+        {
+            if(Gold >= item.GoldValue)
+            {
+                //If the player already has that item increase its quantity
+                if (PlayerItems.ContainsKey(item))
+                {
+                    PlayerItems[item]++;
+                }
+                //Otherwise add the item to the players inventory
+                else
+                {
+                    PlayerItems.Add(item, 1);
+                }
+                
+                Gold -= item.GoldValue;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Returns true if player successfully bought the equipment, false otherwise
+        public bool BuyEquipment(Equipment equipment)
+        {
+            if (Gold >= equipment.GoldValue)
+            {
+                //If the player already has that item he does not need to buy another
+                if (PlayerEquipments.Contains(equipment))
+                {
+                    return false;
+                }
+                //If the player doesnt have the item then add it to the player's equipment inventory
+                else
+                {
+                    PlayerEquipments.Add(equipment);
+                    Gold -= equipment.GoldValue;
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Returns true if player successfully bought the spell, false otherwise
+        public bool BuySpell(Spell spell)
+        {
+            if (Gold >= spell.GoldValue)
+            {
+                //If the player already has that spell he does not need to buy another
+                if (PlayerSpells.Contains(spell))
+                {
+                    return false;
+                }
+                //If the player doesnt have the item then add it to the player's equipment inventory
+                else
+                {
+                    PlayerSpells.Add(spell);
+                    Gold -= spell.GoldValue;
+                    return true;
+                }
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        
         public override string ToString()
         {
             string info = "";

@@ -8,7 +8,7 @@ namespace Engine
 {
     public class QuestItem : Item
     {
-        public QuestItem(int id, string name, string description) : base(id, name, description)
+        public QuestItem(int id, string name, string description, int goldValue) : base(id, name, description, goldValue)
         {
 
         }

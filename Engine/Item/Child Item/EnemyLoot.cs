@@ -8,7 +8,7 @@ namespace Engine
 {
     public class EnemyLoot : Item
     {
-        public EnemyLoot(int id, string name, string description) : base(id, name, description)
+        public EnemyLoot(int id, string name, string description, int goldValue) : base(id, name, description, goldValue)
         {
 
         }

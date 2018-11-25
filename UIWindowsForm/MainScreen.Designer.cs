@@ -57,7 +57,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.lblClass = new System.Windows.Forms.Label();
             this.rtbBattle = new System.Windows.Forms.RichTextBox();
-            this.btnShopExit = new System.Windows.Forms.Button();
             this.btnAttack = new System.Windows.Forms.Button();
             this.btnItem = new System.Windows.Forms.Button();
             this.btnSpell = new System.Windows.Forms.Button();
@@ -66,8 +65,23 @@
             this.lblLocationName = new System.Windows.Forms.Label();
             this.lblLocationDescription = new System.Windows.Forms.Label();
             this.lblEnemyName = new System.Windows.Forms.Label();
+            this.lblEnemyDescription = new System.Windows.Forms.Label();
+            this.tbcInventory = new System.Windows.Forms.TabControl();
+            this.tabItems = new System.Windows.Forms.TabPage();
+            this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.tabEquipments = new System.Windows.Forms.TabPage();
+            this.tabSpells = new System.Windows.Forms.TabPage();
+            this.tabQuests = new System.Windows.Forms.TabPage();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colDescription = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnData = new System.Windows.Forms.Button();
             this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
             this.pbLocationPicture = new System.Windows.Forms.PictureBox();
+            this.tbcInventory.SuspendLayout();
+            this.tabItems.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).BeginInit();
             this.SuspendLayout();
@@ -75,7 +89,7 @@
             // btnNorth
             // 
             this.btnNorth.Enabled = false;
-            this.btnNorth.Location = new System.Drawing.Point(681, 396);
+            this.btnNorth.Location = new System.Drawing.Point(744, 396);
             this.btnNorth.Name = "btnNorth";
             this.btnNorth.Size = new System.Drawing.Size(102, 37);
             this.btnNorth.TabIndex = 3;
@@ -85,7 +99,7 @@
             // 
             // btnSouth
             // 
-            this.btnSouth.Location = new System.Drawing.Point(681, 482);
+            this.btnSouth.Location = new System.Drawing.Point(744, 482);
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(102, 37);
             this.btnSouth.TabIndex = 4;
@@ -95,7 +109,7 @@
             // 
             // btnWest
             // 
-            this.btnWest.Location = new System.Drawing.Point(573, 439);
+            this.btnWest.Location = new System.Drawing.Point(636, 439);
             this.btnWest.Name = "btnWest";
             this.btnWest.Size = new System.Drawing.Size(102, 37);
             this.btnWest.TabIndex = 6;
@@ -105,7 +119,7 @@
             // 
             // btnEast
             // 
-            this.btnEast.Location = new System.Drawing.Point(789, 439);
+            this.btnEast.Location = new System.Drawing.Point(852, 439);
             this.btnEast.Name = "btnEast";
             this.btnEast.Size = new System.Drawing.Size(102, 37);
             this.btnEast.TabIndex = 5;
@@ -115,12 +129,13 @@
             // 
             // btnShop
             // 
-            this.btnShop.Location = new System.Drawing.Point(120, 348);
+            this.btnShop.Location = new System.Drawing.Point(113, 418);
             this.btnShop.Name = "btnShop";
             this.btnShop.Size = new System.Drawing.Size(78, 110);
             this.btnShop.TabIndex = 7;
             this.btnShop.Text = "Shop";
             this.btnShop.UseVisualStyleBackColor = true;
+            this.btnShop.Click += new System.EventHandler(this.btnShop_Click);
             // 
             // label1
             // 
@@ -311,24 +326,15 @@
             // 
             // rtbBattle
             // 
-            this.rtbBattle.Location = new System.Drawing.Point(566, 12);
+            this.rtbBattle.Location = new System.Drawing.Point(560, 15);
             this.rtbBattle.Name = "rtbBattle";
             this.rtbBattle.Size = new System.Drawing.Size(330, 350);
             this.rtbBattle.TabIndex = 31;
             this.rtbBattle.Text = "";
             // 
-            // btnShopExit
-            // 
-            this.btnShopExit.Location = new System.Drawing.Point(39, 348);
-            this.btnShopExit.Name = "btnShopExit";
-            this.btnShopExit.Size = new System.Drawing.Size(75, 110);
-            this.btnShopExit.TabIndex = 32;
-            this.btnShopExit.Text = "Exit";
-            this.btnShopExit.UseVisualStyleBackColor = true;
-            // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(218, 426);
+            this.btnAttack.Location = new System.Drawing.Point(1010, 409);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(153, 50);
             this.btnAttack.TabIndex = 33;
@@ -338,7 +344,7 @@
             // 
             // btnItem
             // 
-            this.btnItem.Location = new System.Drawing.Point(218, 495);
+            this.btnItem.Location = new System.Drawing.Point(1010, 478);
             this.btnItem.Name = "btnItem";
             this.btnItem.Size = new System.Drawing.Size(153, 50);
             this.btnItem.TabIndex = 34;
@@ -348,7 +354,7 @@
             // 
             // btnSpell
             // 
-            this.btnSpell.Location = new System.Drawing.Point(383, 426);
+            this.btnSpell.Location = new System.Drawing.Point(1175, 409);
             this.btnSpell.Name = "btnSpell";
             this.btnSpell.Size = new System.Drawing.Size(153, 50);
             this.btnSpell.TabIndex = 35;
@@ -358,7 +364,7 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(383, 495);
+            this.btnRun.Location = new System.Drawing.Point(1175, 478);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(153, 50);
             this.btnRun.TabIndex = 36;
@@ -369,7 +375,7 @@
             // btnMap
             // 
             this.btnMap.Enabled = false;
-            this.btnMap.Location = new System.Drawing.Point(681, 439);
+            this.btnMap.Location = new System.Drawing.Point(744, 439);
             this.btnMap.Name = "btnMap";
             this.btnMap.Size = new System.Drawing.Size(102, 37);
             this.btnMap.TabIndex = 39;
@@ -406,6 +412,116 @@
             this.lblEnemyName.TabIndex = 42;
             this.lblEnemyName.Click += new System.EventHandler(this.lblEnemyName_Click);
             // 
+            // lblEnemyDescription
+            // 
+            this.lblEnemyDescription.AutoSize = true;
+            this.lblEnemyDescription.Location = new System.Drawing.Point(230, 458);
+            this.lblEnemyDescription.Name = "lblEnemyDescription";
+            this.lblEnemyDescription.Size = new System.Drawing.Size(0, 17);
+            this.lblEnemyDescription.TabIndex = 45;
+            // 
+            // tbcInventory
+            // 
+            this.tbcInventory.Controls.Add(this.tabItems);
+            this.tbcInventory.Controls.Add(this.tabEquipments);
+            this.tbcInventory.Controls.Add(this.tabSpells);
+            this.tbcInventory.Controls.Add(this.tabQuests);
+            this.tbcInventory.Location = new System.Drawing.Point(931, 15);
+            this.tbcInventory.Name = "tbcInventory";
+            this.tbcInventory.SelectedIndex = 0;
+            this.tbcInventory.Size = new System.Drawing.Size(439, 362);
+            this.tbcInventory.TabIndex = 46;
+            // 
+            // tabItems
+            // 
+            this.tabItems.Controls.Add(this.dgvItems);
+            this.tabItems.Location = new System.Drawing.Point(4, 25);
+            this.tabItems.Name = "tabItems";
+            this.tabItems.Padding = new System.Windows.Forms.Padding(3);
+            this.tabItems.Size = new System.Drawing.Size(431, 333);
+            this.tabItems.TabIndex = 0;
+            this.tabItems.Text = "Items";
+            this.tabItems.UseVisualStyleBackColor = true;
+            // 
+            // dgvItems
+            // 
+            this.dgvItems.AllowUserToAddRows = false;
+            this.dgvItems.AllowUserToDeleteRows = false;
+            this.dgvItems.AllowUserToResizeColumns = false;
+            this.dgvItems.AllowUserToResizeRows = false;
+            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colID,
+            this.colName,
+            this.colDescription,
+            this.colQuantity});
+            this.dgvItems.Location = new System.Drawing.Point(0, 0);
+            this.dgvItems.Name = "dgvItems";
+            this.dgvItems.RowTemplate.Height = 24;
+            this.dgvItems.Size = new System.Drawing.Size(431, 333);
+            this.dgvItems.TabIndex = 0;
+            this.dgvItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            // 
+            // tabEquipments
+            // 
+            this.tabEquipments.Location = new System.Drawing.Point(4, 25);
+            this.tabEquipments.Name = "tabEquipments";
+            this.tabEquipments.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEquipments.Size = new System.Drawing.Size(431, 333);
+            this.tabEquipments.TabIndex = 1;
+            this.tabEquipments.Text = "Equipments";
+            this.tabEquipments.UseVisualStyleBackColor = true;
+            // 
+            // tabSpells
+            // 
+            this.tabSpells.Location = new System.Drawing.Point(4, 25);
+            this.tabSpells.Name = "tabSpells";
+            this.tabSpells.Padding = new System.Windows.Forms.Padding(3);
+            this.tabSpells.Size = new System.Drawing.Size(431, 333);
+            this.tabSpells.TabIndex = 2;
+            this.tabSpells.Text = "Spells";
+            this.tabSpells.UseVisualStyleBackColor = true;
+            // 
+            // tabQuests
+            // 
+            this.tabQuests.Location = new System.Drawing.Point(4, 25);
+            this.tabQuests.Name = "tabQuests";
+            this.tabQuests.Padding = new System.Windows.Forms.Padding(3);
+            this.tabQuests.Size = new System.Drawing.Size(431, 333);
+            this.tabQuests.TabIndex = 3;
+            this.tabQuests.Text = "Quests";
+            this.tabQuests.UseVisualStyleBackColor = true;
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            // 
+            // colDescription
+            // 
+            this.colDescription.HeaderText = "Description";
+            this.colDescription.Name = "colDescription";
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            // 
+            // btnData
+            // 
+            this.btnData.Location = new System.Drawing.Point(331, 491);
+            this.btnData.Name = "btnData";
+            this.btnData.Size = new System.Drawing.Size(125, 37);
+            this.btnData.TabIndex = 47;
+            this.btnData.Text = "UPDATE DATA";
+            this.btnData.UseVisualStyleBackColor = true;
+            this.btnData.Click += new System.EventHandler(this.btnData_Click);
+            // 
             // pbEnemyPicture
             // 
             this.pbEnemyPicture.Location = new System.Drawing.Point(306, 270);
@@ -417,7 +533,8 @@
             // pbLocationPicture
             // 
             this.pbLocationPicture.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.pbLocationPicture.ImageLocation = "C:\\Users\\Michael\\Documents\\GitHub\\Hero-Quest\\Test\\House.png";
+            this.pbLocationPicture.ErrorImage = null;
+            this.pbLocationPicture.ImageLocation = "";
             this.pbLocationPicture.InitialImage = ((System.Drawing.Image)(resources.GetObject("pbLocationPicture.InitialImage")));
             this.pbLocationPicture.Location = new System.Drawing.Point(306, 57);
             this.pbLocationPicture.Name = "pbLocationPicture";
@@ -431,7 +548,10 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
-            this.ClientSize = new System.Drawing.Size(908, 549);
+            this.ClientSize = new System.Drawing.Size(1382, 549);
+            this.Controls.Add(this.btnData);
+            this.Controls.Add(this.tbcInventory);
+            this.Controls.Add(this.lblEnemyDescription);
             this.Controls.Add(this.pbEnemyPicture);
             this.Controls.Add(this.lblEnemyName);
             this.Controls.Add(this.lblLocationDescription);
@@ -442,7 +562,6 @@
             this.Controls.Add(this.btnSpell);
             this.Controls.Add(this.btnItem);
             this.Controls.Add(this.btnAttack);
-            this.Controls.Add(this.btnShopExit);
             this.Controls.Add(this.rtbBattle);
             this.Controls.Add(this.lblClass);
             this.Controls.Add(this.label2);
@@ -478,6 +597,9 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hero Quest";
             this.Load += new System.EventHandler(this.Form1_Load);
+            this.tbcInventory.ResumeLayout(false);
+            this.tabItems.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).EndInit();
             this.ResumeLayout(false);
@@ -515,7 +637,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label lblClass;
         private System.Windows.Forms.RichTextBox rtbBattle;
-        private System.Windows.Forms.Button btnShopExit;
         private System.Windows.Forms.Button btnAttack;
         private System.Windows.Forms.Button btnItem;
         private System.Windows.Forms.Button btnSpell;
@@ -526,6 +647,18 @@
         private System.Windows.Forms.Label lblLocationDescription;
         private System.Windows.Forms.Label lblEnemyName;
         private System.Windows.Forms.PictureBox pbEnemyPicture;
+        private System.Windows.Forms.Label lblEnemyDescription;
+        private System.Windows.Forms.TabControl tbcInventory;
+        private System.Windows.Forms.TabPage tabItems;
+        private System.Windows.Forms.DataGridView dgvItems;
+        private System.Windows.Forms.TabPage tabEquipments;
+        private System.Windows.Forms.TabPage tabSpells;
+        private System.Windows.Forms.TabPage tabQuests;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colDescription;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.Button btnData;
     }
 }
 

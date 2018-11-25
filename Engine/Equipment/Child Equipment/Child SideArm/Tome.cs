@@ -8,9 +8,9 @@ namespace Engine
 {
     public class Tome : SideArm
     {
-        public Tome(int id, string name, string description, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
+        public Tome(int id, string name, string description, int goldValue, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
             int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0, int resistanceBonus = 0)
-            : base(id, name, description, healthBonus, manaBonus, attackBonus, defenseBonus, luckBonus, speedBonus,
+            : base(id, name, description, goldValue, healthBonus, manaBonus, attackBonus, defenseBonus, luckBonus, speedBonus,
                   intellectBonus, resistanceBonus)
         {
 

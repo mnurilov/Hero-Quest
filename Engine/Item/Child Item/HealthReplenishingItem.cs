@@ -11,7 +11,8 @@ namespace Engine
         public int HealthReplenishingValue { get; set; }
 
 
-        public HealthReplenishingItem(int id, string name, string description, int healthReplenishingValue) : base(id, name, description)
+        public HealthReplenishingItem(int id, string name, string description, int healthReplenishingValue, int goldValue)
+            : base(id, name, description, goldValue)
         {
             this.HealthReplenishingValue = healthReplenishingValue;
         }

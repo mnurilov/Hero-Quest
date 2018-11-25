@@ -92,30 +92,30 @@ namespace Engine
 
         private static void PopulateItems()
         {
-            items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", "A simple potion", 5));
-            items.Add(new HealthReplenishingItem(ItemIDMegaPotion, "Mega Potion", "An advanced potion", 15));
-            items.Add(new HealthReplenishingItem(ItemIDHyperPotion, "Hyper Potion", "An elite potion", 30));
-            items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", "A simple ether", 4));
-            items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", "An advanced ether", 16));
-            items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", "An elite ether", 36));
-            items.Add(new EnemyLoot(ItemIDRatTail, "Rat Tail", "A severed tail"));
-            items.Add(new EnemyLoot(ItemIDSnakeFang, "Snake Fang", "A fang of a snake"));
+            items.Add(new HealthReplenishingItem(ItemIDBasicPotion, "Basic Potion", "A simple potion", 5, 5));
+            items.Add(new HealthReplenishingItem(ItemIDMegaPotion, "Mega Potion", "An advanced potion", 20, 15));
+            items.Add(new HealthReplenishingItem(ItemIDHyperPotion, "Hyper Potion", "An elite potion", 50, 30));
+            items.Add(new ManaReplenishingItem(ItemIDBasicEther, "Basic Ether", "A simple ether", 5, 4));
+            items.Add(new ManaReplenishingItem(ItemIDMegaEther, "Mega Ether", "An advanced ether", 20, 16));
+            items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", "An elite ether", 50, 36));
+            items.Add(new EnemyLoot(ItemIDRatTail, "Rat Tail", "A severed tail", 10));
+            items.Add(new EnemyLoot(ItemIDSnakeFang, "Snake Fang", "A fang of a snake", 30));
         }
 
         private static void PopulateEquipments()
         {
-            equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", "A crummy helmet", 5, 0, 0, 5, 0, 0, 0, 0));
-            equipments.Add(new ChestEquipment(ChestEquipmentIDBronzeChestPlate, "Bronze Chest Plate", "A crummy chest plate", 15, 0, 0, 15, 0, 0, 0, 0));
-            equipments.Add(new LegEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", "A crummy leggings", 0, 0, 0, 10, 0, 0, 0, 0));
-            equipments.Add(new Sword(WeaponEquipmentIDBronzeSword, "Bronze Sword", "A crummy sword", 0, 0, 10, 0, 0, 0, 0, 0));
-            equipments.Add(new Shield(ShieldEquipmentIDBronzeShield, "Bronze Shield", "A crummy shield", 0, 0, 0, 10, 0, 0, 0, 0));
+            equipments.Add(new HeadEquipment(HeadEquipmentIDBronzeHelmet, "Bronze Helmet", "A crummy helmet", 10, 5, 0, 0, 5, 0, 0, 0, 0));
+            equipments.Add(new ChestEquipment(ChestEquipmentIDBronzeChestPlate, "Bronze Chest Plate", "A crummy chest plate", 10, 15, 0, 0, 15, 0, 0, 0, 0));
+            equipments.Add(new LegEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", "A crummy leggings", 10, 0, 0, 0, 10, 0, 0, 0, 0));
+            equipments.Add(new Sword(WeaponEquipmentIDBronzeSword, "Bronze Sword", "A crummy sword", 10, 0, 0, 10, 0, 0, 0, 0, 0));
+            equipments.Add(new Shield(ShieldEquipmentIDBronzeShield, "Bronze Shield", "A crummy shield", 10, 0, 0, 0, 10, 0, 0, 0, 0));
         }
 
         private static void PopulateSpells()
         {
-            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 5, 10));
-            spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 10, 50));
-            spells.Add(new ReplenishSpell(SpellIDCure, "Cure", "Heals you", 10, 20));
+            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 10, 5, 10));
+            spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 20, 10, 50));
+            spells.Add(new ReplenishSpell(SpellIDCure, "Cure", "Heals you", 10, 10, 20));
         }
 
         private static void PopulateEnemies()
@@ -153,6 +153,7 @@ namespace Engine
         private static void PopulateVendors()
         {
             Vendor John = new Vendor(VendorIDJohn, "John", "A business man at heart", new Dictionary<Item, int>{ { FindItemByID(1), 4} });
+            John.VendorItemInventory.Add(FindItemByID(3), 5);
             
             vendors.Add(John);
         }
