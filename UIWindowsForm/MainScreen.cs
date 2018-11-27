@@ -131,7 +131,6 @@ namespace UIWindowsForm
                     if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation == null)
                     {
                         btnShop.Visible = false;
-                        btnShopExit.Visible = false;
                     }
                     else
                         btnShop.Visible = true;
@@ -151,7 +150,6 @@ namespace UIWindowsForm
                     btnItem.Visible = false;
                     btnRun.Visible = false;
                     btnShop.Enabled = false;
-                    btnShopExit.Visible = true;
                     break;
                 case GameSession.GameState.Battle:
                     //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
@@ -257,7 +255,7 @@ namespace UIWindowsForm
 
         private bool CheckIfInDGV(int id)
         {
-            foreach (DataGridViewRow row in dgvItems.Rows)
+            foreach (DataGridViewRow row in dgvEquipment.Rows)
             {
                 if(row.Cells[0].Value != null)
                 {
@@ -276,6 +274,32 @@ namespace UIWindowsForm
             TradingScreen tradingScreen = new TradingScreen(gameSession);
             tradingScreen.StartPosition = FormStartPosition.CenterParent;
             tradingScreen.ShowDialog(this);
+        }
+
+        private void btnEquip_Click(object sender, EventArgs e)
+        {
+            dgvEquipment.Rows.Clear();
+            foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
+            {
+                if (!CheckIfInDGV(equipment.ID))
+                {
+                    dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
+                }
+            }
+            dgvEquipment.CellClick += dgvEquipment_CellClick;
+        }
+
+        private void dgvEquipment_CellClick(object sender, DataGridViewCellEventArgs e)
+        { 
+            if (e.ColumnIndex == 2)
+            {
+                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the Item object for the selected item row
+                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+
+                gameSession.EquipCommand(equipment);
+            }
         }
     }
 }

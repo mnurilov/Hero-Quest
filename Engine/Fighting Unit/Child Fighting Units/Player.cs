@@ -205,7 +205,7 @@ namespace Engine
             }
         }
 
-        //Player Class
+        //Player Character Class
         public enum Class { Warrior, Mage, Thief }
         private Class PlayerClass;
 
@@ -370,104 +370,6 @@ namespace Engine
                 }
             }
         }
-
-        /*
-        public void UseItem(Item item)
-        {
-            if (item.GetType() == typeof(HealthReplenishingItem))
-            {
-                foreach (InventoryItem ii in PlayerItemInventory)
-                {
-                    if (ii.Item.ID == item.ID)
-                    {
-                        if (ii.Quantity > 0)
-                        {
-                            CurrentHealth += ((HealthReplenishingItem)ii.Item).HealthReplenishingValue;
-                            ii.Quantity--;
-                        }
-                    }
-                }
-            }
-        }
-
-        
-        public void AddItem(Item item)
-        {
-            if (item.GetType() == typeof(HealthReplenishingItem))
-            {
-                if (PlayerItemInventory.Count > 0)
-                {
-                    foreach (InventoryItem ii in PlayerItemInventory)
-                    {
-                        if (ii.Item.ID == item.ID)
-                        {
-                            if (ii.Quantity > 0)
-                            {
-                                ii.Quantity++;
-                            }
-                            break;
-                        }
-                        else
-                        {
-                            PlayerItemInventory.Add(new InventoryItem(item, 1));
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    PlayerItemInventory.Add(new InventoryItem(item, 1));
-                }
-            }
-        }
-        */
-
-        /*public void AddSpell(Spell spell)
-        {
-            if (spell.GetType() == typeof(DamageSpell))
-            {
-                if (PlayerSpells.Count > 0)
-                {
-                    foreach (Spell sp in PlayerSpells)
-                    {
-                        if (sp.ID == spell.ID)
-                        {
-                            Console.WriteLine("You already have that spell");
-                            break;
-                        }
-                        else
-                        {
-                            PlayerSpells.Add(spell);
-                            break;
-                        }
-                    }
-                }
-                else
-                {
-                    PlayerSpells.Add(spell);
-                }
-            }
-        }
-
-        public void BuyItem()
-        {
-
-        }
-
-        public void SellItem()
-        {
-
-        }
-
-        public void EnterShop()
-        {
-            //PlayerState = State.Shop;
-        }
-
-        public void ExitShop()
-        {
-            //PlayerState = State.Travel;
-        }*/
 
 
         //Movement Functions
@@ -653,6 +555,84 @@ namespace Engine
                 return false;
             }
         }
+
+
+        public bool Equip(Equipment equipment)
+        {
+            if(equipment is HeadEquipment)
+            {
+                CurrentHeadEquipment = equipment as HeadEquipment;
+                return true;
+            }
+            else if(equipment is ChestEquipment)
+            {
+                CurrentChestEquipment = equipment as ChestEquipment;
+                return true;
+            }
+            else if(equipment is LegEquipment)
+            {
+                CurrentLegEquipment = equipment as LegEquipment;
+                return true;
+            }
+            else if(equipment is Weapon)
+            {
+                if(equipment is Sword)
+                {
+                    if(PlayerClass == Class.Warrior)
+                    {
+                        CurrentWeapon = equipment as Sword;
+                        return true;
+                    }
+                }
+                else if(equipment is Staff)
+                {
+                    if (PlayerClass == Class.Mage)
+                    {
+                        CurrentWeapon = equipment as Staff;
+                        return true;
+                    }
+                }
+                else if(equipment is Dagger)
+                {
+                    if (PlayerClass == Class.Thief)
+                    {
+                        CurrentWeapon = equipment as Dagger;
+                        return true;
+                    }
+                }
+            }
+            else if (equipment is SideArm)
+            {
+                if(equipment is Shield)
+                {
+                    if (PlayerClass == Class.Warrior)
+                    {
+                        CurrentSideArm = equipment as Shield;
+                        return true;
+                    }
+                }
+                else if (equipment is Tome)
+                {
+                    if (PlayerClass == Class.Mage)
+                    {
+                        CurrentSideArm = equipment as Tome;
+                        return true;
+                    }
+                }
+                else if (equipment is ParryingDagger)
+                {
+                    if (PlayerClass == Class.Thief)
+                    {
+                        CurrentSideArm = equipment as ParryingDagger;
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+        //public void DeEquip()
 
         
         public override string ToString()

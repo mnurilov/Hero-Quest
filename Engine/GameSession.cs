@@ -26,6 +26,9 @@ namespace Engine
             CurrentPlayer = new Player(1, "Bob", Player.Class.Thief);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(1));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
             GameStates = GameState.Travel;
         }
 
@@ -229,6 +232,34 @@ namespace Engine
         {
             GameStates = GameState.Travel;
         }
+
+        public bool BuyItem(Item item)
+        {
+            CheckGameState(GameState.Shop);
+
+            if (CurrentPlayer.BuyItem(item))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        public void EquipCommand(Equipment equipment)
+        {
+            if (CurrentPlayer.Equip(equipment))
+            {
+                RaiseMessage("You successfully equipped " + equipment.Name);
+            }
+            else
+            {
+                RaiseMessage("You failed to equip " + equipment.Name);
+            }
+        }
+
         //Enemy Commands
         private void EnemyAttack(BattleResult battleResult)
         {
