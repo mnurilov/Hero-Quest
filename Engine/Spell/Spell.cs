@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Spell
+    public abstract class Spell
     {
         public int ID { get; set; }
         public string Name { get; set; }

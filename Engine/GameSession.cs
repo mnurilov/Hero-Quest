@@ -190,6 +190,7 @@ namespace Engine
             {
                 RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
                 CurrentPlayer.GainEnemyRewards(CurrentEnemy);
+                CurrentPlayer.CheckKillQuest(CurrentEnemy);
                 GameStates = GameState.Travel;
             }
         }
@@ -217,6 +218,7 @@ namespace Engine
             {
                 RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
                 CurrentPlayer.GainEnemyRewards(CurrentEnemy);
+                CurrentPlayer.CheckKillQuest(CurrentEnemy);
                 GameStates = GameState.Travel;
             }
         }
@@ -257,6 +259,14 @@ namespace Engine
             else
             {
                 RaiseMessage("You failed to equip " + equipment.Name);
+            }
+        }
+
+        public void CheckIfQuestCompleted(Quest quest)
+        {
+            if(CurrentPlayer.CheckIfQuestComplete(quest) == true)
+            {
+                CurrentPlayer.QuestRewards(quest);
             }
         }
 

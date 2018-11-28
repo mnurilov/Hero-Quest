@@ -135,6 +135,15 @@ namespace UIWindowsForm
                     else
                         btnShop.Visible = true;
 
+                    if(gameSession.CurrentPlayer.CurrentLocation.QuestInLocation == null)
+                    {
+                        btnTalk.Visible = false;
+                    }
+                    else
+                    {
+                        btnTalk.Visible = true;
+                    }
+
                     btnAttack.Visible = false;
                     btnSpell.Visible = false;
                     btnItem.Visible = false;
@@ -150,6 +159,7 @@ namespace UIWindowsForm
                     btnItem.Visible = false;
                     btnRun.Visible = false;
                     btnShop.Enabled = false;
+                    btnTalk.Visible = false;
                     break;
                 case GameSession.GameState.Battle:
                     //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
@@ -162,6 +172,7 @@ namespace UIWindowsForm
                     btnSpell.Visible = true;
                     btnItem.Visible = true;
                     btnRun.Visible = true;
+                    btnTalk.Visible = false;
                     break;
             }
         }
@@ -171,24 +182,15 @@ namespace UIWindowsForm
             lblClass.Text = gameSession.CurrentPlayer.GetClass().ToString();
             lblLevel.Text = gameSession.CurrentPlayer.Level.ToString();
             lblExperience.Text = gameSession.CurrentPlayer.CurrentExperiencePoints.ToString() + "/" + gameSession.CurrentPlayer.MaximumExperiencePoints.ToString();
-            lblHealth.Text = gameSession.CurrentPlayer.CurrentHealth.ToString() + "/" + gameSession.CurrentPlayer.MaximumHealth.ToString();
-            lblMana.Text = gameSession.CurrentPlayer.CurrentMana.ToString() + "/" + gameSession.CurrentPlayer.MaximumMana.ToString();
-            lblAttack.Text = gameSession.CurrentPlayer.Strength.ToString();
-            lblDefense.Text = gameSession.CurrentPlayer.Defense.ToString();
-            lblLuck.Text = gameSession.CurrentPlayer.Luck.ToString();
-            lblSpeed.Text = gameSession.CurrentPlayer.Speed.ToString();
-            lblIntellect.Text = gameSession.CurrentPlayer.Intellect.ToString();
-            lblResistance.Text = gameSession.CurrentPlayer.Resistance.ToString();
+            lblHealth.Text = gameSession.CurrentPlayer.CurrentHealth.ToString() + "/" + gameSession.CurrentPlayer.TotalMaximumHealth.ToString();
+            lblMana.Text = gameSession.CurrentPlayer.CurrentMana.ToString() + "/" + gameSession.CurrentPlayer.TotalMaximumMana.ToString();
+            lblAttack.Text = gameSession.CurrentPlayer.TotalStrength.ToString();
+            lblDefense.Text = gameSession.CurrentPlayer.TotalDefense.ToString();
+            lblLuck.Text = gameSession.CurrentPlayer.TotalLuck.ToString();
+            lblSpeed.Text = gameSession.CurrentPlayer.TotalSpeed.ToString();
+            lblIntellect.Text = gameSession.CurrentPlayer.TotalIntellect.ToString();
+            lblResistance.Text = gameSession.CurrentPlayer.TotalResistance.ToString();
         }
-
-        /*private void btnShopExit_Click(object sender, EventArgs e)
-        {
-            gameSession.CurrentPlayer.ExitShop();
-            //rtbShop.Text = "You left the shop";
-            btnShop.Visible = true;
-            btnShopExit.Visible = false;
-            UpdateButtons();
-        }*/
 
         private void UpdateLocation()
         {
@@ -246,16 +248,16 @@ namespace UIWindowsForm
             dgvItems.Rows.Clear();
             foreach (KeyValuePair<Item, int> kvp in gameSession.CurrentPlayer.PlayerItems)
             {
-                if (!CheckIfInDGV(kvp.Key.ID))
+                if (!CheckIfInDGV(kvp.Key.ID, dgvItems))
                 {
                     dgvItems.Rows.Add(kvp.Key.ID, kvp.Key.Name, kvp.Key.Description, kvp.Value);
                 }
             }
         }
 
-        private bool CheckIfInDGV(int id)
+        private bool CheckIfInDGV(int id, DataGridView dgv)
         {
-            foreach (DataGridViewRow row in dgvEquipment.Rows)
+            foreach (DataGridViewRow row in dgv.Rows)
             {
                 if(row.Cells[0].Value != null)
                 {
@@ -281,7 +283,7 @@ namespace UIWindowsForm
             dgvEquipment.Rows.Clear();
             foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
             {
-                if (!CheckIfInDGV(equipment.ID))
+                if (!CheckIfInDGV(equipment.ID, dgvEquipment))
                 {
                     dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
                 }
@@ -299,6 +301,44 @@ namespace UIWindowsForm
                 Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
 
                 gameSession.EquipCommand(equipment);
+                UpdateStats();
+            }
+        }
+
+        private void btnTalk_Click(object sender, EventArgs e)
+        {
+            QuestForm quest = new QuestForm(gameSession, gameSession.CurrentPlayer.CurrentLocation.QuestInLocation);
+            quest.StartPosition = FormStartPosition.CenterParent;
+            quest.ShowDialog(this);
+        }
+
+        private void btnUpdateQuests_Click(object sender, EventArgs e)
+        {
+            dgvQuests.Rows.Clear();
+            foreach (Quest quest in gameSession.CurrentPlayer.PlayerQuests)
+            {
+                if (!CheckIfInDGV(quest.ID, dgvQuests))
+                {
+                    dgvQuests.Rows.Add(quest.ID, quest.Name, quest.IsCompleted);
+                }
+            }
+            dgvQuests.CellClick += dgvQuests_CellClick;
+        }
+
+        private void dgvQuests_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnUpdateSpells_Click(object sender, EventArgs e)
+        {
+            dgvSpells.Rows.Clear();
+            foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
+            {
+                if (!CheckIfInDGV(spell.ID, dgvSpells))
+                {
+                    dgvQuests.Rows.Add(spell.ID, spell.Name);
+                }
             }
         }
     }

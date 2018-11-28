@@ -1,5 +1,7 @@
 I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
-
+Attack bonus to strenght bonus in equipment class
+Make lines between map pictures
+Different exp rates for different classes
 
 When creating the game you need to draw these things out
 -World Map on Paper

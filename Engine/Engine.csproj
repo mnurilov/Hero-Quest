@@ -54,8 +54,7 @@
     <Compile Include="Spell\Child Spell\DamageSpell.cs" />
     <Compile Include="Item\Child Item\EnemyLoot.cs" />
     <Compile Include="Equipment\Child Equipment\ChestEquipment.cs" />
-    <Compile Include="Fighting Unit\Child Fighting Units\Enemy.cs" />
-    <Compile Include="Fighting Unit\FightingUnit.cs" />
+    <Compile Include="Fighting Unit\Enemy.cs" />
     <Compile Include="Equipment\Child Equipment\HeadEquipment.cs" />
     <Compile Include="Item\Child Item\HealthReplenishingItem.cs" />
     <Compile Include="Item\Item.cs" />
@@ -63,7 +62,7 @@
     <Compile Include="Equipment\Child Equipment\LegEquipment.cs" />
     <Compile Include="Location\Location.cs" />
     <Compile Include="Item\Child Item\ManaReplenishingItem.cs" />
-    <Compile Include="Fighting Unit\Child Fighting Units\Player.cs" />
+    <Compile Include="Fighting Unit\Player.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Quest\Quest.cs" />
     <Compile Include="Random Number Generator\RandomNumberGenerator.cs" />

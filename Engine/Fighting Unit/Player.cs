@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Player : FightingUnit
+    public class Player
     {
         //Warrior Class Constants
         private const double WarriorHealthStatScaleFactor = 6.073588;
@@ -213,7 +213,81 @@ namespace Engine
         {
             return PlayerClass;
         }
-        
+
+        public string Name { get; set; }
+
+        private int currentHealth;
+        public int CurrentHealth
+        {
+            get
+            {
+                return currentHealth;
+            }
+            set
+            {
+                if (value > TotalMaximumHealth)
+                {
+                    currentHealth = TotalMaximumHealth;
+                }
+                else if (value < 0)
+                {
+                    currentHealth = 0;
+                }
+                else
+                {
+                    currentHealth = value;
+                }
+            }
+        }
+
+        private int currentMana;
+        public int CurrentMana
+        {
+            get
+            {
+                return currentMana;
+            }
+            set
+            {
+                if (value > TotalMaximumMana)
+                {
+                    currentMana = TotalMaximumMana;
+                }
+                else if (value < 0)
+                {
+                    currentMana = 0;
+                }
+                else
+                {
+                    currentMana = value;
+                }
+            }
+        }
+
+        //Base stats
+        public int BaseMaximumHealth { get; set; }
+        public int BaseMaximumMana { get; set; }
+        public int BaseStrength { get; set; }
+        public int BaseDefense { get; set; }
+        public int BaseLuck { get; set; }
+        public int BaseSpeed { get; set; }
+        public int BaseIntellect { get; set; }
+        public int BaseResistance { get; set; }
+
+
+        //Total stats after equipment bonuses are calculated
+        public int TotalMaximumHealth { get; set; }
+        public int TotalMaximumMana { get; set; }
+        public int TotalStrength { get; set; }
+        public int TotalDefense { get; set; }
+        public int TotalLuck { get; set; }
+        public int TotalSpeed { get; set; }
+        public int TotalIntellect { get; set; }
+        public int TotalResistance { get; set; }
+
+        public double CriticalChanceRate { get; set; }
+        public double DodgeChanceRate { get; set; }
+
         public Location CurrentLocation { get; set; }
 
         //Equipment
@@ -231,14 +305,23 @@ namespace Engine
         public List<Spell> PlayerSpells = new List<Spell>();
 
 
-        public Player(int level, string name, Class playerClass) : base(name, 1, 1, 1, 1, 1, 1, 1, 1, 1.0, 1.0)
+        public Player(int level, string name, Class playerClass)
         {
             this.Level = level;
+            this.Name = name;
             this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
 
-            UpdatePlayerStats();
+            UpdateBaseStats();
+            ResetTotalStats();
+
+            //After properly setting up the players base and total stats only then can you set his current health and mana
+            CurrentHealth = TotalMaximumHealth;
+            CurrentMana = TotalMaximumMana;
+            
+            //After setting up total stats update critical and dodge rates
+            UpdateCriticalAndDodge();
 
             //Set the starting location of the player
             if (World.FindLocationByID(1) != null)
@@ -255,47 +338,41 @@ namespace Engine
         //Leveling, Experience, and Stats Functions
         private void UpdateWarriorStats()
         {
-            MaximumHealth = (int)(Math.Round((WarriorHealthStatScaleFactor * (Math.Pow(Level, WarriorHealthStatExponent))) + WarriorHealthStatConstant));
-            CurrentHealth = MaximumHealth;
-            MaximumMana = (int)(Math.Round((WarriorManaStatScaleFactor * (Math.Pow(Level, WarriorManaStatExponent))) + WarriorManaStatConstant));
-            CurrentMana = MaximumMana;
-            Strength = (int)(Math.Round((WarriorStrengthStatScaleFactor * (Math.Pow(Level, WarriorStrengthStatExponent))) + WarriorStrengthStatConstant));
-            Defense = (int)(Math.Round((WarriorDefenseStatScaleFactor * (Math.Pow(Level, WarriorDefenseStatExponent))) + WarriorDefenseStatConstant));
-            Luck = (int)(Math.Round((WarriorLuckStatScaleFactor * (Math.Pow(Level, WarriorLuckStatExponent))) + WarriorLuckStatConstant));
-            Speed = (int)(Math.Round((WarriorSpeedStatScaleFactor * (Math.Pow(Level, WarriorSpeedStatExponent))) + WarriorSpeedStatConstant));
-            Intellect = (int)(Math.Round((WarriorIntellectStatScaleFactor * (Math.Pow(Level, WarriorIntellectStatExponent))) + WarriorIntellectStatConstant));
-            Resistance = (int)(Math.Round((WarriorResistanceStatScaleFactor * (Math.Pow(Level, WarriorResistanceStatExponent))) + WarriorResistanceStatConstant));
+            BaseMaximumHealth = (int)(Math.Round((WarriorHealthStatScaleFactor * (Math.Pow(Level, WarriorHealthStatExponent))) + WarriorHealthStatConstant));
+            BaseMaximumMana = (int)(Math.Round((WarriorManaStatScaleFactor * (Math.Pow(Level, WarriorManaStatExponent))) + WarriorManaStatConstant));
+            BaseStrength = (int)(Math.Round((WarriorStrengthStatScaleFactor * (Math.Pow(Level, WarriorStrengthStatExponent))) + WarriorStrengthStatConstant));
+            BaseDefense = (int)(Math.Round((WarriorDefenseStatScaleFactor * (Math.Pow(Level, WarriorDefenseStatExponent))) + WarriorDefenseStatConstant));
+            BaseLuck = (int)(Math.Round((WarriorLuckStatScaleFactor * (Math.Pow(Level, WarriorLuckStatExponent))) + WarriorLuckStatConstant));
+            BaseSpeed = (int)(Math.Round((WarriorSpeedStatScaleFactor * (Math.Pow(Level, WarriorSpeedStatExponent))) + WarriorSpeedStatConstant));
+            BaseIntellect = (int)(Math.Round((WarriorIntellectStatScaleFactor * (Math.Pow(Level, WarriorIntellectStatExponent))) + WarriorIntellectStatConstant));
+            BaseResistance = (int)(Math.Round((WarriorResistanceStatScaleFactor * (Math.Pow(Level, WarriorResistanceStatExponent))) + WarriorResistanceStatConstant));
         }
 
         private void UpdateMageStats()
         {
-            MaximumHealth = (int)(Math.Round((MageHealthStatScaleFactor * (Math.Pow(Level, MageHealthStatExponent))) + MageHealthStatConstant));
-            CurrentHealth = MaximumHealth;
-            MaximumMana = (int)(Math.Round((MageManaStatScaleFactor * (Math.Pow(Level, MageManaStatExponent))) + MageManaStatConstant));
-            CurrentMana = MaximumMana;
-            Strength = (int)(Math.Round((MageStrengthStatScaleFactor * (Math.Pow(Level, MageStrengthStatExponent))) + MageStrengthStatConstant));
-            Defense = (int)(Math.Round((MageDefenseStatScaleFactor * (Math.Pow(Level, MageDefenseStatExponent))) + MageDefenseStatConstant));
-            Luck = (int)(Math.Round((MageLuckStatScaleFactor * (Math.Pow(Level, MageLuckStatExponent))) + MageLuckStatConstant));
-            Speed = (int)(Math.Round((MageSpeedStatScaleFactor * (Math.Pow(Level, MageSpeedStatExponent))) + MageSpeedStatConstant));
-            Intellect = (int)(Math.Round((MageIntellectStatScaleFactor * (Math.Pow(Level, MageIntellectStatExponent))) + MageIntellectStatConstant));
-            Resistance = (int)(Math.Round((MageResistanceStatScaleFactor * (Math.Pow(Level, MageResistanceStatExponent))) + MageResistanceStatConstant));
+            BaseMaximumHealth = (int)(Math.Round((MageHealthStatScaleFactor * (Math.Pow(Level, MageHealthStatExponent))) + MageHealthStatConstant));
+            BaseMaximumMana = (int)(Math.Round((MageManaStatScaleFactor * (Math.Pow(Level, MageManaStatExponent))) + MageManaStatConstant));
+            BaseStrength = (int)(Math.Round((MageStrengthStatScaleFactor * (Math.Pow(Level, MageStrengthStatExponent))) + MageStrengthStatConstant));
+            BaseDefense = (int)(Math.Round((MageDefenseStatScaleFactor * (Math.Pow(Level, MageDefenseStatExponent))) + MageDefenseStatConstant));
+            BaseLuck = (int)(Math.Round((MageLuckStatScaleFactor * (Math.Pow(Level, MageLuckStatExponent))) + MageLuckStatConstant));
+            BaseSpeed = (int)(Math.Round((MageSpeedStatScaleFactor * (Math.Pow(Level, MageSpeedStatExponent))) + MageSpeedStatConstant));
+            BaseIntellect = (int)(Math.Round((MageIntellectStatScaleFactor * (Math.Pow(Level, MageIntellectStatExponent))) + MageIntellectStatConstant));
+            BaseResistance = (int)(Math.Round((MageResistanceStatScaleFactor * (Math.Pow(Level, MageResistanceStatExponent))) + MageResistanceStatConstant));
         }
 
         private void UpdateThiefStats()
         {
-            MaximumHealth = (int)(Math.Round((ThiefHealthStatScaleFactor * (Math.Pow(Level, ThiefHealthStatExponent))) + ThiefHealthStatConstant));
-            CurrentHealth = MaximumHealth;
-            MaximumMana = (int)(Math.Round((ThiefManaStatScaleFactor * (Math.Pow(Level, ThiefManaStatExponent))) + ThiefManaStatConstant));
-            CurrentMana = MaximumMana;
-            Strength = (int)(Math.Round((ThiefStrengthStatScaleFactor * (Math.Pow(Level, ThiefStrengthStatExponent))) + ThiefStrengthStatConstant));
-            Defense = (int)(Math.Round((ThiefDefenseStatScaleFactor * (Math.Pow(Level, ThiefDefenseStatExponent))) + ThiefDefenseStatConstant));
-            Luck = (int)(Math.Round((ThiefLuckStatScaleFactor * (Math.Pow(Level, ThiefLuckStatExponent))) + ThiefLuckStatConstant));
-            Speed = (int)(Math.Round((ThiefSpeedStatScaleFactor * (Math.Pow(Level, ThiefSpeedStatExponent))) + ThiefSpeedStatConstant));
-            Intellect = (int)(Math.Round((ThiefIntellectStatScaleFactor * (Math.Pow(Level, ThiefIntellectStatExponent))) + ThiefIntellectStatConstant));
-            Resistance = (int)(Math.Round((ThiefResistanceStatScaleFactor * (Math.Pow(Level, ThiefResistanceStatExponent))) + ThiefResistanceStatConstant));
+            BaseMaximumHealth = (int)(Math.Round((ThiefHealthStatScaleFactor * (Math.Pow(Level, ThiefHealthStatExponent))) + ThiefHealthStatConstant));
+            BaseMaximumMana = (int)(Math.Round((ThiefManaStatScaleFactor * (Math.Pow(Level, ThiefManaStatExponent))) + ThiefManaStatConstant));
+            BaseStrength = (int)(Math.Round((ThiefStrengthStatScaleFactor * (Math.Pow(Level, ThiefStrengthStatExponent))) + ThiefStrengthStatConstant));
+            BaseDefense = (int)(Math.Round((ThiefDefenseStatScaleFactor * (Math.Pow(Level, ThiefDefenseStatExponent))) + ThiefDefenseStatConstant));
+            BaseLuck = (int)(Math.Round((ThiefLuckStatScaleFactor * (Math.Pow(Level, ThiefLuckStatExponent))) + ThiefLuckStatConstant));
+            BaseSpeed = (int)(Math.Round((ThiefSpeedStatScaleFactor * (Math.Pow(Level, ThiefSpeedStatExponent))) + ThiefSpeedStatConstant));
+            BaseIntellect = (int)(Math.Round((ThiefIntellectStatScaleFactor * (Math.Pow(Level, ThiefIntellectStatExponent))) + ThiefIntellectStatConstant));
+            BaseResistance = (int)(Math.Round((ThiefResistanceStatScaleFactor * (Math.Pow(Level, ThiefResistanceStatExponent))) + ThiefResistanceStatConstant));
         }
 
-        public void UpdatePlayerStats()
+        private void UpdateBaseStats()
         {
             switch (PlayerClass)
             {
@@ -311,8 +388,65 @@ namespace Engine
                 default:
                     throw new Exception("Error no class selected");
             }
-            CriticalChanceRate = ((CriticalChanceRateScaleFactor * Luck) / (Luck + CriticalChanceRateConstant));
-            DodgeChanceRate = ((DodgeChanceRateScaleFactor * Luck) / (Luck + DodgeChanceRateConstant));
+        }
+
+        private void ResetTotalStats()
+        {
+            TotalMaximumHealth = BaseMaximumHealth;
+            TotalMaximumMana = BaseMaximumMana;
+            TotalStrength = BaseStrength;
+            TotalDefense = BaseDefense;
+            TotalLuck = BaseLuck;
+            TotalSpeed = BaseSpeed;
+            TotalIntellect = BaseIntellect;
+            TotalResistance = BaseResistance;
+        }
+
+        private void UpdateTotalStats(Equipment equipment)
+        {
+            TotalMaximumHealth += equipment.HealthBonus;
+            TotalMaximumMana += equipment.ManaBonus;
+            TotalStrength += equipment.AttackBonus;
+            TotalDefense += equipment.DefenseBonus;
+            TotalLuck += equipment.LuckBonus;
+            TotalSpeed += equipment.SpeedBonus;
+            TotalIntellect += equipment.IntellectBonus;
+            TotalResistance += equipment.ResistanceBonus;
+        }
+
+        private void CalculateAllTotalStats()
+        {
+            //Reset the total stats back to base stats numbers
+            ResetTotalStats();
+
+            if(CurrentHeadEquipment != null)
+            {
+                UpdateTotalStats(CurrentHeadEquipment);
+            }
+            if(CurrentChestEquipment != null)
+            {
+                UpdateTotalStats(CurrentChestEquipment);
+            }
+            if(CurrentLegEquipment != null)
+            {
+                UpdateTotalStats(CurrentLegEquipment);
+            }
+            if(CurrentWeapon != null)
+            {
+                UpdateTotalStats(CurrentWeapon);
+            }
+            if(CurrentSideArm != null)
+            {
+                UpdateTotalStats(CurrentSideArm);
+            }
+
+            UpdateCriticalAndDodge();
+        }
+
+        private void UpdateCriticalAndDodge()
+        {
+            CriticalChanceRate = ((CriticalChanceRateScaleFactor * TotalLuck) / (TotalLuck + CriticalChanceRateConstant));
+            DodgeChanceRate = ((DodgeChanceRateScaleFactor * TotalLuck) / (TotalLuck + DodgeChanceRateConstant));
         }
 
         private int GetUpdatedMaximumExperience() 
@@ -335,7 +469,7 @@ namespace Engine
         private void LevelUp()
         {
             Level++;
-            UpdatePlayerStats();
+            UpdateBaseStats();
         }
 
         public void GainEnemyRewards(Enemy enemy)
@@ -348,11 +482,11 @@ namespace Engine
         public bool IsPlayerTurn(Enemy enemy)
         {
             //Determines player's turn based on speed
-            if (Speed > enemy.Speed)
+            if (TotalSpeed > enemy.Speed)
             {
                 return true;
             }
-            else if (Speed < enemy.Speed)
+            else if (TotalSpeed < enemy.Speed)
             {
                 return false;
             }
@@ -377,6 +511,7 @@ namespace Engine
         private void MoveTo(Location newLocation)
         {
             CurrentLocation = newLocation;
+            CheckTravelQuest(newLocation);
         }
 
         public void MoveNorth()
@@ -429,13 +564,13 @@ namespace Engine
             {
                 //Double the damage
                 battleResult = GameSession.BattleResult.Critical;
-                damage = (((Strength * Strength) / (Strength + enemy.Defense)) * 2) * 2;
+                damage = (((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * 2;
             }
             //Else the player would normally strike the enemy then calculate the damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                damage = ((Strength * Strength) / (Strength + enemy.Defense)) * 2;
+                damage = ((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2;
             }
 
             return damage;
@@ -457,19 +592,19 @@ namespace Engine
             {
                 //Double the spell damage
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = (((Intellect + damageSpell.DamageAmount) / (Intellect + enemy.Resistance) * 2) * 2);
+                spellDamage = (((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2) * 2);
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = ((Intellect + damageSpell.DamageAmount) / (Intellect + enemy.Resistance) * 2);
+                spellDamage = ((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2);
             }
 
             return spellDamage;
         }
 
-        //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEM
+        //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEMY
         public bool Run(Enemy enemy)
         {
             if (RandomNumberGenerator.RandomNumberBetween(0, 99) < 50)
@@ -559,20 +694,22 @@ namespace Engine
 
         public bool Equip(Equipment equipment)
         {
+            bool canEquip = false;
+
             if(equipment is HeadEquipment)
             {
                 CurrentHeadEquipment = equipment as HeadEquipment;
-                return true;
+                canEquip = true;
             }
             else if(equipment is ChestEquipment)
             {
                 CurrentChestEquipment = equipment as ChestEquipment;
-                return true;
+                canEquip = true;
             }
             else if(equipment is LegEquipment)
             {
                 CurrentLegEquipment = equipment as LegEquipment;
-                return true;
+                canEquip = true;
             }
             else if(equipment is Weapon)
             {
@@ -581,7 +718,7 @@ namespace Engine
                     if(PlayerClass == Class.Warrior)
                     {
                         CurrentWeapon = equipment as Sword;
-                        return true;
+                        canEquip = true;
                     }
                 }
                 else if(equipment is Staff)
@@ -589,7 +726,7 @@ namespace Engine
                     if (PlayerClass == Class.Mage)
                     {
                         CurrentWeapon = equipment as Staff;
-                        return true;
+                        canEquip = true;
                     }
                 }
                 else if(equipment is Dagger)
@@ -597,7 +734,7 @@ namespace Engine
                     if (PlayerClass == Class.Thief)
                     {
                         CurrentWeapon = equipment as Dagger;
-                        return true;
+                        canEquip = true;
                     }
                 }
             }
@@ -608,7 +745,7 @@ namespace Engine
                     if (PlayerClass == Class.Warrior)
                     {
                         CurrentSideArm = equipment as Shield;
-                        return true;
+                        canEquip = true;
                     }
                 }
                 else if (equipment is Tome)
@@ -616,7 +753,7 @@ namespace Engine
                     if (PlayerClass == Class.Mage)
                     {
                         CurrentSideArm = equipment as Tome;
-                        return true;
+                        canEquip = true;
                     }
                 }
                 else if (equipment is ParryingDagger)
@@ -624,27 +761,196 @@ namespace Engine
                     if (PlayerClass == Class.Thief)
                     {
                         CurrentSideArm = equipment as ParryingDagger;
-                        return true;
+                        canEquip = true;
                     }
+                }
+            }
+
+            if(canEquip == true)
+            {
+                CalculateAllTotalStats();
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //public void DeEquip()
+
+        //Quests Methods
+        public void AcceptQuest(Quest quest)
+        {
+            PlayerQuests.Add(quest);
+        }
+        
+        public void CheckKillQuest(Enemy enemy)
+        {
+            foreach(Quest quest in PlayerQuests)
+            {
+                if(quest is KillQuest)
+                {
+                    if(((KillQuest)quest).RequiredEnemies.ContainsKey(enemy))
+                    {
+                        if (!(((KillQuest)quest).EnemiesDefeatedSoFar.ContainsKey(enemy)))
+                        {
+                            ((KillQuest)quest).EnemiesDefeatedSoFar.Add(enemy, 1);
+                        }
+                        //If the player has already defeated more or equal amount of enemies that are required
+                        else if(((KillQuest)quest).EnemiesDefeatedSoFar[enemy] >= ((KillQuest)quest).RequiredEnemies[enemy])
+                        {
+                            ((KillQuest)quest).EnemiesDefeatedSoFar[enemy] = ((KillQuest)quest).RequiredEnemies[enemy];
+                        }
+                        else
+                        {
+                            ((KillQuest)quest).EnemiesDefeatedSoFar[enemy]++;
+                        }
+                    }
+                }
+            }
+        }
+
+        private void CheckTravelQuest(Location location)
+        {
+            foreach (Quest quest in PlayerQuests)
+            {
+                if (quest is TravelQuest)
+                {
+                    if (((TravelQuest)quest).RequiredLocation == location)
+                    {
+                        ((TravelQuest)quest).HasVisitedLocation = true;
+                    }
+                }
+            }
+        }
+
+        private bool CheckGatherQuest(GatherQuest gatherQuest)
+        {
+            int correctItems = 0;
+
+            foreach (KeyValuePair<Item, int> item in PlayerItems)
+            {
+                if (item.Key is EnemyLoot)
+                {
+                    if (gatherQuest.RequiredEnemyLoots.ContainsKey((EnemyLoot)item.Key))
+                    {
+                        if (item.Value >= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
+                        {
+                            correctItems++;
+                        }
+                    }
+                }
+            }
+
+            if (correctItems == gatherQuest.RequiredEnemyLoots.Count())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void RemoveGatherQuestRequirements(GatherQuest gatherQuest)
+        {
+            foreach (KeyValuePair<Item, int> item in PlayerItems)
+            {
+                if (item.Key is EnemyLoot)
+                {
+                    if (gatherQuest.RequiredEnemyLoots.ContainsKey((EnemyLoot)item.Key))
+                    {
+                        if (item.Value > gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
+                        {
+                            PlayerItems[item.Key] -= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)];
+                        }
+                        else if (item.Value == gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
+                        {
+                            PlayerItems.Remove(item.Key);
+                        }
+                    }
+                }
+            }
+        }
+
+        public bool CheckIfQuestComplete(Quest quest)
+        {
+            if(quest is GatherQuest)
+            {
+                if(CheckGatherQuest((GatherQuest)quest) == true)
+                {
+                    ((GatherQuest)quest).IsCompleted = true;
+                    RemoveGatherQuestRequirements((GatherQuest)quest);
+                    return true;
+                }
+            }
+            else if(quest is KillQuest)
+            {
+                if(((KillQuest)quest).EnemiesDefeatedSoFar == ((KillQuest)quest).RequiredEnemies)
+                {
+                    ((KillQuest)quest).IsCompleted = true;
+                    return true;
+                }
+            }
+            else if(quest is TravelQuest)
+            {
+                if(((TravelQuest)quest).HasVisitedLocation == true)
+                {
+                    ((TravelQuest)quest).IsCompleted = true;
+                    return true;
                 }
             }
             return false;
         }
 
+        public void QuestRewards(Quest quest)
+        {
+            Gold += quest.RewardGold;
+            GainExperience(quest.RewardExperience);
+            if(quest.RewardItem != null)
+            {
+                if (PlayerItems.ContainsKey(quest.RewardItem))
+                {
+                    PlayerItems[quest.RewardItem]++;
+                }
+                else
+                {
+                    PlayerItems.Add(quest.RewardItem, 1);
+                }
+            }
+            if(quest.RewardEquipment != null)
+            {
+                PlayerEquipments.Add(quest.RewardEquipment);
+            }
+            if(quest.RewardSpell != null)
+            {
+                PlayerSpells.Add(quest.RewardSpell);
+            }
+        }
 
-        //public void DeEquip()
-
-        
         public override string ToString()
         {
             string info = "";
 
             info += ("Level: " + Level.ToString() + "\n");
+            info += ("Name: " + Name + "\n");
             info += ("Class: " + PlayerClass.ToString() + "\n");
             info += ("Gold: " + Gold.ToString() + "\n");
             info += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
             info += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
-            info += base.ToString();
+            info += ("Current Health: " + CurrentHealth.ToString() + "\n");
+            info += ("Maximum Health: " + BaseMaximumHealth.ToString() + "\n");
+            info += ("Current Mana: " + CurrentMana.ToString() + "\n");
+            info += ("Maximum Mana: " + BaseMaximumMana.ToString() + "\n");
+            info += ("Strength: " + BaseStrength.ToString() + "\n");
+            info += ("Defense: " + BaseDefense.ToString() + "\n");
+            info += ("Luck: " + BaseLuck.ToString() + "\n");
+            info += ("Speed: " + BaseSpeed.ToString() + "\n");
+            info += ("Intellect: " + BaseIntellect.ToString() + "\n");
+            info += ("Resistance: " + BaseResistance.ToString() + "\n");
+            info += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
+            info += ("Dodge Chance: " + ((int)DodgeChanceRate).ToString() + "%\n");
 
             return info;
         }

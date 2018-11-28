@@ -10,6 +10,7 @@ namespace Engine
     {
         //Required location to complete the quest
         public Location RequiredLocation { get; set; }
+        public bool HasVisitedLocation { get; set; }
         
 
         public TravelQuest(int id, string name, string description, Person person, Location requiredLocation,
@@ -17,6 +18,7 @@ namespace Engine
             Spell rewardSpell = null) : base(id, name, description, person, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)
         {
             this.RequiredLocation = requiredLocation;
+            HasVisitedLocation = false;
         }
 
         public override string ToString()

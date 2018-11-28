@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Equipment
+    public abstract class Equipment
     {
         public int ID { get; set; }
         public string Name { get; set; }
@@ -23,7 +23,7 @@ namespace Engine
         public int IntellectBonus { get; set; }
         public int ResistanceBonus { get; set; }
 
-
+        //CHANGE ATTACKBONUS TO STRENGHT BONUS IF YOUR NOT GONNA BE LAZY
         public Equipment(int id, string name, string description, int goldValue, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
             int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0, int resistanceBonus = 0)
         {

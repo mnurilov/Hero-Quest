@@ -140,7 +140,7 @@ namespace Engine
             Person mary = new Person(PersonIDMary, "Mary", "A sassy child", "Hey I lost my pet snake");
 
             Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place",
-                bob, new Dictionary<Enemy, int>{ {FindEnemyByID(1), 3} }, 10, 5);
+                bob, new Dictionary<Enemy, int>{ {FindEnemyByID(1), 3} }, 10, 5, null, null, FindSpellByID(1));
 
             Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction", 
                 "Bring me 3 snake fangs so I can make the antidote", mary, new Dictionary<EnemyLoot, int> { { (EnemyLoot)FindItemByID(9), 3 } },
@@ -193,6 +193,8 @@ namespace Engine
 
             //Add enemies to the locations
             grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 }, { FindEnemyByID(2), 10 } };
+
+            town.QuestInLocation = FindQuestByID(1);
 
             //Add the locations to list
             locations.Add(home);
