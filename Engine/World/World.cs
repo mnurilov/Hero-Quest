@@ -33,6 +33,7 @@ namespace Engine
         private const int ShieldEquipmentIDRuneShield = 10;
         private const int TomeEquipmentIDBronzeTome = 11;
         private const int TomeEquipmentIDRuneTome = 12;
+        private const int DaggerEquipmentIDBronzeDagger = 13;
         
         //Spell ID's
         private const int SpellIDFire = 1;
@@ -48,10 +49,12 @@ namespace Engine
         //Person ID's
         private const int PersonIDBob = 1;
         private const int PersonIDMary = 2;
+        private const int PersonIDGarry = 3;
 
         //Quest ID's
         private const int QuestIDCleanTheSewers = 1;
         private const int QuestIDAntidoteConcoction = 2;
+        private const int QuestIDFindTheSewers = 3;
 
         //Vendor ID's
         private const int VendorIDJohn = 1;
@@ -64,6 +67,8 @@ namespace Engine
         private const int LocationIDFarm = 4;
         private const int LocationIDBarn = 5;
         private const int LocationIDFarmHut = 6;
+        private const int LocationIDAlley = 7;
+        private const int LocationIDSewers = 8;
 
         
 
@@ -109,6 +114,7 @@ namespace Engine
             equipments.Add(new LegEquipment(LegEquipmentIDBronzeLeggings, "Bronze Leggings", "A crummy leggings", 10, 0, 0, 0, 10, 0, 0, 0, 0));
             equipments.Add(new Sword(WeaponEquipmentIDBronzeSword, "Bronze Sword", "A crummy sword", 10, 0, 0, 10, 0, 0, 0, 0, 0));
             equipments.Add(new Shield(ShieldEquipmentIDBronzeShield, "Bronze Shield", "A crummy shield", 10, 0, 0, 0, 10, 0, 0, 0, 0));
+            equipments.Add(new Dagger(DaggerEquipmentIDBronzeDagger, "Bronze Dagger", "A garbage dagger", 10, 10, 10, 10, 10, 10,10, 10, 10));
         }
 
         private static void PopulateSpells()
@@ -120,11 +126,14 @@ namespace Engine
 
         private static void PopulateEnemies()
         {
-            List<EnemyLoot> enemyLoots = new List<EnemyLoot>();
-            enemyLoots.Add((EnemyLoot)FindItemByID(7));
+            List<EnemyLoot> ratLoots = new List<EnemyLoot>();
+            ratLoots.Add((EnemyLoot)FindItemByID(7));
+
+            List<EnemyLoot> snakeLoots = new List<EnemyLoot>();
+            snakeLoots.Add((EnemyLoot)FindItemByID(9));
             
-            Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, enemyLoots);
-            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15);
+            Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, ratLoots);
+            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15, snakeLoots);
             Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100);
             Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000);
 
@@ -138,16 +147,21 @@ namespace Engine
         {
             Person bob = new Person(PersonIDBob, "Bob", "An average joe", "Hey help I got rats!");
             Person mary = new Person(PersonIDMary, "Mary", "A sassy child", "Hey I lost my pet snake");
+            Person garry = new Person(PersonIDGarry, "Garry", "His grandpa doesn't love him", "Hey go to the sewers");
 
             Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place",
                 bob, new Dictionary<Enemy, int>{ {FindEnemyByID(1), 3} }, 10, 5, null, null, FindSpellByID(1));
 
             Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction", 
                 "Bring me 3 snake fangs so I can make the antidote", mary, new Dictionary<EnemyLoot, int> { { (EnemyLoot)FindItemByID(9), 3 } },
-                5, 10);
+                5, 10, null, FindEquipmentByID(4));
+
+            Quest findTheSewers = new TravelQuest(QuestIDFindTheSewers, "Find the Sewers", "Go to the sewers and come back", garry,
+                FindLocationByID(8), 10, 100, null, FindEquipmentByID(5));
 
             quests.Add(cleanTheSewers);
             quests.Add(antidoteConcoction);
+            quests.Add(findTheSewers);
         }
 
         private static void PopulateVendors()
@@ -162,12 +176,13 @@ namespace Engine
         {
             //Creation of locations
             Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0);
-            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 50);
+            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 100);
             Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0);
-            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 50);
-            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 50);
-            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 100);
-
+            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 0);
+            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 100);
+            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 0);
+            Location alley = new Location(LocationIDAlley, "Alley", "It is a scary alley way", 0);
+            Location sewers = new Location(LocationIDSewers, "Sewers", "Icky and Wicked", 0);
 
             //Linking up the locations
             home.LocationToTheNorth = grassPlains;
@@ -175,8 +190,9 @@ namespace Engine
             grassPlains.LocationToTheNorth = town;
             grassPlains.LocationToTheSouth = home;
 
-            town.LocationToTheEast = farm;
             town.LocationToTheSouth = grassPlains;
+            town.LocationToTheWest = alley;
+            town.LocationToTheEast = farm;
 
             farm.LocationToTheNorth = barn;
             farm.LocationToTheEast = farmHut;
@@ -186,15 +202,24 @@ namespace Engine
 
             farmHut.LocationToTheWest = farm;
 
+            alley.LocationToTheEast = town;
+            alley.LocationToTheWest = sewers;
+
+            sewers.LocationToTheEast = alley;
+
 
             //Added vendors to the locations
             town.VendorInLocation = FindVendorByID(1);
 
 
             //Add enemies to the locations
-            grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 }, { FindEnemyByID(2), 10 } };
+            grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };// { FindEnemyByID(2), 10 } };
+            barn.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(2), 1 } };
 
+            //Add quests to the locations
             town.QuestInLocation = FindQuestByID(1);
+            farmHut.QuestInLocation = FindQuestByID(2);
+            alley.QuestInLocation = FindQuestByID(3);
 
             //Add the locations to list
             locations.Add(home);
@@ -203,6 +228,10 @@ namespace Engine
             locations.Add(farm);
             locations.Add(barn);
             locations.Add(farmHut);
+            locations.Add(alley);
+            locations.Add(sewers);
+
+            ((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
         }
 
         public static void ViewItems()

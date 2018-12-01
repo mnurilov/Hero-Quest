@@ -79,32 +79,36 @@
             this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabSpells = new System.Windows.Forms.TabPage();
-            this.tabQuests = new System.Windows.Forms.TabPage();
-            this.btnData = new System.Windows.Forms.Button();
-            this.btnEquip = new System.Windows.Forms.Button();
-            this.btnTalk = new System.Windows.Forms.Button();
-            this.dgvQuests = new System.Windows.Forms.DataGridView();
-            this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
-            this.pbLocationPicture = new System.Windows.Forms.PictureBox();
-            this.colQuestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnUpdateQuests = new System.Windows.Forms.Button();
-            this.colQuestCompletion = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnUpdateSpells = new System.Windows.Forms.Button();
             this.dgvSpells = new System.Windows.Forms.DataGridView();
             this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tabQuests = new System.Windows.Forms.TabPage();
+            this.dgvQuests = new System.Windows.Forms.DataGridView();
+            this.colQuestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuestCompletion = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnData = new System.Windows.Forms.Button();
+            this.btnEquip = new System.Windows.Forms.Button();
+            this.btnTalk = new System.Windows.Forms.Button();
+            this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
+            this.pbLocationPicture = new System.Windows.Forms.PictureBox();
+            this.btnUpdateQuests = new System.Windows.Forms.Button();
+            this.btnUpdateSpells = new System.Windows.Forms.Button();
+            this.dgvBattleSpells = new System.Windows.Forms.DataGridView();
+            this.colBattleSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tbcInventory.SuspendLayout();
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
             this.tabEquipments.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).BeginInit();
             this.tabSpells.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).BeginInit();
             this.tabQuests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleSpells)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNorth
@@ -563,6 +567,30 @@
             this.tabSpells.Text = "Spells";
             this.tabSpells.UseVisualStyleBackColor = true;
             // 
+            // dgvSpells
+            // 
+            this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colSpellID,
+            this.colSpellName});
+            this.dgvSpells.Location = new System.Drawing.Point(0, 0);
+            this.dgvSpells.Name = "dgvSpells";
+            this.dgvSpells.RowTemplate.Height = 24;
+            this.dgvSpells.Size = new System.Drawing.Size(431, 333);
+            this.dgvSpells.TabIndex = 0;
+            // 
+            // colSpellID
+            // 
+            this.colSpellID.HeaderText = "ID";
+            this.colSpellID.Name = "colSpellID";
+            this.colSpellID.ReadOnly = true;
+            // 
+            // colSpellName
+            // 
+            this.colSpellName.HeaderText = "Name";
+            this.colSpellName.Name = "colSpellName";
+            this.colSpellName.ReadOnly = true;
+            // 
             // tabQuests
             // 
             this.tabQuests.Controls.Add(this.dgvQuests);
@@ -573,6 +601,36 @@
             this.tabQuests.TabIndex = 3;
             this.tabQuests.Text = "Quests";
             this.tabQuests.UseVisualStyleBackColor = true;
+            // 
+            // dgvQuests
+            // 
+            this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colQuestID,
+            this.colQuestName,
+            this.colQuestCompletion});
+            this.dgvQuests.Location = new System.Drawing.Point(0, 0);
+            this.dgvQuests.Name = "dgvQuests";
+            this.dgvQuests.RowTemplate.Height = 24;
+            this.dgvQuests.Size = new System.Drawing.Size(431, 333);
+            this.dgvQuests.TabIndex = 0;
+            // 
+            // colQuestID
+            // 
+            this.colQuestID.HeaderText = "ID";
+            this.colQuestID.Name = "colQuestID";
+            this.colQuestID.ReadOnly = true;
+            // 
+            // colQuestName
+            // 
+            this.colQuestName.HeaderText = "Name";
+            this.colQuestName.Name = "colQuestName";
+            this.colQuestName.ReadOnly = true;
+            // 
+            // colQuestCompletion
+            // 
+            this.colQuestCompletion.HeaderText = "Status";
+            this.colQuestCompletion.Name = "colQuestCompletion";
             // 
             // btnData
             // 
@@ -604,19 +662,6 @@
             this.btnTalk.UseVisualStyleBackColor = true;
             this.btnTalk.Click += new System.EventHandler(this.btnTalk_Click);
             // 
-            // dgvQuests
-            // 
-            this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colQuestID,
-            this.colQuestName,
-            this.colQuestCompletion});
-            this.dgvQuests.Location = new System.Drawing.Point(0, 0);
-            this.dgvQuests.Name = "dgvQuests";
-            this.dgvQuests.RowTemplate.Height = 24;
-            this.dgvQuests.Size = new System.Drawing.Size(431, 333);
-            this.dgvQuests.TabIndex = 0;
-            // 
             // pbEnemyPicture
             // 
             this.pbEnemyPicture.Location = new System.Drawing.Point(306, 270);
@@ -638,18 +683,6 @@
             this.pbLocationPicture.TabStop = false;
             this.pbLocationPicture.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // colQuestID
-            // 
-            this.colQuestID.HeaderText = "ID";
-            this.colQuestID.Name = "colQuestID";
-            this.colQuestID.ReadOnly = true;
-            // 
-            // colQuestName
-            // 
-            this.colQuestName.HeaderText = "Name";
-            this.colQuestName.Name = "colQuestName";
-            this.colQuestName.ReadOnly = true;
-            // 
             // btnUpdateQuests
             // 
             this.btnUpdateQuests.Location = new System.Drawing.Point(211, 435);
@@ -659,11 +692,6 @@
             this.btnUpdateQuests.Text = "UPDATE QUESTS";
             this.btnUpdateQuests.UseVisualStyleBackColor = true;
             this.btnUpdateQuests.Click += new System.EventHandler(this.btnUpdateQuests_Click);
-            // 
-            // colQuestCompletion
-            // 
-            this.colQuestCompletion.HeaderText = "Status";
-            this.colQuestCompletion.Name = "colQuestCompletion";
             // 
             // btnUpdateSpells
             // 
@@ -675,29 +703,32 @@
             this.btnUpdateSpells.UseVisualStyleBackColor = true;
             this.btnUpdateSpells.Click += new System.EventHandler(this.btnUpdateSpells_Click);
             // 
-            // dgvSpells
+            // dgvBattleSpells
             // 
-            this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colSpellID,
-            this.colSpellName});
-            this.dgvSpells.Location = new System.Drawing.Point(0, 0);
-            this.dgvSpells.Name = "dgvSpells";
-            this.dgvSpells.RowTemplate.Height = 24;
-            this.dgvSpells.Size = new System.Drawing.Size(431, 333);
-            this.dgvSpells.TabIndex = 0;
+            this.dgvBattleSpells.AllowUserToAddRows = false;
+            this.dgvBattleSpells.AllowUserToDeleteRows = false;
+            this.dgvBattleSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBattleSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colBattleSpellName,
+            this.colBattleSpellsButton});
+            this.dgvBattleSpells.Location = new System.Drawing.Point(1010, 409);
+            this.dgvBattleSpells.Name = "dgvBattleSpells";
+            this.dgvBattleSpells.ReadOnly = true;
+            this.dgvBattleSpells.RowTemplate.Height = 24;
+            this.dgvBattleSpells.Size = new System.Drawing.Size(318, 119);
+            this.dgvBattleSpells.TabIndex = 52;
             // 
-            // colSpellID
+            // colBattleSpellName
             // 
-            this.colSpellID.HeaderText = "ID";
-            this.colSpellID.Name = "colSpellID";
-            this.colSpellID.ReadOnly = true;
+            this.colBattleSpellName.HeaderText = "Name";
+            this.colBattleSpellName.Name = "colBattleSpellName";
+            this.colBattleSpellName.ReadOnly = true;
             // 
-            // colSpellName
+            // colBattleSpellsButton
             // 
-            this.colSpellName.HeaderText = "Name";
-            this.colSpellName.Name = "colSpellName";
-            this.colSpellName.ReadOnly = true;
+            this.colBattleSpellsButton.HeaderText = "Select";
+            this.colBattleSpellsButton.Name = "colBattleSpellsButton";
+            this.colBattleSpellsButton.ReadOnly = true;
             // 
             // MainScreen
             // 
@@ -705,6 +736,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(1382, 549);
+            this.Controls.Add(this.dgvBattleSpells);
             this.Controls.Add(this.btnUpdateSpells);
             this.Controls.Add(this.btnUpdateQuests);
             this.Controls.Add(this.btnTalk);
@@ -763,11 +795,12 @@
             this.tabEquipments.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).EndInit();
             this.tabSpells.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).EndInit();
             this.tabQuests.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleSpells)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -840,6 +873,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
         private System.Windows.Forms.Button btnUpdateSpells;
+        private System.Windows.Forms.DataGridView dgvBattleSpells;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellName;
+        private System.Windows.Forms.DataGridViewButtonColumn colBattleSpellsButton;
     }
 }
 

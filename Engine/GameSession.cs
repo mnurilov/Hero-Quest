@@ -16,6 +16,7 @@ namespace Engine
         public enum BattleResult { Missed, Normal, Critical }
         public enum GameState { Introduction, Travel, Battle, Shop, GameOver }
         public enum Transition { CreatePlayer, Encounter, ExitBattle, EnterShop, ExitShop, Death }
+        public enum Direction { NORTH, SOUTH, WEST, EAST }
         public GameState GameStates;
         public Transition Transitions;
         public event MyEventHandler OnMessagedRaised;
@@ -29,6 +30,8 @@ namespace Engine
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(1));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
+            CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
             GameStates = GameState.Travel;
         }
 
@@ -73,7 +76,7 @@ namespace Engine
         }
 
         //NEED TO DO: Add a way for the player to choose a spell currently it just picks the first spell which is fire
-        public void CastSpellCommand()
+        public void CastSpellCommand(Spell spell)
         {
             CheckGameState(GameState.Battle);
 
@@ -83,7 +86,7 @@ namespace Engine
             {
                 if (CurrentPlayer.IsPlayerTurn(CurrentEnemy))
                 {
-                    PlayerCastSpell(battleResult);
+                    PlayerCastSpell(spell, battleResult);
                     if (GameStates == GameState.Battle)
                     {
                         EnemyAttack(battleResult);
@@ -94,7 +97,7 @@ namespace Engine
                     EnemyAttack(battleResult);
                     if (GameStates == GameState.Battle)
                     {
-                        PlayerCastSpell(battleResult);
+                        PlayerCastSpell(spell, battleResult);
                     }
                 }
             }
@@ -104,6 +107,8 @@ namespace Engine
         {
             CheckGameState(GameState.Battle);
 
+            BattleResult battleResult = BattleResult.Normal;
+
             if (CurrentPlayer.Run(CurrentEnemy) == true)
             { 
                 RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
@@ -112,60 +117,68 @@ namespace Engine
             else
             {
                 RaiseMessage(CurrentPlayer.Name + " failed to run away from the fight");
+                EnemyAttack(battleResult);
+            }
+        }
+
+        private void MoveCommand(Direction direction)
+        {
+            CheckGameState(GameState.Travel);
+
+            switch (direction)
+            {
+                case Direction.NORTH:
+                    CurrentPlayer.MoveNorth();
+                    break;
+                case Direction.SOUTH:
+                    CurrentPlayer.MoveSouth();
+                    break;
+                case Direction.WEST:
+                    CurrentPlayer.MoveWest();
+                    break;
+                case Direction.EAST:
+                    CurrentPlayer.MoveEast();
+                    break;
+            }
+
+            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+
+            //If an encounter would occur, determine the enemy
+            if (CurrentPlayer.CurrentLocation.EncounterTriggered())
+            {
+                CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
+            }
+            else
+            {
+                CurrentEnemy = null;
+            }
+
+            if (CurrentEnemy != null)
+            {
+                GameStates = GameState.Battle;
             }
         }
 
         public void MoveNorthCommand()
         {
-            CheckGameState(GameState.Travel);
-
-            CurrentPlayer.MoveNorth();
-            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
-            if(CurrentEnemy != null)
-            {
-                GameStates = GameState.Battle;
-            }
+            MoveCommand(Direction.NORTH);
         }
 
         public void MoveSouthCommand()
         {
-            CheckGameState(GameState.Travel);
-
-            CurrentPlayer.MoveSouth();
-            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
-            if (CurrentEnemy != null)
-            {
-                GameStates = GameState.Battle;
-            }
+            MoveCommand(Direction.SOUTH);
         }
 
         public void MoveWestCommand()
         {
-            CheckGameState(GameState.Travel);
-
-            CurrentPlayer.MoveWest();
-            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
-            if (CurrentEnemy != null)
-            {
-                GameStates = GameState.Battle;
-            }
+            MoveCommand(Direction.WEST);
         }
 
         public void MoveEastCommand()
         {
-            CheckGameState(GameState.Travel);
-
-            CurrentPlayer.MoveEast();
-            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-            CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
-            if (CurrentEnemy != null)
-            {
-                GameStates = GameState.Battle;
-            }
+            MoveCommand(Direction.EAST);
         }
+
 
         private void PlayerAttack(BattleResult battleResult)
         {
@@ -195,9 +208,9 @@ namespace Engine
             }
         }
 
-        private void PlayerCastSpell(BattleResult battleResult)
+        private void PlayerCastSpell(Spell spell, BattleResult battleResult)
         {
-            int damage = CurrentPlayer.CastSpell(CurrentEnemy, (DamageSpell)World.FindSpellByID(1), ref battleResult);
+            int damage = CurrentPlayer.CastSpell(CurrentEnemy, (DamageSpell)spell, ref battleResult);
 
             CurrentEnemy.CurrentHealth -= damage;
 
@@ -228,7 +241,6 @@ namespace Engine
         {
             GameStates = GameState.Shop;
         }
-
 
         public void ExitShop()
         {
@@ -262,12 +274,19 @@ namespace Engine
             }
         }
 
-        public void CheckIfQuestCompleted(Quest quest)
+
+        public bool CheckIfQuestCompleted(Quest quest)
         {
+            if (!CurrentPlayer.PlayerQuests.Contains(quest))
+            {
+                return false;
+            }
             if(CurrentPlayer.CheckIfQuestComplete(quest) == true)
             {
                 CurrentPlayer.QuestRewards(quest);
+                return true;
             }
+            return false;
         }
 
         //Enemy Commands

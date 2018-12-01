@@ -32,6 +32,8 @@
             this.btnReject = new System.Windows.Forms.Button();
             this.lblQuestName = new System.Windows.Forms.Label();
             this.lblQuestDescription = new System.Windows.Forms.Label();
+            this.btnCheck = new System.Windows.Forms.Button();
+            this.lblFun = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnAccept
@@ -70,11 +72,31 @@
             this.lblQuestDescription.Size = new System.Drawing.Size(0, 17);
             this.lblQuestDescription.TabIndex = 3;
             // 
+            // btnCheck
+            // 
+            this.btnCheck.Location = new System.Drawing.Point(349, 247);
+            this.btnCheck.Name = "btnCheck";
+            this.btnCheck.Size = new System.Drawing.Size(75, 23);
+            this.btnCheck.TabIndex = 4;
+            this.btnCheck.Text = "Check";
+            this.btnCheck.UseVisualStyleBackColor = true;
+            this.btnCheck.Click += new System.EventHandler(this.btnCheck_Click);
+            // 
+            // lblFun
+            // 
+            this.lblFun.AutoSize = true;
+            this.lblFun.Location = new System.Drawing.Point(39, 156);
+            this.lblFun.Name = "lblFun";
+            this.lblFun.Size = new System.Drawing.Size(0, 17);
+            this.lblFun.TabIndex = 5;
+            // 
             // QuestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.lblFun);
+            this.Controls.Add(this.btnCheck);
             this.Controls.Add(this.lblQuestDescription);
             this.Controls.Add(this.lblQuestName);
             this.Controls.Add(this.btnReject);
@@ -92,5 +114,7 @@
         private System.Windows.Forms.Button btnReject;
         private System.Windows.Forms.Label lblQuestName;
         private System.Windows.Forms.Label lblQuestDescription;
+        private System.Windows.Forms.Button btnCheck;
+        private System.Windows.Forms.Label lblFun;
     }
 }

@@ -3,6 +3,13 @@ Attack bonus to strenght bonus in equipment class
 Make lines between map pictures
 Different exp rates for different classes
 
+FIX THE FACT THAT I AM NOT CLONING ENEMIES AND ITEMS
+-Equipment can be just one because it by just one player
+-But enemies can be repeated so they should be cloned over and over
+
+When they cast a spell flash a picture for a second so it looks like an animation
+
+
 When creating the game you need to draw these things out
 -World Map on Paper
 -Item List on Paper

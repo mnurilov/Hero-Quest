@@ -472,10 +472,25 @@ namespace Engine
             UpdateBaseStats();
         }
 
+        //FIX THIS UP SO IT DOESNT JUST GIVE ALL ENEMY LOOT
         public void GainEnemyRewards(Enemy enemy)
         {
             Gold += enemy.RewardGold;
             GainExperience(enemy.RewardExperiencePoints);
+            if(enemy.LootTable != null)
+            {
+                foreach(EnemyLoot loot in enemy.LootTable)
+                {
+                    if (PlayerItems.ContainsKey(loot))
+                    {
+                        PlayerItems[loot]++;
+                    }
+                    else
+                    {
+                        PlayerItems.Add(loot, 1);
+                    }
+                }
+            }
         }
 
         //Check is if is the player's turn, return true if it is
@@ -797,11 +812,6 @@ namespace Engine
                         {
                             ((KillQuest)quest).EnemiesDefeatedSoFar.Add(enemy, 1);
                         }
-                        //If the player has already defeated more or equal amount of enemies that are required
-                        else if(((KillQuest)quest).EnemiesDefeatedSoFar[enemy] >= ((KillQuest)quest).RequiredEnemies[enemy])
-                        {
-                            ((KillQuest)quest).EnemiesDefeatedSoFar[enemy] = ((KillQuest)quest).RequiredEnemies[enemy];
-                        }
                         else
                         {
                             ((KillQuest)quest).EnemiesDefeatedSoFar[enemy]++;
@@ -861,17 +871,29 @@ namespace Engine
                 {
                     if (gatherQuest.RequiredEnemyLoots.ContainsKey((EnemyLoot)item.Key))
                     {
-                        if (item.Value > gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
+                        if (item.Value >= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
                         {
                             PlayerItems[item.Key] -= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)];
-                        }
-                        else if (item.Value == gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
-                        {
-                            PlayerItems.Remove(item.Key);
                         }
                     }
                 }
             }
+        }
+
+        private bool CheckKillQuestRequirements(KillQuest killQuest)
+        {
+            foreach(KeyValuePair<Enemy, int> enemy in killQuest.RequiredEnemies)
+            {
+                if (!killQuest.EnemiesDefeatedSoFar.ContainsKey(enemy.Key))
+                {
+                    return false;
+                }
+                else if(killQuest.EnemiesDefeatedSoFar[enemy.Key] < enemy.Value)
+                {
+                    return false;
+                }
+            }
+            return true;
         }
 
         public bool CheckIfQuestComplete(Quest quest)
@@ -887,7 +909,7 @@ namespace Engine
             }
             else if(quest is KillQuest)
             {
-                if(((KillQuest)quest).EnemiesDefeatedSoFar == ((KillQuest)quest).RequiredEnemies)
+                if(CheckKillQuestRequirements((KillQuest)quest))
                 {
                     ((KillQuest)quest).IsCompleted = true;
                     return true;

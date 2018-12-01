@@ -22,7 +22,6 @@ namespace UIWindowsForm
             this.gameSession = gameSession;
             this.quest = quest;
             UpdateQuestDetails();
-            gameSession.CheckIfQuestCompleted(quest);
         }
 
         private void btnAccept_Click(object sender, EventArgs e)
@@ -45,6 +44,14 @@ namespace UIWindowsForm
             {
                 btnAccept.Visible = false;
                 btnReject.Visible = false;
+            }
+        }
+
+        private void btnCheck_Click(object sender, EventArgs e)
+        {
+            if (gameSession.CheckIfQuestCompleted(quest))
+            {
+                lblFun.Text = "YEAHHHHHHH";
             }
         }
     }

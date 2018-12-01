@@ -24,6 +24,9 @@ namespace UIWindowsForm
             //introduction.ShowDialog(this);
             UpdateButtons();
             UpdateStats();
+            dgvBattleSpells.Visible = false;
+            dgvBattleSpells.CellClick += dgvBattleSpells_CellClick;
+
         }
 
         //Uses game session to control player instead of the player itself
@@ -71,6 +74,15 @@ namespace UIWindowsForm
 
         private void btnSpell_Click(object sender, EventArgs e)
         {
+            dgvBattleSpells.Visible = true;
+            btnAttack.Visible = false;
+            btnSpell.Visible = false;
+            btnItem.Visible = false;
+            btnRun.Visible = false;
+            foreach(Spell spell in gameSession.CurrentPlayer.PlayerSpells)
+            {
+                dgvBattleSpells.Rows.Add(spell.Name);
+            }
             gameSession.CastSpellCommand();
             UpdateButtons();
         }
@@ -80,7 +92,6 @@ namespace UIWindowsForm
             gameSession.RunCommand();
             UpdateButtons();
         }
-
 
 
         //Have not used game session yet on these
@@ -337,8 +348,22 @@ namespace UIWindowsForm
             {
                 if (!CheckIfInDGV(spell.ID, dgvSpells))
                 {
-                    dgvQuests.Rows.Add(spell.ID, spell.Name);
+                    dgvSpells.Rows.Add(spell.ID, spell.Name);
                 }
+            }
+        }
+
+        private void dgvBattleSpells_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 1)
+            {
+                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the Item object for the selected item row
+                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+
+                gameSession.EquipCommand(equipment);
+                UpdateStats();
             }
         }
     }
