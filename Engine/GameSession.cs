@@ -15,10 +15,8 @@ namespace Engine
         //Holds the result of a battle whether an entity missed, normally hit, or critical hit their opponent
         public enum BattleResult { Missed, Normal, Critical }
         public enum GameState { Introduction, Travel, Battle, Shop, GameOver }
-        public enum Transition { CreatePlayer, Encounter, ExitBattle, EnterShop, ExitShop, Death }
         public enum Direction { NORTH, SOUTH, WEST, EAST }
         public GameState GameStates;
-        public Transition Transitions;
         public event MyEventHandler OnMessagedRaised;
 
         public GameSession()

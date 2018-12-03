@@ -664,7 +664,7 @@
             // 
             // pbEnemyPicture
             // 
-            this.pbEnemyPicture.Location = new System.Drawing.Point(306, 270);
+            this.pbEnemyPicture.Location = new System.Drawing.Point(306, 258);
             this.pbEnemyPicture.Name = "pbEnemyPicture";
             this.pbEnemyPicture.Size = new System.Drawing.Size(150, 150);
             this.pbEnemyPicture.TabIndex = 43;
