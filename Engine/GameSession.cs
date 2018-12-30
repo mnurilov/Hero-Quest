@@ -30,17 +30,14 @@ namespace Engine
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
+            CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
             GameStates = GameState.Travel;
         }
 
         //Checks if the game state passed through the parameter is the same as the current game state
         private void CheckGameState(GameState gameState)
         {
-            if(GameStates == gameState)
-            {
-
-            }
-            else
+            if(GameStates != gameState)
             {
                 throw new Exception("You cannot access this function, you are not in the correct game state.");
             }
@@ -73,7 +70,6 @@ namespace Engine
             }
         }
 
-        //NEED TO DO: Add a way for the player to choose a spell currently it just picks the first spell which is fire
         public void CastSpellCommand(Spell spell)
         {
             CheckGameState(GameState.Battle);
@@ -110,6 +106,7 @@ namespace Engine
             if (CurrentPlayer.Run(CurrentEnemy) == true)
             { 
                 RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
+                CurrentPlayer.ResetEmpowerment();
                 GameStates = GameState.Travel;
             }
             else
@@ -202,6 +199,7 @@ namespace Engine
                 RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
                 CurrentPlayer.GainEnemyRewards(CurrentEnemy);
                 CurrentPlayer.CheckKillQuest(CurrentEnemy);
+                CurrentPlayer.ResetEmpowerment();
                 GameStates = GameState.Travel;
             }
         }
@@ -230,6 +228,7 @@ namespace Engine
                 RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
                 CurrentPlayer.GainEnemyRewards(CurrentEnemy);
                 CurrentPlayer.CheckKillQuest(CurrentEnemy);
+                CurrentPlayer.ResetEmpowerment();
                 GameStates = GameState.Travel;
             }
         }

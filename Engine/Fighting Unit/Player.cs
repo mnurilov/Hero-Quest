@@ -304,6 +304,34 @@ namespace Engine
         public Dictionary<Item, int> PlayerItems = new Dictionary<Item, int>();
         public List<Spell> PlayerSpells = new List<Spell>();
 
+        //Empower Variables
+        private const int EmpowerCounterCap = 4;
+        private const int EmpoweredModifier = 2;
+        private int empowerCounter;
+        public int EmpowerCounter
+        {
+            get
+            {
+                return empowerCounter;
+            }
+            set
+            {
+                if(value >= EmpowerCounterCap)
+                {
+                    empowerCounter = EmpowerCounterCap;
+                }
+                else if(value < 0)
+                {
+                    empowerCounter = 0;
+                }
+                else
+                {
+                    empowerCounter = value;
+                }
+            }
+        }
+        public bool Empowered;
+
 
         public Player(int level, string name, Class playerClass)
         {
@@ -312,6 +340,7 @@ namespace Engine
             this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
+            Empowered = false;
 
             UpdateBaseStats();
             ResetTotalStats();
@@ -566,6 +595,13 @@ namespace Engine
         public int Attack(Enemy enemy, ref GameSession.BattleResult battleResult)
         {
             int damage = 0;
+            int empoweredDamage = 1;
+
+            if (Empowered)
+            {
+                empoweredDamage = EmpoweredModifier;
+                ResetEmpowerment();
+            }
 
             //If the enemy would dodge the attack do not calculate damage
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
@@ -579,13 +615,18 @@ namespace Engine
             {
                 //Double the damage
                 battleResult = GameSession.BattleResult.Critical;
-                damage = (((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * 2;
+                damage = ((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * 2) * empoweredDamage;
             }
             //Else the player would normally strike the enemy then calculate the damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                damage = ((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2;
+                damage = (((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredDamage;
+            }
+
+            if(empoweredDamage == 1)
+            {
+                IncreaseEmpowerment();
             }
 
             return damage;
@@ -594,6 +635,13 @@ namespace Engine
         public int CastSpell(Enemy enemy, DamageSpell damageSpell, ref GameSession.BattleResult battleResult)
         {
             int spellDamage = 0;
+            int empoweredDamage = 1;
+
+            if (Empowered)
+            {
+                empoweredDamage = EmpoweredModifier;
+                ResetEmpowerment();
+            }
 
             //If the enemy would dodge the attack do not calculate spell damage
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
@@ -607,13 +655,18 @@ namespace Engine
             {
                 //Double the spell damage
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = (((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2) * 2);
+                spellDamage = ((((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance)) * 2) * 2) * empoweredDamage;
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = ((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2);
+                spellDamage = ((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2) * empoweredDamage;
+            }
+
+            if (empoweredDamage == 1)
+            {
+                IncreaseEmpowerment();
             }
 
             return spellDamage;
@@ -628,6 +681,22 @@ namespace Engine
             }
 
             return false;
+        }
+
+        //Empowered Functions
+        public void ResetEmpowerment()
+        {
+            EmpowerCounter = 0;
+            Empowered = false;
+        }
+
+        public void IncreaseEmpowerment()
+        {
+            EmpowerCounter++;
+            if(EmpowerCounter == 4)
+            {
+                Empowered = true;
+            }
         }
 
 

@@ -6,15 +6,15 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class ManaReplenishingItem : Item
+    public class DamageItem : Item
     {
-        public int ManaReplenishingValue { get; set; }
+        public int DamageValue { get; set; }
 
 
-        public ManaReplenishingItem(int id, string name, string description, int goldValue,int manaReplenishingValue)
+        public DamageItem(int id, string name, string description, int goldValue, int damageValue)
             : base(id, name, description, goldValue)
         {
-            this.ManaReplenishingValue = manaReplenishingValue;
+            this.DamageValue = damageValue;
         }
 
         public override string ToString()
@@ -22,7 +22,7 @@ namespace Engine
             string info = "";
 
             info += base.ToString();
-            info += ("Mana Replenishing Value: " + ManaReplenishingValue.ToString() + "\n");
+            info += ("Damage Value: " + DamageValue.ToString() + "\n");
 
             return info;
         }

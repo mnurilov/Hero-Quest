@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Item\Child Item\DamageItem.cs" />
     <Compile Include="Equipment\Child Equipment\Child Weapon\Dagger.cs" />
     <Compile Include="Equipment\Equipment.cs" />
     <Compile Include="GameSession.cs" />

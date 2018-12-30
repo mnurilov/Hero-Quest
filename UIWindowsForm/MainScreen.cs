@@ -26,7 +26,9 @@ namespace UIWindowsForm
             UpdateStats();
             dgvBattleSpells.Visible = false;
             dgvBattleSpells.CellClick += dgvBattleSpells_CellClick;
-
+           // System.IO.Stream str = Properties.Resources.enemy;
+           // System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
+          //  snd.Play();
         }
 
         //Uses game session to control player instead of the player itself
@@ -81,9 +83,12 @@ namespace UIWindowsForm
             btnRun.Visible = false;
             foreach(Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
-                dgvBattleSpells.Rows.Add(spell.Name);
+                dgvBattleSpells.Rows.Add(spell.ID, spell.Name);
             }
-            gameSession.CastSpellCommand();
+            foreach (DataGridViewRow row in dgvBattleSpells.Rows)
+            {
+                rtbBattle.Text += row.Cells[0].Value;
+            }
             UpdateButtons();
         }
 
@@ -99,15 +104,6 @@ namespace UIWindowsForm
         {
 
         }
-
-        /*private void btnShop_Click(object sender, EventArgs e)
-        {
-            gameSession.CurrentPlayer.EnterShop();
-            //rtbShop.Text = gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.ToString();
-            btnShop.Visible = false;
-            btnShopExit.Visible = true;
-            UpdateButtons();
-        }*/
 
         private void btnTrade_Click(object sender, EventArgs e)
         {
@@ -159,6 +155,7 @@ namespace UIWindowsForm
                     btnSpell.Visible = false;
                     btnItem.Visible = false;
                     btnRun.Visible = false;
+                    DisableEmpowerControl();
                     break;
                 case GameSession.GameState.Shop:
                     btnNorth.Enabled = false;
@@ -171,6 +168,7 @@ namespace UIWindowsForm
                     btnRun.Visible = false;
                     btnShop.Enabled = false;
                     btnTalk.Visible = false;
+                    DisableEmpowerControl();
                     break;
                 case GameSession.GameState.Battle:
                     //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
@@ -184,6 +182,8 @@ namespace UIWindowsForm
                     btnItem.Visible = true;
                     btnRun.Visible = true;
                     btnTalk.Visible = false;
+                    btnEmpower.Visible = true;
+                    UpdateEmpower();
                     break;
             }
         }
@@ -261,7 +261,7 @@ namespace UIWindowsForm
             {
                 if (!CheckIfInDGV(kvp.Key.ID, dgvItems))
                 {
-                    dgvItems.Rows.Add(kvp.Key.ID, kvp.Key.Name, kvp.Key.Description, kvp.Value);
+                    dgvItems.Rows.Add(kvp.Key.ID, kvp.Key.Name, kvp.Value);
                 }
             }
         }
@@ -355,15 +355,102 @@ namespace UIWindowsForm
 
         private void dgvBattleSpells_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 1)
+            if (e.ColumnIndex == 2)
             {
-                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+                var spellID = dgvBattleSpells.Rows[e.RowIndex].Cells[0].Value;
 
                 // Get the Item object for the selected item row
-                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+                Spell spell = World.FindSpellByID(Convert.ToInt32(spellID));
 
-                gameSession.EquipCommand(equipment);
-                UpdateStats();
+                gameSession.CastSpellCommand(spell);
+                
+                dgvBattleSpells.Visible = false;
+                btnAttack.Visible = true;
+                btnSpell.Visible = true;
+                btnItem.Visible = true;
+                btnRun.Visible = true; 
+                UpdateButtons();
+            }
+        }
+
+        private void dgvBattleSpells_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void btnMap_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void dgvEquipment_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void rtbBattle_TextChanged(object sender, EventArgs e)
+        {
+            rtbBattle.SelectionStart = rtbBattle.Text.Length;
+            rtbBattle.ScrollToCaret();
+        }
+
+        private void btnEmpower_Click(object sender, EventArgs e)
+        {
+            if(gameSession.CurrentPlayer.EmpowerCounter == 4)
+            {
+                gameSession.CurrentPlayer.Empowered = true;
+            }
+        }
+
+        private void pictureBox1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void DisableEmpowerControl()
+        {
+            btnEmpower.Visible = false;
+            ptbEmpower1.Visible = false;
+            ptbEmpower2.Visible = false;
+            ptbEmpower3.Visible = false;
+            ptbEmpower4.Visible = false;
+        }
+        private void UpdateEmpower()
+        {
+            switch (gameSession.CurrentPlayer.EmpowerCounter)
+            {
+                case 0:
+                    ptbEmpower1.Visible = false;
+                    ptbEmpower2.Visible = false;
+                    ptbEmpower3.Visible = false;
+                    ptbEmpower4.Visible = false;
+                    break;
+                case 1:
+                    ptbEmpower1.Visible = true;
+                    ptbEmpower2.Visible = false;
+                    ptbEmpower3.Visible = false;
+                    ptbEmpower4.Visible = false;
+                    break;
+                case 2:
+                    ptbEmpower1.Visible = true;
+                    ptbEmpower2.Visible = true;
+                    ptbEmpower3.Visible = false;
+                    ptbEmpower4.Visible = false;
+                    break;
+                case 3:
+                    ptbEmpower1.Visible = true;
+                    ptbEmpower2.Visible = true;
+                    ptbEmpower3.Visible = true;
+                    ptbEmpower4.Visible = false;
+                    break;
+                case 4:
+                    ptbEmpower1.Visible = true;
+                    ptbEmpower2.Visible = true;
+                    ptbEmpower3.Visible = true;
+                    ptbEmpower4.Visible = true;
+                    break;
+                default:
+                    throw new Exception("Empowerment under 0 or over 4");
             }
         }
     }

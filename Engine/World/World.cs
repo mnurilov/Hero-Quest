@@ -234,51 +234,7 @@ namespace Engine
             ((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
         }
 
-        public static void ViewItems()
-        {
-            foreach(Item item in items)
-            {
-                Console.WriteLine(item.ToString());
-                Console.ReadKey();
-            }
-        }
-
-        public static void ViewEquipment()
-        {
-            foreach (Equipment equipment in equipments)
-            {
-                Console.WriteLine(equipment.ToString());
-                Console.ReadKey();
-            }
-        }
-
-        public static void ViewSpells()
-        {
-            foreach (Spell spell in spells)
-            {
-                Console.WriteLine(spell.ToString());
-                Console.ReadKey();
-            }
-        }
-
-        public static void ViewQuests()
-        {
-            foreach(Quest quest in quests)
-            {
-                Console.WriteLine(quest.ToString());
-                Console.ReadKey();
-            }
-        }
-
-        public static void ViewEnemies()
-        {
-            foreach(Enemy enemy in enemies)
-            {
-                Console.WriteLine(enemy.ToString());
-                Console.ReadKey();
-            }
-        }
-
+       
         //Finds a specific enemy based on ID
         public static Enemy FindEnemyByID(int ID)
         {

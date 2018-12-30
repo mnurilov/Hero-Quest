@@ -1,6 +1,18 @@
+Bosses
+Power vs Items System
+If you use your charges on power then you will get probably double increase in power on next 
+action such as attack spell or item
+Damage Item
+Create a copy function for eneemies
+
+If you use your charges on luck then you will get more items from loot and maybe ill flip
+the item table so maybe I'll do this maybe ill make it if you do it 3 times or something the 
+loot table flips or something like this but some kind of mechanic like this
+
 I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
-Attack bonus to strenght bonus in equipment class
+
 Make lines between map pictures
+
 Different exp rates for different classes
 
 FIX THE FACT THAT I AM NOT CLONING ENEMIES AND ITEMS
@@ -9,29 +21,9 @@ FIX THE FACT THAT I AM NOT CLONING ENEMIES AND ITEMS
 
 When they cast a spell flash a picture for a second so it looks like an animation
 
+sound effects
 
-When creating the game you need to draw these things out
--World Map on Paper
--Item List on Paper
--Enemy List on Paper
--Equipment List on Paper
--Spell List on Paper
--Vendor List on Paper
--Quest List on Paper
-
-Add a cap on the gold like a Constant cap
-
-
-Format
-Player should just do the functions hes given
-Game Session should control which functions hes allowed to do at a given time
-this includes changing the players game state
-The UI should just reflect the Game Session's state but the UI should not control the game state's
-like it kinda currently does
-
-
-THINGS TO DO NEXT TIME:
--DEBUG MODE where a variable is set on and when it is you can see all the output
+music
 
 Ideas
 -Game Creator App where I make a simple app that allows the user to create the world for the game
