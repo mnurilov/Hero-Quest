@@ -76,7 +76,7 @@ namespace Engine
                 randomNum = randomNum - weightedEnemy.Value;
             }
 
-            return selectedEnemy;
+            return CloneGenerator.CloneEnemy(selectedEnemy);
         }
 
         public override string ToString()

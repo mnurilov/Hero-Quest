@@ -69,6 +69,9 @@
             this.tbcInventory = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabEquipments = new System.Windows.Forms.TabPage();
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -94,14 +97,17 @@
             this.colSpellIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBattleSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBattleSpellsButton = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnEmpower = new System.Windows.Forms.Button();
             this.ptbEmpower1 = new System.Windows.Forms.PictureBox();
             this.ptbEmpower4 = new System.Windows.Forms.PictureBox();
             this.ptbEmpower3 = new System.Windows.Forms.PictureBox();
             this.ptbEmpower2 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
+            this.btnGreed = new System.Windows.Forms.Button();
+            this.dgvBattleItems = new System.Windows.Forms.DataGridView();
+            this.colBattleItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbcInventory.SuspendLayout();
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -118,6 +124,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptbEmpower4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbEmpower3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbEmpower2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleItems)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNorth
@@ -361,7 +368,7 @@
             // rtbBattle
             // 
             this.rtbBattle.Cursor = System.Windows.Forms.Cursors.Default;
-            this.rtbBattle.Location = new System.Drawing.Point(560, 15);
+            this.rtbBattle.Location = new System.Drawing.Point(559, 12);
             this.rtbBattle.Name = "rtbBattle";
             this.rtbBattle.ReadOnly = true;
             this.rtbBattle.Size = new System.Drawing.Size(330, 350);
@@ -499,6 +506,21 @@
             this.dgvItems.Size = new System.Drawing.Size(431, 333);
             this.dgvItems.TabIndex = 0;
             this.dgvItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
+            // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.Name = "colQuantity";
             // 
             // tabEquipments
             // 
@@ -719,7 +741,7 @@
             this.colSpellIID,
             this.colBattleSpellName,
             this.colBattleSpellsButton});
-            this.dgvBattleSpells.Location = new System.Drawing.Point(220, 267);
+            this.dgvBattleSpells.Location = new System.Drawing.Point(331, 338);
             this.dgvBattleSpells.Name = "dgvBattleSpells";
             this.dgvBattleSpells.ReadOnly = true;
             this.dgvBattleSpells.RowHeadersVisible = false;
@@ -747,26 +769,11 @@
             this.colBattleSpellsButton.Name = "colBattleSpellsButton";
             this.colBattleSpellsButton.ReadOnly = true;
             // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            // 
-            // colName
-            // 
-            this.colName.HeaderText = "Name";
-            this.colName.Name = "colName";
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.HeaderText = "Quantity";
-            this.colQuantity.Name = "colQuantity";
-            // 
             // btnEmpower
             // 
-            this.btnEmpower.Location = new System.Drawing.Point(1228, 399);
+            this.btnEmpower.Location = new System.Drawing.Point(1228, 398);
             this.btnEmpower.Name = "btnEmpower";
-            this.btnEmpower.Size = new System.Drawing.Size(100, 58);
+            this.btnEmpower.Size = new System.Drawing.Size(100, 59);
             this.btnEmpower.TabIndex = 53;
             this.btnEmpower.Text = "Empower";
             this.btnEmpower.UseVisualStyleBackColor = true;
@@ -809,18 +816,79 @@
             this.ptbEmpower2.TabIndex = 57;
             this.ptbEmpower2.TabStop = false;
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(15, 305);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(79, 103);
+            this.button1.TabIndex = 58;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btnGreed
+            // 
+            this.btnGreed.Location = new System.Drawing.Point(1228, 476);
+            this.btnGreed.Name = "btnGreed";
+            this.btnGreed.Size = new System.Drawing.Size(100, 50);
+            this.btnGreed.TabIndex = 59;
+            this.btnGreed.Text = "Greed";
+            this.btnGreed.UseVisualStyleBackColor = true;
+            // 
+            // dgvBattleItems
+            // 
+            this.dgvBattleItems.AllowUserToAddRows = false;
+            this.dgvBattleItems.AllowUserToDeleteRows = false;
+            this.dgvBattleItems.AllowUserToResizeColumns = false;
+            this.dgvBattleItems.AllowUserToResizeRows = false;
+            this.dgvBattleItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBattleItems.ColumnHeadersVisible = false;
+            this.dgvBattleItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colBattleItemID,
+            this.colBattleItemName,
+            this.colBattleItemQuantity});
+            this.dgvBattleItems.Location = new System.Drawing.Point(581, 243);
+            this.dgvBattleItems.Name = "dgvBattleItems";
+            this.dgvBattleItems.ReadOnly = true;
+            this.dgvBattleItems.RowHeadersVisible = false;
+            this.dgvBattleItems.RowTemplate.Height = 24;
+            this.dgvBattleItems.Size = new System.Drawing.Size(318, 119);
+            this.dgvBattleItems.TabIndex = 60;
+            // 
+            // colBattleItemID
+            // 
+            this.colBattleItemID.HeaderText = "ID";
+            this.colBattleItemID.Name = "colBattleItemID";
+            this.colBattleItemID.ReadOnly = true;
+            this.colBattleItemID.Visible = false;
+            // 
+            // colBattleItemName
+            // 
+            this.colBattleItemName.HeaderText = "Name";
+            this.colBattleItemName.Name = "colBattleItemName";
+            this.colBattleItemName.ReadOnly = true;
+            // 
+            // colBattleItemQuantity
+            // 
+            this.colBattleItemQuantity.HeaderText = "Quantity";
+            this.colBattleItemQuantity.Name = "colBattleItemQuantity";
+            this.colBattleItemQuantity.ReadOnly = true;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1382, 549);
+            this.Controls.Add(this.dgvBattleItems);
+            this.Controls.Add(this.dgvBattleSpells);
+            this.Controls.Add(this.btnGreed);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.ptbEmpower2);
             this.Controls.Add(this.ptbEmpower3);
             this.Controls.Add(this.ptbEmpower4);
             this.Controls.Add(this.ptbEmpower1);
             this.Controls.Add(this.btnEmpower);
-            this.Controls.Add(this.dgvBattleSpells);
             this.Controls.Add(this.btnUpdateSpells);
             this.Controls.Add(this.btnUpdateQuests);
             this.Controls.Add(this.btnTalk);
@@ -889,6 +957,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.ptbEmpower4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbEmpower3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.ptbEmpower2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -969,6 +1038,12 @@
         private System.Windows.Forms.PictureBox ptbEmpower4;
         private System.Windows.Forms.PictureBox ptbEmpower3;
         private System.Windows.Forms.PictureBox ptbEmpower2;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnGreed;
+        private System.Windows.Forms.DataGridView dgvBattleItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemQuantity;
     }
 }
 

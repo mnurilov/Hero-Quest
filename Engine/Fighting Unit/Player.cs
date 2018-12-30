@@ -501,23 +501,20 @@ namespace Engine
             UpdateBaseStats();
         }
 
-        //FIX THIS UP SO IT DOESNT JUST GIVE ALL ENEMY LOOT
+        //FIX THIS UP SO IT DOESNT JUST GIVE ALL ENEMY LOOT AND FIX THE FACT THAT YOU CANT GAIN MORe THAN TWO ITESM
         public void GainEnemyRewards(Enemy enemy)
         {
             Gold += enemy.RewardGold;
             GainExperience(enemy.RewardExperiencePoints);
-            if(enemy.LootTable != null)
+            foreach(EnemyLoot loot in enemy.LootTable)
             {
-                foreach(EnemyLoot loot in enemy.LootTable)
+                if (PlayerItems.ContainsKey(loot))
                 {
-                    if (PlayerItems.ContainsKey(loot))
-                    {
-                        PlayerItems[loot]++;
-                    }
-                    else
-                    {
-                        PlayerItems.Add(loot, 1);
-                    }
+                    PlayerItems[loot]++;
+                }
+                else
+                {
+                    PlayerItems.Add(loot, 1);
                 }
             }
         }
@@ -934,15 +931,21 @@ namespace Engine
 
         private void RemoveGatherQuestRequirements(GatherQuest gatherQuest)
         {
-            foreach (KeyValuePair<Item, int> item in PlayerItems)
+            Dictionary<Item, int> cloneItemInventory = CloneGenerator.CloneItemInventory(PlayerItems);
+
+            foreach (KeyValuePair<Item, int> item in cloneItemInventory)
             {
                 if (item.Key is EnemyLoot)
                 {
                     if (gatherQuest.RequiredEnemyLoots.ContainsKey((EnemyLoot)item.Key))
                     {
-                        if (item.Value >= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
+                        if (item.Value > gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
                         {
                             PlayerItems[item.Key] -= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)];
+                        }
+                        else if (item.Value == gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
+                        {
+                            PlayerItems.Remove(item.Key);
                         }
                     }
                 }

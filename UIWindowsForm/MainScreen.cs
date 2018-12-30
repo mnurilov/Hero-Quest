@@ -81,14 +81,7 @@ namespace UIWindowsForm
             btnSpell.Visible = false;
             btnItem.Visible = false;
             btnRun.Visible = false;
-            foreach(Spell spell in gameSession.CurrentPlayer.PlayerSpells)
-            {
-                dgvBattleSpells.Rows.Add(spell.ID, spell.Name);
-            }
-            foreach (DataGridViewRow row in dgvBattleSpells.Rows)
-            {
-                rtbBattle.Text += row.Cells[0].Value;
-            }
+            dgvBattleSpellsUpdate();
             UpdateButtons();
         }
 
@@ -221,7 +214,12 @@ namespace UIWindowsForm
 
         private void btnItem_Click(object sender, EventArgs e)
         {
-            //gameSession.CurrentPlayer.UseItem(World.FindItemByID(1));
+            dgvBattleItems.Visible = true;
+            btnAttack.Visible = false;
+            btnSpell.Visible = false;
+            btnItem.Visible = false;
+            btnRun.Visible = false;
+            dgvBattleItemsUpdate();
             UpdateButtons();
         }
 
@@ -353,6 +351,18 @@ namespace UIWindowsForm
             }
         }
 
+        private void dgvBattleSpellsUpdate()
+        {
+            dgvBattleSpells.Rows.Clear();
+            foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
+            {
+                if (!CheckIfInDGV(spell.ID, dgvBattleSpells))
+                {
+                    dgvBattleSpells.Rows.Add(spell.ID, spell.Name);
+                }
+            }
+        }
+
         private void dgvBattleSpells_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (e.ColumnIndex == 2)
@@ -369,6 +379,41 @@ namespace UIWindowsForm
                 btnSpell.Visible = true;
                 btnItem.Visible = true;
                 btnRun.Visible = true; 
+                UpdateButtons();
+            }
+        }
+
+        private void dgvBattleItemsUpdate()
+        {
+            dgvBattleItems.Rows.Clear();
+            foreach (KeyValuePair<Item, int> kvp in gameSession.CurrentPlayer.PlayerItems)
+            {
+                if (!CheckIfInDGV(kvp.Key.ID, dgvBattleItems))
+                {
+                    if(kvp.Key is HealthReplenishingItem || kvp.Key is ManaReplenishingItem || kvp.Key is DamageItem)
+                    {
+                        dgvBattleItems.Rows.Add(kvp.Key.ID, kvp.Key.Name, kvp.Value);
+                    }
+                }
+            }
+        }
+
+        private void dgvBattleItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 2)
+            {
+                var itemID = dgvBattleItems.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the Item object for the selected item row
+                Item item = World.FindItemByID(Convert.ToInt32(itemID));
+
+                //Use Item Function
+
+                dgvBattleItems.Visible = false;
+                btnAttack.Visible = true;
+                btnSpell.Visible = true;
+                btnItem.Visible = true;
+                btnRun.Visible = true;
                 UpdateButtons();
             }
         }
@@ -452,6 +497,11 @@ namespace UIWindowsForm
                 default:
                     throw new Exception("Empowerment under 0 or over 4");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.CurrentHealth = gameSession.CurrentPlayer.TotalMaximumHealth;
         }
     }
 }
