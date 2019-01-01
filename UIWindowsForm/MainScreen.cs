@@ -25,6 +25,8 @@ namespace UIWindowsForm
             UpdateButtons();
             UpdateStats();
             dgvBattleSpells.Visible = false;
+            dgvBattleItems.Visible = false;
+            dgvBattleItems.CellClick += dgvBattleItems_CellClick;
             dgvBattleSpells.CellClick += dgvBattleSpells_CellClick;
            // System.IO.Stream str = Properties.Resources.enemy;
            // System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
@@ -72,6 +74,7 @@ namespace UIWindowsForm
         {
             gameSession.AttackCommand();
             UpdateButtons();
+            UpdateEnemy();
         }
 
         private void btnSpell_Click(object sender, EventArgs e)
@@ -83,6 +86,19 @@ namespace UIWindowsForm
             btnRun.Visible = false;
             dgvBattleSpellsUpdate();
             UpdateButtons();
+            UpdateEnemy();
+        }
+
+        private void btnItem_Click(object sender, EventArgs e)
+        {
+            dgvBattleItems.Visible = true;
+            btnAttack.Visible = false;
+            btnSpell.Visible = false;
+            btnItem.Visible = false;
+            btnRun.Visible = false;
+            dgvBattleItemsUpdate();
+            UpdateButtons();
+            UpdateEnemy();
         }
 
         private void btnRun_Click(object sender, EventArgs e)
@@ -90,7 +106,6 @@ namespace UIWindowsForm
             gameSession.RunCommand();
             UpdateButtons();
         }
-
 
         //Have not used game session yet on these
         private void Form1_Load(object sender, EventArgs e)
@@ -149,6 +164,7 @@ namespace UIWindowsForm
                     btnItem.Visible = false;
                     btnRun.Visible = false;
                     DisableEmpowerControl();
+                    btnGreed.Visible = false;
                     break;
                 case GameSession.GameState.Shop:
                     btnNorth.Enabled = false;
@@ -162,9 +178,9 @@ namespace UIWindowsForm
                     btnShop.Enabled = false;
                     btnTalk.Visible = false;
                     DisableEmpowerControl();
+                    btnGreed.Visible = false;
                     break;
                 case GameSession.GameState.Battle:
-                    //rtbBattle.Text = gameSession.CurrentPlayer.CurrentLocation.CurrentEnemy.ToString();
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
                     btnWest.Enabled = false;
@@ -177,6 +193,14 @@ namespace UIWindowsForm
                     btnTalk.Visible = false;
                     btnEmpower.Visible = true;
                     UpdateEmpower();
+                    if(gameSession.TurnCounter == 1)
+                    {
+                        btnGreed.Visible = true;
+                    }
+                    else
+                    {
+                        btnGreed.Visible = false;
+                    }
                     break;
             }
         }
@@ -209,20 +233,10 @@ namespace UIWindowsForm
             {
                 lblEnemyName.Text = gameSession.CurrentEnemy.Name;
                 lblEnemyDescription.Text = gameSession.CurrentEnemy.Description;
+                lblEnemyHealth.Text = gameSession.CurrentEnemy.CurrentHealth + "\\" + gameSession.CurrentEnemy.MaximumHealth; 
             }
         }
-
-        private void btnItem_Click(object sender, EventArgs e)
-        {
-            dgvBattleItems.Visible = true;
-            btnAttack.Visible = false;
-            btnSpell.Visible = false;
-            btnItem.Visible = false;
-            btnRun.Visible = false;
-            dgvBattleItemsUpdate();
-            UpdateButtons();
-        }
-
+        
         private void DisplayBattleText(object o, MessageEventArgs e)
         {
             rtbBattle.Text += e.Message + "\n";
@@ -408,6 +422,7 @@ namespace UIWindowsForm
                 Item item = World.FindItemByID(Convert.ToInt32(itemID));
 
                 //Use Item Function
+                gameSession.UseItemCommand(item);
 
                 dgvBattleItems.Visible = false;
                 btnAttack.Visible = true;
@@ -441,7 +456,7 @@ namespace UIWindowsForm
 
         private void btnEmpower_Click(object sender, EventArgs e)
         {
-            if(gameSession.CurrentPlayer.EmpowerCounter == 4)
+            if(gameSession.CurrentPlayer.EmpowerCounter == 4 && gameSession.CurrentPlayer.Greed == false)
             {
                 gameSession.CurrentPlayer.Empowered = true;
             }
@@ -460,6 +475,7 @@ namespace UIWindowsForm
             ptbEmpower3.Visible = false;
             ptbEmpower4.Visible = false;
         }
+
         private void UpdateEmpower()
         {
             switch (gameSession.CurrentPlayer.EmpowerCounter)
@@ -502,6 +518,34 @@ namespace UIWindowsForm
         private void button1_Click(object sender, EventArgs e)
         {
             gameSession.CurrentPlayer.CurrentHealth = gameSession.CurrentPlayer.TotalMaximumHealth;
+        }
+
+        private void ptbEmpower3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnGreed_Click(object sender, EventArgs e)
+        {
+            if(gameSession.TurnCounter == 1)
+            {
+                gameSession.CurrentPlayer.ActivateGreed();
+            }
+        }
+
+        private void btnTurn_Click(object sender, EventArgs e)
+        {
+            lblTurn.Text = gameSession.TurnCounter.ToString();
+        }
+
+        private void lblTurn_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnStats_Click(object sender, EventArgs e)
+        {
+            UpdateStats();
         }
     }
 }

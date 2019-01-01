@@ -1,23 +1,19 @@
-Bosses
-Power vs Items System
-If you use your charges on power then you will get probably double increase in power on next 
-action such as attack spell or item
-Damage Item
-Create a copy function for eneemies
+Error click column get error
 
-If you use your charges on luck then you will get more items from loot and maybe ill flip
-the item table so maybe I'll do this maybe ill make it if you do it 3 times or something the 
-loot table flips or something like this but some kind of mechanic like this
+-Enemys not using mana 
+-Player not using mana
+-Greed and Empower don't affect everything yet like items and damage taken 
+
+Keep lists null
+
+Greed system if used damage reduced but you get all loot
+Bosses
 
 I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
 
 Make lines between map pictures
 
 Different exp rates for different classes
-
-FIX THE FACT THAT I AM NOT CLONING ENEMIES AND ITEMS
--Equipment can be just one because it by just one player
--But enemies can be repeated so they should be cloned over and over
 
 When they cast a spell flash a picture for a second so it looks like an animation
 

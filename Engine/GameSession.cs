@@ -14,10 +14,12 @@ namespace Engine
         public Enemy CurrentEnemy;
         //Holds the result of a battle whether an entity missed, normally hit, or critical hit their opponent
         public enum BattleResult { Missed, Normal, Critical }
+        public enum EnemyChoiceTaken { Attack, CastSpell, Replenish }
         public enum GameState { Introduction, Travel, Battle, Shop, GameOver }
         public enum Direction { NORTH, SOUTH, WEST, EAST }
         public GameState GameStates;
         public event MyEventHandler OnMessagedRaised;
+        public int TurnCounter;
 
         public GameSession()
         {
@@ -26,12 +28,14 @@ namespace Engine
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(9), 10);
+            CurrentPlayer.PlayerItems.Add(World.FindItemByID(11), 3);
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(1));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
+
 
             GameStates = GameState.Travel;
         }
@@ -49,6 +53,8 @@ namespace Engine
         {
             CheckGameState(GameState.Battle);
 
+            TurnCounter++;
+
             BattleResult battleResult = BattleResult.Normal;
 
             if (CurrentEnemy != null)
@@ -58,12 +64,12 @@ namespace Engine
                     PlayerAttack(battleResult);
                     if(GameStates == GameState.Battle)
                     {
-                        EnemyAttack(battleResult);
+                        EnemyCombatAction(battleResult);
                     }
                 }
                 else
                 {
-                    EnemyAttack(battleResult);
+                    EnemyCombatAction(battleResult);
                     if(GameStates == GameState.Battle)
                     {
                         PlayerAttack(battleResult);
@@ -76,6 +82,8 @@ namespace Engine
         {
             CheckGameState(GameState.Battle);
 
+            TurnCounter++;
+
             BattleResult battleResult = BattleResult.Normal;
 
             if (CurrentEnemy != null)
@@ -85,15 +93,44 @@ namespace Engine
                     PlayerCastSpell(spell, battleResult);
                     if (GameStates == GameState.Battle)
                     {
-                        EnemyAttack(battleResult);
+                        EnemyCombatAction(battleResult);
                     }
                 }
                 else
                 {
-                    EnemyAttack(battleResult);
+                    EnemyCombatAction(battleResult);
                     if (GameStates == GameState.Battle)
                     {
                         PlayerCastSpell(spell, battleResult);
+                    }
+                }
+            }
+        }
+
+        public void UseItemCommand(Item item)
+        {
+            CheckGameState(GameState.Battle);
+
+            TurnCounter++;
+
+            BattleResult battleResult = BattleResult.Normal;
+
+            if (CurrentEnemy != null)
+            {
+                if (CurrentPlayer.IsPlayerTurn(CurrentEnemy))
+                {
+                    PlayerUseItem(item);
+                    if (GameStates == GameState.Battle)
+                    {
+                        EnemyCombatAction(battleResult);
+                    }
+                }
+                else
+                {
+                    EnemyCombatAction(battleResult);
+                    if (GameStates == GameState.Battle)
+                    {
+                        PlayerUseItem(item);
                     }
                 }
             }
@@ -109,12 +146,14 @@ namespace Engine
             { 
                 RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
                 CurrentPlayer.ResetEmpowerment();
+                CurrentPlayer.DisableGreed();
+                TurnCounter = 0;
                 GameStates = GameState.Travel;
             }
             else
             {
                 RaiseMessage(CurrentPlayer.Name + " failed to run away from the fight");
-                EnemyAttack(battleResult);
+                EnemyCombatAction(battleResult);
             }
         }
 
@@ -144,6 +183,7 @@ namespace Engine
             if (CurrentPlayer.CurrentLocation.EncounterTriggered())
             {
                 CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
+                TurnCounter = 1;
             }
             else
             {
@@ -183,25 +223,40 @@ namespace Engine
 
             CurrentEnemy.CurrentHealth -= damage;
 
+            string weaponUsed;
+
+            if (CurrentPlayer.CurrentWeapon == null)
+            {
+                weaponUsed = "fists";
+            }
+            else
+            {
+                weaponUsed = CurrentPlayer.CurrentWeapon.Name;
+            }
+
             switch (battleResult)
             {
                 case BattleResult.Missed:
                     RaiseMessage(CurrentPlayer.Name + " missed");
                     break;
                 case BattleResult.Normal:
-                    RaiseMessage(CurrentPlayer.Name + " does " + damage + " points of damage");
+                    RaiseMessage(CurrentPlayer.Name + " strikes with their " + weaponUsed + " and does " + damage + " points of damage");
                     break;
                 case BattleResult.Critical:
-                    RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " points of damage");
+                    RaiseMessage(CurrentPlayer.Name + " strikes with their " + weaponUsed + ", it critically strikes and does " + damage + " points of damage");
                     break;
             }
 
+
+            //TWO OF THE SAME CODE
             if (CurrentEnemy.CurrentHealth <= 0)
             {
                 RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
                 CurrentPlayer.GainEnemyRewards(CurrentEnemy);
                 CurrentPlayer.CheckKillQuest(CurrentEnemy);
                 CurrentPlayer.ResetEmpowerment();
+                CurrentPlayer.DisableGreed();
+                TurnCounter = 0;
                 GameStates = GameState.Travel;
             }
         }
@@ -215,14 +270,48 @@ namespace Engine
             switch (battleResult)
             {
                 case BattleResult.Missed:
-                    RaiseMessage(CurrentPlayer.Name + " missed his magical attack");
+                    RaiseMessage(CurrentPlayer.Name + " missed " + spell.Name);
                     break;
                 case BattleResult.Normal:
-                    RaiseMessage(CurrentPlayer.Name + " does " + damage + " points of magical damage");
+                    RaiseMessage(CurrentPlayer.Name + " casts " + spell.Name + " and does " + damage + " points of magical damage");
                     break;
                 case BattleResult.Critical:
-                    RaiseMessage(CurrentPlayer.Name + " critically strikes and does " + damage + " points of magical damage");
+                    RaiseMessage(CurrentPlayer.Name + " casts " + spell.Name + " and it critically strikes and does " + damage + " points of magical damage");
                     break;
+            }
+
+
+            //TWO OF THE SAME CODE
+            if (CurrentEnemy.CurrentHealth <= 0)
+            {
+                RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
+                CurrentPlayer.GainEnemyRewards(CurrentEnemy);
+                CurrentPlayer.CheckKillQuest(CurrentEnemy);
+                CurrentPlayer.ResetEmpowerment();
+                CurrentPlayer.DisableGreed();
+                TurnCounter = 0;
+                GameStates = GameState.Travel;
+            }
+        }
+
+        private void PlayerUseItem(Item item)
+        {
+            int itemValue = CurrentPlayer.UseItem(item);
+
+            if (item is HealthReplenishingItem)
+            {
+                CurrentPlayer.CurrentHealth += itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and healed for " + itemValue + " hitpoints");
+            }
+            else if(item is ManaReplenishingItem)
+            {
+                CurrentPlayer.CurrentMana += itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and replenished for " + itemValue + " manapoints");
+            }
+            else if(item is DamageItem)
+            {
+                CurrentEnemy.CurrentHealth -= itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and did " + itemValue + " points of damage to " + CurrentEnemy.Name);
             }
 
             if (CurrentEnemy.CurrentHealth <= 0)
@@ -231,10 +320,12 @@ namespace Engine
                 CurrentPlayer.GainEnemyRewards(CurrentEnemy);
                 CurrentPlayer.CheckKillQuest(CurrentEnemy);
                 CurrentPlayer.ResetEmpowerment();
+                CurrentPlayer.DisableGreed();
+                TurnCounter = 0;
                 GameStates = GameState.Travel;
             }
         }
-
+        
 
         public void EnterShop()
         {
@@ -289,10 +380,8 @@ namespace Engine
         }
 
         //Enemy Commands
-        private void EnemyAttack(BattleResult battleResult)
+        private void EnemyAttack(BattleResult battleResult, int damage)
         {
-            int damage = CurrentEnemy.Attack(CurrentPlayer, ref battleResult);
-
             CurrentPlayer.CurrentHealth -= damage;
 
             switch (battleResult)
@@ -301,10 +390,10 @@ namespace Engine
                     RaiseMessage(CurrentEnemy.Name + " missed");
                     break;
                 case BattleResult.Normal:
-                    RaiseMessage(CurrentEnemy.Name + " does " + damage + " points of damage");
+                    RaiseMessage(CurrentEnemy.Name + " strikes with their " + CurrentEnemy.WeaponUsed + " and does " + damage + " points of damage");
                     break;
                 case BattleResult.Critical:
-                    RaiseMessage(CurrentEnemy.Name + " critically strikes and does " + damage + " points of damage");
+                    RaiseMessage(CurrentEnemy.Name + " strikes with their " + CurrentEnemy.WeaponUsed + ", it critically strikes and does " + damage + " points of damage");
                     break;
             }
 
@@ -312,6 +401,60 @@ namespace Engine
             {
                 RaiseMessage(CurrentEnemy.Name + " has slain a " + CurrentPlayer.Name);
                 GameStates = GameState.GameOver;
+            }
+        }
+
+        private void EnemyCastSpell(BattleResult battleResult, int damage, string spellName)
+        {
+            CurrentPlayer.CurrentHealth -= damage;
+
+            switch (battleResult)
+            {
+                case BattleResult.Missed:
+                    RaiseMessage(CurrentEnemy.Name + " missed " + spellName);
+                    break;
+                case BattleResult.Normal:
+                    RaiseMessage(CurrentEnemy.Name + " casts " + spellName + " and does " + damage + " points of magical damage");
+                    break;
+                case BattleResult.Critical:
+                    RaiseMessage(CurrentEnemy.Name + " casts " + spellName + " and it critically strikes and does " + damage + " points of magical damage");
+                    break;
+            }
+
+            if (CurrentPlayer.CurrentHealth <= 0)
+            {
+                RaiseMessage(CurrentEnemy.Name + " has slain a " + CurrentPlayer.Name);
+                GameStates = GameState.GameOver;
+            }
+        }
+
+        private void EnemyReplenish(int replenishAmount, string spellName)
+        {
+            CurrentEnemy.CurrentHealth += replenishAmount;
+
+            RaiseMessage(CurrentEnemy.Name + " casts " + spellName + " and heals for " + replenishAmount + " hitpoints");
+        }
+
+        private void EnemyCombatAction(BattleResult battleResult)
+        {
+            EnemyChoiceTaken enemyChoiceTaken = EnemyChoiceTaken.Attack;
+            string spellName = "None";
+
+            int combatValue = CurrentEnemy.CombatAction(CurrentPlayer, ref battleResult, ref enemyChoiceTaken, ref spellName);
+
+            switch (enemyChoiceTaken)
+            {
+                case EnemyChoiceTaken.Attack:
+                    EnemyAttack(battleResult, combatValue);
+                    break;
+                case EnemyChoiceTaken.CastSpell:
+                    EnemyCastSpell(battleResult, combatValue, spellName);
+                    break;
+                case EnemyChoiceTaken.Replenish:
+                    EnemyReplenish(combatValue, spellName);
+                    break;
+                default:
+                    throw new Exception("No enemy choice taken selected some how");
             }
         }
 

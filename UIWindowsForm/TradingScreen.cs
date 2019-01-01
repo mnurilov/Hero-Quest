@@ -19,22 +19,104 @@ namespace UIWindowsForm
         {
             InitializeComponent();
             this.gameSession = gameSession;
-            dgvVendor.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID" });
-            dgvVendor.Columns.Add(new DataGridViewTextBoxColumn{ Name = "colName", HeaderText = "Name"});
-            dgvVendor.Columns.Add(new DataGridViewTextBoxColumn{ Name = "colQuantity", HeaderText = "Quantity"});
-            dgvVendor.Columns.Add(new DataGridViewButtonColumn{ Name = "btnBuy", HeaderText = "Buy 1", });
-            dgvVendor.CellClick += dgvVendor_CellClick;
-
-            UpdateVendor();
+            InitializePlayerInventory();
+            InitializeVendorInventory();
+            //dgvVendor.CellClick += dgvVendor_CellClick;
         }
 
-        private void dgvVendor_CellClick(object sender, DataGridViewCellEventArgs e)
+        private void InitializePlayerInventory()
+        {
+            if(gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
+            {
+                SetUpDGVPlayerItems();
+            }
+        }
+
+        private void InitializeVendorInventory()
+        {
+            if(gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
+            {
+                SetUpDGVVendorItems();
+            }
+        }
+
+        private void SetUpDGVPlayerItems()
+        {
+            dgvPlayerInventory.Rows.Clear();
+            dgvPlayerInventory.Columns.Clear();
+
+            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
+            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
+            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colQuantity", HeaderText = "Quantity" });
+            dgvVendorInventory.Columns.Add(new DataGridViewButtonColumn
+            {
+                Name = "btnSell",
+                HeaderText = "",
+                Text = "Sell 1",
+                UseColumnTextForButtonValue = true
+            });
+
+            foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
+            {
+                if (!CheckIfInDGV(item.Key.ID, dgvPlayerInventory))
+                {
+                    dgvPlayerInventory.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                }
+            }
+
+            dgvPlayerInventory.CellClick += dgvPlayerInventory_CellClick;
+        }
+        
+        private void SetUpDGVVendorItems()
+        {
+            dgvVendorInventory.Rows.Clear();
+            dgvVendorInventory.Columns.Clear();
+
+            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID" , Visible = false});
+            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
+            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colQuantity", HeaderText = "Quantity" });
+            dgvVendorInventory.Columns.Add(new DataGridViewButtonColumn 
+            { 
+                Name = "btnBuy",
+                HeaderText = "", 
+                Text = "Buy 1", 
+                UseColumnTextForButtonValue = true 
+            });
+
+            foreach(KeyValuePair<Item, int> item in gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory)
+            {
+                if (!CheckIfInDGV(item.Key.ID, dgvVendorInventory))
+                {
+                    dgvVendorInventory.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                }
+            }
+
+            dgvVendorInventory.CellClick += dgvVendorInventory_CellClick;
+        }
+
+        private bool CheckIfInDGV(int id, DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    if (row.Cells[0].Value.ToString() == id.ToString())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        private void dgvVendorInventory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // The 4th column (ColumnIndex = 3) has the "Buy 1" button.
-            if (e.ColumnIndex == 3)
+            // Make sure the user can't buy the column names
+            if (e.ColumnIndex == 3 && e.RowIndex != -1)
             {
                 // This gets the ID value of the item, from the hidden 1st column
-                var itemID = dgvVendor.Rows[e.RowIndex].Cells[0].Value;
+                var itemID = dgvVendorInventory.Rows[e.RowIndex].Cells[0].Value;
 
                 // Get the Item object for the selected item row
                 Item itemBeingBought = World.FindItemByID(Convert.ToInt32(itemID));
@@ -48,45 +130,31 @@ namespace UIWindowsForm
                 {
                     MessageBox.Show("You do not have enough gold to buy the " + itemBeingBought.Name);
                 }
-
             }
         }
 
-        private void UpdateVendor()
+        private void dgvPlayerInventory_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            dgvVendor.Rows.Clear();
-            foreach (KeyValuePair<Item, int> kvp in gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory)
+            // The 4th column (ColumnIndex = 3) has the "Buy 1" button.
+            // Make sure the user can't buy the column names
+            if (e.ColumnIndex == 3 && e.RowIndex != -1)
             {
-                if (!CheckIfInDGV(kvp.Key.ID))
+                // This gets the ID value of the item, from the hidden 1st column
+                var itemID = dgvPlayerInventory.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the Item object for the selected item row
+                Item itemBeingSold = World.FindItemByID(Convert.ToInt32(itemID));
+
+                // Check if the player has enough gold to buy the item
+                if (gameSession.CurrentPlayer.SellItem(itemBeingSold))
                 {
-                    dgvVendor.Rows.Add(kvp.Key.ID, kvp.Key.Name, kvp.Value);
+                    MessageBox.Show("You sold da item" + itemBeingSold.Name);
+                }
+                else
+                {
+                    MessageBox.Show("You do not have enough gold to buy the " + itemBeingSold.Name);
                 }
             }
-        }
-
-        private bool CheckIfInDGV(int ID)
-        {
-            foreach (DataGridViewRow row in dgvVendor.Rows)
-            {
-                if (row.Cells[0].Value != null)
-                {
-                    if (row.Cells[0].Value.ToString() == ID.ToString())
-                    {
-                        return true;
-                    }
-                }
-            }
-            return false;
-        }
-
-        private void TradingScreen_Load(object sender, EventArgs e)
-        {
-        }
-
-        private void TradingScreen_FormClosing_1(object sender, FormClosingEventArgs e)
-        {
-            MessageBox.Show("Leaving Shop");
-            gameSession.ExitShop();
         }
     }
 }

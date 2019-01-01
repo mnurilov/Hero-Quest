@@ -12,9 +12,8 @@ namespace Engine
         {
             Enemy cloneEnemy = new Enemy(enemy.ID, enemy.Name, enemy.Description, enemy.MaximumHealth, enemy.MaximumMana,
                 enemy.Strength, enemy.Defense, enemy.Luck, enemy.Speed, enemy.Intellect, enemy.Resistance, enemy.CriticalChanceRate,
-                enemy.DodgeChanceRate, enemy.RewardGold, enemy.RewardExperiencePoints);
-
-            cloneEnemy.LootTable = CloneEnemyLootTable(enemy.LootTable);
+                enemy.DodgeChanceRate, enemy.RewardGold, enemy.RewardExperiencePoints, enemy.SpellCastRate, enemy.WeaponUsed,
+                enemy.Spells, enemy.WeightedLootTable);
 
             return cloneEnemy;
         }
@@ -47,7 +46,7 @@ namespace Engine
 
             foreach(KeyValuePair<Item, int> kvp in itemInventory)
             {
-                cloneItemInventory.Add(CloneItem(kvp.Key), kvp.Value);
+                cloneItemInventory.Add(kvp.Key, kvp.Value);
             }
 
             return cloneItemInventory;

@@ -71,6 +71,12 @@
     <Compile Include="QuestForm.Designer.cs">
       <DependentUpon>QuestForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="TradingPoo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TradingPoo.Designer.cs">
+      <DependentUpon>TradingPoo.cs</DependentUpon>
+    </Compile>
     <Compile Include="TradingScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -95,6 +101,9 @@
     </Compile>
     <EmbeddedResource Include="QuestForm.resx">
       <DependentUpon>QuestForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TradingPoo.resx">
+      <DependentUpon>TradingPoo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="TradingScreen.resx">
       <DependentUpon>TradingScreen.cs</DependentUpon>

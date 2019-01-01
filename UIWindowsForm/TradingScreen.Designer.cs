@@ -28,50 +28,60 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.dgvPlayer = new System.Windows.Forms.DataGridView();
-            this.dgvVendor = new System.Windows.Forms.DataGridView();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayer)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVendor)).BeginInit();
+            this.dgvPlayerInventory = new System.Windows.Forms.DataGridView();
+            this.dgvVendorInventory = new System.Windows.Forms.DataGridView();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayerInventory)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVendorInventory)).BeginInit();
             this.SuspendLayout();
             // 
-            // dgvPlayer
+            // dgvPlayerInventory
             // 
-            this.dgvPlayer.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvPlayer.Location = new System.Drawing.Point(12, 164);
-            this.dgvPlayer.Name = "dgvPlayer";
-            this.dgvPlayer.RowTemplate.Height = 24;
-            this.dgvPlayer.Size = new System.Drawing.Size(388, 274);
-            this.dgvPlayer.TabIndex = 0;
+            this.dgvPlayerInventory.AllowUserToAddRows = false;
+            this.dgvPlayerInventory.AllowUserToDeleteRows = false;
+            this.dgvPlayerInventory.AllowUserToResizeColumns = false;
+            this.dgvPlayerInventory.AllowUserToResizeRows = false;
+            this.dgvPlayerInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPlayerInventory.Location = new System.Drawing.Point(12, 191);
+            this.dgvPlayerInventory.Name = "dgvPlayerInventory";
+            this.dgvPlayerInventory.ReadOnly = true;
+            this.dgvPlayerInventory.RowHeadersVisible = false;
+            this.dgvPlayerInventory.RowTemplate.Height = 24;
+            this.dgvPlayerInventory.Size = new System.Drawing.Size(380, 250);
+            this.dgvPlayerInventory.TabIndex = 0;
             // 
-            // dgvVendor
+            // dgvVendorInventory
             // 
-            this.dgvVendor.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvVendor.Location = new System.Drawing.Point(406, 164);
-            this.dgvVendor.Name = "dgvVendor";
-            this.dgvVendor.RowTemplate.Height = 24;
-            this.dgvVendor.Size = new System.Drawing.Size(382, 274);
-            this.dgvVendor.TabIndex = 1;
+            this.dgvVendorInventory.AllowUserToAddRows = false;
+            this.dgvVendorInventory.AllowUserToDeleteRows = false;
+            this.dgvVendorInventory.AllowUserToResizeColumns = false;
+            this.dgvVendorInventory.AllowUserToResizeRows = false;
+            this.dgvVendorInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvVendorInventory.Location = new System.Drawing.Point(408, 191);
+            this.dgvVendorInventory.Name = "dgvVendorInventory";
+            this.dgvVendorInventory.ReadOnly = true;
+            this.dgvVendorInventory.RowHeadersVisible = false;
+            this.dgvVendorInventory.RowTemplate.Height = 24;
+            this.dgvVendorInventory.Size = new System.Drawing.Size(380, 250);
+            this.dgvVendorInventory.TabIndex = 1;
             // 
             // TradingScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.dgvVendor);
-            this.Controls.Add(this.dgvPlayer);
+            this.Controls.Add(this.dgvVendorInventory);
+            this.Controls.Add(this.dgvPlayerInventory);
             this.Name = "TradingScreen";
-            this.Text = "TradingScreen";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TradingScreen_FormClosing_1);
-            this.Load += new System.EventHandler(this.TradingScreen_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayer)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgvVendor)).EndInit();
+            this.Text = "Shop";
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPlayerInventory)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvVendorInventory)).EndInit();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.DataGridView dgvPlayer;
-        private System.Windows.Forms.DataGridView dgvVendor;
+        private System.Windows.Forms.DataGridView dgvPlayerInventory;
+        private System.Windows.Forms.DataGridView dgvVendorInventory;
     }
 }

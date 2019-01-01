@@ -19,6 +19,7 @@ namespace Engine
         private const int ItemIDRatCarcass = 8;
         private const int ItemIDSnakeFang = 9;
         private const int ItemIDOgreTooth = 10;
+        private const int ItemIDFireInJar = 11;
 
         //Equipment ID's
         private const int HeadEquipmentIDBronzeHelmet = 1;
@@ -45,6 +46,7 @@ namespace Engine
         private const int EnemyIDSnake = 2;
         private const int EnemyIDOgre = 3;
         private const int EnemyIDDragon = 4;
+        private const int EnemyIDSiren = 5;
 
         //Person ID's
         private const int PersonIDBob = 1;
@@ -69,10 +71,9 @@ namespace Engine
         private const int LocationIDFarmHut = 6;
         private const int LocationIDAlley = 7;
         private const int LocationIDSewers = 8;
+        private const int LocationIDPond = 9;
 
         
-
-
         private static readonly List<Item> items = new List<Item>();
         private static readonly List<Enemy> enemies = new List<Enemy>();
         private static readonly List<Location> locations = new List<Location>();
@@ -105,6 +106,7 @@ namespace Engine
             items.Add(new ManaReplenishingItem(ItemIDHyperEther, "Hyper Ether", "An elite ether", 50, 36));
             items.Add(new EnemyLoot(ItemIDRatTail, "Rat Tail", "A severed tail", 10));
             items.Add(new EnemyLoot(ItemIDSnakeFang, "Snake Fang", "A fang of a snake", 30));
+            items.Add(new DamageItem(ItemIDFireInJar, "Fire in Jar", "It's a fire in a jar", 20, 20));
         }
 
         private static void PopulateEquipments()
@@ -126,21 +128,27 @@ namespace Engine
 
         private static void PopulateEnemies()
         {
-            List<EnemyLoot> ratLoots = new List<EnemyLoot>();
-            ratLoots.Add((EnemyLoot)FindItemByID(7));
+            Dictionary<EnemyLoot, int> ratLoots = new Dictionary<EnemyLoot, int>();
+            ratLoots.Add((EnemyLoot)FindItemByID(7), 100);
 
-            List<EnemyLoot> snakeLoots = new List<EnemyLoot>();
-            snakeLoots.Add((EnemyLoot)FindItemByID(9));
-            
-            Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, ratLoots);
-            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15, snakeLoots);
-            Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100);
-            Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000);
+            Dictionary<EnemyLoot, int> snakeLoots = new Dictionary<EnemyLoot, int>();
+            snakeLoots.Add((EnemyLoot)FindItemByID(9), 50);
+
+            List<Spell> sirenSpells = new List<Spell>();
+            sirenSpells.Add(FindSpellByID(2));
+            sirenSpells.Add(FindSpellByID(3));
+
+            Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, "claws", null, ratLoots);
+            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15, 0, "fangs", null, snakeLoots);
+            Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100, 0);
+            Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000, 0);
+            Enemy siren = new Enemy(EnemyIDSiren, "Siren", "She's hot", 30, 50, 5, 5, 5, 5, 10, 10, 30, 30, 20, 100, 50, "tail", sirenSpells);
 
             enemies.Add(rat);
             enemies.Add(snake);
             enemies.Add(ogre);
             enemies.Add(dragon);
+            enemies.Add(siren);
         }
 
         private static void PopulateQuests()
@@ -183,9 +191,11 @@ namespace Engine
             Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 0);
             Location alley = new Location(LocationIDAlley, "Alley", "It is a scary alley way", 0);
             Location sewers = new Location(LocationIDSewers, "Sewers", "Icky and Wicked", 0);
+            Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100);
 
             //Linking up the locations
             home.LocationToTheNorth = grassPlains;
+            home.LocationToTheSouth = pond;
 
             grassPlains.LocationToTheNorth = town;
             grassPlains.LocationToTheSouth = home;
@@ -207,14 +217,17 @@ namespace Engine
 
             sewers.LocationToTheEast = alley;
 
+            pond.LocationToTheNorth = home;
+
 
             //Added vendors to the locations
             town.VendorInLocation = FindVendorByID(1);
 
 
-            //Add enemies to the locations
-            grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };// { FindEnemyByID(2), 10 } };
+            //Add enemies to the locations ORDER THEM FROM LEAST TO GREATEST
+            grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };
             barn.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(2), 1 } };
+            pond.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(5), 1 } };
 
             //Add quests to the locations
             town.QuestInLocation = FindQuestByID(1);
@@ -230,6 +243,7 @@ namespace Engine
             locations.Add(farmHut);
             locations.Add(alley);
             locations.Add(sewers);
+            locations.Add(pond);
 
             ((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
         }

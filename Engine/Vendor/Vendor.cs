@@ -30,6 +30,17 @@ namespace Engine
             this.VendorSpellInventory = vendorSpellInventory;
         }
 
+        public void AddItem(Item item)
+        {
+            if(VendorItemInventory != null)
+            {
+                if (VendorItemInventory.Contains(item))
+                {
+
+                }
+            }
+        }
+
         public override string ToString()
         {
             string info = "";

@@ -332,6 +332,10 @@ namespace Engine
         }
         public bool Empowered;
 
+        //Greed Variables
+        private const double GreedModifier = 0.7;
+        public bool Greed;
+
 
         public Player(int level, string name, Class playerClass)
         {
@@ -341,6 +345,7 @@ namespace Engine
             this.CurrentExperiencePoints = 0;
             this.PlayerClass = playerClass;
             Empowered = false;
+            Greed = false;
 
             UpdateBaseStats();
             ResetTotalStats();
@@ -501,20 +506,50 @@ namespace Engine
             UpdateBaseStats();
         }
 
-        //FIX THIS UP SO IT DOESNT JUST GIVE ALL ENEMY LOOT AND FIX THE FACT THAT YOU CANT GAIN MORe THAN TWO ITESM
         public void GainEnemyRewards(Enemy enemy)
         {
             Gold += enemy.RewardGold;
             GainExperience(enemy.RewardExperiencePoints);
-            foreach(EnemyLoot loot in enemy.LootTable)
+
+            if(enemy.WeightedLootTable != null && Greed == true)
             {
-                if (PlayerItems.ContainsKey(loot))
+                GreedLootEnemy(enemy);
+            }
+            else if(enemy.WeightedLootTable != null && Greed == false)
+            {
+                LootEnemy(enemy);
+            }
+        }
+
+        private void GreedLootEnemy(Enemy enemy)
+        {
+            foreach(KeyValuePair<EnemyLoot, int> kvp in enemy.WeightedLootTable)
+            {
+                if (PlayerItems.ContainsKey(kvp.Key))
                 {
-                    PlayerItems[loot]++;
+                    PlayerItems[kvp.Key]++;
                 }
                 else
                 {
-                    PlayerItems.Add(loot, 1);
+                    PlayerItems.Add(kvp.Key, 1);
+                }
+            }
+        }
+
+        private void LootEnemy(Enemy enemy)
+        {
+            foreach(KeyValuePair<EnemyLoot, int> kvp in enemy.WeightedLootTable)
+            {
+                if(RandomNumberGenerator.RandomNumberBetween(1, 100) <= kvp.Value)
+                {
+                    if (PlayerItems.ContainsKey(kvp.Key))
+                    {
+                        PlayerItems[kvp.Key]++;
+                    }
+                    else
+                    {
+                        PlayerItems.Add(kvp.Key, 1);
+                    }
                 }
             }
         }
@@ -592,11 +627,15 @@ namespace Engine
         public int Attack(Enemy enemy, ref GameSession.BattleResult battleResult)
         {
             int damage = 0;
-            int empoweredDamage = 1;
+            double empoweredGreedDamage = 1;
 
-            if (Empowered)
+            if (Greed)
             {
-                empoweredDamage = EmpoweredModifier;
+                empoweredGreedDamage = GreedModifier;
+            }
+            else if (Empowered)
+            {
+                empoweredGreedDamage = EmpoweredModifier;
                 ResetEmpowerment();
             }
 
@@ -612,16 +651,16 @@ namespace Engine
             {
                 //Double the damage
                 battleResult = GameSession.BattleResult.Critical;
-                damage = ((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * 2) * empoweredDamage;
+                damage = (int)(((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * 2) * empoweredGreedDamage);
             }
             //Else the player would normally strike the enemy then calculate the damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                damage = (((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredDamage;
+                damage = (int)((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredGreedDamage);
             }
 
-            if(empoweredDamage == 1)
+            if(empoweredGreedDamage == 1)
             {
                 IncreaseEmpowerment();
             }
@@ -632,11 +671,15 @@ namespace Engine
         public int CastSpell(Enemy enemy, DamageSpell damageSpell, ref GameSession.BattleResult battleResult)
         {
             int spellDamage = 0;
-            int empoweredDamage = 1;
+            double empoweredGreedDamage = 1;
 
-            if (Empowered)
+            if (Greed)
             {
-                empoweredDamage = EmpoweredModifier;
+                empoweredGreedDamage = GreedModifier;
+            }
+            else if (Empowered)
+            {
+                empoweredGreedDamage = EmpoweredModifier;
                 ResetEmpowerment();
             }
 
@@ -652,16 +695,17 @@ namespace Engine
             {
                 //Double the spell damage
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = ((((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance)) * 2) * 2) * empoweredDamage;
+                spellDamage = (int)(((((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance)) * 2) * 2)
+                    * empoweredGreedDamage);
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = ((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2) * empoweredDamage;
+                spellDamage = (int)(((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2) * empoweredGreedDamage);
             }
 
-            if (empoweredDamage == 1)
+            if (empoweredGreedDamage == 1)
             {
                 IncreaseEmpowerment();
             }
@@ -669,15 +713,59 @@ namespace Engine
             return spellDamage;
         }
 
-        //Determines if the player can escape FIX THIS TO HAVE IT BE AFFECTED BY SPEED OF BOTH PLAYER AND ENEMY
+        public int UseItem(Item item)
+        {
+            //MAYBE PLACE IT ELSEWHERE IN GAMESESSION?? NOT SURE FOR CODING PRACTICE SAKE BUT I"M NOT GONNA LET IT SLOW ME DOWN ILL FIGURE IT OUT
+            //LATER
+            RemoveItem(item);
+
+            double ItemValueModifier = 1;
+
+            if (Greed)
+            {
+                ItemValueModifier = GreedModifier;
+            }
+
+            if(item is HealthReplenishingItem)
+            {
+                return (int)(((HealthReplenishingItem)item).HealthReplenishingValue * ItemValueModifier);
+            }
+            else if(item is ManaReplenishingItem)
+            {
+                return (int)(((ManaReplenishingItem)item).ManaReplenishingValue * ItemValueModifier);
+            }
+            else if(item is DamageItem)
+            {
+                return (int)(((DamageItem)item).DamageValue * ItemValueModifier);
+            }
+            else
+            {
+                throw new Exception("Somehow an item is being used that is not a usable item");
+            }
+        }
+
+        //Determines if the player can escape FEEL FREE TO MAKE THIS IF STATEMENT 
+        //MORE COMPLEX TO ALLOW FOR BETTER CHANCE OF RUNNING IN CERTIAN SCENARIOS
         public bool Run(Enemy enemy)
         {
-            if (RandomNumberGenerator.RandomNumberBetween(0, 99) < 50)
+            int roll = RandomNumberGenerator.RandomNumberBetween(0, 99);
+
+            if(TotalSpeed >= enemy.Speed + 10)
             {
                 return true;
             }
-
-            return false;
+            else if(TotalSpeed <= enemy.Speed - 20)
+            {
+                return false;
+            }
+            else if(roll < 50)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
         //Empowered Functions
@@ -694,6 +782,19 @@ namespace Engine
             {
                 Empowered = true;
             }
+        }
+
+        //Greed Functions
+        public void ActivateGreed()
+        {
+            ResetEmpowerment();
+            Greed = true;
+        }
+
+        public void DisableGreed()
+        {
+            ResetEmpowerment();
+            Greed = false;
         }
 
 
@@ -722,6 +823,13 @@ namespace Engine
             {
                 return false;
             }
+        }
+
+        public bool SellItem(Item item, Vendor vendor)
+        {
+            vendor.AddItem(item);
+            Gold += item.GoldValue;
+            RemoveItem(item);
         }
 
         //Returns true if player successfully bought the equipment, false otherwise
@@ -949,6 +1057,18 @@ namespace Engine
                         }
                     }
                 }
+            }
+        }
+
+        private void RemoveItem(Item item)
+        {
+            if(PlayerItems[item] > 1)
+            {
+                PlayerItems[item]--;
+            }
+            else
+            {
+                PlayerItems.Remove(item);
             }
         }
 
