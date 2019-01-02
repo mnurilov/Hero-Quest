@@ -40,15 +40,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="CloneGenerator.cs" />
-    <Compile Include="Inn.cs" />
+    <Compile Include="Clone Generator\CloneGenerator.cs" />
+    <Compile Include="Inn\Inn.cs" />
     <Compile Include="Item\Child Item\DamageItem.cs" />
     <Compile Include="Equipment\Child Equipment\Child Weapon\Dagger.cs" />
     <Compile Include="Equipment\Equipment.cs" />
-    <Compile Include="GameSession.cs" />
+    <Compile Include="Game Session\GameSession.cs" />
     <Compile Include="Quest\Child Quest\GatherQuest.cs" />
     <Compile Include="Item\Child Item\KeyItem.cs" />
-    <Compile Include="MessageEventArgs.cs" />
+    <Compile Include="Event Argument\MessageEventArgs.cs" />
     <Compile Include="Item\Child Item\QuestItem.cs" />
     <Compile Include="Equipment\Child Equipment\SideArm.cs" />
     <Compile Include="Equipment\Child Equipment\Child SideArm\ParryingDagger.cs" />

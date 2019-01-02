@@ -85,6 +85,8 @@
             this.Controls.Add(this.dgvPlayerInventory);
             this.Name = "TradingScreen";
             this.Text = "Shop";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.TradingScreen_FormClosing);
+            this.Load += new System.EventHandler(this.TradingScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPlayerInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvVendorInventory)).EndInit();
             this.ResumeLayout(false);

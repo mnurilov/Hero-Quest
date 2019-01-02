@@ -202,15 +202,15 @@ namespace Engine
         private static void PopulateLocations()
         {
             //Creation of locations
-            Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0);
-            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 100);
-            Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0);
-            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 0);
-            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 100);
-            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 0);
-            Location alley = new Location(LocationIDAlley, "Alley", "It is a scary alley way", 0);
-            Location sewers = new Location(LocationIDSewers, "Sewers", "Icky and Wicked", 0);
-            Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100);
+            Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0, 0, 0);
+            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 100, 0, 1);
+            Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0, 0, 2);
+            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 0, 1, 2);
+            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 100, 1, 3);
+            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 0, 2, 2);
+            Location alley = new Location(LocationIDAlley, "Alley", "It is a scary alley way", 0, -1, 2);
+            Location sewers = new Location(LocationIDSewers, "Sewers", "Icky and Wicked", 0, -2, 2);
+            Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100, 0, -1);
 
             //Linking up the locations
             home.LocationToTheNorth = grassPlains;

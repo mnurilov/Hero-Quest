@@ -21,7 +21,10 @@ namespace UIWindowsForm
             this.gameSession = gameSession;
             InitializePlayerInventory();
             InitializeVendorInventory();
-            //dgvVendor.CellClick += dgvVendor_CellClick;
+
+            //This needs to be assigned only once otherwise it's double cell clickingAJDOAHSDOASHIODHASOIDHIASHDOASHD
+            dgvVendorInventory.CellClick += dgvVendorInventory_CellClick;
+            dgvPlayerInventory.CellClick += dgvPlayerInventory_CellClick;
         }
 
         private void InitializePlayerInventory()
@@ -64,7 +67,6 @@ namespace UIWindowsForm
                 }
             }
 
-            dgvPlayerInventory.CellClick += dgvPlayerInventory_CellClick;
         }
         
         private void SetUpDGVVendorItems()
@@ -91,7 +93,6 @@ namespace UIWindowsForm
                 }
             }
 
-            dgvVendorInventory.CellClick += dgvVendorInventory_CellClick;
         }
 
         private bool CheckIfInDGV(int id, DataGridView dgv)
@@ -122,7 +123,7 @@ namespace UIWindowsForm
                 Item itemBeingBought = World.FindItemByID(Convert.ToInt32(itemID));
 
                 // Check if the player has enough gold to buy the item
-                if (gameSession.CurrentPlayer.BuyItem(itemBeingBought))
+                if (gameSession.BuyItem(itemBeingBought))
                 {
                     MessageBox.Show("You bought da item" + itemBeingBought.Name);
                 }
@@ -156,6 +157,16 @@ namespace UIWindowsForm
         {
             InitializePlayerInventory();
             InitializeVendorInventory();
+        }
+
+        private void TradingScreen_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void TradingScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            gameSession.ExitShop();
         }
     }
 }

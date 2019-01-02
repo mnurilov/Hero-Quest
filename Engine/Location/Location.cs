@@ -12,6 +12,8 @@ namespace Engine
         public string Name { get; set; }
         public string Description { get; set; }
         public int EncounterRate { get; set; }
+        public int XCoordinate { get; set; }
+        public int YCoordinate { get; set; }
 
         //Connects the locations together
         public Location LocationToTheNorth { get; set; }
@@ -27,12 +29,14 @@ namespace Engine
 
 
         //Add the vendor and quest as a constructor later on
-        public Location(int id, string name, string description, int encounterRate)
+        public Location(int id, string name, string description, int encounterRate, int xCoordinate, int yCoordinate)
         {
             this.ID = id;
             this.Name = name;
             this.Description = description;
             this.EncounterRate = encounterRate;
+            this.XCoordinate = xCoordinate;
+            this.YCoordinate = yCoordinate;
         }
         
         //Checks if an encounter will be triggered 

@@ -45,6 +45,25 @@ namespace Engine
             }
         }
 
+        public void RemoveItem(Item item)
+        {
+            if (VendorItemInventory.ContainsKey(item))
+            {
+                if (VendorItemInventory[item] > 1)
+                {
+                    VendorItemInventory[item]--;
+                }
+                else
+                {
+                    VendorItemInventory.Remove(item);
+                }
+            }
+            else
+            {
+                throw new Exception("Somehow the vendor is selling an item they don't own");
+            }
+        }
+
         public override string ToString()
         {
             string info = "";

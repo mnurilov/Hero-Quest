@@ -746,6 +746,7 @@ namespace Engine
         }
 
         //Determines if the player can escape FEEL FREE TO MAKE THIS IF STATEMENT 
+
         //MORE COMPLEX TO ALLOW FOR BETTER CHANCE OF RUNNING IN CERTIAN SCENARIOS
         public bool Run(Enemy enemy)
         {
@@ -817,7 +818,7 @@ namespace Engine
                 }
                 
                 Gold -= item.GoldValue;
-
+                
                 return true;
             }
             else
@@ -826,6 +827,7 @@ namespace Engine
             }
         }
 
+        //Seperate item selling from the other thing
         public void SellItem(Item item, Vendor vendor)
         {
             vendor.AddItem(item);
@@ -1143,13 +1145,44 @@ namespace Engine
 
         private void RemoveItem(Item item)
         {
-            if(PlayerItems[item] > 1)
+            if (PlayerItems.ContainsKey(item))
             {
-                PlayerItems[item]--;
+                if (PlayerItems[item] > 1)
+                {
+                    PlayerItems[item]--;
+                }
+                else
+                {
+                    PlayerItems.Remove(item);
+                }
             }
             else
             {
-                PlayerItems.Remove(item);
+                throw new Exception("Somehow the player is selling an item they don't own");
+            }
+        }
+
+        private void RemoveEquipment(Equipment equipment)
+        {
+            if (PlayerEquipments.Contains(equipment))
+            {
+                PlayerEquipments.Remove(equipment);
+            }
+            else
+            {
+                throw new Exception("Player is somehow selling equipment they don't own");
+            }
+        }
+
+        private void RemoveSpell(Spell spell)
+        {
+            if (PlayerSpells.Contains(spell))
+            {
+                PlayerSpells.Remove(spell);
+            }
+            else
+            {
+                throw new Exception("Player is somehow selling a spell they don't own");
             }
         }
 

@@ -1,3 +1,12 @@
+TIPS FOR REFACTORING
+-Smaller functions don't make finds huge
+-Fix all the public and private and internal
+-Make sure the UI is not touching the player class it can only access it through gameSession
+-Make sure Player's function are doing simple things that don't change other classes
+-Let Game Session handle interactions between objects
+-Fix ordering
+-
+
 CODE LAYOUT
 -Engine will handle all calculations and logic
 -GameSession will handle all the objects interacting with each other

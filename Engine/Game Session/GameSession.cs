@@ -16,7 +16,7 @@ namespace Engine
         public enum BattleResult { Missed, Normal, Critical }
         public enum EnemyChoiceTaken { Attack, CastSpell, Replenish }
         public enum GameState { Introduction, Travel, Battle, Shop, GameOver }
-        public enum Direction { NORTH, SOUTH, WEST, EAST }
+        public enum Direction { North, South, West, East }
         public GameState GameStates;
         public event MyEventHandler OnMessagedRaised;
         public int TurnCounter;
@@ -163,20 +163,21 @@ namespace Engine
 
             switch (direction)
             {
-                case Direction.NORTH:
+                case Direction.North:
                     CurrentPlayer.MoveNorth();
                     break;
-                case Direction.SOUTH:
+                case Direction.South:
                     CurrentPlayer.MoveSouth();
                     break;
-                case Direction.WEST:
+                case Direction.West:
                     CurrentPlayer.MoveWest();
                     break;
-                case Direction.EAST:
+                case Direction.East:
                     CurrentPlayer.MoveEast();
                     break;
             }
 
+            //<----------------Remove this after I finish with debugging----------------->
             RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
 
             //If an encounter would occur, determine the enemy
@@ -198,22 +199,22 @@ namespace Engine
 
         public void MoveNorthCommand()
         {
-            MoveCommand(Direction.NORTH);
+            MoveCommand(Direction.North);
         }
 
         public void MoveSouthCommand()
         {
-            MoveCommand(Direction.SOUTH);
+            MoveCommand(Direction.South);
         }
 
         public void MoveWestCommand()
         {
-            MoveCommand(Direction.WEST);
+            MoveCommand(Direction.West);
         }
 
         public void MoveEastCommand()
         {
-            MoveCommand(Direction.EAST);
+            MoveCommand(Direction.East);
         }
 
 
@@ -343,6 +344,7 @@ namespace Engine
 
             if (CurrentPlayer.BuyItem(item))
             {
+                CurrentPlayer.CurrentLocation.VendorInLocation.RemoveItem(item);
                 return true;
             }
             else
