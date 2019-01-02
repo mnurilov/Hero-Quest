@@ -351,6 +351,18 @@ namespace Engine
             }
         }
 
+        public bool StayAtInn(Inn inn)
+        {
+            if (CurrentPlayer.StayAtInn(inn))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public void EquipCommand(Equipment equipment)
         {
@@ -362,6 +374,13 @@ namespace Engine
             {
                 RaiseMessage("You failed to equip " + equipment.Name);
             }
+        }
+
+        public void UnEquipCommand(Equipment equipment)
+        {
+            CurrentPlayer.DeEquip(equipment);
+
+            RaiseMessage("You de equip " + equipment.Name);
         }
 
 

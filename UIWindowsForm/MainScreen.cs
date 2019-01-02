@@ -159,6 +159,15 @@ namespace UIWindowsForm
                         btnTalk.Visible = true;
                     }
 
+                    if(gameSession.CurrentPlayer.CurrentLocation.InnInLocation == null)
+                    {
+                        btnInn.Visible = false;
+                    }
+                    else
+                    {
+                        btnInn.Visible = true;
+                    }
+
                     btnAttack.Visible = false;
                     btnSpell.Visible = false;
                     btnItem.Visible = false;
@@ -179,6 +188,7 @@ namespace UIWindowsForm
                     btnTalk.Visible = false;
                     DisableEmpowerControl();
                     btnGreed.Visible = false;
+                    btnInn.Visible = false;
                     break;
                 case GameSession.GameState.Battle:
                     btnNorth.Enabled = false;
@@ -192,6 +202,7 @@ namespace UIWindowsForm
                     btnRun.Visible = true;
                     btnTalk.Visible = false;
                     btnEmpower.Visible = true;
+                    btnInn.Visible = false;
                     UpdateEmpower();
                     if(gameSession.TurnCounter == 1)
                     {
@@ -312,6 +323,7 @@ namespace UIWindowsForm
                 }
             }
             dgvEquipment.CellClick += dgvEquipment_CellClick;
+            dgvEquipment.CellClick += dgvEquipment2_CellClick;
         }
 
         private void dgvEquipment_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -324,6 +336,20 @@ namespace UIWindowsForm
                 Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
 
                 gameSession.EquipCommand(equipment);
+                UpdateStats();
+            }
+        }
+
+        private void dgvEquipment2_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex == 3)
+            {
+                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+
+                //Get the equipment object for the selected equipment row
+                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+
+                gameSession.UnEquipCommand(equipment);
                 UpdateStats();
             }
         }
@@ -546,6 +572,18 @@ namespace UIWindowsForm
         private void btnStats_Click(object sender, EventArgs e)
         {
             UpdateStats();
+        }
+
+        private void btnInn_Click(object sender, EventArgs e)
+        {
+            InnScreen innScreen = new InnScreen(gameSession);
+            innScreen.StartPosition = FormStartPosition.CenterParent;
+            innScreen.ShowDialog(this);
+        }
+
+        private void btnGold_Click(object sender, EventArgs e)
+        {
+            lblGold.Text = gameSession.CurrentPlayer.Gold.ToString();
         }
     }
 }

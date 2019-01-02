@@ -62,6 +62,10 @@ namespace Engine
         private const int VendorIDJohn = 1;
         private const int VendorIDBobby = 2;
 
+        //Inn ID's
+        private const int InnIDParadise = 1;
+        private const int InnIDCozyInn = 2;
+
         //Location ID's
         private const int LocationIDHome = 1;
         private const int LocationIDGrassPlains = 2;
@@ -78,6 +82,7 @@ namespace Engine
         private static readonly List<Enemy> enemies = new List<Enemy>();
         private static readonly List<Location> locations = new List<Location>();
         private static readonly List<Vendor> vendors = new List<Vendor>();
+        private static readonly List<Inn> inns = new List<Inn>();
         private static readonly List<Equipment> equipments = new List<Equipment>();
         private static readonly List<Spell> spells = new List<Spell>();
         private static readonly List<Quest> quests = new List<Quest>();
@@ -91,6 +96,8 @@ namespace Engine
             PopulateQuests();
             //Put the vendors after the item and equipment spawns so that it can load the items
             PopulateVendors(); 
+
+            PopulateInns();
 
             //Put this last because it needs everything else to be loaded first
             PopulateLocations();
@@ -174,10 +181,22 @@ namespace Engine
 
         private static void PopulateVendors()
         {
-            Vendor John = new Vendor(VendorIDJohn, "John", "A business man at heart", new Dictionary<Item, int>{ { FindItemByID(1), 4} });
-            John.VendorItemInventory.Add(FindItemByID(3), 5);
+            Vendor john = new Vendor(VendorIDJohn, "John", "A business man at heart", new Dictionary<Item, int>{ { FindItemByID(1), 4} });
+            john.VendorItemInventory.Add(FindItemByID(3), 5);
             
-            vendors.Add(John);
+            vendors.Add(john);
+        }
+
+        private static void PopulateInns()
+        {
+            Person innKeeperBilly = new Person(100, "Billy", "Who cares", "Sup faggot");
+            Person innKeeperMandy = new Person(101, "Mandy", "Grumpy little shit", "Hates billy");
+
+            Inn paradise = new Inn(InnIDParadise, "Paradise", "Guess what it is", 30, innKeeperBilly);
+            Inn cozyInn = new Inn(InnIDCozyInn, "Cozy Inn", "Til 9o'clockerino", 40, innKeeperMandy);
+
+            inns.Add(paradise);
+            inns.Add(cozyInn);
         }
 
         private static void PopulateLocations()
@@ -220,9 +239,12 @@ namespace Engine
             pond.LocationToTheNorth = home;
 
 
-            //Added vendors to the locations
+            //Add vendors to the locations
             town.VendorInLocation = FindVendorByID(1);
 
+            //Add inns to the locations
+            town.InnInLocation = FindInnByID(1);
+            farmHut.InnInLocation = FindInnByID(2);
 
             //Add enemies to the locations ORDER THEM FROM LEAST TO GREATEST
             grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };
@@ -323,6 +345,19 @@ namespace Engine
                 if(vendor.ID == ID)
                 {
                     return vendor;
+                }
+            }
+            return null;
+        }
+
+        //Finds a specific inn based on ID
+        public static Inn FindInnByID(int ID)
+        {
+            foreach(Inn inn in inns)
+            {
+                if(inn.ID == ID)
+                {
+                    return inn;
                 }
             }
             return null;

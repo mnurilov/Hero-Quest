@@ -69,6 +69,9 @@
             this.tbcInventory = new System.Windows.Forms.TabControl();
             this.tabItems = new System.Windows.Forms.TabPage();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tabEquipments = new System.Windows.Forms.TabPage();
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
             this.tabSpells = new System.Windows.Forms.TabPage();
@@ -100,18 +103,19 @@
             this.lblTurn = new System.Windows.Forms.Label();
             this.btnTurn = new System.Windows.Forms.Button();
             this.btnStats = new System.Windows.Forms.Button();
+            this.btnInn = new System.Windows.Forms.Button();
+            this.lblGold = new System.Windows.Forms.Label();
+            this.btnGold = new System.Windows.Forms.Button();
             this.ptbEmpower2 = new System.Windows.Forms.PictureBox();
             this.ptbEmpower3 = new System.Windows.Forms.PictureBox();
             this.ptbEmpower4 = new System.Windows.Forms.PictureBox();
             this.ptbEmpower1 = new System.Windows.Forms.PictureBox();
             this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
             this.pbLocationPicture = new System.Windows.Forms.PictureBox();
-            this.colID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colEquipmentDeEquip = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tbcInventory.SuspendLayout();
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -511,6 +515,22 @@
             this.dgvItems.TabIndex = 0;
             this.dgvItems.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgv_CellContentClick);
             // 
+            // colID
+            // 
+            this.colID.HeaderText = "ID";
+            this.colID.Name = "colID";
+            this.colID.Visible = false;
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            // 
+            // colQuantity
+            // 
+            this.colQuantity.HeaderText = "Quantity";
+            this.colQuantity.Name = "colQuantity";
+            // 
             // tabEquipments
             // 
             this.tabEquipments.Controls.Add(this.dgvEquipment);
@@ -532,7 +552,8 @@
             this.dgvEquipment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEquipmentID,
             this.colEquipmentName,
-            this.colEquipmentEquip});
+            this.colEquipmentEquip,
+            this.colEquipmentDeEquip});
             this.dgvEquipment.Location = new System.Drawing.Point(0, 0);
             this.dgvEquipment.Name = "dgvEquipment";
             this.dgvEquipment.RowHeadersVisible = false;
@@ -823,6 +844,35 @@
             this.btnStats.UseVisualStyleBackColor = true;
             this.btnStats.Click += new System.EventHandler(this.btnStats_Click);
             // 
+            // btnInn
+            // 
+            this.btnInn.Location = new System.Drawing.Point(113, 309);
+            this.btnInn.Name = "btnInn";
+            this.btnInn.Size = new System.Drawing.Size(78, 103);
+            this.btnInn.TabIndex = 65;
+            this.btnInn.Text = "Inn";
+            this.btnInn.UseVisualStyleBackColor = true;
+            this.btnInn.Click += new System.EventHandler(this.btnInn_Click);
+            // 
+            // lblGold
+            // 
+            this.lblGold.AutoSize = true;
+            this.lblGold.Location = new System.Drawing.Point(233, 176);
+            this.lblGold.Name = "lblGold";
+            this.lblGold.Size = new System.Drawing.Size(46, 17);
+            this.lblGold.TabIndex = 66;
+            this.lblGold.Text = "label5";
+            // 
+            // btnGold
+            // 
+            this.btnGold.Location = new System.Drawing.Point(211, 218);
+            this.btnGold.Name = "btnGold";
+            this.btnGold.Size = new System.Drawing.Size(75, 23);
+            this.btnGold.TabIndex = 67;
+            this.btnGold.Text = "button2";
+            this.btnGold.UseVisualStyleBackColor = true;
+            this.btnGold.Click += new System.EventHandler(this.btnGold_Click);
+            // 
             // ptbEmpower2
             // 
             this.ptbEmpower2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(0)))));
@@ -882,22 +932,6 @@
             this.pbLocationPicture.TabStop = false;
             this.pbLocationPicture.Click += new System.EventHandler(this.pictureBox1_Click);
             // 
-            // colID
-            // 
-            this.colID.HeaderText = "ID";
-            this.colID.Name = "colID";
-            this.colID.Visible = false;
-            // 
-            // colName
-            // 
-            this.colName.HeaderText = "Name";
-            this.colName.Name = "colName";
-            // 
-            // colQuantity
-            // 
-            this.colQuantity.HeaderText = "Quantity";
-            this.colQuantity.Name = "colQuantity";
-            // 
             // colEquipmentID
             // 
             this.colEquipmentID.HeaderText = "ID";
@@ -917,8 +951,15 @@
             this.colEquipmentEquip.ReadOnly = true;
             this.colEquipmentEquip.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colEquipmentEquip.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colEquipmentEquip.Text = "Wow";
+            this.colEquipmentEquip.Text = "Equip";
             this.colEquipmentEquip.UseColumnTextForButtonValue = true;
+            // 
+            // colEquipmentDeEquip
+            // 
+            this.colEquipmentDeEquip.HeaderText = "";
+            this.colEquipmentDeEquip.Name = "colEquipmentDeEquip";
+            this.colEquipmentDeEquip.Text = "DeEquip";
+            this.colEquipmentDeEquip.UseColumnTextForButtonValue = true;
             // 
             // MainScreen
             // 
@@ -926,6 +967,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Silver;
             this.ClientSize = new System.Drawing.Size(1382, 549);
+            this.Controls.Add(this.btnGold);
+            this.Controls.Add(this.lblGold);
+            this.Controls.Add(this.btnInn);
             this.Controls.Add(this.btnStats);
             this.Controls.Add(this.btnTurn);
             this.Controls.Add(this.lblTurn);
@@ -1095,9 +1139,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuantity;
+        private System.Windows.Forms.Button btnInn;
+        private System.Windows.Forms.Label lblGold;
+        private System.Windows.Forms.Button btnGold;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
         private System.Windows.Forms.DataGridViewButtonColumn colEquipmentEquip;
+        private System.Windows.Forms.DataGridViewButtonColumn colEquipmentDeEquip;
     }
 }
 

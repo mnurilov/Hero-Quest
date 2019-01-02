@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CloneGenerator.cs" />
+    <Compile Include="Inn.cs" />
     <Compile Include="Item\Child Item\DamageItem.cs" />
     <Compile Include="Equipment\Child Equipment\Child Weapon\Dagger.cs" />
     <Compile Include="Equipment\Equipment.cs" />

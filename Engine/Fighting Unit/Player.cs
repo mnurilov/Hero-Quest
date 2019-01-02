@@ -504,6 +504,7 @@ namespace Engine
         {
             Level++;
             UpdateBaseStats();
+            CalculateAllTotalStats();
         }
 
         public void GainEnemyRewards(Enemy enemy)
@@ -825,7 +826,7 @@ namespace Engine
             }
         }
 
-        public bool SellItem(Item item, Vendor vendor)
+        public void SellItem(Item item, Vendor vendor)
         {
             vendor.AddItem(item);
             Gold += item.GoldValue;
@@ -880,37 +881,51 @@ namespace Engine
             }
         }
 
+        public bool StayAtInn(Inn inn)
+        {
+            if(Gold >= inn.GoldCost)
+            {
+                CurrentHealth = TotalMaximumHealth;
+                CurrentMana = TotalMaximumMana;
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
 
         public bool Equip(Equipment equipment)
         {
             bool canEquip = false;
 
-            if(equipment is HeadEquipment)
+            if (equipment is HeadEquipment)
             {
                 CurrentHeadEquipment = equipment as HeadEquipment;
                 canEquip = true;
             }
-            else if(equipment is ChestEquipment)
+            else if (equipment is ChestEquipment)
             {
                 CurrentChestEquipment = equipment as ChestEquipment;
                 canEquip = true;
             }
-            else if(equipment is LegEquipment)
+            else if (equipment is LegEquipment)
             {
                 CurrentLegEquipment = equipment as LegEquipment;
                 canEquip = true;
             }
-            else if(equipment is Weapon)
+            else if (equipment is Weapon)
             {
-                if(equipment is Sword)
+                if (equipment is Sword)
                 {
-                    if(PlayerClass == Class.Warrior)
+                    if (PlayerClass == Class.Warrior)
                     {
                         CurrentWeapon = equipment as Sword;
                         canEquip = true;
                     }
                 }
-                else if(equipment is Staff)
+                else if (equipment is Staff)
                 {
                     if (PlayerClass == Class.Mage)
                     {
@@ -918,7 +933,7 @@ namespace Engine
                         canEquip = true;
                     }
                 }
-                else if(equipment is Dagger)
+                else if (equipment is Dagger)
                 {
                     if (PlayerClass == Class.Thief)
                     {
@@ -929,7 +944,7 @@ namespace Engine
             }
             else if (equipment is SideArm)
             {
-                if(equipment is Shield)
+                if (equipment is Shield)
                 {
                     if (PlayerClass == Class.Warrior)
                     {
@@ -955,7 +970,7 @@ namespace Engine
                 }
             }
 
-            if(canEquip == true)
+            if (canEquip == true)
             {
                 CalculateAllTotalStats();
                 return true;
@@ -966,7 +981,73 @@ namespace Engine
             }
         }
 
-        //public void DeEquip()
+        public void DeEquip(Equipment equipment)
+        {
+            if(equipment is HeadEquipment)
+            {
+                CurrentHeadEquipment = null;
+            }
+            else if(equipment is ChestEquipment)
+            {
+                CurrentChestEquipment = null;
+            }
+            else if(equipment is LegEquipment)
+            {
+                CurrentLegEquipment = null;
+            }
+            else if(equipment is Weapon)
+            {
+                if(equipment is Sword)
+                {
+                    if(PlayerClass == Class.Warrior)
+                    {
+                        CurrentWeapon = null;
+                    }
+                }
+                else if(equipment is Staff)
+                {
+                    if (PlayerClass == Class.Mage)
+                    {
+                        CurrentWeapon = null;
+                    }
+                }
+                else if(equipment is Dagger)
+                {
+                    if (PlayerClass == Class.Thief)
+                    {
+                        CurrentWeapon = null;
+                    }
+                }
+            }
+            else if (equipment is SideArm)
+            {
+                if(equipment is Shield)
+                {
+                    if (PlayerClass == Class.Warrior)
+                    {
+                        CurrentSideArm = null;
+                    }
+                }
+                else if (equipment is Tome)
+                {
+                    if (PlayerClass == Class.Mage)
+                    {
+                        CurrentSideArm = null;
+                    }
+                }
+                else if (equipment is ParryingDagger)
+                {
+                    if (PlayerClass == Class.Thief)
+                    {
+                        CurrentSideArm = null;
+                    }
+                }
+            }
+
+            CalculateAllTotalStats();
+        }
+
+        
 
         //Quests Methods
         public void AcceptQuest(Quest quest)

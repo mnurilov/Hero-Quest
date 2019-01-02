@@ -1,50 +1,18 @@
-Error click column get error
+CODE LAYOUT
+-Engine will handle all calculations and logic
+-GameSession will handle all the objects interacting with each other
+-UI will handle display
 
+<-----Things to Do----->
 -Enemys not using mana 
 -Player not using mana
 -Greed and Empower don't affect everything yet like items and damage taken 
-
-Keep lists null
-
-Greed system if used damage reduced but you get all loot
-Bosses
-
-I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
-
-Make lines between map pictures
-
-Different exp rates for different classes
-
-When they cast a spell flash a picture for a second so it looks like an animation
-
-sound effects
-
-music
-
-Ideas
--Game Creator App where I make a simple app that allows the user to create the world for the game
-and then the app converts it into xml files/this will need to be done after the game is complete
--Maybe add a chest and a key?
--Maybe a paper mario like leveling system and combat system
--Where when you level up you put your stat points into the attritubtes you want
-Allowing the player to craft their own character
--If you survive with item, item goes up a tier dead by daylight
-
-Items
--HP heals
--MP heals
--Silence curer
--Darkness curer
--Slime curer
--Stat boosting items?
-
-Weapons
-Sword and Shield - Warrior
-Mage and Tome - Mage
-Dagger and Dagger - Thief
-
-Quests
--Kill Quest
--Gather Quest
--Travel Quest
--Interact Quest
+-Keep lists null
+-Bosses
+-I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
+-Make lines between map pictures
+-Different exp rates for different classes
+-When they cast a spell flash a picture for a second so it looks like an animation
+-sound effects
+-music
+-Add icon to hero quest main page

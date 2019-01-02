@@ -34,9 +34,13 @@ namespace Engine
         {
             if(VendorItemInventory != null)
             {
-                if (VendorItemInventory.Contains(item))
+                if (VendorItemInventory.ContainsKey(item))
                 {
-
+                    VendorItemInventory[item]++;
+                }
+                else
+                {
+                    VendorItemInventory.Add(item, 1);
                 }
             }
         }

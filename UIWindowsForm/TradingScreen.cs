@@ -45,10 +45,10 @@ namespace UIWindowsForm
             dgvPlayerInventory.Rows.Clear();
             dgvPlayerInventory.Columns.Clear();
 
-            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
-            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
-            dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colQuantity", HeaderText = "Quantity" });
-            dgvVendorInventory.Columns.Add(new DataGridViewButtonColumn
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colQuantity", HeaderText = "Quantity" });
+            dgvPlayerInventory.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "btnSell",
                 HeaderText = "",
@@ -146,15 +146,16 @@ namespace UIWindowsForm
                 Item itemBeingSold = World.FindItemByID(Convert.ToInt32(itemID));
 
                 // Check if the player has enough gold to buy the item
-                if (gameSession.CurrentPlayer.SellItem(itemBeingSold))
-                {
-                    MessageBox.Show("You sold da item" + itemBeingSold.Name);
-                }
-                else
-                {
-                    MessageBox.Show("You do not have enough gold to buy the " + itemBeingSold.Name);
-                }
+                gameSession.CurrentPlayer.SellItem(itemBeingSold, gameSession.CurrentPlayer.CurrentLocation.VendorInLocation);
+
+                MessageBox.Show("ADAHYDEHA");
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InitializePlayerInventory();
+            InitializeVendorInventory();
         }
     }
 }

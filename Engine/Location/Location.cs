@@ -20,6 +20,7 @@ namespace Engine
         public Location LocationToTheEast { get; set; }
 
         public Vendor VendorInLocation { get; set; }
+        public Inn InnInLocation { get; set; }
         public Quest QuestInLocation { get; set; }
         //Key is the enemy, Value is the weight (The appearance rate of the enemy)
         public Dictionary<Enemy, int> EnemiesInLocation { get; set; }
