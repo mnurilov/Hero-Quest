@@ -10,9 +10,10 @@ namespace Engine
     {
         public string Message;
 
+
         public MessageEventArgs(string message)
         {
-            Message = message;
+            this.Message = message;
         }
     }
 }

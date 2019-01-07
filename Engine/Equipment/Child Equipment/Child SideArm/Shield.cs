@@ -8,9 +8,9 @@ namespace Engine
 {
     public class Shield : SideArm
     {
-        public Shield(int id, string name, string description, int goldValue, int healthBonus = 0, int manaBonus = 0, int attackBonus = 0,
-            int defenseBonus = 0, int luckBonus = 0, int speedBonus = 0, int intellectBonus = 0, int resistanceBonus = 0)
-            : base(id, name, description, goldValue, healthBonus, manaBonus, attackBonus, defenseBonus, luckBonus, speedBonus,
+        public Shield(int id, string name, string description, int goldValue, int healthBonus, int manaBonus, int strengthBonus,
+            int defenseBonus, int luckBonus, int speedBonus, int intellectBonus, int resistanceBonus)
+            : base(id, name, description, goldValue, healthBonus, manaBonus, strengthBonus, defenseBonus, luckBonus, speedBonus,
                   intellectBonus, resistanceBonus)
         {
 

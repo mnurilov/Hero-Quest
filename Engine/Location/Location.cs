@@ -11,24 +11,28 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //Chance of encountering an enemy when travelling to this location
         public int EncounterRate { get; set; }
         public int XCoordinate { get; set; }
         public int YCoordinate { get; set; }
+        public bool HasVisited { get; set; }
 
-        //Connects the locations together
+        //<----------Connects the locations together---------->
         public Location LocationToTheNorth { get; set; }
         public Location LocationToTheSouth { get; set; }
         public Location LocationToTheWest { get; set; }
         public Location LocationToTheEast { get; set; }
 
+        //<----------Location population---------->
         public Vendor VendorInLocation { get; set; }
         public Inn InnInLocation { get; set; }
         public Quest QuestInLocation { get; set; }
+
         //Key is the enemy, Value is the weight (The appearance rate of the enemy)
         public Dictionary<Enemy, int> EnemiesInLocation { get; set; }
 
 
-        //Add the vendor and quest as a constructor later on
         public Location(int id, string name, string description, int encounterRate, int xCoordinate, int yCoordinate)
         {
             this.ID = id;
@@ -37,9 +41,11 @@ namespace Engine
             this.EncounterRate = encounterRate;
             this.XCoordinate = xCoordinate;
             this.YCoordinate = yCoordinate;
+            HasVisited = false;
         }
         
-        //Checks if an encounter will be triggered 
+
+        //Checks if an encounter with an enemy will be triggered 
         public bool EncounterTriggered()
         {
             if (RandomNumberGenerator.RandomNumberBetween(0, 99) < EncounterRate)
@@ -52,7 +58,7 @@ namespace Engine
             }
         }
 
-        //Selects an enemy based on the weights given to them
+        //Selects an enemy from the enemies in the dictionary based on the weights given to them
         public Enemy SelectEnemy()
         {
             int totalWeight = 0;
@@ -63,6 +69,7 @@ namespace Engine
                 return selectedEnemy;
             }
 
+            //Add up all the weights of the enemies
             foreach (KeyValuePair<Enemy, int> weightedEnemy in EnemiesInLocation)
             {
                 totalWeight += weightedEnemy.Value;
@@ -70,6 +77,7 @@ namespace Engine
 
             int randomNum = RandomNumberGenerator.RandomNumberBetween(0, totalWeight - 1);
 
+            //Selects the enemy based on the random number rolled
             foreach (KeyValuePair<Enemy, int> weightedEnemy in EnemiesInLocation)
             {
                 if (randomNum < weightedEnemy.Value)
@@ -81,6 +89,7 @@ namespace Engine
                 randomNum = randomNum - weightedEnemy.Value;
             }
 
+            //Generate a clone of the selected enemy and return that clone
             return CloneGenerator.CloneEnemy(selectedEnemy);
         }
 
@@ -88,10 +97,11 @@ namespace Engine
         {
             string info = "";
 
-            info += ("ID: " + ID.ToString() + "\n");
+            info += ("ID: " + ID + "\n");
             info += ("Name: " + Name + "\n");
             info += ("Description: " + Description + "\n");
-            info += ("Encounter Rate: " + EncounterRate.ToString() + "\n");
+            info += ("Encounter Rate: " + EncounterRate + "\n");
+            info += ("Coordinates: " + "(" + XCoordinate + ", " + YCoordinate + ")" + "\n");
             if(LocationToTheNorth != null)
             {
                 info += ("Location to the north: " + LocationToTheNorth.Name + "\n");
@@ -111,6 +121,10 @@ namespace Engine
             if(VendorInLocation != null)
             {
                 info += ("Vendor Name: " + VendorInLocation.Name + "\n");
+            }
+            if(InnInLocation != null)
+            {
+                info += ("Inn Name: " + InnInLocation.Name + "\n");
             }
             if(QuestInLocation != null)
             {

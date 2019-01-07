@@ -175,21 +175,6 @@ namespace UIWindowsForm
                     DisableEmpowerControl();
                     btnGreed.Visible = false;
                     break;
-                case GameSession.GameState.Shop:
-                    btnNorth.Enabled = false;
-                    btnSouth.Enabled = false;
-                    btnWest.Enabled = false;
-                    btnEast.Enabled = false;
-                    btnAttack.Visible = false;
-                    btnSpell.Visible = false;
-                    btnItem.Visible = false;
-                    btnRun.Visible = false;
-                    btnShop.Enabled = false;
-                    btnTalk.Visible = false;
-                    DisableEmpowerControl();
-                    btnGreed.Visible = false;
-                    btnInn.Visible = false;
-                    break;
                 case GameSession.GameState.Battle:
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
@@ -306,7 +291,6 @@ namespace UIWindowsForm
 
         private void btnShop_Click(object sender, EventArgs e)
         {
-            gameSession.EnterShop();
             TradingScreen tradingScreen = new TradingScreen(gameSession);
             tradingScreen.StartPosition = FormStartPosition.CenterParent;
             tradingScreen.ShowDialog(this);

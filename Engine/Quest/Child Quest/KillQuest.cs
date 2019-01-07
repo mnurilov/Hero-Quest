@@ -10,15 +10,19 @@ namespace Engine
     {
         //Key is the enemy, Value is quantity of the enemy
         public Dictionary<Enemy, int> RequiredEnemies { get; set; }
-        public Dictionary<Enemy, int> EnemiesDefeatedSoFar { get; set; }
 
-        public KillQuest(int id, string name, string description, Person person, Dictionary<Enemy, int> requiredEnemies,
+        //Tracks current status of the quest by saving the enemies defeated so far
+        public Dictionary<Enemy, int> EnemiesDefeatedSoFar { get; set; }
+        
+
+        public KillQuest(int id, string name, string description, Person questGiver, Dictionary<Enemy, int> requiredEnemies,
             int rewardGold = 0, int rewardExperience = 0, Item rewardItem = null, Equipment rewardEquipment = null, 
-            Spell rewardSpell = null): base(id, name, description, person, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)
+            Spell rewardSpell = null): base(id, name, description, questGiver, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)
         {
             this.RequiredEnemies = requiredEnemies;
             EnemiesDefeatedSoFar = new Dictionary<Enemy, int>();
         }
+
 
         public override string ToString()
         {

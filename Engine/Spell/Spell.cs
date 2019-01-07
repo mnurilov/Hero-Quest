@@ -12,6 +12,8 @@ namespace Engine
         public string Name { get; set; }
         public string Description { get; set; }
         public int GoldValue { get; set; }
+        private const double SellingValueModifier = 0.5;
+        public int SellingGoldValue { get; set; }
         public int ManaCost { get; set; }
 
 
@@ -21,17 +23,20 @@ namespace Engine
             this.Name = name;
             this.Description = description;
             this.GoldValue = goldValue;
+            SellingGoldValue = (int)(GoldValue * SellingValueModifier);
             this.ManaCost = manaCost;
         }
+
 
         public override string ToString()
         {
             string info = "";
 
-            info += ("ID: " + ID.ToString() + "\n");
+            info += ("ID: " + ID + "\n");
             info += ("Name: " + Name + "\n");
             info += ("Description: " + Description + "\n");
-            info += ("Mana Cost: " + ManaCost.ToString() + "\n");
+            info += ("Gold Value: " + GoldValue + "\n");
+            info += ("Mana Cost: " + ManaCost + "\n");
 
             return info;
         }

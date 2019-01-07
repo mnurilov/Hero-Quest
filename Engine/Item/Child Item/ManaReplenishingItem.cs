@@ -17,12 +17,13 @@ namespace Engine
             this.ManaReplenishingValue = manaReplenishingValue;
         }
 
+
         public override string ToString()
         {
             string info = "";
 
             info += base.ToString();
-            info += ("Mana Replenishing Value: " + ManaReplenishingValue.ToString() + "\n");
+            info += ("Mana Replenishing Value: " + ManaReplenishingValue + "\n");
 
             return info;
         }

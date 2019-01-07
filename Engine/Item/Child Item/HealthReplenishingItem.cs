@@ -17,12 +17,13 @@ namespace Engine
             this.HealthReplenishingValue = healthReplenishingValue;
         }
 
+
         public override string ToString()
         {
             string info = "";
 
             info += base.ToString();
-            info += ("Health Replenishing Value: " + HealthReplenishingValue.ToString() + "\n");
+            info += ("Health Replenishing Value: " + HealthReplenishingValue + "\n");
 
             return info;
         }

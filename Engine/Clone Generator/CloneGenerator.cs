@@ -12,12 +12,25 @@ namespace Engine
         {
             Enemy cloneEnemy = new Enemy(enemy.ID, enemy.Name, enemy.Description, enemy.MaximumHealth, enemy.MaximumMana,
                 enemy.Strength, enemy.Defense, enemy.Luck, enemy.Speed, enemy.Intellect, enemy.Resistance, enemy.CriticalChanceRate,
-                enemy.DodgeChanceRate, enemy.RewardGold, enemy.RewardExperiencePoints, enemy.SpellCastRate, enemy.WeaponUsed,
-                enemy.Spells, enemy.WeightedLootTable);
+                enemy.DodgeChanceRate, enemy.RewardGold, enemy.RewardExperiencePoints, enemy.SpellCastRate, enemy.Spells,
+                enemy.WeaponUsed, enemy.WeightedItemLootTable, enemy.WeightedEquipmentLootTable, enemy.WeightedSpellLootTable);
 
             return cloneEnemy;
         }
 
+        public static Dictionary<Item, int> CloneItemInventory(Dictionary<Item, int> itemInventory)
+        {
+            Dictionary<Item, int> cloneItemInventory = new Dictionary<Item, int>();
+
+            foreach (KeyValuePair<Item, int> kvp in itemInventory)
+            {
+                cloneItemInventory.Add(kvp.Key, kvp.Value);
+            }
+
+            return cloneItemInventory;
+        }
+
+        //<-----------Unused Functions----------->
         public static Item CloneItem(Item item)
         {
             if(item is EnemyLoot)
@@ -38,18 +51,6 @@ namespace Engine
             }
 
             return item;
-        }
-
-        public static Dictionary<Item, int> CloneItemInventory(Dictionary<Item, int> itemInventory)
-        {
-            Dictionary<Item, int> cloneItemInventory = new Dictionary<Item, int>();
-
-            foreach(KeyValuePair<Item, int> kvp in itemInventory)
-            {
-                cloneItemInventory.Add(kvp.Key, kvp.Value);
-            }
-
-            return cloneItemInventory;
         }
 
         private static EnemyLoot CloneEnemyLoot(EnemyLoot enemyLoot)

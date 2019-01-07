@@ -123,11 +123,11 @@ namespace UIWindowsForm
                 Item itemBeingBought = World.FindItemByID(Convert.ToInt32(itemID));
 
                 // Check if the player has enough gold to buy the item
-                if (gameSession.BuyItem(itemBeingBought))
+                //if (gameSession.BuyInventory(itemBeingBought))
                 {
                     MessageBox.Show("You bought da item" + itemBeingBought.Name);
                 }
-                else
+                //else
                 {
                     MessageBox.Show("You do not have enough gold to buy the " + itemBeingBought.Name);
                 }
@@ -147,7 +147,7 @@ namespace UIWindowsForm
                 Item itemBeingSold = World.FindItemByID(Convert.ToInt32(itemID));
 
                 // Check if the player has enough gold to buy the item
-                gameSession.CurrentPlayer.SellItem(itemBeingSold, gameSession.CurrentPlayer.CurrentLocation.VendorInLocation);
+                //gameSession.SellItem(itemBeingSold);
 
                 MessageBox.Show("ADAHYDEHA");
             }
@@ -166,7 +166,6 @@ namespace UIWindowsForm
 
         private void TradingScreen_FormClosing(object sender, FormClosingEventArgs e)
         {
-            gameSession.ExitShop();
         }
     }
 }

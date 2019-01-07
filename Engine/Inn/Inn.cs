@@ -11,9 +11,14 @@ namespace Engine
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+
+        //Cost to stay at the inn
         public int GoldCost { get; set; }
+
+        //Person who will be the inn keeper of the inn
         public Person InnKeeper { get; set; }
         
+
         public Inn(int id, string name, string description, int goldCost, Person innKeeper)
         {
             this.ID = id;
@@ -22,6 +27,7 @@ namespace Engine
             this.GoldCost = goldCost;
             this.InnKeeper = innKeeper;
         }
+
 
         public override string ToString()
         {

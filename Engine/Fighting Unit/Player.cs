@@ -9,7 +9,7 @@ namespace Engine
 {
     public class Player
     {
-        //Warrior Class Constants
+        //<----------Warrior Class Constants---------->
         private const double WarriorHealthStatScaleFactor = 6.073588;
         private const double WarriorHealthStatExponent = 1.7;
         private const double WarriorHealthStatConstant = 10;
@@ -42,8 +42,7 @@ namespace Engine
         private const double WarriorResistanceStatExponent = 1.7;
         private const double WarriorResistanceStatConstant = 1;
 
-
-        //Mage Class Constants
+        //<----------Mage Class Constants---------->
         private const double MageHealthStatScaleFactor = 3.03372322;
         private const double MageHealthStatExponent = 1.7;
         private const double MageHealthStatConstant = 6;
@@ -76,8 +75,7 @@ namespace Engine
         private const double MageResistanceStatExponent = 1.7;
         private const double MageResistanceStatConstant = 5;
 
-
-        //Thief Class Constants
+        //<----------Thief Class Constants---------->
         private const double ThiefHealthStatScaleFactor = 4.2558101;
         private const double ThiefHealthStatExponent = 1.7;
         private const double ThiefHealthStatConstant = 7;
@@ -110,31 +108,37 @@ namespace Engine
         private const double ThiefResistanceStatExponent = 1.7;
         private const double ThiefResistanceStatConstant = 4;
 
-
-        //Experience Points Constants
+        //<----------Experience Points Constants----------->
         private const double ExperiencePointsScaleFactor = 2;
         private const double ExperiencePointsExponent = 2.5;
         private const double ExperiencePointsConstant = 10;
 
-
-        //Critical Chance Constants
+        //<----------Critical Chance Constants----------->
         private const double CriticalChanceRateScaleFactor = 100.505051;
         private const double CriticalChanceRateConstant = 100;
 
+        //<----------Critical Damage Constants----------->
+        private const double CriticalDamageModifier = 2;
 
-        //Dodge Change Constants
+        //<----------Dodge Chance Constants----------->
         private const double DodgeChanceRateScaleFactor = 100.505051;
         private const double DodgeChanceRateConstant = 100;
 
+        //<----------Gold Constants----------->
+        private const int GoldCap = 100000;
 
-        //Gold Constants
-        private const int GoldCap = 10000;
-
-
-        //Level Constants
+        //<----------Level Constants----------->
         private const int MinimumLevel = 1;
         private const int MaximumLevel = 20;
-        
+
+        //<----------Empower Constants---------->
+        private const int EmpoweredModifier = 2;
+        private const int EmpowerCounterCap = 4;
+
+        //<----------Greed Constants---------->
+        private const double GreedModifier = 0.7;
+
+        //<----------Stats----------->
         private int level;
         public int Level
         {
@@ -207,11 +211,11 @@ namespace Engine
 
         //Player Character Class
         public enum Class { Warrior, Mage, Thief }
-        private Class PlayerClass;
+        private Class playerClass;
 
         public Class GetClass()
         {
-            return PlayerClass;
+            return playerClass;
         }
 
         public string Name { get; set; }
@@ -264,7 +268,7 @@ namespace Engine
             }
         }
 
-        //Base stats
+        //<----------Base stats---------->
         public int BaseMaximumHealth { get; set; }
         public int BaseMaximumMana { get; set; }
         public int BaseStrength { get; set; }
@@ -274,8 +278,7 @@ namespace Engine
         public int BaseIntellect { get; set; }
         public int BaseResistance { get; set; }
 
-
-        //Total stats after equipment bonuses are calculated
+        //<----------Total stats after equipment bonuses are calculated---------->
         public int TotalMaximumHealth { get; set; }
         public int TotalMaximumMana { get; set; }
         public int TotalStrength { get; set; }
@@ -290,23 +293,21 @@ namespace Engine
 
         public Location CurrentLocation { get; set; }
 
-        //Equipment
+        //<---------Inventory---------->
+        //Key is the item, Value is the quantity of the item
+        public Dictionary<Item, int> PlayerItems = new Dictionary<Item, int>();
+        public List<Equipment> PlayerEquipments = new List<Equipment>();
+        public List<Spell> PlayerSpells = new List<Spell>();
+        public List<Quest> PlayerQuests = new List<Quest>();
+
+        //<---------Equipment---------->
         public Weapon CurrentWeapon { get; set; }
         public SideArm CurrentSideArm { get; set; }
         public HeadEquipment CurrentHeadEquipment { get; set; }
         public ChestEquipment CurrentChestEquipment { get; set; }
         public LegEquipment CurrentLegEquipment { get; set; }
 
-        //Inventory
-        public List<Quest> PlayerQuests = new List<Quest>();
-        public List<Equipment> PlayerEquipments = new List<Equipment>();
-        //Key is the item, Value is the quantity of the item
-        public Dictionary<Item, int> PlayerItems = new Dictionary<Item, int>();
-        public List<Spell> PlayerSpells = new List<Spell>();
-
-        //Empower Variables
-        private const int EmpowerCounterCap = 4;
-        private const int EmpoweredModifier = 2;
+        //<----------Empower Variables---------->
         private int empowerCounter;
         public int EmpowerCounter
         {
@@ -316,11 +317,11 @@ namespace Engine
             }
             set
             {
-                if(value >= EmpowerCounterCap)
+                if (value >= EmpowerCounterCap)
                 {
                     empowerCounter = EmpowerCounterCap;
                 }
-                else if(value < 0)
+                else if (value < 0)
                 {
                     empowerCounter = 0;
                 }
@@ -332,8 +333,7 @@ namespace Engine
         }
         public bool Empowered;
 
-        //Greed Variables
-        private const double GreedModifier = 0.7;
+        //<----------Greed Variables---------->
         public bool Greed;
 
 
@@ -341,16 +341,17 @@ namespace Engine
         {
             this.Level = level;
             this.Name = name;
-            this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
+            this.playerClass = playerClass;
             this.CurrentExperiencePoints = 0;
-            this.PlayerClass = playerClass;
+            this.MaximumExperiencePoints = GetUpdatedMaximumExperience();
+            
             Empowered = false;
             Greed = false;
 
             UpdateBaseStats();
             ResetTotalStats();
 
-            //After properly setting up the players base and total stats only then can you set his current health and mana
+            //After properly setting up the players base and total stats only now can we set his current health and mana
             CurrentHealth = TotalMaximumHealth;
             CurrentMana = TotalMaximumMana;
             
@@ -369,7 +370,108 @@ namespace Engine
         }
 
 
-        //Leveling, Experience, and Stats Functions
+        //<----------Leveling, Experience, and Stats Functions---------->
+        public void GainExperience(int experience)
+        {
+            CurrentExperiencePoints += experience;
+
+            while(CurrentExperiencePoints >= MaximumExperiencePoints)
+            {
+                LevelUp();
+                CurrentExperiencePoints -= MaximumExperiencePoints;
+                MaximumExperiencePoints = GetUpdatedMaximumExperience();
+            }
+        }
+
+        private void LevelUp()
+        {
+            Level++;
+            UpdateBaseStats();
+            CalculateAllTotalStats();
+        }
+
+        private void CalculateAllTotalStats()
+        {
+            //Reset the total stats back to base stats numbers
+            ResetTotalStats();
+
+            if(CurrentHeadEquipment != null)
+            {
+                UpdateTotalStats(CurrentHeadEquipment);
+            }
+            if(CurrentChestEquipment != null)
+            {
+                UpdateTotalStats(CurrentChestEquipment);
+            }
+            if(CurrentLegEquipment != null)
+            {
+                UpdateTotalStats(CurrentLegEquipment);
+            }
+            if(CurrentWeapon != null)
+            {
+                UpdateTotalStats(CurrentWeapon);
+            }
+            if(CurrentSideArm != null)
+            {
+                UpdateTotalStats(CurrentSideArm);
+            }
+
+            UpdateCriticalAndDodge();
+        }
+
+        private void ResetTotalStats()
+        {
+            TotalMaximumHealth = BaseMaximumHealth;
+            TotalMaximumMana = BaseMaximumMana;
+            TotalStrength = BaseStrength;
+            TotalDefense = BaseDefense;
+            TotalLuck = BaseLuck;
+            TotalSpeed = BaseSpeed;
+            TotalIntellect = BaseIntellect;
+            TotalResistance = BaseResistance;
+        }
+
+        private void UpdateTotalStats(Equipment equipment)
+        {
+            TotalMaximumHealth += equipment.HealthBonus;
+            TotalMaximumMana += equipment.ManaBonus;
+            TotalStrength += equipment.StrengthBonus;
+            TotalDefense += equipment.DefenseBonus;
+            TotalLuck += equipment.LuckBonus;
+            TotalSpeed += equipment.SpeedBonus;
+            TotalIntellect += equipment.IntellectBonus;
+            TotalResistance += equipment.ResistanceBonus;
+        }
+
+        private void UpdateCriticalAndDodge()
+        {
+            CriticalChanceRate = ((CriticalChanceRateScaleFactor * TotalLuck) / (TotalLuck + CriticalChanceRateConstant));
+            DodgeChanceRate = ((DodgeChanceRateScaleFactor * TotalLuck) / (TotalLuck + DodgeChanceRateConstant));
+        }
+
+        private int GetUpdatedMaximumExperience() 
+        {
+            return (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
+        }
+
+        private void UpdateBaseStats()
+        {
+            switch (playerClass)
+            {
+                case Class.Warrior:
+                    UpdateWarriorStats();
+                    break;
+                case Class.Mage:
+                    UpdateMageStats();
+                    break;
+                case Class.Thief:
+                    UpdateThiefStats();
+                    break;
+                default:
+                    throw new Exception("Error no class selected");
+            }
+        }
+
         private void UpdateWarriorStats()
         {
             BaseMaximumHealth = (int)(Math.Round((WarriorHealthStatScaleFactor * (Math.Pow(Level, WarriorHealthStatExponent))) + WarriorHealthStatConstant));
@@ -406,191 +508,8 @@ namespace Engine
             BaseResistance = (int)(Math.Round((ThiefResistanceStatScaleFactor * (Math.Pow(Level, ThiefResistanceStatExponent))) + ThiefResistanceStatConstant));
         }
 
-        private void UpdateBaseStats()
-        {
-            switch (PlayerClass)
-            {
-                case Class.Warrior:
-                    UpdateWarriorStats();
-                    break;
-                case Class.Mage:
-                    UpdateMageStats();
-                    break;
-                case Class.Thief:
-                    UpdateThiefStats();
-                    break;
-                default:
-                    throw new Exception("Error no class selected");
-            }
-        }
 
-        private void ResetTotalStats()
-        {
-            TotalMaximumHealth = BaseMaximumHealth;
-            TotalMaximumMana = BaseMaximumMana;
-            TotalStrength = BaseStrength;
-            TotalDefense = BaseDefense;
-            TotalLuck = BaseLuck;
-            TotalSpeed = BaseSpeed;
-            TotalIntellect = BaseIntellect;
-            TotalResistance = BaseResistance;
-        }
-
-        private void UpdateTotalStats(Equipment equipment)
-        {
-            TotalMaximumHealth += equipment.HealthBonus;
-            TotalMaximumMana += equipment.ManaBonus;
-            TotalStrength += equipment.AttackBonus;
-            TotalDefense += equipment.DefenseBonus;
-            TotalLuck += equipment.LuckBonus;
-            TotalSpeed += equipment.SpeedBonus;
-            TotalIntellect += equipment.IntellectBonus;
-            TotalResistance += equipment.ResistanceBonus;
-        }
-
-        private void CalculateAllTotalStats()
-        {
-            //Reset the total stats back to base stats numbers
-            ResetTotalStats();
-
-            if(CurrentHeadEquipment != null)
-            {
-                UpdateTotalStats(CurrentHeadEquipment);
-            }
-            if(CurrentChestEquipment != null)
-            {
-                UpdateTotalStats(CurrentChestEquipment);
-            }
-            if(CurrentLegEquipment != null)
-            {
-                UpdateTotalStats(CurrentLegEquipment);
-            }
-            if(CurrentWeapon != null)
-            {
-                UpdateTotalStats(CurrentWeapon);
-            }
-            if(CurrentSideArm != null)
-            {
-                UpdateTotalStats(CurrentSideArm);
-            }
-
-            UpdateCriticalAndDodge();
-        }
-
-        private void UpdateCriticalAndDodge()
-        {
-            CriticalChanceRate = ((CriticalChanceRateScaleFactor * TotalLuck) / (TotalLuck + CriticalChanceRateConstant));
-            DodgeChanceRate = ((DodgeChanceRateScaleFactor * TotalLuck) / (TotalLuck + DodgeChanceRateConstant));
-        }
-
-        private int GetUpdatedMaximumExperience() 
-        {
-            return (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
-        }
-
-        public void GainExperience(int experience)
-        {
-            CurrentExperiencePoints += experience;
-
-            while(CurrentExperiencePoints >= MaximumExperiencePoints)
-            {
-                LevelUp();
-                CurrentExperiencePoints -= MaximumExperiencePoints;
-                MaximumExperiencePoints = GetUpdatedMaximumExperience();
-            }
-        }
-
-        private void LevelUp()
-        {
-            Level++;
-            UpdateBaseStats();
-            CalculateAllTotalStats();
-        }
-
-        public void GainEnemyRewards(Enemy enemy)
-        {
-            Gold += enemy.RewardGold;
-            GainExperience(enemy.RewardExperiencePoints);
-
-            if(enemy.WeightedLootTable != null && Greed == true)
-            {
-                GreedLootEnemy(enemy);
-            }
-            else if(enemy.WeightedLootTable != null && Greed == false)
-            {
-                LootEnemy(enemy);
-            }
-        }
-
-        private void GreedLootEnemy(Enemy enemy)
-        {
-            foreach(KeyValuePair<EnemyLoot, int> kvp in enemy.WeightedLootTable)
-            {
-                if (PlayerItems.ContainsKey(kvp.Key))
-                {
-                    PlayerItems[kvp.Key]++;
-                }
-                else
-                {
-                    PlayerItems.Add(kvp.Key, 1);
-                }
-            }
-        }
-
-        private void LootEnemy(Enemy enemy)
-        {
-            foreach(KeyValuePair<EnemyLoot, int> kvp in enemy.WeightedLootTable)
-            {
-                if(RandomNumberGenerator.RandomNumberBetween(1, 100) <= kvp.Value)
-                {
-                    if (PlayerItems.ContainsKey(kvp.Key))
-                    {
-                        PlayerItems[kvp.Key]++;
-                    }
-                    else
-                    {
-                        PlayerItems.Add(kvp.Key, 1);
-                    }
-                }
-            }
-        }
-
-        //Check is if is the player's turn, return true if it is
-        public bool IsPlayerTurn(Enemy enemy)
-        {
-            //Determines player's turn based on speed
-            if (TotalSpeed > enemy.Speed)
-            {
-                return true;
-            }
-            else if (TotalSpeed < enemy.Speed)
-            {
-                return false;
-            }
-            //If the speeds are equal decide randomly
-            else
-            {
-                int turnDecider = RandomNumberGenerator.RandomNumberBetween(1, 100);
-                if (turnDecider > 50)
-                {
-                    return true;
-                }
-                else
-                {
-                    return false;
-                }
-            }
-        }
-
-
-        //Movement Functions
-        //Moves the player to a different location
-        private void MoveTo(Location newLocation)
-        {
-            CurrentLocation = newLocation;
-            CheckTravelQuest(newLocation);
-        }
-
+        //<-----------Movement Functions----------->
         public void MoveNorth()
         {
             if (CurrentLocation.LocationToTheNorth != null)
@@ -623,20 +542,30 @@ namespace Engine
             }
         }
 
+        //Moves the player to a different location
+        private void MoveTo(Location newLocation)
+        {
+            CurrentLocation = newLocation;
+            UpdateTravelQuests(newLocation);
+        }
 
-        //Battle Functions
+
+        //<----------Battle Functions---------->
         public int Attack(Enemy enemy, ref GameSession.BattleResult battleResult)
         {
             int damage = 0;
-            double empoweredGreedDamage = 1;
 
+            //This value modifies the damage depending on whether Greed or Empower is activated
+            double empoweredGreedModifier = 1;
+
+            //Check to see if player is using Greed or Empower
             if (Greed)
             {
-                empoweredGreedDamage = GreedModifier;
+                empoweredGreedModifier = GreedModifier;
             }
             else if (Empowered)
             {
-                empoweredGreedDamage = EmpoweredModifier;
+                empoweredGreedModifier = EmpoweredModifier;
                 ResetEmpowerment();
             }
 
@@ -652,16 +581,18 @@ namespace Engine
             {
                 //Double the damage
                 battleResult = GameSession.BattleResult.Critical;
-                damage = (int)(((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * 2) * empoweredGreedDamage);
+                damage = (int)(((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * CriticalDamageModifier)
+                                   * empoweredGreedModifier);
             }
             //Else the player would normally strike the enemy then calculate the damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                damage = (int)((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredGreedDamage);
+                damage = (int)((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredGreedModifier);
             }
 
-            if(empoweredGreedDamage == 1)
+            //If the player is not using Greed or using Empower then increase empower counter
+            if(empoweredGreedModifier == 1)
             {
                 IncreaseEmpowerment();
             }
@@ -669,18 +600,149 @@ namespace Engine
             return damage;
         }
 
-        public int CastSpell(Enemy enemy, DamageSpell damageSpell, ref GameSession.BattleResult battleResult)
+        public int CastSpell(Enemy enemy, Spell spell, ref GameSession.BattleResult battleResult)
         {
-            int spellDamage = 0;
-            double empoweredGreedDamage = 1;
+            if (CurrentMana < spell.ManaCost)
+            {
+                return 0;
+            }
 
+            if (spell is DamageSpell)
+            {
+                return CastDamageSpell(enemy, (DamageSpell)spell, ref battleResult);
+            }
+            else if (spell is ReplenishSpell)
+            {
+                return CastReplenishSpell((ReplenishSpell)spell);
+            }
+            else
+            {
+                throw new Exception("Somehow player is casting a spell that isn't a damage or replenish spell");
+            }
+        }
+
+        public int UseItem(Item item)
+        {
+            int itemEffectValue = 0;
+
+            //This value modifies the item effect value depending on whether Greed or Empower is activated
+            double empoweredGreedModifier = 1;
+
+            //Check to see if player is using Greed or Empower
             if (Greed)
             {
-                empoweredGreedDamage = GreedModifier;
+                empoweredGreedModifier = GreedModifier;
             }
             else if (Empowered)
             {
-                empoweredGreedDamage = EmpoweredModifier;
+                empoweredGreedModifier = EmpoweredModifier;
+                ResetEmpowerment();
+            }
+
+            //Depending on the item type being used calculate the item effect value accordingly
+            if (item is HealthReplenishingItem)
+            {
+                itemEffectValue = (int)(((HealthReplenishingItem)item).HealthReplenishingValue * empoweredGreedModifier);
+            }
+            else if(item is ManaReplenishingItem)
+            {
+                itemEffectValue = (int)(((ManaReplenishingItem)item).ManaReplenishingValue * empoweredGreedModifier);
+            }
+            else if(item is DamageItem)
+            {
+                itemEffectValue = (int)(((DamageItem)item).DamageValue * empoweredGreedModifier);
+            }
+            else
+            {
+                throw new Exception("Somehow an item is being used that is not a usable item");
+            }
+
+            RemoveItem(item);
+
+            return itemEffectValue;
+        }
+
+        //Determines if the player can escape
+        public bool Run(Enemy enemy)
+        {
+            int roll = RandomNumberGenerator.RandomNumberBetween(0, 99);
+
+            if(TotalSpeed >= enemy.Speed + 10)
+            {
+                return true;
+            }
+            else if(TotalSpeed >= enemy.Speed + 5 && roll < 70)
+            {
+                return true;
+            }
+            else if(TotalSpeed >= enemy.Speed && roll < 60)
+            {
+                return true;
+            }
+            else if(TotalSpeed <= enemy.Speed - 10)
+            {
+                return false;
+            }
+            else if (TotalSpeed <= enemy.Speed - 5 && roll < 70)
+            {
+                return false;
+            }
+            else if (TotalSpeed <= enemy.Speed && roll < 60)
+            {
+                return false;
+            }
+            else if(TotalSpeed == enemy.Speed && roll < 50)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        //Check is if is the player's turn, return true if it is
+        public bool IsPlayerTurn(Enemy enemy)
+        {
+            //Determines player's turn based on speed
+            if (TotalSpeed > enemy.Speed)
+            {
+                return true;
+            }
+            else if (TotalSpeed < enemy.Speed)
+            {
+                return false;
+            }
+            //If the speeds are equal decide randomly
+            else
+            {
+                int turnDecider = RandomNumberGenerator.RandomNumberBetween(1, 100);
+                if (turnDecider > 50)
+                {
+                    return true;
+                }
+                else
+                {
+                    return false;
+                }
+            }
+        }
+
+        private int CastDamageSpell(Enemy enemy, DamageSpell damageSpell, ref GameSession.BattleResult battleResult)
+        {
+            int spellDamage = 0;
+
+            //This value modifies the spell damage depending on whether Greed or Empower is activated
+            double empoweredGreedModifier = 1;
+
+            //Check to see if player is using Greed or Empower
+            if (Greed)
+            {
+                empoweredGreedModifier = GreedModifier;
+            }
+            else if (Empowered)
+            {
+                empoweredGreedModifier = EmpoweredModifier;
                 ResetEmpowerment();
             }
 
@@ -696,17 +758,21 @@ namespace Engine
             {
                 //Double the spell damage
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = (int)(((((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance)) * 2) * 2)
-                    * empoweredGreedDamage);
+                spellDamage = (int)(((((TotalIntellect + damageSpell.DamageValue) / (TotalIntellect + enemy.Resistance)) * 2)
+                                        * CriticalDamageModifier) * empoweredGreedModifier);
+                CurrentMana -= damageSpell.ManaCost;
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = (int)(((TotalIntellect + damageSpell.DamageAmount) / (TotalIntellect + enemy.Resistance) * 2) * empoweredGreedDamage);
+                spellDamage = (int)(((TotalIntellect + damageSpell.DamageValue) / (TotalIntellect + enemy.Resistance) * 2)
+                                      * empoweredGreedModifier);
+                CurrentMana -= damageSpell.ManaCost;
             }
 
-            if (empoweredGreedDamage == 1)
+            //If the player is not using Greed or using Empower then increase empower counter
+            if (empoweredGreedModifier == 1)
             {
                 IncreaseEmpowerment();
             }
@@ -714,79 +780,142 @@ namespace Engine
             return spellDamage;
         }
 
-        public int UseItem(Item item)
+        private int CastReplenishSpell(ReplenishSpell replenishSpell)
         {
-            //MAYBE PLACE IT ELSEWHERE IN GAMESESSION?? NOT SURE FOR CODING PRACTICE SAKE BUT I"M NOT GONNA LET IT SLOW ME DOWN ILL FIGURE IT OUT
-            //LATER
-            RemoveItem(item);
+            double empoweredGreedModifier = 1;
 
-            double ItemValueModifier = 1;
-
+            //Check to see if player is using Greed or Empower
             if (Greed)
             {
-                ItemValueModifier = GreedModifier;
+                empoweredGreedModifier = GreedModifier;
+            }
+            else if (Empowered)
+            {
+                empoweredGreedModifier = EmpoweredModifier;
+                ResetEmpowerment();
             }
 
-            if(item is HealthReplenishingItem)
-            {
-                return (int)(((HealthReplenishingItem)item).HealthReplenishingValue * ItemValueModifier);
-            }
-            else if(item is ManaReplenishingItem)
-            {
-                return (int)(((ManaReplenishingItem)item).ManaReplenishingValue * ItemValueModifier);
-            }
-            else if(item is DamageItem)
-            {
-                return (int)(((DamageItem)item).DamageValue * ItemValueModifier);
-            }
-            else
-            {
-                throw new Exception("Somehow an item is being used that is not a usable item");
-            }
+            CurrentMana -= replenishSpell.ManaCost;
+
+            return ((int)(replenishSpell.ReplenishValue * empoweredGreedModifier));
         }
 
-        //Determines if the player can escape FEEL FREE TO MAKE THIS IF STATEMENT 
 
-        //MORE COMPLEX TO ALLOW FOR BETTER CHANCE OF RUNNING IN CERTIAN SCENARIOS
-        public bool Run(Enemy enemy)
+        //<----------Enemy Loot Functions---------->
+        public void GainEnemyRewards(Enemy enemy)
         {
-            int roll = RandomNumberGenerator.RandomNumberBetween(0, 99);
+            Gold += enemy.RewardGold;
+            GainExperience(enemy.RewardExperiencePoints);
 
-            if(TotalSpeed >= enemy.Speed + 10)
+            if (enemy.WeightedItemLootTable != null && Greed == true)
             {
-                return true;
+                GreedLootItemFromEnemy(enemy);
             }
-            else if(TotalSpeed <= enemy.Speed - 20)
+            else if (enemy.WeightedItemLootTable != null && Greed == false)
             {
-                return false;
+                LootItemFromEnemy(enemy);
             }
-            else if(roll < 50)
+
+            if (enemy.WeightedEquipmentLootTable != null && Greed == true)
             {
-                return true;
+                GreedLootEquipmentFromEnemy(enemy);
             }
-            else
+            else if(enemy.WeightedEquipmentLootTable != null && Greed == false)
             {
-                return false;
+                LootEquipmentFromEnemy(enemy);
+            }
+
+            if(enemy.WeightedSpellLootTable != null && Greed == true)
+            {
+                GreedLootSpellFromEnemy(enemy);
+            }
+            else if(enemy.WeightedSpellLootTable != null && Greed == false)
+            {
+                LootSpellFromEnemy(enemy);
             }
         }
 
-        //Empowered Functions
+        private void GreedLootItemFromEnemy(Enemy enemy)
+        {
+            foreach (KeyValuePair<Item, int> weightedItemLoot in enemy.WeightedItemLootTable)
+            {
+                AddItem(weightedItemLoot.Key);
+            }
+        }
+        
+        private void GreedLootEquipmentFromEnemy(Enemy enemy)
+        {
+            foreach (KeyValuePair<Equipment, int> weightedEquipmentLoot in enemy.WeightedEquipmentLootTable)
+            {
+                AddEquipment(weightedEquipmentLoot.Key);
+            }
+        }
+
+        private void GreedLootSpellFromEnemy(Enemy enemy)
+        {
+            foreach(KeyValuePair<Spell, int> weightedSpellLoot in enemy.WeightedSpellLootTable)
+            {
+                AddSpell(weightedSpellLoot.Key);
+            }
+        }
+
+        private void LootItemFromEnemy(Enemy enemy)
+        {
+            foreach (KeyValuePair<Item, int> weightedItemLoot in enemy.WeightedItemLootTable)
+            {
+                //If the player won the dice roll for the item loot then give them the loot
+                if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= weightedItemLoot.Value)
+                {
+                    AddItem(weightedItemLoot.Key);
+                }
+            }
+        }
+
+        private void LootEquipmentFromEnemy(Enemy enemy)
+        {
+            foreach (KeyValuePair<Equipment, int> weightedEquipmentLoot in enemy.WeightedEquipmentLootTable)
+            {
+                if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= weightedEquipmentLoot.Value)
+                {
+                    AddEquipment(weightedEquipmentLoot.Key);
+                }
+            }
+        }
+
+        private void LootSpellFromEnemy(Enemy enemy)
+        {
+            foreach (KeyValuePair<Spell, int> weightedSpellLoot in enemy.WeightedSpellLootTable)
+            {
+                if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= weightedSpellLoot.Value)
+                {
+                    AddSpell(weightedSpellLoot.Key);
+                }
+            }
+        }
+
+
+        //<----------Empowered Functions---------->
         public void ResetEmpowerment()
         {
             EmpowerCounter = 0;
             Empowered = false;
         }
 
-        public void IncreaseEmpowerment()
+        public void ActivateEmpowerment()
         {
-            EmpowerCounter++;
             if(EmpowerCounter == 4)
             {
                 Empowered = true;
             }
         }
+        
+        private void IncreaseEmpowerment()
+        {
+            EmpowerCounter++;
+        }
 
-        //Greed Functions
+
+        //<----------Greed Functions---------->
         public void ActivateGreed()
         {
             ResetEmpowerment();
@@ -798,24 +927,56 @@ namespace Engine
             ResetEmpowerment();
             Greed = false;
         }
+        
 
+        //<----------Shop Functions----------->
 
-        //Shop Functions
         //Returns true if player successfully bought the item, false otherwise
-        public bool BuyItem(Item item)
+        public bool BuyFromStore(object objectBeingBought)
+        {
+            if (objectBeingBought is Item)
+            {
+                return BuyItem((Item)objectBeingBought);
+            }
+            else if (objectBeingBought is Equipment)
+            {
+                return BuyEquipment((Equipment)objectBeingBought);
+            }
+            else if (objectBeingBought is Spell)
+            {
+                return BuySpell((Spell)objectBeingBought);
+            }
+            else
+            {
+                throw new Exception("Trying to buy an object that cannot be bought");
+            }
+        }
+
+        public void SellToStore(object objectBeingSold)
+        {
+            if (objectBeingSold is Item)
+            {
+                SellItem((Item)objectBeingSold);
+            }
+            else if (objectBeingSold is Equipment)
+            {
+                SellEquipment((Equipment)objectBeingSold);
+            }
+            else if (objectBeingSold is Spell)
+            {
+                SellSpell((Spell)objectBeingSold);
+            }
+            else
+            {
+                throw new Exception("Trying to sell an object that cannot be sold");
+            }
+        }
+
+        private bool BuyItem(Item item)
         {
             if(Gold >= item.GoldValue)
             {
-                //If the player already has that item increase its quantity
-                if (PlayerItems.ContainsKey(item))
-                {
-                    PlayerItems[item]++;
-                }
-                //Otherwise add the item to the players inventory
-                else
-                {
-                    PlayerItems.Add(item, 1);
-                }
+                AddItem(item);
                 
                 Gold -= item.GoldValue;
                 
@@ -827,68 +988,14 @@ namespace Engine
             }
         }
 
-        //Seperate item selling from the other thing
-        public void SellItem(Item item, Vendor vendor)
-        {
-            vendor.AddItem(item);
-            Gold += item.GoldValue;
-            RemoveItem(item);
-        }
-
-        //Returns true if player successfully bought the equipment, false otherwise
-        public bool BuyEquipment(Equipment equipment)
+        private bool BuyEquipment(Equipment equipment)
         {
             if (Gold >= equipment.GoldValue)
             {
-                //If the player already has that item he does not need to buy another
-                if (PlayerEquipments.Contains(equipment))
-                {
-                    return false;
-                }
-                //If the player doesnt have the item then add it to the player's equipment inventory
-                else
-                {
-                    PlayerEquipments.Add(equipment);
-                    Gold -= equipment.GoldValue;
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
+                AddEquipment(equipment);
 
-        //Returns true if player successfully bought the spell, false otherwise
-        public bool BuySpell(Spell spell)
-        {
-            if (Gold >= spell.GoldValue)
-            {
-                //If the player already has that spell he does not need to buy another
-                if (PlayerSpells.Contains(spell))
-                {
-                    return false;
-                }
-                //If the player doesnt have the item then add it to the player's equipment inventory
-                else
-                {
-                    PlayerSpells.Add(spell);
-                    Gold -= spell.GoldValue;
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-        }
+                Gold -= equipment.GoldValue;
 
-        public bool StayAtInn(Inn inn)
-        {
-            if(Gold >= inn.GoldCost)
-            {
-                CurrentHealth = TotalMaximumHealth;
-                CurrentMana = TotalMaximumMana;
                 return true;
             }
             else
@@ -897,7 +1004,113 @@ namespace Engine
             }
         }
 
+        private bool BuySpell(Spell spell)
+        {
+            if (Gold >= spell.GoldValue)
+            {
+                AddSpell(spell);
 
+                Gold -= spell.GoldValue;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void SellItem(Item item)
+        {
+            RemoveItem(item);
+
+            Gold += item.SellingGoldValue;
+        }
+
+        private void SellEquipment(Equipment equipment)
+        {
+            RemoveEquipment(equipment);
+
+            Gold += equipment.SellingGoldValue;
+        }
+
+        private void SellSpell(Spell spell)
+        {
+            RemoveSpell(spell);
+
+            Gold += spell.SellingGoldValue;
+        }
+
+        private void AddItem(Item item)
+        {
+            if (PlayerItems != null)
+            {
+                if (PlayerItems.ContainsKey(item))
+                {
+                    PlayerItems[item]++;
+                }
+                else
+                {
+                    PlayerItems.Add(item, 1);
+                }
+            }
+        }
+
+        private void AddEquipment(Equipment equipment)
+        {
+            PlayerEquipments.Add(equipment);
+        }
+
+        private void AddSpell(Spell spell)
+        {
+            PlayerSpells.Add(spell);
+        }
+
+        private void RemoveItem(Item item)
+        {
+            if (PlayerItems.ContainsKey(item))
+            {
+                if (PlayerItems[item] > 1)
+                {
+                    PlayerItems[item]--;
+                }
+                else
+                {
+                    PlayerItems.Remove(item);
+                }
+            }
+            else
+            {
+                throw new Exception("Somehow the player is selling an item they don't own");
+            }
+        }
+
+        private void RemoveEquipment(Equipment equipment)
+        {
+            if (PlayerEquipments.Contains(equipment))
+            {
+                PlayerEquipments.Remove(equipment);
+            }
+            else
+            {
+                throw new Exception("Player is somehow selling equipment they don't own");
+            }
+        }
+
+        private void RemoveSpell(Spell spell)
+        {
+            if (PlayerSpells.Contains(spell))
+            {
+                PlayerSpells.Remove(spell);
+            }
+            else
+            {
+                throw new Exception("Player is somehow selling a spell they don't own");
+            }
+        }
+
+
+        //<----------Equipment Methods--------->
         public bool Equip(Equipment equipment)
         {
             bool canEquip = false;
@@ -921,7 +1134,7 @@ namespace Engine
             {
                 if (equipment is Sword)
                 {
-                    if (PlayerClass == Class.Warrior)
+                    if (playerClass == Class.Warrior)
                     {
                         CurrentWeapon = equipment as Sword;
                         canEquip = true;
@@ -929,7 +1142,7 @@ namespace Engine
                 }
                 else if (equipment is Staff)
                 {
-                    if (PlayerClass == Class.Mage)
+                    if (playerClass == Class.Mage)
                     {
                         CurrentWeapon = equipment as Staff;
                         canEquip = true;
@@ -937,7 +1150,7 @@ namespace Engine
                 }
                 else if (equipment is Dagger)
                 {
-                    if (PlayerClass == Class.Thief)
+                    if (playerClass == Class.Thief)
                     {
                         CurrentWeapon = equipment as Dagger;
                         canEquip = true;
@@ -948,7 +1161,7 @@ namespace Engine
             {
                 if (equipment is Shield)
                 {
-                    if (PlayerClass == Class.Warrior)
+                    if (playerClass == Class.Warrior)
                     {
                         CurrentSideArm = equipment as Shield;
                         canEquip = true;
@@ -956,7 +1169,7 @@ namespace Engine
                 }
                 else if (equipment is Tome)
                 {
-                    if (PlayerClass == Class.Mage)
+                    if (playerClass == Class.Mage)
                     {
                         CurrentSideArm = equipment as Tome;
                         canEquip = true;
@@ -964,7 +1177,7 @@ namespace Engine
                 }
                 else if (equipment is ParryingDagger)
                 {
-                    if (PlayerClass == Class.Thief)
+                    if (playerClass == Class.Thief)
                     {
                         CurrentSideArm = equipment as ParryingDagger;
                         canEquip = true;
@@ -985,37 +1198,37 @@ namespace Engine
 
         public void DeEquip(Equipment equipment)
         {
-            if(equipment is HeadEquipment)
+            if (equipment is HeadEquipment)
             {
                 CurrentHeadEquipment = null;
             }
-            else if(equipment is ChestEquipment)
+            else if (equipment is ChestEquipment)
             {
                 CurrentChestEquipment = null;
             }
-            else if(equipment is LegEquipment)
+            else if (equipment is LegEquipment)
             {
                 CurrentLegEquipment = null;
             }
-            else if(equipment is Weapon)
+            else if (equipment is Weapon)
             {
-                if(equipment is Sword)
+                if (equipment is Sword)
                 {
-                    if(PlayerClass == Class.Warrior)
+                    if (playerClass == Class.Warrior)
                     {
                         CurrentWeapon = null;
                     }
                 }
-                else if(equipment is Staff)
+                else if (equipment is Staff)
                 {
-                    if (PlayerClass == Class.Mage)
+                    if (playerClass == Class.Mage)
                     {
                         CurrentWeapon = null;
                     }
                 }
-                else if(equipment is Dagger)
+                else if (equipment is Dagger)
                 {
-                    if (PlayerClass == Class.Thief)
+                    if (playerClass == Class.Thief)
                     {
                         CurrentWeapon = null;
                     }
@@ -1023,23 +1236,23 @@ namespace Engine
             }
             else if (equipment is SideArm)
             {
-                if(equipment is Shield)
+                if (equipment is Shield)
                 {
-                    if (PlayerClass == Class.Warrior)
+                    if (playerClass == Class.Warrior)
                     {
                         CurrentSideArm = null;
                     }
                 }
                 else if (equipment is Tome)
                 {
-                    if (PlayerClass == Class.Mage)
+                    if (playerClass == Class.Mage)
                     {
                         CurrentSideArm = null;
                     }
                 }
                 else if (equipment is ParryingDagger)
                 {
-                    if (PlayerClass == Class.Thief)
+                    if (playerClass == Class.Thief)
                     {
                         CurrentSideArm = null;
                     }
@@ -1049,36 +1262,134 @@ namespace Engine
             CalculateAllTotalStats();
         }
 
-        
 
-        //Quests Methods
+        //<----------Inn Methods---------->
+        public bool StayAtInn(Inn inn)
+        {
+            if(Gold >= inn.GoldCost)
+            {
+                Recover();
+
+                Gold -= inn.GoldCost;
+
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        private void Recover()
+        {
+            CurrentHealth = TotalMaximumHealth;
+            CurrentMana = TotalMaximumMana;
+        }
+
+
+        //<----------Quests Methods----------->
         public void AcceptQuest(Quest quest)
         {
             PlayerQuests.Add(quest);
         }
-        
-        public void CheckKillQuest(Enemy enemy)
+
+        public bool CheckIfQuestComplete(Quest quest)
         {
-            foreach(Quest quest in PlayerQuests)
+            if(quest is GatherQuest)
             {
-                if(quest is KillQuest)
+                if(IsGatherQuestComplete((GatherQuest)quest) == true)
                 {
-                    if(((KillQuest)quest).RequiredEnemies.ContainsKey(enemy))
+                    ((GatherQuest)quest).IsCompleted = true;
+                    RemoveGatherQuestRequirements((GatherQuest)quest);
+                    return true;
+                }
+            }
+            else if(quest is KillQuest)
+            {
+                if(IsKillQuestComplete((KillQuest)quest))
+                {
+                    ((KillQuest)quest).IsCompleted = true;
+                    return true;
+                }
+            }
+            else if(quest is TravelQuest)
+            {
+                if(((TravelQuest)quest).HasVisitedLocation == true)
+                {
+                    ((TravelQuest)quest).IsCompleted = true;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public void GainQuestRewards(Quest quest)
+        {
+            Gold += quest.RewardGold;
+            GainExperience(quest.RewardExperience);
+            if(quest.RewardItem != null)
+            {
+                AddItem(quest.RewardItem);
+            }
+            if(quest.RewardEquipment != null)
+            {
+                AddEquipment(quest.RewardEquipment);
+            }
+            if(quest.RewardSpell != null)
+            {
+                AddSpell(quest.RewardSpell);
+            }
+        }
+        
+        public void UpdateKillQuests(Enemy enemy)
+        {
+            foreach (Quest quest in PlayerQuests)
+            {
+                if (quest is KillQuest)
+                {
+                    //Checks if the enemy that was slain is a quest requirement
+                    if (IsEnemyRequirement((KillQuest)quest, enemy))
                     {
-                        if (!(((KillQuest)quest).EnemiesDefeatedSoFar.ContainsKey(enemy)))
+                        //Checks if the dictionary already contains the enemy
+                        //Here I am added the base enemy for the world class instead of the copy enemy
+                        if (!ContainsEnemy((KillQuest)quest, enemy))
                         {
-                            ((KillQuest)quest).EnemiesDefeatedSoFar.Add(enemy, 1);
+                            ((KillQuest)quest).EnemiesDefeatedSoFar.Add(World.FindEnemyByID(enemy.ID), 1);
                         }
                         else
                         {
-                            ((KillQuest)quest).EnemiesDefeatedSoFar[enemy]++;
+                            ((KillQuest)quest).EnemiesDefeatedSoFar[World.FindEnemyByID(enemy.ID)]++;
                         }
                     }
                 }
             }
         }
 
-        private void CheckTravelQuest(Location location)
+        private bool IsEnemyRequirement(KillQuest quest, Enemy enemy)
+        {
+            foreach (KeyValuePair<Enemy, int> requiredEnemy in quest.RequiredEnemies)
+            {
+                if (requiredEnemy.Key.ID == enemy.ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        private bool ContainsEnemy(KillQuest quest, Enemy enemy)
+        {
+            foreach (KeyValuePair<Enemy, int> requiredEnemy in quest.EnemiesDefeatedSoFar)
+            {
+                if (requiredEnemy.Key.ID == enemy.ID)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
+        
+        private void UpdateTravelQuests(Location location)
         {
             foreach (Quest quest in PlayerQuests)
             {
@@ -1091,8 +1402,24 @@ namespace Engine
                 }
             }
         }
+        
+        private bool IsKillQuestComplete(KillQuest killQuest)
+        {
+            foreach (KeyValuePair<Enemy, int> requiredEnemy in killQuest.RequiredEnemies)
+            {
+                if (!killQuest.EnemiesDefeatedSoFar.ContainsKey(requiredEnemy.Key))
+                {
+                    return false;
+                }
+                else if (killQuest.EnemiesDefeatedSoFar[requiredEnemy.Key] < requiredEnemy.Value)
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
 
-        private bool CheckGatherQuest(GatherQuest gatherQuest)
+        private bool IsGatherQuestComplete(GatherQuest gatherQuest)
         {
             int correctItems = 0;
 
@@ -1143,142 +1470,28 @@ namespace Engine
             }
         }
 
-        private void RemoveItem(Item item)
-        {
-            if (PlayerItems.ContainsKey(item))
-            {
-                if (PlayerItems[item] > 1)
-                {
-                    PlayerItems[item]--;
-                }
-                else
-                {
-                    PlayerItems.Remove(item);
-                }
-            }
-            else
-            {
-                throw new Exception("Somehow the player is selling an item they don't own");
-            }
-        }
-
-        private void RemoveEquipment(Equipment equipment)
-        {
-            if (PlayerEquipments.Contains(equipment))
-            {
-                PlayerEquipments.Remove(equipment);
-            }
-            else
-            {
-                throw new Exception("Player is somehow selling equipment they don't own");
-            }
-        }
-
-        private void RemoveSpell(Spell spell)
-        {
-            if (PlayerSpells.Contains(spell))
-            {
-                PlayerSpells.Remove(spell);
-            }
-            else
-            {
-                throw new Exception("Player is somehow selling a spell they don't own");
-            }
-        }
-
-        private bool CheckKillQuestRequirements(KillQuest killQuest)
-        {
-            foreach(KeyValuePair<Enemy, int> enemy in killQuest.RequiredEnemies)
-            {
-                if (!killQuest.EnemiesDefeatedSoFar.ContainsKey(enemy.Key))
-                {
-                    return false;
-                }
-                else if(killQuest.EnemiesDefeatedSoFar[enemy.Key] < enemy.Value)
-                {
-                    return false;
-                }
-            }
-            return true;
-        }
-
-        public bool CheckIfQuestComplete(Quest quest)
-        {
-            if(quest is GatherQuest)
-            {
-                if(CheckGatherQuest((GatherQuest)quest) == true)
-                {
-                    ((GatherQuest)quest).IsCompleted = true;
-                    RemoveGatherQuestRequirements((GatherQuest)quest);
-                    return true;
-                }
-            }
-            else if(quest is KillQuest)
-            {
-                if(CheckKillQuestRequirements((KillQuest)quest))
-                {
-                    ((KillQuest)quest).IsCompleted = true;
-                    return true;
-                }
-            }
-            else if(quest is TravelQuest)
-            {
-                if(((TravelQuest)quest).HasVisitedLocation == true)
-                {
-                    ((TravelQuest)quest).IsCompleted = true;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public void QuestRewards(Quest quest)
-        {
-            Gold += quest.RewardGold;
-            GainExperience(quest.RewardExperience);
-            if(quest.RewardItem != null)
-            {
-                if (PlayerItems.ContainsKey(quest.RewardItem))
-                {
-                    PlayerItems[quest.RewardItem]++;
-                }
-                else
-                {
-                    PlayerItems.Add(quest.RewardItem, 1);
-                }
-            }
-            if(quest.RewardEquipment != null)
-            {
-                PlayerEquipments.Add(quest.RewardEquipment);
-            }
-            if(quest.RewardSpell != null)
-            {
-                PlayerSpells.Add(quest.RewardSpell);
-            }
-        }
 
         public override string ToString()
         {
             string info = "";
 
-            info += ("Level: " + Level.ToString() + "\n");
+            info += ("Level: " + Level + "\n");
             info += ("Name: " + Name + "\n");
-            info += ("Class: " + PlayerClass.ToString() + "\n");
+            info += ("Class: " + playerClass + "\n");
             info += ("Gold: " + Gold.ToString() + "\n");
-            info += ("Current Experience: " + CurrentExperiencePoints.ToString() + "\n");
-            info += ("Maximum Experience: " + MaximumExperiencePoints.ToString() + "\n");
-            info += ("Current Health: " + CurrentHealth.ToString() + "\n");
-            info += ("Maximum Health: " + BaseMaximumHealth.ToString() + "\n");
-            info += ("Current Mana: " + CurrentMana.ToString() + "\n");
-            info += ("Maximum Mana: " + BaseMaximumMana.ToString() + "\n");
-            info += ("Strength: " + BaseStrength.ToString() + "\n");
-            info += ("Defense: " + BaseDefense.ToString() + "\n");
-            info += ("Luck: " + BaseLuck.ToString() + "\n");
-            info += ("Speed: " + BaseSpeed.ToString() + "\n");
-            info += ("Intellect: " + BaseIntellect.ToString() + "\n");
-            info += ("Resistance: " + BaseResistance.ToString() + "\n");
-            info += ("Critical Chance: " + ((int)CriticalChanceRate).ToString() + "%\n");
-            info += ("Dodge Chance: " + ((int)DodgeChanceRate).ToString() + "%\n");
+            info += ("Experience: " + CurrentExperiencePoints + "/" + MaximumExperiencePoints + "\n");
+            info += ("Current Health: " + CurrentHealth + "\n");
+            info += ("Maximum Health: " + BaseMaximumHealth + "\n");
+            info += ("Current Mana: " + CurrentMana + "\n");
+            info += ("Maximum Mana: " + BaseMaximumMana + "\n");
+            info += ("Strength: " + BaseStrength + "\n");
+            info += ("Defense: " + BaseDefense + "\n");
+            info += ("Luck: " + BaseLuck + "\n");
+            info += ("Speed: " + BaseSpeed + "\n");
+            info += ("Intellect: " + BaseIntellect + "\n");
+            info += ("Resistance: " + BaseResistance + "\n");
+            info += ("Critical Chance: " + ((int)CriticalChanceRate) + "%\n");
+            info += ("Dodge Chance: " + ((int)DodgeChanceRate) + "%\n");
 
             return info;
         }

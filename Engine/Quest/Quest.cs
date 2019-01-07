@@ -6,29 +6,30 @@ using System.Threading.Tasks;
 
 namespace Engine
 {
-    public class Quest
+    public abstract class Quest
     {
         public int ID { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
         public bool IsCompleted { get; set; }
-        public Person Person { get; set; }
+        public Person QuestGiver { get; set; }
 
-        //Rewards for the quest
+        //<----------Rewards for the quest---------->
         public int RewardGold { get; set; }
         public int RewardExperience { get; set; }
         public Item RewardItem { get; set; }
         public Equipment RewardEquipment { get; set; }
         public Spell RewardSpell { get; set; }
 
-        public Quest(int id, string name, string description, Person person, int rewardGold = 0, int rewardExperience = 0,
+
+        public Quest(int id, string name, string description, Person questGiver, int rewardGold = 0, int rewardExperience = 0,
             Item rewardItem = null, Equipment rewardEquipment = null, Spell rewardSpell = null)
         {
             this.ID = id;
             this.Name = name;
             this.Description = description;
             IsCompleted = false;
-            this.Person = person;
+            this.QuestGiver = questGiver;
             this.RewardGold = rewardGold;
             this.RewardExperience = rewardExperience;
             this.RewardItem = rewardItem;
@@ -36,30 +37,31 @@ namespace Engine
             this.RewardSpell = rewardSpell;
         }
 
+
         public override string ToString()
         {
             string info = "";
 
-            info += ("ID: " + ID.ToString() + "\n");
+            info += ("ID: " + ID + "\n");
             info += ("Name: " + Name + "\n");
             info += ("Description: " + Description + "\n");
             info += ("Is Completed: " + IsCompleted + "\n");
-            info += ("Person: " + Person.Name + "\n");
-            info += ("Reward Gold: " + RewardGold.ToString() + "\n");
-            info += ("Reward Experience: " + RewardExperience.ToString() + "\n");
+            info += ("Person: " + QuestGiver.Name + "\n");
+            info += ("Reward Gold: " + RewardGold + "\n");
+            info += ("Reward Experience: " + RewardExperience + "\n");
             if(RewardItem != null)
             {
-                info += ("Reward Item: " + RewardItem.ToString() + "\n");
+                info += ("Reward Item: " + RewardItem.Name + "\n");
 
             }
             if (RewardEquipment != null)
             {
-                info += ("Reward Equipment: " + RewardEquipment.ToString() + "\n");
+                info += ("Reward Equipment: " + RewardEquipment.Name + "\n");
 
             }
             if (RewardSpell != null)
             {
-                info += ("Reward Spell: " + RewardSpell.ToString() + "\n");
+                info += ("Reward Spell: " + RewardSpell.Name + "\n");
 
             }
 

@@ -10,16 +10,23 @@ namespace Engine
 
     public class GameSession
     {
+        private const double EnemyGreedDamageModifier = 1.3;
+
         public Player CurrentPlayer;
         public Enemy CurrentEnemy;
+
+        public event MyEventHandler OnMessagedRaised;
+
+        private enum Direction { North, South, West, East }
         //Holds the result of a battle whether an entity missed, normally hit, or critical hit their opponent
         public enum BattleResult { Missed, Normal, Critical }
         public enum EnemyChoiceTaken { Attack, CastSpell, Replenish }
-        public enum GameState { Introduction, Travel, Battle, Shop, GameOver }
-        public enum Direction { North, South, West, East }
+        public enum GameState { Introduction, Travel, Battle, GameOver }
         public GameState GameStates;
-        public event MyEventHandler OnMessagedRaised;
+
+        //Counts the turns in a battle 
         public int TurnCounter;
+
 
         public GameSession()
         {
@@ -35,12 +42,14 @@ namespace Engine
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
+            CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(3));
 
-
+            //Set the game state to the starting state
             GameStates = GameState.Travel;
         }
 
-        //Checks if the game state passed through the parameter is the same as the current game state
+
+        //Used to check if the function the UI is trying to access has rights to access it
         private void CheckGameState(GameState gameState)
         {
             if(GameStates != gameState)
@@ -49,6 +58,73 @@ namespace Engine
             }
         }
         
+
+        //<-----------Movement Commands---------->
+        public void MoveNorthCommand()
+        {
+            MoveCommand(Direction.North);
+        }
+
+        public void MoveSouthCommand()
+        {
+            MoveCommand(Direction.South);
+        }
+
+        public void MoveWestCommand()
+        {
+            MoveCommand(Direction.West);
+        }
+
+        public void MoveEastCommand()
+        {
+            MoveCommand(Direction.East);
+        }
+
+        private void MoveCommand(Direction direction)
+        {
+            CheckGameState(GameState.Travel);
+
+            switch (direction)
+            {
+                case Direction.North:
+                    CurrentPlayer.MoveNorth();
+                    break;
+                case Direction.South:
+                    CurrentPlayer.MoveSouth();
+                    break;
+                case Direction.West:
+                    CurrentPlayer.MoveWest();
+                    break;
+                case Direction.East:
+                    CurrentPlayer.MoveEast();
+                    break;
+            }
+
+            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+            CurrentPlayer.CurrentLocation.HasVisited = true;
+
+            //<----------------Remove this after I finish with debugging----------------->
+            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
+
+            //If an encounter would occur, determine the enemy
+            if (CurrentPlayer.CurrentLocation.EncounterTriggered())
+            {
+                CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
+                TurnCounter = 1;
+            }
+            else
+            {
+                CurrentEnemy = null;
+            }
+
+            if (CurrentEnemy != null)
+            {
+                GameStates = GameState.Battle;
+            }
+        }
+
+
+        //<----------Battle Commands----------->
         public void AttackCommand()
         {
             CheckGameState(GameState.Battle);
@@ -62,7 +138,7 @@ namespace Engine
                 if (CurrentPlayer.IsPlayerTurn(CurrentEnemy))
                 {
                     PlayerAttack(battleResult);
-                    if(GameStates == GameState.Battle)
+                    if (GameStates == GameState.Battle)
                     {
                         EnemyCombatAction(battleResult);
                     }
@@ -70,7 +146,7 @@ namespace Engine
                 else
                 {
                     EnemyCombatAction(battleResult);
-                    if(GameStates == GameState.Battle)
+                    if (GameStates == GameState.Battle)
                     {
                         PlayerAttack(battleResult);
                     }
@@ -82,9 +158,15 @@ namespace Engine
         {
             CheckGameState(GameState.Battle);
 
-            TurnCounter++;
-
             BattleResult battleResult = BattleResult.Normal;
+
+            if (!CanPlayerCastSpell(spell))
+            {
+                RaiseMessage(CurrentPlayer.Name + " does not have enough mana to cast " + spell.Name);
+                return;
+            }
+
+            TurnCounter++;
 
             if (CurrentEnemy != null)
             {
@@ -143,7 +225,7 @@ namespace Engine
             BattleResult battleResult = BattleResult.Normal;
 
             if (CurrentPlayer.Run(CurrentEnemy) == true)
-            { 
+            {
                 RaiseMessage(CurrentPlayer.Name + " ran away from the fight");
                 CurrentPlayer.ResetEmpowerment();
                 CurrentPlayer.DisableGreed();
@@ -156,67 +238,6 @@ namespace Engine
                 EnemyCombatAction(battleResult);
             }
         }
-
-        private void MoveCommand(Direction direction)
-        {
-            CheckGameState(GameState.Travel);
-
-            switch (direction)
-            {
-                case Direction.North:
-                    CurrentPlayer.MoveNorth();
-                    break;
-                case Direction.South:
-                    CurrentPlayer.MoveSouth();
-                    break;
-                case Direction.West:
-                    CurrentPlayer.MoveWest();
-                    break;
-                case Direction.East:
-                    CurrentPlayer.MoveEast();
-                    break;
-            }
-
-            //<----------------Remove this after I finish with debugging----------------->
-            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-
-            //If an encounter would occur, determine the enemy
-            if (CurrentPlayer.CurrentLocation.EncounterTriggered())
-            {
-                CurrentEnemy = CurrentPlayer.CurrentLocation.SelectEnemy();
-                TurnCounter = 1;
-            }
-            else
-            {
-                CurrentEnemy = null;
-            }
-
-            if (CurrentEnemy != null)
-            {
-                GameStates = GameState.Battle;
-            }
-        }
-
-        public void MoveNorthCommand()
-        {
-            MoveCommand(Direction.North);
-        }
-
-        public void MoveSouthCommand()
-        {
-            MoveCommand(Direction.South);
-        }
-
-        public void MoveWestCommand()
-        {
-            MoveCommand(Direction.West);
-        }
-
-        public void MoveEastCommand()
-        {
-            MoveCommand(Direction.East);
-        }
-
 
         private void PlayerAttack(BattleResult battleResult)
         {
@@ -248,51 +269,58 @@ namespace Engine
                     break;
             }
 
-
-            //TWO OF THE SAME CODE
             if (CurrentEnemy.CurrentHealth <= 0)
             {
-                RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
-                CurrentPlayer.GainEnemyRewards(CurrentEnemy);
-                CurrentPlayer.CheckKillQuest(CurrentEnemy);
-                CurrentPlayer.ResetEmpowerment();
-                CurrentPlayer.DisableGreed();
-                TurnCounter = 0;
-                GameStates = GameState.Travel;
+                GainBattleRewards();
             }
         }
 
         private void PlayerCastSpell(Spell spell, BattleResult battleResult)
         {
-            int damage = CurrentPlayer.CastSpell(CurrentEnemy, (DamageSpell)spell, ref battleResult);
+            int spellEffectValue = CurrentPlayer.CastSpell(CurrentEnemy, spell, ref battleResult);
+            
+            if(spell is DamageSpell)
+            {
+                PlayerCastDamageSpell(battleResult, spellEffectValue, (DamageSpell)spell);
+            }
+            else if(spell is ReplenishSpell)
+            {
+                PlayerCastReplenish(spellEffectValue, (ReplenishSpell)spell);
+            }
+        }
 
+        private void PlayerCastDamageSpell(BattleResult battleResult, int damage, DamageSpell damageSpell)
+        {
             CurrentEnemy.CurrentHealth -= damage;
 
             switch (battleResult)
             {
                 case BattleResult.Missed:
-                    RaiseMessage(CurrentPlayer.Name + " missed " + spell.Name);
+                    RaiseMessage(CurrentPlayer.Name + " missed " + damageSpell.Name);
                     break;
                 case BattleResult.Normal:
-                    RaiseMessage(CurrentPlayer.Name + " casts " + spell.Name + " and does " + damage + " points of magical damage");
+                    RaiseMessage(CurrentPlayer.Name + " casts " + damageSpell.Name + " and does " + damage + " points of magical damage");
                     break;
                 case BattleResult.Critical:
-                    RaiseMessage(CurrentPlayer.Name + " casts " + spell.Name + " and it critically strikes and does " + damage + " points of magical damage");
+                    RaiseMessage(CurrentPlayer.Name + " casts " + damageSpell.Name + " and it critically strikes and does " + damage + " points of magical damage");
                     break;
             }
 
-
-            //TWO OF THE SAME CODE
             if (CurrentEnemy.CurrentHealth <= 0)
             {
-                RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
-                CurrentPlayer.GainEnemyRewards(CurrentEnemy);
-                CurrentPlayer.CheckKillQuest(CurrentEnemy);
-                CurrentPlayer.ResetEmpowerment();
-                CurrentPlayer.DisableGreed();
-                TurnCounter = 0;
-                GameStates = GameState.Travel;
+                GainBattleRewards();
             }
+        }
+        
+        private void PlayerCastReplenish(int replenishValue, ReplenishSpell replenishSpell)
+        {
+            RaiseMessage(CurrentPlayer.Name + " casts " + replenishSpell.Name + " and heals for " + replenishValue + " hitpoints");
+            CurrentPlayer.CurrentHealth += replenishValue;
+        }
+
+        private bool CanPlayerCastSpell(Spell spell)
+        {
+            return CurrentPlayer.CurrentMana >= spell.ManaCost;
         }
 
         private void PlayerUseItem(Item item)
@@ -317,55 +345,23 @@ namespace Engine
 
             if (CurrentEnemy.CurrentHealth <= 0)
             {
-                RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
-                CurrentPlayer.GainEnemyRewards(CurrentEnemy);
-                CurrentPlayer.CheckKillQuest(CurrentEnemy);
-                CurrentPlayer.ResetEmpowerment();
-                CurrentPlayer.DisableGreed();
-                TurnCounter = 0;
-                GameStates = GameState.Travel;
+                GainBattleRewards();
             }
         }
-        
 
-        public void EnterShop()
+        private void GainBattleRewards()
         {
-            GameStates = GameState.Shop;
-        }
-
-        public void ExitShop()
-        {
+            RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
+            CurrentPlayer.GainEnemyRewards(CurrentEnemy);
+            CurrentPlayer.UpdateKillQuests(CurrentEnemy);
+            CurrentPlayer.ResetEmpowerment();
+            CurrentPlayer.DisableGreed();
+            TurnCounter = 0;
             GameStates = GameState.Travel;
         }
 
-        public bool BuyItem(Item item)
-        {
-            CheckGameState(GameState.Shop);
 
-            if (CurrentPlayer.BuyItem(item))
-            {
-                CurrentPlayer.CurrentLocation.VendorInLocation.RemoveItem(item);
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-        public bool StayAtInn(Inn inn)
-        {
-            if (CurrentPlayer.StayAtInn(inn))
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
-        }
-
-
+        //<----------Equipment Commands---------->
         public void EquipCommand(Equipment equipment)
         {
             if (CurrentPlayer.Equip(equipment))
@@ -386,6 +382,47 @@ namespace Engine
         }
 
 
+        //<----------Vendor Commands---------->
+        public bool BuyFromStoreCommand(object objectBeingBought)
+        {
+            CheckGameState(GameState.Travel);
+
+            if (CurrentPlayer.BuyFromStore(objectBeingBought))
+            {
+                CurrentPlayer.CurrentLocation.VendorInLocation.RemoveFromInventory(objectBeingBought);
+                return true;
+            } 
+            else
+            {
+                return false;
+            }
+        }
+
+        public void SellToStoreCommand(object objectBeingSold)
+        {
+            CheckGameState(GameState.Travel);
+
+            CurrentPlayer.SellToStore(objectBeingSold);
+
+            CurrentPlayer.CurrentLocation.VendorInLocation.AddToInventory(objectBeingSold);
+        }
+
+
+        //<----------Inn Commands---------->
+        public bool StayAtInnCommand(Inn inn)
+        {
+            if (CurrentPlayer.StayAtInn(inn))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+
+        //<----------Quest Commands---------->
         public bool CheckIfQuestCompleted(Quest quest)
         {
             if (!CurrentPlayer.PlayerQuests.Contains(quest))
@@ -394,15 +431,45 @@ namespace Engine
             }
             if(CurrentPlayer.CheckIfQuestComplete(quest) == true)
             {
-                CurrentPlayer.QuestRewards(quest);
+                CurrentPlayer.GainQuestRewards(quest);
                 return true;
             }
             return false;
         }
 
-        //Enemy Commands
+
+        //<----------Enemy Commands---------->
+        private void EnemyCombatAction(BattleResult battleResult)
+        {
+            EnemyChoiceTaken enemyChoiceTaken = EnemyChoiceTaken.Attack;
+            string spellName = "None";
+
+            int combatValue = CurrentEnemy.CombatAction(CurrentPlayer, ref battleResult, ref enemyChoiceTaken, ref spellName);
+
+            switch (enemyChoiceTaken)
+            {
+                case EnemyChoiceTaken.Attack:
+                    EnemyAttack(battleResult, combatValue);
+                    break;
+                case EnemyChoiceTaken.CastSpell:
+                    EnemyCastSpell(battleResult, combatValue, spellName);
+                    break;
+                case EnemyChoiceTaken.Replenish:
+                    EnemyReplenish(combatValue, spellName);
+                    break;
+                default:
+                    throw new Exception("No enemy choice taken selected some how");
+            }
+        }
+
         private void EnemyAttack(BattleResult battleResult, int damage)
         {
+            //If the player is using greed the enemy will do more damage
+            if (CurrentPlayer.Greed)
+            {
+                damage = ((int)(damage * EnemyGreedDamageModifier));
+            }
+
             CurrentPlayer.CurrentHealth -= damage;
 
             switch (battleResult)
@@ -427,6 +494,12 @@ namespace Engine
 
         private void EnemyCastSpell(BattleResult battleResult, int damage, string spellName)
         {
+            //If the player is using greed the enemy will do more damage
+            if (CurrentPlayer.Greed)
+            {
+                damage = ((int)(damage * EnemyGreedDamageModifier));
+            }
+
             CurrentPlayer.CurrentHealth -= damage;
 
             switch (battleResult)
@@ -451,33 +524,16 @@ namespace Engine
 
         private void EnemyReplenish(int replenishAmount, string spellName)
         {
+            if (CurrentPlayer.Greed)
+            {
+                replenishAmount = ((int)(replenishAmount * EnemyGreedDamageModifier));
+            }
+
             CurrentEnemy.CurrentHealth += replenishAmount;
 
             RaiseMessage(CurrentEnemy.Name + " casts " + spellName + " and heals for " + replenishAmount + " hitpoints");
         }
 
-        private void EnemyCombatAction(BattleResult battleResult)
-        {
-            EnemyChoiceTaken enemyChoiceTaken = EnemyChoiceTaken.Attack;
-            string spellName = "None";
-
-            int combatValue = CurrentEnemy.CombatAction(CurrentPlayer, ref battleResult, ref enemyChoiceTaken, ref spellName);
-
-            switch (enemyChoiceTaken)
-            {
-                case EnemyChoiceTaken.Attack:
-                    EnemyAttack(battleResult, combatValue);
-                    break;
-                case EnemyChoiceTaken.CastSpell:
-                    EnemyCastSpell(battleResult, combatValue, spellName);
-                    break;
-                case EnemyChoiceTaken.Replenish:
-                    EnemyReplenish(combatValue, spellName);
-                    break;
-                default:
-                    throw new Exception("No enemy choice taken selected some how");
-            }
-        }
 
         public void RaiseMessage(string message)
         {

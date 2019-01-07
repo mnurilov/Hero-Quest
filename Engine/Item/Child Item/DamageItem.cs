@@ -17,12 +17,13 @@ namespace Engine
             this.DamageValue = damageValue;
         }
 
+
         public override string ToString()
         {
             string info = "";
 
             info += base.ToString();
-            info += ("Damage Value: " + DamageValue.ToString() + "\n");
+            info += ("Damage Value: " + DamageValue + "\n");
 
             return info;
         }

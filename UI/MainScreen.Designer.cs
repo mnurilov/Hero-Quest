@@ -32,12 +32,14 @@
             this.btnWest = new System.Windows.Forms.Button();
             this.btnEast = new System.Windows.Forms.Button();
             this.btnSouth = new System.Windows.Forms.Button();
-            this.rtbWorld = new System.Windows.Forms.RichTextBox();
+            this.rtbWorldText = new System.Windows.Forms.RichTextBox();
+            this.btnMap = new System.Windows.Forms.Button();
+            this.lblLocationName = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnNorth
             // 
-            this.btnNorth.Location = new System.Drawing.Point(356, 350);
+            this.btnNorth.Location = new System.Drawing.Point(953, 435);
             this.btnNorth.Name = "btnNorth";
             this.btnNorth.Size = new System.Drawing.Size(75, 23);
             this.btnNorth.TabIndex = 0;
@@ -47,7 +49,7 @@
             // 
             // btnWest
             // 
-            this.btnWest.Location = new System.Drawing.Point(272, 378);
+            this.btnWest.Location = new System.Drawing.Point(869, 463);
             this.btnWest.Name = "btnWest";
             this.btnWest.Size = new System.Drawing.Size(75, 23);
             this.btnWest.TabIndex = 1;
@@ -57,7 +59,7 @@
             // 
             // btnEast
             // 
-            this.btnEast.Location = new System.Drawing.Point(441, 378);
+            this.btnEast.Location = new System.Drawing.Point(1038, 463);
             this.btnEast.Name = "btnEast";
             this.btnEast.Size = new System.Drawing.Size(75, 23);
             this.btnEast.TabIndex = 2;
@@ -67,7 +69,7 @@
             // 
             // btnSouth
             // 
-            this.btnSouth.Location = new System.Drawing.Point(356, 409);
+            this.btnSouth.Location = new System.Drawing.Point(953, 494);
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(75, 23);
             this.btnSouth.TabIndex = 3;
@@ -75,21 +77,40 @@
             this.btnSouth.UseVisualStyleBackColor = true;
             this.btnSouth.Click += new System.EventHandler(this.btnSouth_Click);
             // 
-            // rtbWorld
+            // rtbWorldText
             // 
-            this.rtbWorld.Location = new System.Drawing.Point(272, 13);
-            this.rtbWorld.Name = "rtbWorld";
-            this.rtbWorld.Size = new System.Drawing.Size(244, 321);
-            this.rtbWorld.TabIndex = 4;
-            this.rtbWorld.Text = "";
-            this.rtbWorld.TextChanged += new System.EventHandler(this.rtbWorld_TextChanged);
+            this.rtbWorldText.Location = new System.Drawing.Point(826, 12);
+            this.rtbWorldText.Name = "rtbWorldText";
+            this.rtbWorldText.Size = new System.Drawing.Size(315, 373);
+            this.rtbWorldText.TabIndex = 4;
+            this.rtbWorldText.Text = "";
+            this.rtbWorldText.TextChanged += new System.EventHandler(this.rtbWorldText_TextChanged);
+            // 
+            // btnMap
+            // 
+            this.btnMap.Location = new System.Drawing.Point(953, 463);
+            this.btnMap.Name = "btnMap";
+            this.btnMap.Size = new System.Drawing.Size(75, 23);
+            this.btnMap.TabIndex = 5;
+            this.btnMap.Text = "Map";
+            this.btnMap.UseVisualStyleBackColor = true;
+            // 
+            // lblLocationName
+            // 
+            this.lblLocationName.AutoSize = true;
+            this.lblLocationName.Location = new System.Drawing.Point(428, 13);
+            this.lblLocationName.Name = "lblLocationName";
+            this.lblLocationName.Size = new System.Drawing.Size(0, 17);
+            this.lblLocationName.TabIndex = 6;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.rtbWorld);
+            this.ClientSize = new System.Drawing.Size(1153, 556);
+            this.Controls.Add(this.lblLocationName);
+            this.Controls.Add(this.btnMap);
+            this.Controls.Add(this.rtbWorldText);
             this.Controls.Add(this.btnSouth);
             this.Controls.Add(this.btnEast);
             this.Controls.Add(this.btnWest);
@@ -100,6 +121,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Hero Quest";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -109,7 +131,9 @@
         private System.Windows.Forms.Button btnWest;
         private System.Windows.Forms.Button btnEast;
         private System.Windows.Forms.Button btnSouth;
-        private System.Windows.Forms.RichTextBox rtbWorld;
+        private System.Windows.Forms.RichTextBox rtbWorldText;
+        private System.Windows.Forms.Button btnMap;
+        private System.Windows.Forms.Label lblLocationName;
     }
 }
 

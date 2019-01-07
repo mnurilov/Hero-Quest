@@ -28,7 +28,7 @@ namespace UIWindowsForm
 
         private void btnStay_Click(object sender, EventArgs e)
         {
-            if (gameSession.StayAtInn(gameSession.CurrentPlayer.CurrentLocation.InnInLocation))
+            if (gameSession.StayAtInnCommand(gameSession.CurrentPlayer.CurrentLocation.InnInLocation))
             {
                 MessageBox.Show("YAYYYy WE STAYED AT INN");
             }
