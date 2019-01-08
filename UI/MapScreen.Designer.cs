@@ -58,26 +58,46 @@
             this.pbMoveMapDown = new System.Windows.Forms.PictureBox();
             this.pbMoveMapRight = new System.Windows.Forms.PictureBox();
             this.pbMoveMapLeft = new System.Windows.Forms.PictureBox();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.panel6 = new System.Windows.Forms.Panel();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.panel7 = new System.Windows.Forms.Panel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.panel13 = new System.Windows.Forms.Panel();
-            this.panel14 = new System.Windows.Forms.Panel();
-            this.panel15 = new System.Windows.Forms.Panel();
-            this.panel17 = new System.Windows.Forms.Panel();
-            this.panel18 = new System.Windows.Forms.Panel();
-            this.panel19 = new System.Windows.Forms.Panel();
-            this.panel20 = new System.Windows.Forms.Panel();
-            this.panel21 = new System.Windows.Forms.Panel();
-            this.panel22 = new System.Windows.Forms.Panel();
-            this.panel23 = new System.Windows.Forms.Panel();
+            this.pnl_1_2__2_2 = new System.Windows.Forms.Panel();
+            this.pnl_0_0__1_0 = new System.Windows.Forms.Panel();
+            this.pnl_1_0__2_0 = new System.Windows.Forms.Panel();
+            this.pnl_n2_0__n1_0 = new System.Windows.Forms.Panel();
+            this.pnl_n1_0__0_0 = new System.Windows.Forms.Panel();
+            this.pnl_n2_n1__n1_n1 = new System.Windows.Forms.Panel();
+            this.pnl_n1_n1__0_n1 = new System.Windows.Forms.Panel();
+            this.pnl_1_n1__2_n1 = new System.Windows.Forms.Panel();
+            this.pnl_0_n1__1_n1 = new System.Windows.Forms.Panel();
+            this.pnl_n2_n2__n1_n2 = new System.Windows.Forms.Panel();
+            this.pnl_n1_n2__0_n2 = new System.Windows.Forms.Panel();
+            this.pnl_1_n2__2_n2 = new System.Windows.Forms.Panel();
+            this.pnl_0_n2__1_n2 = new System.Windows.Forms.Panel();
+            this.pnl_n2_2__n1_2 = new System.Windows.Forms.Panel();
+            this.pnl_n1_2__0_2 = new System.Windows.Forms.Panel();
+            this.pnl_0_2__1_2 = new System.Windows.Forms.Panel();
+            this.pnl_n2_1__n1_1 = new System.Windows.Forms.Panel();
+            this.pnl_n1_1__0_1 = new System.Windows.Forms.Panel();
+            this.pnl_1_1__2_1 = new System.Windows.Forms.Panel();
+            this.pnl_0_1__1_1 = new System.Windows.Forms.Panel();
+            this.pnl_0_1__0_0 = new System.Windows.Forms.Panel();
+            this.pnl_0_0__0_n1 = new System.Windows.Forms.Panel();
+            this.pnl_n2_2__n2_1 = new System.Windows.Forms.Panel();
+            this.pnl_n2_n1__n2_n2 = new System.Windows.Forms.Panel();
+            this.pnl_n2_0__n2_n1 = new System.Windows.Forms.Panel();
+            this.pnl_n2_1__n2_0 = new System.Windows.Forms.Panel();
+            this.pnl_2_n1__2_n2 = new System.Windows.Forms.Panel();
+            this.pnl_2_2__2_1 = new System.Windows.Forms.Panel();
+            this.pnl_2_1__2_0 = new System.Windows.Forms.Panel();
+            this.pnl_2_0__2_n1 = new System.Windows.Forms.Panel();
+            this.pnl_n1_n1__n1_n2 = new System.Windows.Forms.Panel();
+            this.pnl_n1_2__n1_1 = new System.Windows.Forms.Panel();
+            this.pnl_n1_1__n1_0 = new System.Windows.Forms.Panel();
+            this.pnl_n1_0__n1_n1 = new System.Windows.Forms.Panel();
+            this.pnl_1_2__1_1 = new System.Windows.Forms.Panel();
+            this.pnl_1_1__1_0 = new System.Windows.Forms.Panel();
+            this.pnl_1_0__1_n1 = new System.Windows.Forms.Panel();
+            this.pnl_0_n1__0_n2 = new System.Windows.Forms.Panel();
+            this.pnl_1_n1__1_n2 = new System.Windows.Forms.Panel();
+            this.pnl_0_2__0_1 = new System.Windows.Forms.Panel();
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n1_n1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_n2)).BeginInit();
@@ -407,191 +427,411 @@
             this.pbMoveMapLeft.TabStop = false;
             this.pbMoveMapLeft.Click += new System.EventHandler(this.pbMoveMapLeft_Click);
             // 
-            // panel2
+            // pnl_1_2__2_2
             // 
-            this.panel2.BackColor = System.Drawing.Color.Black;
-            this.panel2.Location = new System.Drawing.Point(645, 100);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(35, 5);
-            this.panel2.TabIndex = 61;
+            this.pnl_1_2__2_2.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_2__2_2.Location = new System.Drawing.Point(645, 100);
+            this.pnl_1_2__2_2.Name = "pnl_1_2__2_2";
+            this.pnl_1_2__2_2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_1_2__2_2.TabIndex = 61;
+            this.pnl_1_2__2_2.Visible = false;
             // 
-            // panel3
+            // pnl_0_0__1_0
             // 
-            this.panel3.BackColor = System.Drawing.Color.Black;
-            this.panel3.Location = new System.Drawing.Point(485, 420);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(35, 5);
-            this.panel3.TabIndex = 29;
+            this.pnl_0_0__1_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_0__1_0.Location = new System.Drawing.Point(485, 420);
+            this.pnl_0_0__1_0.Name = "pnl_0_0__1_0";
+            this.pnl_0_0__1_0.Size = new System.Drawing.Size(35, 5);
+            this.pnl_0_0__1_0.TabIndex = 29;
+            this.pnl_0_0__1_0.Visible = false;
             // 
-            // panel6
+            // pnl_1_0__2_0
             // 
-            this.panel6.BackColor = System.Drawing.Color.Black;
-            this.panel6.Location = new System.Drawing.Point(645, 420);
-            this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(35, 5);
-            this.panel6.TabIndex = 62;
+            this.pnl_1_0__2_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_0__2_0.Location = new System.Drawing.Point(645, 420);
+            this.pnl_1_0__2_0.Name = "pnl_1_0__2_0";
+            this.pnl_1_0__2_0.Size = new System.Drawing.Size(35, 5);
+            this.pnl_1_0__2_0.TabIndex = 62;
+            this.pnl_1_0__2_0.Visible = false;
             // 
-            // panel5
+            // pnl_n2_0__n1_0
             // 
-            this.panel5.BackColor = System.Drawing.Color.Black;
-            this.panel5.Location = new System.Drawing.Point(165, 420);
-            this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(35, 5);
-            this.panel5.TabIndex = 63;
+            this.pnl_n2_0__n1_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_0__n1_0.Location = new System.Drawing.Point(165, 420);
+            this.pnl_n2_0__n1_0.Name = "pnl_n2_0__n1_0";
+            this.pnl_n2_0__n1_0.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n2_0__n1_0.TabIndex = 63;
+            this.pnl_n2_0__n1_0.Visible = false;
             // 
-            // panel7
+            // pnl_n1_0__0_0
             // 
-            this.panel7.BackColor = System.Drawing.Color.Black;
-            this.panel7.Location = new System.Drawing.Point(325, 420);
-            this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(35, 5);
-            this.panel7.TabIndex = 30;
+            this.pnl_n1_0__0_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_0__0_0.Location = new System.Drawing.Point(325, 420);
+            this.pnl_n1_0__0_0.Name = "pnl_n1_0__0_0";
+            this.pnl_n1_0__0_0.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n1_0__0_0.TabIndex = 30;
+            this.pnl_n1_0__0_0.Visible = false;
             // 
-            // panel8
+            // pnl_n2_n1__n1_n1
             // 
-            this.panel8.BackColor = System.Drawing.Color.Black;
-            this.panel8.Location = new System.Drawing.Point(165, 580);
-            this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(35, 5);
-            this.panel8.TabIndex = 64;
+            this.pnl_n2_n1__n1_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_n1__n1_n1.Location = new System.Drawing.Point(165, 580);
+            this.pnl_n2_n1__n1_n1.Name = "pnl_n2_n1__n1_n1";
+            this.pnl_n2_n1__n1_n1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n2_n1__n1_n1.TabIndex = 64;
+            this.pnl_n2_n1__n1_n1.Visible = false;
             // 
-            // panel9
+            // pnl_n1_n1__0_n1
             // 
-            this.panel9.BackColor = System.Drawing.Color.Black;
-            this.panel9.Location = new System.Drawing.Point(325, 580);
-            this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(35, 5);
-            this.panel9.TabIndex = 30;
+            this.pnl_n1_n1__0_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_n1__0_n1.Location = new System.Drawing.Point(325, 580);
+            this.pnl_n1_n1__0_n1.Name = "pnl_n1_n1__0_n1";
+            this.pnl_n1_n1__0_n1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n1_n1__0_n1.TabIndex = 30;
+            this.pnl_n1_n1__0_n1.Visible = false;
             // 
-            // panel10
+            // pnl_1_n1__2_n1
             // 
-            this.panel10.BackColor = System.Drawing.Color.Black;
-            this.panel10.Location = new System.Drawing.Point(645, 580);
-            this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(35, 5);
-            this.panel10.TabIndex = 30;
+            this.pnl_1_n1__2_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_n1__2_n1.Location = new System.Drawing.Point(645, 580);
+            this.pnl_1_n1__2_n1.Name = "pnl_1_n1__2_n1";
+            this.pnl_1_n1__2_n1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_1_n1__2_n1.TabIndex = 30;
+            this.pnl_1_n1__2_n1.Visible = false;
             // 
-            // panel11
+            // pnl_0_n1__1_n1
             // 
-            this.panel11.BackColor = System.Drawing.Color.Black;
-            this.panel11.Location = new System.Drawing.Point(485, 580);
-            this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(35, 5);
-            this.panel11.TabIndex = 30;
+            this.pnl_0_n1__1_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_n1__1_n1.Location = new System.Drawing.Point(485, 580);
+            this.pnl_0_n1__1_n1.Name = "pnl_0_n1__1_n1";
+            this.pnl_0_n1__1_n1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_0_n1__1_n1.TabIndex = 30;
+            this.pnl_0_n1__1_n1.Visible = false;
             // 
-            // panel12
+            // pnl_n2_n2__n1_n2
             // 
-            this.panel12.BackColor = System.Drawing.Color.Black;
-            this.panel12.Location = new System.Drawing.Point(165, 740);
-            this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(35, 5);
-            this.panel12.TabIndex = 65;
+            this.pnl_n2_n2__n1_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_n2__n1_n2.Location = new System.Drawing.Point(165, 740);
+            this.pnl_n2_n2__n1_n2.Name = "pnl_n2_n2__n1_n2";
+            this.pnl_n2_n2__n1_n2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n2_n2__n1_n2.TabIndex = 65;
+            this.pnl_n2_n2__n1_n2.Visible = false;
             // 
-            // panel13
+            // pnl_n1_n2__0_n2
             // 
-            this.panel13.BackColor = System.Drawing.Color.Black;
-            this.panel13.Location = new System.Drawing.Point(325, 740);
-            this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(35, 5);
-            this.panel13.TabIndex = 30;
+            this.pnl_n1_n2__0_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_n2__0_n2.Location = new System.Drawing.Point(325, 740);
+            this.pnl_n1_n2__0_n2.Name = "pnl_n1_n2__0_n2";
+            this.pnl_n1_n2__0_n2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n1_n2__0_n2.TabIndex = 30;
+            this.pnl_n1_n2__0_n2.Visible = false;
             // 
-            // panel14
+            // pnl_1_n2__2_n2
             // 
-            this.panel14.BackColor = System.Drawing.Color.Black;
-            this.panel14.Location = new System.Drawing.Point(645, 740);
-            this.panel14.Name = "panel14";
-            this.panel14.Size = new System.Drawing.Size(35, 5);
-            this.panel14.TabIndex = 30;
+            this.pnl_1_n2__2_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_n2__2_n2.Location = new System.Drawing.Point(645, 740);
+            this.pnl_1_n2__2_n2.Name = "pnl_1_n2__2_n2";
+            this.pnl_1_n2__2_n2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_1_n2__2_n2.TabIndex = 30;
+            this.pnl_1_n2__2_n2.Visible = false;
             // 
-            // panel15
+            // pnl_0_n2__1_n2
             // 
-            this.panel15.BackColor = System.Drawing.Color.Black;
-            this.panel15.Location = new System.Drawing.Point(485, 740);
-            this.panel15.Name = "panel15";
-            this.panel15.Size = new System.Drawing.Size(35, 5);
-            this.panel15.TabIndex = 30;
+            this.pnl_0_n2__1_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_n2__1_n2.Location = new System.Drawing.Point(485, 740);
+            this.pnl_0_n2__1_n2.Name = "pnl_0_n2__1_n2";
+            this.pnl_0_n2__1_n2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_0_n2__1_n2.TabIndex = 30;
+            this.pnl_0_n2__1_n2.Visible = false;
             // 
-            // panel17
+            // pnl_n2_2__n1_2
             // 
-            this.panel17.BackColor = System.Drawing.Color.Black;
-            this.panel17.Location = new System.Drawing.Point(165, 100);
-            this.panel17.Name = "panel17";
-            this.panel17.Size = new System.Drawing.Size(35, 5);
-            this.panel17.TabIndex = 30;
+            this.pnl_n2_2__n1_2.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_2__n1_2.Location = new System.Drawing.Point(165, 100);
+            this.pnl_n2_2__n1_2.Name = "pnl_n2_2__n1_2";
+            this.pnl_n2_2__n1_2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n2_2__n1_2.TabIndex = 30;
+            this.pnl_n2_2__n1_2.Visible = false;
             // 
-            // panel18
+            // pnl_n1_2__0_2
             // 
-            this.panel18.BackColor = System.Drawing.Color.Black;
-            this.panel18.Location = new System.Drawing.Point(325, 100);
-            this.panel18.Name = "panel18";
-            this.panel18.Size = new System.Drawing.Size(35, 5);
-            this.panel18.TabIndex = 30;
+            this.pnl_n1_2__0_2.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_2__0_2.Location = new System.Drawing.Point(325, 100);
+            this.pnl_n1_2__0_2.Name = "pnl_n1_2__0_2";
+            this.pnl_n1_2__0_2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n1_2__0_2.TabIndex = 30;
+            this.pnl_n1_2__0_2.Visible = false;
             // 
-            // panel19
+            // pnl_0_2__1_2
             // 
-            this.panel19.BackColor = System.Drawing.Color.Black;
-            this.panel19.Location = new System.Drawing.Point(485, 100);
-            this.panel19.Name = "panel19";
-            this.panel19.Size = new System.Drawing.Size(35, 5);
-            this.panel19.TabIndex = 30;
+            this.pnl_0_2__1_2.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_2__1_2.Location = new System.Drawing.Point(485, 100);
+            this.pnl_0_2__1_2.Name = "pnl_0_2__1_2";
+            this.pnl_0_2__1_2.Size = new System.Drawing.Size(35, 5);
+            this.pnl_0_2__1_2.TabIndex = 30;
+            this.pnl_0_2__1_2.Visible = false;
             // 
-            // panel20
+            // pnl_n2_1__n1_1
             // 
-            this.panel20.BackColor = System.Drawing.Color.Black;
-            this.panel20.Location = new System.Drawing.Point(165, 260);
-            this.panel20.Name = "panel20";
-            this.panel20.Size = new System.Drawing.Size(35, 5);
-            this.panel20.TabIndex = 30;
+            this.pnl_n2_1__n1_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_1__n1_1.Location = new System.Drawing.Point(165, 260);
+            this.pnl_n2_1__n1_1.Name = "pnl_n2_1__n1_1";
+            this.pnl_n2_1__n1_1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n2_1__n1_1.TabIndex = 30;
+            this.pnl_n2_1__n1_1.Visible = false;
             // 
-            // panel21
+            // pnl_n1_1__0_1
             // 
-            this.panel21.BackColor = System.Drawing.Color.Black;
-            this.panel21.Location = new System.Drawing.Point(325, 260);
-            this.panel21.Name = "panel21";
-            this.panel21.Size = new System.Drawing.Size(35, 5);
-            this.panel21.TabIndex = 30;
+            this.pnl_n1_1__0_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_1__0_1.Location = new System.Drawing.Point(325, 260);
+            this.pnl_n1_1__0_1.Name = "pnl_n1_1__0_1";
+            this.pnl_n1_1__0_1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_n1_1__0_1.TabIndex = 30;
+            this.pnl_n1_1__0_1.Visible = false;
             // 
-            // panel22
+            // pnl_1_1__2_1
             // 
-            this.panel22.BackColor = System.Drawing.Color.Black;
-            this.panel22.Location = new System.Drawing.Point(645, 260);
-            this.panel22.Name = "panel22";
-            this.panel22.Size = new System.Drawing.Size(35, 5);
-            this.panel22.TabIndex = 30;
+            this.pnl_1_1__2_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_1__2_1.Location = new System.Drawing.Point(645, 260);
+            this.pnl_1_1__2_1.Name = "pnl_1_1__2_1";
+            this.pnl_1_1__2_1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_1_1__2_1.TabIndex = 30;
+            this.pnl_1_1__2_1.Visible = false;
             // 
-            // panel23
+            // pnl_0_1__1_1
             // 
-            this.panel23.BackColor = System.Drawing.Color.Black;
-            this.panel23.Location = new System.Drawing.Point(485, 260);
-            this.panel23.Name = "panel23";
-            this.panel23.Size = new System.Drawing.Size(35, 5);
-            this.panel23.TabIndex = 30;
+            this.pnl_0_1__1_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_1__1_1.Location = new System.Drawing.Point(485, 260);
+            this.pnl_0_1__1_1.Name = "pnl_0_1__1_1";
+            this.pnl_0_1__1_1.Size = new System.Drawing.Size(35, 5);
+            this.pnl_0_1__1_1.TabIndex = 30;
+            this.pnl_0_1__1_1.Visible = false;
+            // 
+            // pnl_0_1__0_0
+            // 
+            this.pnl_0_1__0_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_1__0_0.Location = new System.Drawing.Point(420, 325);
+            this.pnl_0_1__0_0.Name = "pnl_0_1__0_0";
+            this.pnl_0_1__0_0.Size = new System.Drawing.Size(5, 35);
+            this.pnl_0_1__0_0.TabIndex = 66;
+            this.pnl_0_1__0_0.Visible = false;
+            // 
+            // pnl_0_0__0_n1
+            // 
+            this.pnl_0_0__0_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_0__0_n1.Location = new System.Drawing.Point(420, 485);
+            this.pnl_0_0__0_n1.Name = "pnl_0_0__0_n1";
+            this.pnl_0_0__0_n1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_0_0__0_n1.TabIndex = 67;
+            this.pnl_0_0__0_n1.Visible = false;
+            // 
+            // pnl_n2_2__n2_1
+            // 
+            this.pnl_n2_2__n2_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_2__n2_1.Location = new System.Drawing.Point(100, 165);
+            this.pnl_n2_2__n2_1.Name = "pnl_n2_2__n2_1";
+            this.pnl_n2_2__n2_1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n2_2__n2_1.TabIndex = 67;
+            this.pnl_n2_2__n2_1.Visible = false;
+            // 
+            // pnl_n2_n1__n2_n2
+            // 
+            this.pnl_n2_n1__n2_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_n1__n2_n2.Location = new System.Drawing.Point(100, 645);
+            this.pnl_n2_n1__n2_n2.Name = "pnl_n2_n1__n2_n2";
+            this.pnl_n2_n1__n2_n2.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n2_n1__n2_n2.TabIndex = 67;
+            this.pnl_n2_n1__n2_n2.Visible = false;
+            // 
+            // pnl_n2_0__n2_n1
+            // 
+            this.pnl_n2_0__n2_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_0__n2_n1.Location = new System.Drawing.Point(100, 485);
+            this.pnl_n2_0__n2_n1.Name = "pnl_n2_0__n2_n1";
+            this.pnl_n2_0__n2_n1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n2_0__n2_n1.TabIndex = 67;
+            this.pnl_n2_0__n2_n1.Visible = false;
+            // 
+            // pnl_n2_1__n2_0
+            // 
+            this.pnl_n2_1__n2_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_n2_1__n2_0.Location = new System.Drawing.Point(100, 325);
+            this.pnl_n2_1__n2_0.Name = "pnl_n2_1__n2_0";
+            this.pnl_n2_1__n2_0.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n2_1__n2_0.TabIndex = 67;
+            this.pnl_n2_1__n2_0.Visible = false;
+            // 
+            // pnl_2_n1__2_n2
+            // 
+            this.pnl_2_n1__2_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_2_n1__2_n2.Location = new System.Drawing.Point(740, 645);
+            this.pnl_2_n1__2_n2.Name = "pnl_2_n1__2_n2";
+            this.pnl_2_n1__2_n2.Size = new System.Drawing.Size(5, 35);
+            this.pnl_2_n1__2_n2.TabIndex = 67;
+            this.pnl_2_n1__2_n2.Visible = false;
+            // 
+            // pnl_2_2__2_1
+            // 
+            this.pnl_2_2__2_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_2_2__2_1.Location = new System.Drawing.Point(740, 165);
+            this.pnl_2_2__2_1.Name = "pnl_2_2__2_1";
+            this.pnl_2_2__2_1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_2_2__2_1.TabIndex = 67;
+            this.pnl_2_2__2_1.Visible = false;
+            // 
+            // pnl_2_1__2_0
+            // 
+            this.pnl_2_1__2_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_2_1__2_0.Location = new System.Drawing.Point(740, 325);
+            this.pnl_2_1__2_0.Name = "pnl_2_1__2_0";
+            this.pnl_2_1__2_0.Size = new System.Drawing.Size(5, 35);
+            this.pnl_2_1__2_0.TabIndex = 67;
+            this.pnl_2_1__2_0.Visible = false;
+            // 
+            // pnl_2_0__2_n1
+            // 
+            this.pnl_2_0__2_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_2_0__2_n1.Location = new System.Drawing.Point(740, 485);
+            this.pnl_2_0__2_n1.Name = "pnl_2_0__2_n1";
+            this.pnl_2_0__2_n1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_2_0__2_n1.TabIndex = 67;
+            this.pnl_2_0__2_n1.Visible = false;
+            // 
+            // pnl_n1_n1__n1_n2
+            // 
+            this.pnl_n1_n1__n1_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_n1__n1_n2.Location = new System.Drawing.Point(260, 645);
+            this.pnl_n1_n1__n1_n2.Name = "pnl_n1_n1__n1_n2";
+            this.pnl_n1_n1__n1_n2.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n1_n1__n1_n2.TabIndex = 67;
+            this.pnl_n1_n1__n1_n2.Visible = false;
+            // 
+            // pnl_n1_2__n1_1
+            // 
+            this.pnl_n1_2__n1_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_2__n1_1.Location = new System.Drawing.Point(260, 165);
+            this.pnl_n1_2__n1_1.Name = "pnl_n1_2__n1_1";
+            this.pnl_n1_2__n1_1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n1_2__n1_1.TabIndex = 67;
+            this.pnl_n1_2__n1_1.Visible = false;
+            // 
+            // pnl_n1_1__n1_0
+            // 
+            this.pnl_n1_1__n1_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_1__n1_0.Location = new System.Drawing.Point(260, 325);
+            this.pnl_n1_1__n1_0.Name = "pnl_n1_1__n1_0";
+            this.pnl_n1_1__n1_0.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n1_1__n1_0.TabIndex = 67;
+            this.pnl_n1_1__n1_0.Visible = false;
+            // 
+            // pnl_n1_0__n1_n1
+            // 
+            this.pnl_n1_0__n1_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_n1_0__n1_n1.Location = new System.Drawing.Point(260, 485);
+            this.pnl_n1_0__n1_n1.Name = "pnl_n1_0__n1_n1";
+            this.pnl_n1_0__n1_n1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_n1_0__n1_n1.TabIndex = 67;
+            this.pnl_n1_0__n1_n1.Visible = false;
+            // 
+            // pnl_1_2__1_1
+            // 
+            this.pnl_1_2__1_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_2__1_1.Location = new System.Drawing.Point(580, 165);
+            this.pnl_1_2__1_1.Name = "pnl_1_2__1_1";
+            this.pnl_1_2__1_1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_1_2__1_1.TabIndex = 67;
+            this.pnl_1_2__1_1.Visible = false;
+            // 
+            // pnl_1_1__1_0
+            // 
+            this.pnl_1_1__1_0.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_1__1_0.Location = new System.Drawing.Point(580, 325);
+            this.pnl_1_1__1_0.Name = "pnl_1_1__1_0";
+            this.pnl_1_1__1_0.Size = new System.Drawing.Size(5, 35);
+            this.pnl_1_1__1_0.TabIndex = 67;
+            this.pnl_1_1__1_0.Visible = false;
+            // 
+            // pnl_1_0__1_n1
+            // 
+            this.pnl_1_0__1_n1.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_0__1_n1.Location = new System.Drawing.Point(580, 485);
+            this.pnl_1_0__1_n1.Name = "pnl_1_0__1_n1";
+            this.pnl_1_0__1_n1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_1_0__1_n1.TabIndex = 67;
+            this.pnl_1_0__1_n1.Visible = false;
+            // 
+            // pnl_0_n1__0_n2
+            // 
+            this.pnl_0_n1__0_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_n1__0_n2.Location = new System.Drawing.Point(420, 645);
+            this.pnl_0_n1__0_n2.Name = "pnl_0_n1__0_n2";
+            this.pnl_0_n1__0_n2.Size = new System.Drawing.Size(5, 35);
+            this.pnl_0_n1__0_n2.TabIndex = 67;
+            this.pnl_0_n1__0_n2.Visible = false;
+            // 
+            // pnl_1_n1__1_n2
+            // 
+            this.pnl_1_n1__1_n2.BackColor = System.Drawing.Color.Black;
+            this.pnl_1_n1__1_n2.Location = new System.Drawing.Point(580, 645);
+            this.pnl_1_n1__1_n2.Name = "pnl_1_n1__1_n2";
+            this.pnl_1_n1__1_n2.Size = new System.Drawing.Size(5, 35);
+            this.pnl_1_n1__1_n2.TabIndex = 67;
+            this.pnl_1_n1__1_n2.Visible = false;
+            // 
+            // pnl_0_2__0_1
+            // 
+            this.pnl_0_2__0_1.BackColor = System.Drawing.Color.Black;
+            this.pnl_0_2__0_1.Location = new System.Drawing.Point(420, 165);
+            this.pnl_0_2__0_1.Name = "pnl_0_2__0_1";
+            this.pnl_0_2__0_1.Size = new System.Drawing.Size(5, 35);
+            this.pnl_0_2__0_1.TabIndex = 67;
+            this.pnl_0_2__0_1.Visible = false;
             // 
             // MapScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(845, 845);
-            this.Controls.Add(this.panel17);
-            this.Controls.Add(this.panel18);
-            this.Controls.Add(this.panel19);
-            this.Controls.Add(this.panel20);
-            this.Controls.Add(this.panel21);
-            this.Controls.Add(this.panel22);
-            this.Controls.Add(this.panel23);
-            this.Controls.Add(this.panel13);
-            this.Controls.Add(this.panel14);
-            this.Controls.Add(this.panel15);
-            this.Controls.Add(this.panel12);
-            this.Controls.Add(this.panel9);
-            this.Controls.Add(this.panel10);
-            this.Controls.Add(this.panel11);
-            this.Controls.Add(this.panel8);
-            this.Controls.Add(this.panel7);
-            this.Controls.Add(this.panel5);
-            this.Controls.Add(this.panel6);
-            this.Controls.Add(this.panel3);
-            this.Controls.Add(this.panel2);
+            this.Controls.Add(this.pnl_n2_2__n2_1);
+            this.Controls.Add(this.pnl_n2_n1__n2_n2);
+            this.Controls.Add(this.pnl_n2_0__n2_n1);
+            this.Controls.Add(this.pnl_n2_1__n2_0);
+            this.Controls.Add(this.pnl_2_n1__2_n2);
+            this.Controls.Add(this.pnl_2_2__2_1);
+            this.Controls.Add(this.pnl_2_1__2_0);
+            this.Controls.Add(this.pnl_2_0__2_n1);
+            this.Controls.Add(this.pnl_n1_n1__n1_n2);
+            this.Controls.Add(this.pnl_n1_2__n1_1);
+            this.Controls.Add(this.pnl_n1_1__n1_0);
+            this.Controls.Add(this.pnl_n1_0__n1_n1);
+            this.Controls.Add(this.pnl_1_2__1_1);
+            this.Controls.Add(this.pnl_1_1__1_0);
+            this.Controls.Add(this.pnl_1_0__1_n1);
+            this.Controls.Add(this.pnl_0_n1__0_n2);
+            this.Controls.Add(this.pnl_1_n1__1_n2);
+            this.Controls.Add(this.pnl_0_2__0_1);
+            this.Controls.Add(this.pnl_0_0__0_n1);
+            this.Controls.Add(this.pnl_0_1__0_0);
+            this.Controls.Add(this.pnl_n2_2__n1_2);
+            this.Controls.Add(this.pnl_n1_2__0_2);
+            this.Controls.Add(this.pnl_0_2__1_2);
+            this.Controls.Add(this.pnl_n2_1__n1_1);
+            this.Controls.Add(this.pnl_n1_1__0_1);
+            this.Controls.Add(this.pnl_1_1__2_1);
+            this.Controls.Add(this.pnl_0_1__1_1);
+            this.Controls.Add(this.pnl_n1_n2__0_n2);
+            this.Controls.Add(this.pnl_1_n2__2_n2);
+            this.Controls.Add(this.pnl_0_n2__1_n2);
+            this.Controls.Add(this.pnl_n2_n2__n1_n2);
+            this.Controls.Add(this.pnl_n1_n1__0_n1);
+            this.Controls.Add(this.pnl_1_n1__2_n1);
+            this.Controls.Add(this.pnl_0_n1__1_n1);
+            this.Controls.Add(this.pnl_n2_n1__n1_n1);
+            this.Controls.Add(this.pnl_n1_0__0_0);
+            this.Controls.Add(this.pnl_n2_0__n1_0);
+            this.Controls.Add(this.pnl_1_0__2_0);
+            this.Controls.Add(this.pnl_0_0__1_0);
+            this.Controls.Add(this.pnl_1_2__2_2);
             this.Controls.Add(this.pbMoveMapLeft);
             this.Controls.Add(this.pbMoveMapRight);
             this.Controls.Add(this.pbMoveMapDown);
@@ -626,6 +866,7 @@
             this.MinimizeBox = false;
             this.Name = "MapScreen";
             this.Text = "Map";
+            this.Load += new System.EventHandler(this.MapScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n1_n1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_n2)).EndInit();
@@ -689,25 +930,45 @@
         private System.Windows.Forms.PictureBox pbMoveMapDown;
         private System.Windows.Forms.PictureBox pbMoveMapRight;
         private System.Windows.Forms.PictureBox pbMoveMapLeft;
-        private System.Windows.Forms.Panel panel2;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.Panel panel6;
-        private System.Windows.Forms.Panel panel5;
-        private System.Windows.Forms.Panel panel7;
-        private System.Windows.Forms.Panel panel8;
-        private System.Windows.Forms.Panel panel9;
-        private System.Windows.Forms.Panel panel10;
-        private System.Windows.Forms.Panel panel11;
-        private System.Windows.Forms.Panel panel12;
-        private System.Windows.Forms.Panel panel13;
-        private System.Windows.Forms.Panel panel14;
-        private System.Windows.Forms.Panel panel15;
-        private System.Windows.Forms.Panel panel17;
-        private System.Windows.Forms.Panel panel18;
-        private System.Windows.Forms.Panel panel19;
-        private System.Windows.Forms.Panel panel20;
-        private System.Windows.Forms.Panel panel21;
-        private System.Windows.Forms.Panel panel22;
-        private System.Windows.Forms.Panel panel23;
+        private System.Windows.Forms.Panel pnl_1_2__2_2;
+        private System.Windows.Forms.Panel pnl_0_0__1_0;
+        private System.Windows.Forms.Panel pnl_1_0__2_0;
+        private System.Windows.Forms.Panel pnl_n2_0__n1_0;
+        private System.Windows.Forms.Panel pnl_n1_0__0_0;
+        private System.Windows.Forms.Panel pnl_n2_n1__n1_n1;
+        private System.Windows.Forms.Panel pnl_n1_n1__0_n1;
+        private System.Windows.Forms.Panel pnl_1_n1__2_n1;
+        private System.Windows.Forms.Panel pnl_0_n1__1_n1;
+        private System.Windows.Forms.Panel pnl_n2_n2__n1_n2;
+        private System.Windows.Forms.Panel pnl_n1_n2__0_n2;
+        private System.Windows.Forms.Panel pnl_1_n2__2_n2;
+        private System.Windows.Forms.Panel pnl_0_n2__1_n2;
+        private System.Windows.Forms.Panel pnl_n2_2__n1_2;
+        private System.Windows.Forms.Panel pnl_n1_2__0_2;
+        private System.Windows.Forms.Panel pnl_0_2__1_2;
+        private System.Windows.Forms.Panel pnl_n2_1__n1_1;
+        private System.Windows.Forms.Panel pnl_n1_1__0_1;
+        private System.Windows.Forms.Panel pnl_1_1__2_1;
+        private System.Windows.Forms.Panel pnl_0_1__1_1;
+        private System.Windows.Forms.Panel pnl_0_1__0_0;
+        private System.Windows.Forms.Panel pnl_0_0__0_n1;
+        private System.Windows.Forms.Panel pnl_n2_2__n2_1;
+        private System.Windows.Forms.Panel pnl_n2_n1__n2_n2;
+        private System.Windows.Forms.Panel pnl_n2_0__n2_n1;
+        private System.Windows.Forms.Panel pnl_n2_1__n2_0;
+        private System.Windows.Forms.Panel pnl_2_n1__2_n2;
+        private System.Windows.Forms.Panel pnl_2_2__2_1;
+        private System.Windows.Forms.Panel pnl_2_1__2_0;
+        private System.Windows.Forms.Panel pnl_2_0__2_n1;
+        private System.Windows.Forms.Panel pnl_n1_n1__n1_n2;
+        private System.Windows.Forms.Panel pnl_n1_2__n1_1;
+        private System.Windows.Forms.Panel pnl_n1_1__n1_0;
+        private System.Windows.Forms.Panel pnl_n1_0__n1_n1;
+        private System.Windows.Forms.Panel pnl_1_2__1_1;
+        private System.Windows.Forms.Panel pnl_1_1__1_0;
+        private System.Windows.Forms.Panel pnl_1_0__1_n1;
+        private System.Windows.Forms.Panel pnl_0_n1__0_n2;
+        private System.Windows.Forms.Panel pnl_1_n1__1_n2;
+        private System.Windows.Forms.Panel pnl_0_2__0_1;
     }
 }

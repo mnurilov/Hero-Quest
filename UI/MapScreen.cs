@@ -22,6 +22,8 @@ namespace UI
         int centerXCoordinate { get; set; }
         int centerYCoordinate { get; set; }
 
+        private enum Direction { North, South, West, East }
+
         public MapScreen(GameSession gameSession)
         {
             InitializeComponent();
@@ -36,6 +38,7 @@ namespace UI
         private void UpdateMap()
         {
             UpdatePictureBoxes();
+            UpdateMapConnections();
         }
             
         private void UpdatePictureBoxes()
@@ -69,6 +72,64 @@ namespace UI
             SetImage(pb_0_n2, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 2)?.Name);
             SetImage(pb_1_n2, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 2)?.Name);
             SetImage(pb_2_n2, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 2)?.Name);
+        }
+
+        private void UpdateMapConnections()
+        {
+            SetMapConnection(pnl_n2_2__n1_2, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 2), Direction.East);
+        }
+
+        private void SetMapConnection(Panel panel, Location location, Direction direction)
+        {
+            if(location == null)
+            {
+                panel.Visible = false;
+                return;
+            }
+
+            switch (direction)
+            {
+                case Direction.North:
+                    if(location.LocationToTheNorth != null)
+                    {
+                        panel.Visible = true;
+                    }
+                    else
+                    {
+                        panel.Visible = false;
+                    }
+                    break;
+                case Direction.South:
+                    if (location.LocationToTheSouth != null)
+                    {
+                        panel.Visible = true;
+                    }
+                    else
+                    {
+                        panel.Visible = false;
+                    }
+                    break;
+                case Direction.West:
+                    if (location.LocationToTheWest != null)
+                    {
+                        panel.Visible = true;
+                    }
+                    else
+                    {
+                        panel.Visible = false;
+                    }
+                    break;
+                case Direction.East:
+                    if (location.LocationToTheEast != null)
+                    {
+                        panel.Visible = true;
+                    }
+                    else
+                    {
+                        panel.Visible = false;
+                    }
+                    break;
+            }
         }
 
         private void SetImage(PictureBox pictureBox, string imageName)
@@ -114,6 +175,11 @@ namespace UI
         {
             centerXCoordinate = centerXCoordinate + 1;
             UpdateMap();
+        }
+
+        private void MapScreen_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
