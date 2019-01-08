@@ -653,7 +653,7 @@
             this.colQuestID,
             this.colQuestName,
             this.colQuestCompletion});
-            this.dgvQuests.Location = new System.Drawing.Point(0, 0);
+            this.dgvQuests.Location = new System.Drawing.Point(-3, 2);
             this.dgvQuests.Name = "dgvQuests";
             this.dgvQuests.RowHeadersVisible = false;
             this.dgvQuests.RowTemplate.Height = 24;

@@ -1,9 +1,4 @@
-How do I add mana usage
-Mana I want mana to be the way the player uses spells
-The player must have enough mana to use a spell 
-Therefore the use spell function must first check if they have enough mana
-If they dont have enough mana return false and place the apporiate message
-If they do lower their mana on the Player class
+
 
 
 
@@ -20,10 +15,8 @@ Refactored Folder Classes
 -Clone Generator
 -Location
 -World(Mostly Done Gotta Think about how to Access Items in List Not using ID)
--Fighting Unit(Mostly Done Gotta Deal with Mana with Spells)
-
-NotRefactored Folder Classes
--Game Session
+-Fighting Unit
+-Game Session 
 
 TIPS FOR REFACTORING
 -Smaller functions don't make finds huge
@@ -50,3 +43,5 @@ CODE LAYOUT
 -Add icon to hero quest main page
 -Icons to all stats Health gets a heart strength gets fist etc 
 -Fix how quests are linked with locations and how to location what you are looking for
+-For quests in the player inventory make the column name status and then if complete have the word
+complete in green and the word in progress in yellow if not complete

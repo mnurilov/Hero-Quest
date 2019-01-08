@@ -23,7 +23,7 @@ namespace UI
         }
 
 
-        //<----------Movement Functions---------->
+        //<----------Movement Buttons---------->
         private void btnNorth_Click(object sender, EventArgs e)
         {
             gameSession.MoveNorthCommand();
@@ -113,6 +113,66 @@ namespace UI
                 case GameSession.GameState.GameOver:
                     break;
             }
+        }
+
+        
+        //<----------Battle Buttons---------->
+        private void btnAttack_Click(object sender, EventArgs e)
+        {
+            gameSession.AttackCommand();
+            UpdateButtons();
+        }
+
+        private void btnMagic_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnItems_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnRun_Click(object sender, EventArgs e)
+        {
+            gameSession.RunCommand();
+            UpdateButtons();
+        }
+
+
+        //<----------Inn Buttons----------->
+        private void btnInn_Click(object sender, EventArgs e)
+        {
+            InnScreen innScreen = new InnScreen(gameSession);
+            innScreen.StartPosition = FormStartPosition.CenterParent;
+            innScreen.ShowDialog(this);
+        }
+
+
+        //<----------Shop Buttons----------->
+        private void btnShop_Click(object sender, EventArgs e)
+        {
+            ShopScreen shopScreen = new ShopScreen(gameSession);
+            shopScreen.StartPosition = FormStartPosition.CenterParent;
+            shopScreen.ShowDialog(this);
+        }
+
+
+        //<----------Quest Buttons----------->
+        private void btnTalk_Click(object sender, EventArgs e)
+        {
+            QuestScreen questScreen = new QuestScreen(gameSession);
+            questScreen.StartPosition = FormStartPosition.CenterParent;
+            questScreen.ShowDialog(this);
+        }
+
+
+        //<----------Map Buttons----------->
+        private void btnMap_Click(object sender, EventArgs e)
+        {
+            MapScreen mapScreen = new MapScreen(gameSession);
+            mapScreen.StartPosition = FormStartPosition.CenterParent;
+            mapScreen.ShowDialog(this);
         }
     }
 }

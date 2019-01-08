@@ -28,9 +28,9 @@ namespace UIWindowsForm
             dgvBattleItems.Visible = false;
             dgvBattleItems.CellClick += dgvBattleItems_CellClick;
             dgvBattleSpells.CellClick += dgvBattleSpells_CellClick;
-           // System.IO.Stream str = Properties.Resources.enemy;
-           // System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
-          //  snd.Play();
+            //System.IO.Stream str = Properties.Resources.enemy;
+            //System.Media.SoundPlayer snd = new System.Media.SoundPlayer(str);
+            //snd.Play();
         }
 
         //Uses game session to control player instead of the player itself

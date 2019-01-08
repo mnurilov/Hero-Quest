@@ -131,16 +131,16 @@
     <None Include="Resources\Schedule.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Forest.png" />
+    <EmbeddedResource Include="Resources\Forest.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\House.png" />
+    <EmbeddedResource Include="Resources\House.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Snake.png" />
+    <EmbeddedResource Include="Resources\Snake.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Rat.png" />
+    <EmbeddedResource Include="Resources\Rat.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\enemy.wav" />

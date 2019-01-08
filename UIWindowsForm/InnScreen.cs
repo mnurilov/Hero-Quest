@@ -14,6 +14,7 @@ namespace UIWindowsForm
     public partial class InnScreen : Form
     {
         GameSession gameSession;
+
         public InnScreen(GameSession gameSession)
         {
             this.gameSession = gameSession;

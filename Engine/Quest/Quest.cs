@@ -20,6 +20,7 @@ namespace Engine
         public Item RewardItem { get; set; }
         public Equipment RewardEquipment { get; set; }
         public Spell RewardSpell { get; set; }
+        public string Rewards { get; set; }
 
 
         public Quest(int id, string name, string description, Person questGiver, int rewardGold = 0, int rewardExperience = 0,
@@ -35,6 +36,26 @@ namespace Engine
             this.RewardItem = rewardItem;
             this.RewardEquipment = rewardEquipment;
             this.RewardSpell = rewardSpell;
+            InitializeRewards();
+        }
+
+        
+        private void InitializeRewards()
+        {
+            Rewards += ("Gold:" + "\t" + RewardGold + "\n");
+            Rewards += ("Experience:" + "\t" + RewardExperience + "\n");
+            if(RewardItem != null)
+            {
+                Rewards += ("Item:" + "\t" + RewardItem.Name + "\n");
+            }
+            if(RewardEquipment != null)
+            {
+                Rewards += ("Equipment:" + "\t" + RewardEquipment.Name + "\n");
+            }
+            if(RewardSpell != null)
+            {
+                Rewards += ("Spell:" + "\t" + RewardSpell.Name + "\n");
+            }
         }
 
 

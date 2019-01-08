@@ -263,7 +263,10 @@ namespace Engine
             Vendor john = new Vendor(VendorIDJohn, "John", "A business man at heart", new Dictionary<Item, int> { { FindItemByID(1), 4 } });
             john.AddToInventory(FindItemByID(3));
 
+            Vendor bobby = new Vendor(VendorIDBobby, "Bobby", "A kind soul", null, new List<Equipment> { FindEquipmentByID(9) } );
+
             vendors.Add(john);
+            vendors.Add(bobby);
         }
 
         private static void PopulateInns()
@@ -354,8 +357,8 @@ namespace Engine
             //(Location ID, Name, Description, Chance of Encountering an Enemy, X Coordinate, Y Coordinate)
 
             //<----------Creation of Locations----------->
-            Location home = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0, 0, 0);
-            Location grassPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 100, 0, 1);
+            Location house = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0, 0, 0);
+            Location grassyPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 100, 0, 1);
             Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0, 0, 2);
             Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 0, 1, 2);
             Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 100, 1, 3);
@@ -365,13 +368,13 @@ namespace Engine
             Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100, 0, -1);
 
             //<----------Linking up the locations---------->
-            home.LocationToTheNorth = grassPlains;
-            home.LocationToTheSouth = pond;
+            house.LocationToTheNorth = grassyPlains;
+            house.LocationToTheSouth = pond;
 
-            grassPlains.LocationToTheNorth = town;
-            grassPlains.LocationToTheSouth = home;
+            grassyPlains.LocationToTheNorth = town;
+            grassyPlains.LocationToTheSouth = house;
 
-            town.LocationToTheSouth = grassPlains;
+            town.LocationToTheSouth = grassyPlains;
             town.LocationToTheWest = alley;
             town.LocationToTheEast = farm;
 
@@ -388,7 +391,7 @@ namespace Engine
 
             sewers.LocationToTheEast = alley;
 
-            pond.LocationToTheNorth = home;
+            pond.LocationToTheNorth = house;
 
             //<----------Add vendors to the locations---------->
             town.VendorInLocation = FindVendorByID(1);
@@ -399,7 +402,7 @@ namespace Engine
 
             //<----------Add enemies to the locations---------->
             //Note: Enemy weights must be ordered from least to greatest
-            grassPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };
+            grassyPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };
             barn.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(2), 1 } };
             pond.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(5), 1 } };
 
@@ -409,8 +412,8 @@ namespace Engine
             alley.QuestInLocation = FindQuestByID(3);
 
             //<-----------Add locations to the location list---------->
-            locations.Add(home);
-            locations.Add(grassPlains);
+            locations.Add(house);
+            locations.Add(grassyPlains);
             locations.Add(town);
             locations.Add(farm);
             locations.Add(barn);
