@@ -54,7 +54,7 @@
             this.pb_n2_n2 = new System.Windows.Forms.PictureBox();
             this.pb_n2_n1 = new System.Windows.Forms.PictureBox();
             this.pb_n1_n2 = new System.Windows.Forms.PictureBox();
-            this.pbMapMoveUp = new System.Windows.Forms.PictureBox();
+            this.pbMoveMapUp = new System.Windows.Forms.PictureBox();
             this.pbMoveMapDown = new System.Windows.Forms.PictureBox();
             this.pbMoveMapRight = new System.Windows.Forms.PictureBox();
             this.pbMoveMapLeft = new System.Windows.Forms.PictureBox();
@@ -123,7 +123,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pb_n2_n2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n2_n1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n1_n2)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMapMoveUp)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapUp)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapDown)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapRight)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapLeft)).BeginInit();
@@ -379,17 +379,17 @@
             this.pb_n1_n2.TabIndex = 52;
             this.pb_n1_n2.TabStop = false;
             // 
-            // pbMapMoveUp
+            // pbMoveMapUp
             // 
-            this.pbMapMoveUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pbMapMoveUp.Image = ((System.Drawing.Image)(resources.GetObject("pbMapMoveUp.Image")));
-            this.pbMapMoveUp.Location = new System.Drawing.Point(408, 0);
-            this.pbMapMoveUp.Name = "pbMapMoveUp";
-            this.pbMapMoveUp.Size = new System.Drawing.Size(30, 35);
-            this.pbMapMoveUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.pbMapMoveUp.TabIndex = 57;
-            this.pbMapMoveUp.TabStop = false;
-            this.pbMapMoveUp.Click += new System.EventHandler(this.pbMapMoveUp_Click);
+            this.pbMoveMapUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbMoveMapUp.Image = ((System.Drawing.Image)(resources.GetObject("pbMoveMapUp.Image")));
+            this.pbMoveMapUp.Location = new System.Drawing.Point(408, 0);
+            this.pbMoveMapUp.Name = "pbMoveMapUp";
+            this.pbMoveMapUp.Size = new System.Drawing.Size(30, 35);
+            this.pbMoveMapUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMoveMapUp.TabIndex = 57;
+            this.pbMoveMapUp.TabStop = false;
+            this.pbMoveMapUp.Click += new System.EventHandler(this.pbMoveMapUp_Click);
             // 
             // pbMoveMapDown
             // 
@@ -835,7 +835,7 @@
             this.Controls.Add(this.pbMoveMapLeft);
             this.Controls.Add(this.pbMoveMapRight);
             this.Controls.Add(this.pbMoveMapDown);
-            this.Controls.Add(this.pbMapMoveUp);
+            this.Controls.Add(this.pbMoveMapUp);
             this.Controls.Add(this.pb_n1_n2);
             this.Controls.Add(this.pb_n2_n1);
             this.Controls.Add(this.pb_n2_n2);
@@ -866,7 +866,6 @@
             this.MinimizeBox = false;
             this.Name = "MapScreen";
             this.Text = "Map";
-            this.Load += new System.EventHandler(this.MapScreen_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n1_n1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_n2)).EndInit();
@@ -892,7 +891,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pb_n2_n2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n2_n1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n1_n2)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.pbMapMoveUp)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapUp)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapDown)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapRight)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pbMoveMapLeft)).EndInit();
@@ -926,7 +925,7 @@
         private System.Windows.Forms.PictureBox pb_n2_n2;
         private System.Windows.Forms.PictureBox pb_n2_n1;
         private System.Windows.Forms.PictureBox pb_n1_n2;
-        private System.Windows.Forms.PictureBox pbMapMoveUp;
+        private System.Windows.Forms.PictureBox pbMoveMapUp;
         private System.Windows.Forms.PictureBox pbMoveMapDown;
         private System.Windows.Forms.PictureBox pbMoveMapRight;
         private System.Windows.Forms.PictureBox pbMoveMapLeft;

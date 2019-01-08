@@ -218,6 +218,19 @@ namespace Engine
             return null;
         }
 
+        //Finds a specific location based on name
+        public static Location FindLocationByName(string name)
+        {
+            foreach (Location location in locations)
+            {
+                if (location.Name == name)
+                {
+                    return location;
+                }
+            }
+            return null;
+        }
+
         //<----------Population Functions----------->
         private static void PopulateItems()
         {

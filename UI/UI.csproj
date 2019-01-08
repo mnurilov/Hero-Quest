@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="InformationScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="InformationScreen.Designer.cs">
+      <DependentUpon>InformationScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="InnScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -134,6 +140,9 @@
     <EmbeddedResource Include="Images\Pond.png" />
     <EmbeddedResource Include="Images\Sewers.png" />
     <EmbeddedResource Include="Images\Town.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Fog.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
