@@ -43,25 +43,49 @@
             this.tbcInventory = new System.Windows.Forms.TabControl();
             this.tbpItems = new System.Windows.Forms.TabPage();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemUse = new UI.DataGridViewDisableButtonColumn();
             this.tbpEquipment = new System.Windows.Forms.TabPage();
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
-            this.tbpSpells = new System.Windows.Forms.TabPage();
-            this.dgvSpells = new System.Windows.Forms.DataGridView();
-            this.tbpQuests = new System.Windows.Forms.TabPage();
-            this.dgvQuests = new System.Windows.Forms.DataGridView();
-            this.btnInn = new System.Windows.Forms.Button();
-            this.btnShop = new System.Windows.Forms.Button();
-            this.btnTalk = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
             this.colEquipmentUnequip = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.tbpSpells = new System.Windows.Forms.TabPage();
+            this.dgvSpells = new System.Windows.Forms.DataGridView();
+            this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbpQuests = new System.Windows.Forms.TabPage();
+            this.dgvQuests = new System.Windows.Forms.DataGridView();
             this.colQuestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuestStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnInn = new System.Windows.Forms.Button();
+            this.btnShop = new System.Windows.Forms.Button();
+            this.btnTalk = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
+            this.pictureBox9 = new System.Windows.Forms.PictureBox();
+            this.dataGridViewDisableButtonColumn1 = new UI.DataGridViewDisableButtonColumn();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.lblLocationDescription = new System.Windows.Forms.Label();
+            this.pbLocationPicture = new System.Windows.Forms.PictureBox();
+            this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
+            this.lblEnemyName = new System.Windows.Forms.Label();
+            this.lblEnemyDescription = new System.Windows.Forms.Label();
+            this.pictureBox10 = new System.Windows.Forms.PictureBox();
+            this.pictureBox11 = new System.Windows.Forms.PictureBox();
+            this.panel1 = new System.Windows.Forms.Panel();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -71,6 +95,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).BeginInit();
             this.tbpQuests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNorth
@@ -135,7 +172,7 @@
             // lblLocationName
             // 
             this.lblLocationName.AutoSize = true;
-            this.lblLocationName.Location = new System.Drawing.Point(428, 13);
+            this.lblLocationName.Location = new System.Drawing.Point(316, 13);
             this.lblLocationName.Name = "lblLocationName";
             this.lblLocationName.Size = new System.Drawing.Size(0, 17);
             this.lblLocationName.TabIndex = 6;
@@ -186,7 +223,7 @@
             this.tbcInventory.Controls.Add(this.tbpEquipment);
             this.tbcInventory.Controls.Add(this.tbpSpells);
             this.tbcInventory.Controls.Add(this.tbpQuests);
-            this.tbcInventory.Location = new System.Drawing.Point(12, 334);
+            this.tbcInventory.Location = new System.Drawing.Point(0, 344);
             this.tbcInventory.Name = "tbcInventory";
             this.tbcInventory.SelectedIndex = 0;
             this.tbcInventory.Size = new System.Drawing.Size(281, 210);
@@ -210,12 +247,52 @@
             this.dgvItems.AllowUserToResizeColumns = false;
             this.dgvItems.AllowUserToResizeRows = false;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.ColumnHeadersVisible = false;
+            this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colItemID,
+            this.colItemName,
+            this.colItemQuantity,
+            this.colItemUse});
             this.dgvItems.Location = new System.Drawing.Point(0, 0);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
+            this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowTemplate.Height = 24;
             this.dgvItems.Size = new System.Drawing.Size(273, 181);
             this.dgvItems.TabIndex = 12;
+            // 
+            // colItemID
+            // 
+            this.colItemID.HeaderText = "ID";
+            this.colItemID.Name = "colItemID";
+            this.colItemID.ReadOnly = true;
+            this.colItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemID.Visible = false;
+            // 
+            // colItemName
+            // 
+            this.colItemName.HeaderText = "Name";
+            this.colItemName.Name = "colItemName";
+            this.colItemName.ReadOnly = true;
+            this.colItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colItemQuantity
+            // 
+            this.colItemQuantity.HeaderText = "Quantity";
+            this.colItemQuantity.Name = "colItemQuantity";
+            this.colItemQuantity.ReadOnly = true;
+            this.colItemQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemQuantity.Width = 50;
+            // 
+            // colItemUse
+            // 
+            this.colItemUse.HeaderText = "Use";
+            this.colItemUse.Name = "colItemUse";
+            this.colItemUse.ReadOnly = true;
+            this.colItemUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemUse.Text = "Use";
+            this.colItemUse.UseColumnTextForButtonValue = true;
+            this.colItemUse.Width = 30;
             // 
             // tbpEquipment
             // 
@@ -223,7 +300,7 @@
             this.tbpEquipment.Location = new System.Drawing.Point(4, 25);
             this.tbpEquipment.Name = "tbpEquipment";
             this.tbpEquipment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpEquipment.Size = new System.Drawing.Size(273, 181);
+            this.tbpEquipment.Size = new System.Drawing.Size(273, 203);
             this.tbpEquipment.TabIndex = 1;
             this.tbpEquipment.Text = "Equipment";
             this.tbpEquipment.UseVisualStyleBackColor = true;
@@ -248,105 +325,6 @@
             this.dgvEquipment.RowTemplate.Height = 24;
             this.dgvEquipment.Size = new System.Drawing.Size(273, 181);
             this.dgvEquipment.TabIndex = 12;
-            // 
-            // tbpSpells
-            // 
-            this.tbpSpells.Controls.Add(this.dgvSpells);
-            this.tbpSpells.Location = new System.Drawing.Point(4, 25);
-            this.tbpSpells.Name = "tbpSpells";
-            this.tbpSpells.Size = new System.Drawing.Size(273, 181);
-            this.tbpSpells.TabIndex = 2;
-            this.tbpSpells.Text = "Spells";
-            this.tbpSpells.UseVisualStyleBackColor = true;
-            // 
-            // dgvSpells
-            // 
-            this.dgvSpells.AllowUserToAddRows = false;
-            this.dgvSpells.AllowUserToDeleteRows = false;
-            this.dgvSpells.AllowUserToResizeColumns = false;
-            this.dgvSpells.AllowUserToResizeRows = false;
-            this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSpells.ColumnHeadersVisible = false;
-            this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colSpellID,
-            this.colSpellName});
-            this.dgvSpells.Location = new System.Drawing.Point(0, 0);
-            this.dgvSpells.Name = "dgvSpells";
-            this.dgvSpells.ReadOnly = true;
-            this.dgvSpells.RowHeadersVisible = false;
-            this.dgvSpells.RowTemplate.Height = 24;
-            this.dgvSpells.Size = new System.Drawing.Size(273, 181);
-            this.dgvSpells.TabIndex = 12;
-            // 
-            // tbpQuests
-            // 
-            this.tbpQuests.Controls.Add(this.dgvQuests);
-            this.tbpQuests.Location = new System.Drawing.Point(4, 25);
-            this.tbpQuests.Name = "tbpQuests";
-            this.tbpQuests.Size = new System.Drawing.Size(273, 181);
-            this.tbpQuests.TabIndex = 3;
-            this.tbpQuests.Text = "Quests";
-            this.tbpQuests.UseVisualStyleBackColor = true;
-            // 
-            // dgvQuests
-            // 
-            this.dgvQuests.AllowUserToAddRows = false;
-            this.dgvQuests.AllowUserToDeleteRows = false;
-            this.dgvQuests.AllowUserToResizeColumns = false;
-            this.dgvQuests.AllowUserToResizeRows = false;
-            this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvQuests.ColumnHeadersVisible = false;
-            this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.colQuestID,
-            this.colQuestName,
-            this.colQuestStatus});
-            this.dgvQuests.Location = new System.Drawing.Point(0, 0);
-            this.dgvQuests.Name = "dgvQuests";
-            this.dgvQuests.ReadOnly = true;
-            this.dgvQuests.RowHeadersVisible = false;
-            this.dgvQuests.RowTemplate.Height = 24;
-            this.dgvQuests.Size = new System.Drawing.Size(273, 181);
-            this.dgvQuests.TabIndex = 12;
-            // 
-            // btnInn
-            // 
-            this.btnInn.Location = new System.Drawing.Point(725, 423);
-            this.btnInn.Name = "btnInn";
-            this.btnInn.Size = new System.Drawing.Size(75, 23);
-            this.btnInn.TabIndex = 12;
-            this.btnInn.Text = "Inn";
-            this.btnInn.UseVisualStyleBackColor = true;
-            this.btnInn.Click += new System.EventHandler(this.btnInn_Click);
-            // 
-            // btnShop
-            // 
-            this.btnShop.Location = new System.Drawing.Point(725, 463);
-            this.btnShop.Name = "btnShop";
-            this.btnShop.Size = new System.Drawing.Size(75, 23);
-            this.btnShop.TabIndex = 13;
-            this.btnShop.Text = "Shop";
-            this.btnShop.UseVisualStyleBackColor = true;
-            this.btnShop.Click += new System.EventHandler(this.btnShop_Click);
-            // 
-            // btnTalk
-            // 
-            this.btnTalk.Location = new System.Drawing.Point(725, 508);
-            this.btnTalk.Name = "btnTalk";
-            this.btnTalk.Size = new System.Drawing.Size(75, 23);
-            this.btnTalk.TabIndex = 14;
-            this.btnTalk.Text = "Talk";
-            this.btnTalk.UseVisualStyleBackColor = true;
-            this.btnTalk.Click += new System.EventHandler(this.btnTalk_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(541, 308);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // colEquipmentID
             // 
@@ -382,6 +360,80 @@
             this.colEquipmentUnequip.UseColumnTextForButtonValue = true;
             this.colEquipmentUnequip.Width = 50;
             // 
+            // tbpSpells
+            // 
+            this.tbpSpells.Controls.Add(this.dgvSpells);
+            this.tbpSpells.Location = new System.Drawing.Point(4, 25);
+            this.tbpSpells.Name = "tbpSpells";
+            this.tbpSpells.Size = new System.Drawing.Size(273, 203);
+            this.tbpSpells.TabIndex = 2;
+            this.tbpSpells.Text = "Spells";
+            this.tbpSpells.UseVisualStyleBackColor = true;
+            // 
+            // dgvSpells
+            // 
+            this.dgvSpells.AllowUserToAddRows = false;
+            this.dgvSpells.AllowUserToDeleteRows = false;
+            this.dgvSpells.AllowUserToResizeColumns = false;
+            this.dgvSpells.AllowUserToResizeRows = false;
+            this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSpells.ColumnHeadersVisible = false;
+            this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colSpellID,
+            this.colSpellName});
+            this.dgvSpells.Location = new System.Drawing.Point(0, 0);
+            this.dgvSpells.Name = "dgvSpells";
+            this.dgvSpells.ReadOnly = true;
+            this.dgvSpells.RowHeadersVisible = false;
+            this.dgvSpells.RowTemplate.Height = 24;
+            this.dgvSpells.Size = new System.Drawing.Size(273, 181);
+            this.dgvSpells.TabIndex = 12;
+            // 
+            // colSpellID
+            // 
+            this.colSpellID.HeaderText = "ID";
+            this.colSpellID.Name = "colSpellID";
+            this.colSpellID.ReadOnly = true;
+            this.colSpellID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSpellID.Visible = false;
+            // 
+            // colSpellName
+            // 
+            this.colSpellName.HeaderText = "Name";
+            this.colSpellName.Name = "colSpellName";
+            this.colSpellName.ReadOnly = true;
+            this.colSpellName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // tbpQuests
+            // 
+            this.tbpQuests.Controls.Add(this.dgvQuests);
+            this.tbpQuests.Location = new System.Drawing.Point(4, 25);
+            this.tbpQuests.Name = "tbpQuests";
+            this.tbpQuests.Size = new System.Drawing.Size(273, 203);
+            this.tbpQuests.TabIndex = 3;
+            this.tbpQuests.Text = "Quests";
+            this.tbpQuests.UseVisualStyleBackColor = true;
+            // 
+            // dgvQuests
+            // 
+            this.dgvQuests.AllowUserToAddRows = false;
+            this.dgvQuests.AllowUserToDeleteRows = false;
+            this.dgvQuests.AllowUserToResizeColumns = false;
+            this.dgvQuests.AllowUserToResizeRows = false;
+            this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvQuests.ColumnHeadersVisible = false;
+            this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colQuestID,
+            this.colQuestName,
+            this.colQuestStatus});
+            this.dgvQuests.Location = new System.Drawing.Point(0, 0);
+            this.dgvQuests.Name = "dgvQuests";
+            this.dgvQuests.ReadOnly = true;
+            this.dgvQuests.RowHeadersVisible = false;
+            this.dgvQuests.RowTemplate.Height = 24;
+            this.dgvQuests.Size = new System.Drawing.Size(273, 181);
+            this.dgvQuests.TabIndex = 12;
+            // 
             // colQuestID
             // 
             this.colQuestID.HeaderText = "ID";
@@ -404,26 +456,256 @@
             this.colQuestStatus.ReadOnly = true;
             this.colQuestStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
-            // colSpellID
+            // btnInn
             // 
-            this.colSpellID.HeaderText = "ID";
-            this.colSpellID.Name = "colSpellID";
-            this.colSpellID.ReadOnly = true;
-            this.colSpellID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colSpellID.Visible = false;
+            this.btnInn.Location = new System.Drawing.Point(725, 423);
+            this.btnInn.Name = "btnInn";
+            this.btnInn.Size = new System.Drawing.Size(75, 23);
+            this.btnInn.TabIndex = 12;
+            this.btnInn.Text = "Inn";
+            this.btnInn.UseVisualStyleBackColor = true;
+            this.btnInn.Click += new System.EventHandler(this.btnInn_Click);
             // 
-            // colSpellName
+            // btnShop
             // 
-            this.colSpellName.HeaderText = "Name";
-            this.colSpellName.Name = "colSpellName";
-            this.colSpellName.ReadOnly = true;
-            this.colSpellName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.btnShop.Location = new System.Drawing.Point(725, 463);
+            this.btnShop.Name = "btnShop";
+            this.btnShop.Size = new System.Drawing.Size(75, 23);
+            this.btnShop.TabIndex = 13;
+            this.btnShop.Text = "Shop";
+            this.btnShop.UseVisualStyleBackColor = true;
+            this.btnShop.Click += new System.EventHandler(this.btnShop_Click);
+            // 
+            // btnTalk
+            // 
+            this.btnTalk.Location = new System.Drawing.Point(725, 508);
+            this.btnTalk.Name = "btnTalk";
+            this.btnTalk.Size = new System.Drawing.Size(75, 23);
+            this.btnTalk.TabIndex = 14;
+            this.btnTalk.Text = "Talk";
+            this.btnTalk.UseVisualStyleBackColor = true;
+            this.btnTalk.Click += new System.EventHandler(this.btnTalk_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(725, 210);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
+            this.pictureBox1.Location = new System.Drawing.Point(12, 74);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox1.TabIndex = 16;
+            this.pictureBox1.TabStop = false;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox2.Image")));
+            this.pictureBox2.Location = new System.Drawing.Point(12, 136);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox2.TabIndex = 17;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
+            this.pictureBox3.Location = new System.Drawing.Point(12, 105);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox3.TabIndex = 18;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox4.Image")));
+            this.pictureBox4.Location = new System.Drawing.Point(12, 291);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox4.TabIndex = 19;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox5.Image")));
+            this.pictureBox5.Location = new System.Drawing.Point(12, 260);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox5.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox5.TabIndex = 20;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox6.Image")));
+            this.pictureBox6.Location = new System.Drawing.Point(12, 229);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox6.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox6.TabIndex = 21;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox7.Image")));
+            this.pictureBox7.Location = new System.Drawing.Point(12, 198);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox7.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox7.TabIndex = 22;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox8.Image")));
+            this.pictureBox8.Location = new System.Drawing.Point(12, 167);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox8.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox8.TabIndex = 23;
+            this.pictureBox8.TabStop = false;
+            // 
+            // pictureBox9
+            // 
+            this.pictureBox9.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox9.Image")));
+            this.pictureBox9.Location = new System.Drawing.Point(12, 322);
+            this.pictureBox9.Name = "pictureBox9";
+            this.pictureBox9.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox9.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pictureBox9.TabIndex = 24;
+            this.pictureBox9.TabStop = false;
+            // 
+            // dataGridViewDisableButtonColumn1
+            // 
+            this.dataGridViewDisableButtonColumn1.HeaderText = "Use";
+            this.dataGridViewDisableButtonColumn1.Name = "dataGridViewDisableButtonColumn1";
+            this.dataGridViewDisableButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewDisableButtonColumn1.Text = "Use";
+            this.dataGridViewDisableButtonColumn1.UseColumnTextForButtonValue = true;
+            this.dataGridViewDisableButtonColumn1.Width = 30;
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "Equip";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewButtonColumn1.Text = "Equip";
+            this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
+            this.dataGridViewButtonColumn1.Width = 50;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.HeaderText = "Unequip";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            this.dataGridViewButtonColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewButtonColumn2.Text = "Unequip";
+            this.dataGridViewButtonColumn2.UseColumnTextForButtonValue = true;
+            this.dataGridViewButtonColumn2.Width = 50;
+            // 
+            // lblLocationDescription
+            // 
+            this.lblLocationDescription.AutoSize = true;
+            this.lblLocationDescription.Location = new System.Drawing.Point(316, 198);
+            this.lblLocationDescription.Name = "lblLocationDescription";
+            this.lblLocationDescription.Size = new System.Drawing.Size(0, 17);
+            this.lblLocationDescription.TabIndex = 25;
+            // 
+            // pbLocationPicture
+            // 
+            this.pbLocationPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbLocationPicture.Location = new System.Drawing.Point(347, 43);
+            this.pbLocationPicture.Name = "pbLocationPicture";
+            this.pbLocationPicture.Size = new System.Drawing.Size(125, 125);
+            this.pbLocationPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbLocationPicture.TabIndex = 26;
+            this.pbLocationPicture.TabStop = false;
+            // 
+            // pbEnemyPicture
+            // 
+            this.pbEnemyPicture.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pbEnemyPicture.Location = new System.Drawing.Point(347, 273);
+            this.pbEnemyPicture.Name = "pbEnemyPicture";
+            this.pbEnemyPicture.Size = new System.Drawing.Size(125, 125);
+            this.pbEnemyPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbEnemyPicture.TabIndex = 27;
+            this.pbEnemyPicture.TabStop = false;
+            // 
+            // lblEnemyName
+            // 
+            this.lblEnemyName.AutoSize = true;
+            this.lblEnemyName.Location = new System.Drawing.Point(316, 242);
+            this.lblEnemyName.Name = "lblEnemyName";
+            this.lblEnemyName.Size = new System.Drawing.Size(0, 17);
+            this.lblEnemyName.TabIndex = 28;
+            // 
+            // lblEnemyDescription
+            // 
+            this.lblEnemyDescription.AutoSize = true;
+            this.lblEnemyDescription.Location = new System.Drawing.Point(316, 415);
+            this.lblEnemyDescription.Name = "lblEnemyDescription";
+            this.lblEnemyDescription.Size = new System.Drawing.Size(0, 17);
+            this.lblEnemyDescription.TabIndex = 29;
+            // 
+            // pictureBox10
+            // 
+            this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
+            this.pictureBox10.Location = new System.Drawing.Point(12, 43);
+            this.pictureBox10.Name = "pictureBox10";
+            this.pictureBox10.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox10.TabIndex = 30;
+            this.pictureBox10.TabStop = false;
+            // 
+            // pictureBox11
+            // 
+            this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
+            this.pictureBox11.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox11.Name = "pictureBox11";
+            this.pictureBox11.Size = new System.Drawing.Size(25, 25);
+            this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pictureBox11.TabIndex = 31;
+            this.pictureBox11.TabStop = false;
+            // 
+            // panel1
+            // 
+            this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(293, 347);
+            this.panel1.TabIndex = 32;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 556);
+            this.ClientSize = new System.Drawing.Size(1153, 572);
+            this.Controls.Add(this.pictureBox11);
+            this.Controls.Add(this.pictureBox10);
+            this.Controls.Add(this.lblEnemyDescription);
+            this.Controls.Add(this.lblEnemyName);
+            this.Controls.Add(this.pbEnemyPicture);
+            this.Controls.Add(this.pbLocationPicture);
+            this.Controls.Add(this.lblLocationDescription);
+            this.Controls.Add(this.pictureBox9);
+            this.Controls.Add(this.pictureBox8);
+            this.Controls.Add(this.pictureBox7);
+            this.Controls.Add(this.pictureBox6);
+            this.Controls.Add(this.pictureBox5);
+            this.Controls.Add(this.pictureBox4);
+            this.Controls.Add(this.pictureBox3);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox1);
             this.Controls.Add(this.button1);
             this.Controls.Add(this.btnTalk);
             this.Controls.Add(this.btnShop);
@@ -440,6 +722,7 @@
             this.Controls.Add(this.btnEast);
             this.Controls.Add(this.btnWest);
             this.Controls.Add(this.btnNorth);
+            this.Controls.Add(this.panel1);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -455,6 +738,19 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).EndInit();
             this.tbpQuests.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox9)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbLocationPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -495,6 +791,30 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
+        private System.Windows.Forms.PictureBox pictureBox1;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox9;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemQuantity;
+        private DataGridViewDisableButtonColumn colItemUse;
+        private DataGridViewDisableButtonColumn dataGridViewDisableButtonColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private System.Windows.Forms.Label lblLocationDescription;
+        private System.Windows.Forms.PictureBox pbLocationPicture;
+        private System.Windows.Forms.PictureBox pbEnemyPicture;
+        private System.Windows.Forms.Label lblEnemyName;
+        private System.Windows.Forms.Label lblEnemyDescription;
+        private System.Windows.Forms.PictureBox pictureBox10;
+        private System.Windows.Forms.PictureBox pictureBox11;
+        private System.Windows.Forms.Panel panel1;
     }
 }
 

@@ -36,6 +36,8 @@ namespace Engine
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(9), 10);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(11), 3);
+            CurrentPlayer.PlayerItems.Add(World.FindItemByID(4), 3);
+            CurrentPlayer.PlayerItems.Add(World.FindItemByID(5), 5);
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(1));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
@@ -358,6 +360,26 @@ namespace Engine
             CurrentPlayer.DisableGreed();
             TurnCounter = 0;
             GameStates = GameState.Travel;
+        }
+
+        public void UseItemWhileTravelCommand(Item item)
+        {
+            int itemValue = CurrentPlayer.UseItem(item);
+
+            if (item is HealthReplenishingItem)
+            {
+                CurrentPlayer.CurrentHealth += itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and healed for " + itemValue + " hitpoints");
+            }
+            else if (item is ManaReplenishingItem)
+            {
+                CurrentPlayer.CurrentMana += itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and replenished for " + itemValue + " manapoints");
+            }
+            else
+            {
+                throw new Exception("Player using an item that cannot be used in the travel screen");
+            }
         }
 
 

@@ -45,6 +45,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DataGridViewDisableButtonCell.cs" />
+    <Compile Include="DataGridViewDisableButtonColumn.cs" />
     <Compile Include="InformationScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -146,6 +148,13 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Fog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Rat.png" />
+    <EmbeddedResource Include="Images\Snake.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Siren.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

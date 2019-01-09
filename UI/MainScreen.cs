@@ -3,9 +3,11 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Reflection;
 using System.Windows.Forms;
 using Engine;
 
@@ -14,6 +16,8 @@ namespace UI
     public partial class MainScreen : Form
     {
         GameSession gameSession = new GameSession();
+        
+        readonly Assembly thisAssembly = Assembly.GetExecutingAssembly();
 
 
         public MainScreen()
@@ -21,6 +25,7 @@ namespace UI
             InitializeComponent();
             gameSession.OnMessagedRaised += DisplayWorldText;
             UpdateUI();
+            dgvItems.CellClick += dgvItems_CellClick;
         }
 
 
@@ -55,6 +60,22 @@ namespace UI
         {
             UpdateButtons();
             UpdateDGVs();
+            UpdateLocation();
+            UpdateEnemy();
+        }
+
+        private void UpdateLocation()
+        {
+            lblLocationName.Text = gameSession.CurrentPlayer.CurrentLocation.Name;
+            lblLocationDescription.Text = gameSession.CurrentPlayer.CurrentLocation.Description;
+            SetImage(pbLocationPicture, gameSession.CurrentPlayer.CurrentLocation.Name);
+        }
+
+        private void UpdateEnemy()
+        {
+            lblEnemyName.Text = gameSession.CurrentEnemy?.Name;
+            lblEnemyDescription.Text = gameSession.CurrentEnemy?.Description;
+            SetImage(pbEnemyPicture, gameSession.CurrentEnemy?.Name);
         }
 
         private void UpdateDGVs()
@@ -67,7 +88,39 @@ namespace UI
 
         private void UpdateDGVItems()
         {
+            int rowIndex = 0;
+            dgvItems.Rows.Clear();
+            foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
+            {
+                if (!CheckIfInDGV(item.Key.ID, dgvItems))
+                {
+                    dgvItems.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                }
 
+                if(gameSession.GameStates == GameSession.GameState.Battle)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                if (item.Key is EnemyLoot)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+                else if(item.Key is KeyItem)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+                else if(item.Key is DamageItem)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+                else if(item.Key is QuestItem)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                rowIndex++;
+            }
         }
 
         private void UpdateDGVEquipment()
@@ -189,6 +242,34 @@ namespace UI
                     {
                         btnEast.Enabled = true;
                     }
+
+                    if (gameSession.CurrentPlayer.CurrentLocation.InnInLocation == null)
+                    {
+                        btnInn.Enabled = false;
+                    }
+                    else
+                    {
+                        btnInn.Enabled = true;
+                    }
+
+                    if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation == null)
+                    {
+                        btnShop.Enabled = false;
+                    }
+                    else
+                    {
+                        btnShop.Enabled = true;
+                    }
+
+                    if (gameSession.CurrentPlayer.CurrentLocation.QuestInLocation == null)
+                    {
+                        btnTalk.Enabled = false;
+                    }
+                    else
+                    {
+                        btnTalk.Enabled = true;
+                    }
+
                     btnAttack.Visible = false;
                     btnMagic.Visible = false;
                     btnItems.Visible = false;
@@ -220,7 +301,51 @@ namespace UI
             rtbWorldText.ScrollToCaret();
         }
 
-        
+        private void SetImage(PictureBox pictureBox, string imageName)
+        {
+            if (imageName == null)
+            {
+                pictureBox.Image = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    pictureBox.Image = new Bitmap(resourceStream);
+                }
+            }
+        }
+
+        private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gameSession.GameStates == GameSession.GameState.Battle)
+            {
+                return;
+            }
+            if (((DataGridViewDisableButtonCell)(dgvItems.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            {
+                return;
+            }
+
+            // The 4th column has the "Use" button.
+            // Row Index is not -1 is to make sure the user can't buy the column names
+            if (e.ColumnIndex == 3 && e.RowIndex != -1)
+            {
+                // This gets the ID value of the entity, from the hidden 1st column
+                var itemID = dgvItems.Rows[e.RowIndex].Cells[0].Value;
+                
+                Item itemBeingUsed = World.FindItemByID(Convert.ToInt32(itemID));
+                gameSession.UseItemWhileTravelCommand(itemBeingUsed);
+            }
+            UpdateUI();
+        }
+
+
         //<----------Battle Buttons---------->
         private void btnAttack_Click(object sender, EventArgs e)
         {
@@ -287,5 +412,7 @@ namespace UI
             informationScreen.StartPosition = FormStartPosition.CenterParent;
             informationScreen.ShowDialog(this);
         }
+
+       
     }
 }
