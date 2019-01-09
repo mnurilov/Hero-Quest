@@ -83,6 +83,9 @@
     <Compile Include="ShopScreen.Designer.cs">
       <DependentUpon>ShopScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="InformationScreen.resx">
+      <DependentUpon>InformationScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InnScreen.resx">
       <DependentUpon>InnScreen.cs</DependentUpon>
     </EmbeddedResource>

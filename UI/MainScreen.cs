@@ -20,6 +20,7 @@ namespace UI
         {
             InitializeComponent();
             gameSession.OnMessagedRaised += DisplayWorldText;
+            UpdateUI();
         }
 
 
@@ -27,40 +28,125 @@ namespace UI
         private void btnNorth_Click(object sender, EventArgs e)
         {
             gameSession.MoveNorthCommand();
-            UpdateButtons();
+            UpdateUI();
         }
 
         private void btnSouth_Click(object sender, EventArgs e)
         {
             gameSession.MoveSouthCommand();
-            UpdateButtons();
+            UpdateUI();
         }
 
         private void btnWest_Click(object sender, EventArgs e)
         {
             gameSession.MoveWestCommand();
-            UpdateButtons();
+            UpdateUI();
         }
 
         private void btnEast_Click(object sender, EventArgs e)
         {
             gameSession.MoveEastCommand();
-            UpdateButtons();
+            UpdateUI();
         }
-        
+
 
         //<----------Updating UI Functions---------->
-        private void rtbWorldText_TextChanged(object sender, EventArgs e)
+        private void UpdateUI()
         {
-            rtbWorldText.SelectionStart = rtbWorldText.Text.Length;
-            rtbWorldText.ScrollToCaret();
+            UpdateButtons();
+            UpdateDGVs();
         }
 
-        private void DisplayWorldText(object o, MessageEventArgs e)
+        private void UpdateDGVs()
         {
-            rtbWorldText.Text += e.Message + "\n";
+            UpdateDGVItems();
+            UpdateDGVEquipment();
+            UpdateDGVSpells();
+            UpdateDGVQuests();
         }
-        
+
+        private void UpdateDGVItems()
+        {
+
+        }
+
+        private void UpdateDGVEquipment()
+        {
+            dgvEquipment.Rows.Clear();
+            foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
+            {
+                if (!CheckIfInDGV(equipment.ID, dgvEquipment))
+                {
+                    dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
+                }
+            }
+            //dgvEquipment.CellClick += dgvEquipment_CellClick;
+            //dgvEquipment.CellClick += dgvEquipment2_CellClick;
+        }
+
+        private void UpdateDGVSpells()
+        {
+            dgvSpells.Rows.Clear();
+            foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
+            {
+                if (!CheckIfInDGV(spell.ID, dgvSpells))
+                {
+                    dgvSpells.Rows.Add(spell.ID, spell.Name);
+                }
+            }
+        }
+
+        private void UpdateDGVQuests()
+        {
+            int rowIndex = 0;
+            dgvQuests.Rows.Clear();
+            foreach (Quest quest in gameSession.CurrentPlayer.PlayerQuests)
+            {
+                if (!CheckIfInDGV(quest.ID, dgvQuests))
+                {
+                    //Sets a string to completed or in progress to signify the player's current progress on the quest
+                    string status = "";
+                    if (quest.IsCompleted)
+                    {
+                        status = "Completed";
+                    }
+                    else
+                    {
+                        status = "In Progress";
+                    }
+
+                    dgvQuests.Rows.Add(quest.ID, quest.Name, status);
+
+                    //Sets color of status to green if complete yellow if incomplete
+                    if (quest.IsCompleted)
+                    {
+                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.LawnGreen;
+                    }
+                    else
+                    {
+                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.PaleGoldenrod;
+                    }
+                }
+                rowIndex++;
+            }
+            //dgvQuests.CellClick += dgvQuests_CellClick;
+        }
+
+        private bool CheckIfInDGV(int id, DataGridView dgv)
+        {
+            foreach (DataGridViewRow row in dgv.Rows)
+            {
+                if (row.Cells[0].Value != null)
+                {
+                    if (row.Cells[0].Value.ToString() == id.ToString())
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
         private void UpdateButtons()
         {
             switch (gameSession.GameStates)
@@ -68,12 +154,12 @@ namespace UI
                 case GameSession.GameState.Introduction:
                     break;
                 case GameSession.GameState.Travel:
-                    if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth == null) 
-                    { 
-                        btnNorth.Enabled = false; 
+                    if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth == null)
+                    {
+                        btnNorth.Enabled = false;
                     }
                     else
-                    { 
+                    {
                         btnNorth.Enabled = true;
                     }
 
@@ -103,8 +189,16 @@ namespace UI
                     {
                         btnEast.Enabled = true;
                     }
+                    btnAttack.Visible = false;
+                    btnMagic.Visible = false;
+                    btnItems.Visible = false;
+                    btnRun.Visible = false;
                     break;
                 case GameSession.GameState.Battle:
+                    btnAttack.Visible = true;
+                    btnMagic.Visible = true;
+                    btnItems.Visible = true;
+                    btnRun.Visible = true;
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;
                     btnWest.Enabled = false;
@@ -115,12 +209,23 @@ namespace UI
             }
         }
 
+        private void DisplayWorldText(object o, MessageEventArgs e)
+        {
+            rtbWorldText.Text += e.Message + "\n";
+        }
+        
+        private void rtbWorldText_TextChanged(object sender, EventArgs e)
+        {
+            rtbWorldText.SelectionStart = rtbWorldText.Text.Length;
+            rtbWorldText.ScrollToCaret();
+        }
+
         
         //<----------Battle Buttons---------->
         private void btnAttack_Click(object sender, EventArgs e)
         {
             gameSession.AttackCommand();
-            UpdateButtons();
+            UpdateUI();
         }
 
         private void btnMagic_Click(object sender, EventArgs e)
@@ -136,7 +241,7 @@ namespace UI
         private void btnRun_Click(object sender, EventArgs e)
         {
             gameSession.RunCommand();
-            UpdateButtons();
+            UpdateUI();
         }
 
 
@@ -173,6 +278,14 @@ namespace UI
             MapScreen mapScreen = new MapScreen(gameSession);
             mapScreen.StartPosition = FormStartPosition.CenterParent;
             mapScreen.ShowDialog(this);
+        }
+
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            InformationScreen informationScreen = new InformationScreen(gameSession, 5);
+            informationScreen.StartPosition = FormStartPosition.CenterParent;
+            informationScreen.ShowDialog(this);
         }
     }
 }

@@ -1,5 +1,10 @@
-
-
+items
+equipment
+spell
+quest
+inn
+vendor
+location
 
 
 Refactored Folder Classes

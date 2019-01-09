@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             this.btnNorth = new System.Windows.Forms.Button();
             this.btnWest = new System.Windows.Forms.Button();
             this.btnEast = new System.Windows.Forms.Button();
@@ -41,24 +42,34 @@
             this.btnRun = new System.Windows.Forms.Button();
             this.tbcInventory = new System.Windows.Forms.TabControl();
             this.tbpItems = new System.Windows.Forms.TabPage();
-            this.tbpEquipment = new System.Windows.Forms.TabPage();
-            this.tbpSpells = new System.Windows.Forms.TabPage();
-            this.tbpQuests = new System.Windows.Forms.TabPage();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.tbpEquipment = new System.Windows.Forms.TabPage();
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
+            this.tbpSpells = new System.Windows.Forms.TabPage();
             this.dgvSpells = new System.Windows.Forms.DataGridView();
+            this.tbpQuests = new System.Windows.Forms.TabPage();
             this.dgvQuests = new System.Windows.Forms.DataGridView();
             this.btnInn = new System.Windows.Forms.Button();
             this.btnShop = new System.Windows.Forms.Button();
             this.btnTalk = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colEquipmentUnequip = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colQuestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuestStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
-            this.tbpEquipment.SuspendLayout();
-            this.tbpSpells.SuspendLayout();
-            this.tbpQuests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
+            this.tbpEquipment.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).BeginInit();
+            this.tbpSpells.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).BeginInit();
+            this.tbpQuests.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).BeginInit();
             this.SuspendLayout();
             // 
@@ -192,6 +203,20 @@
             this.tbpItems.Text = "Items";
             this.tbpItems.UseVisualStyleBackColor = true;
             // 
+            // dgvItems
+            // 
+            this.dgvItems.AllowUserToAddRows = false;
+            this.dgvItems.AllowUserToDeleteRows = false;
+            this.dgvItems.AllowUserToResizeColumns = false;
+            this.dgvItems.AllowUserToResizeRows = false;
+            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvItems.Location = new System.Drawing.Point(0, 0);
+            this.dgvItems.Name = "dgvItems";
+            this.dgvItems.ReadOnly = true;
+            this.dgvItems.RowTemplate.Height = 24;
+            this.dgvItems.Size = new System.Drawing.Size(273, 181);
+            this.dgvItems.TabIndex = 12;
+            // 
             // tbpEquipment
             // 
             this.tbpEquipment.Controls.Add(this.dgvEquipment);
@@ -203,6 +228,27 @@
             this.tbpEquipment.Text = "Equipment";
             this.tbpEquipment.UseVisualStyleBackColor = true;
             // 
+            // dgvEquipment
+            // 
+            this.dgvEquipment.AllowUserToAddRows = false;
+            this.dgvEquipment.AllowUserToDeleteRows = false;
+            this.dgvEquipment.AllowUserToResizeColumns = false;
+            this.dgvEquipment.AllowUserToResizeRows = false;
+            this.dgvEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEquipment.ColumnHeadersVisible = false;
+            this.dgvEquipment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colEquipmentID,
+            this.colEquipmentName,
+            this.colEquipmentEquip,
+            this.colEquipmentUnequip});
+            this.dgvEquipment.Location = new System.Drawing.Point(0, 0);
+            this.dgvEquipment.Name = "dgvEquipment";
+            this.dgvEquipment.ReadOnly = true;
+            this.dgvEquipment.RowHeadersVisible = false;
+            this.dgvEquipment.RowTemplate.Height = 24;
+            this.dgvEquipment.Size = new System.Drawing.Size(273, 181);
+            this.dgvEquipment.TabIndex = 12;
+            // 
             // tbpSpells
             // 
             this.tbpSpells.Controls.Add(this.dgvSpells);
@@ -212,6 +258,25 @@
             this.tbpSpells.TabIndex = 2;
             this.tbpSpells.Text = "Spells";
             this.tbpSpells.UseVisualStyleBackColor = true;
+            // 
+            // dgvSpells
+            // 
+            this.dgvSpells.AllowUserToAddRows = false;
+            this.dgvSpells.AllowUserToDeleteRows = false;
+            this.dgvSpells.AllowUserToResizeColumns = false;
+            this.dgvSpells.AllowUserToResizeRows = false;
+            this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvSpells.ColumnHeadersVisible = false;
+            this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colSpellID,
+            this.colSpellName});
+            this.dgvSpells.Location = new System.Drawing.Point(0, 0);
+            this.dgvSpells.Name = "dgvSpells";
+            this.dgvSpells.ReadOnly = true;
+            this.dgvSpells.RowHeadersVisible = false;
+            this.dgvSpells.RowTemplate.Height = 24;
+            this.dgvSpells.Size = new System.Drawing.Size(273, 181);
+            this.dgvSpells.TabIndex = 12;
             // 
             // tbpQuests
             // 
@@ -223,50 +288,22 @@
             this.tbpQuests.Text = "Quests";
             this.tbpQuests.UseVisualStyleBackColor = true;
             // 
-            // dgvItems
-            // 
-            this.dgvItems.AllowUserToAddRows = false;
-            this.dgvItems.AllowUserToDeleteRows = false;
-            this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.Location = new System.Drawing.Point(0, 0);
-            this.dgvItems.Name = "dgvItems";
-            this.dgvItems.ReadOnly = true;
-            this.dgvItems.RowTemplate.Height = 24;
-            this.dgvItems.Size = new System.Drawing.Size(273, 181);
-            this.dgvItems.TabIndex = 12;
-            // 
-            // dgvEquipment
-            // 
-            this.dgvEquipment.AllowUserToAddRows = false;
-            this.dgvEquipment.AllowUserToDeleteRows = false;
-            this.dgvEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipment.Location = new System.Drawing.Point(0, 0);
-            this.dgvEquipment.Name = "dgvEquipment";
-            this.dgvEquipment.ReadOnly = true;
-            this.dgvEquipment.RowTemplate.Height = 24;
-            this.dgvEquipment.Size = new System.Drawing.Size(273, 181);
-            this.dgvEquipment.TabIndex = 12;
-            // 
-            // dgvSpells
-            // 
-            this.dgvSpells.AllowUserToAddRows = false;
-            this.dgvSpells.AllowUserToDeleteRows = false;
-            this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSpells.Location = new System.Drawing.Point(0, 0);
-            this.dgvSpells.Name = "dgvSpells";
-            this.dgvSpells.ReadOnly = true;
-            this.dgvSpells.RowTemplate.Height = 24;
-            this.dgvSpells.Size = new System.Drawing.Size(273, 181);
-            this.dgvSpells.TabIndex = 12;
-            // 
             // dgvQuests
             // 
             this.dgvQuests.AllowUserToAddRows = false;
             this.dgvQuests.AllowUserToDeleteRows = false;
+            this.dgvQuests.AllowUserToResizeColumns = false;
+            this.dgvQuests.AllowUserToResizeRows = false;
             this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvQuests.ColumnHeadersVisible = false;
+            this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colQuestID,
+            this.colQuestName,
+            this.colQuestStatus});
             this.dgvQuests.Location = new System.Drawing.Point(0, 0);
             this.dgvQuests.Name = "dgvQuests";
             this.dgvQuests.ReadOnly = true;
+            this.dgvQuests.RowHeadersVisible = false;
             this.dgvQuests.RowTemplate.Height = 24;
             this.dgvQuests.Size = new System.Drawing.Size(273, 181);
             this.dgvQuests.TabIndex = 12;
@@ -301,11 +338,93 @@
             this.btnTalk.UseVisualStyleBackColor = true;
             this.btnTalk.Click += new System.EventHandler(this.btnTalk_Click);
             // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(541, 308);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 15;
+            this.button1.Text = "button1";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // colEquipmentID
+            // 
+            this.colEquipmentID.HeaderText = "ID";
+            this.colEquipmentID.Name = "colEquipmentID";
+            this.colEquipmentID.ReadOnly = true;
+            this.colEquipmentID.Visible = false;
+            // 
+            // colEquipmentName
+            // 
+            this.colEquipmentName.HeaderText = "Name";
+            this.colEquipmentName.Name = "colEquipmentName";
+            this.colEquipmentName.ReadOnly = true;
+            this.colEquipmentName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colEquipmentEquip
+            // 
+            this.colEquipmentEquip.HeaderText = "Equip";
+            this.colEquipmentEquip.Name = "colEquipmentEquip";
+            this.colEquipmentEquip.ReadOnly = true;
+            this.colEquipmentEquip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colEquipmentEquip.Text = "Equip";
+            this.colEquipmentEquip.UseColumnTextForButtonValue = true;
+            this.colEquipmentEquip.Width = 50;
+            // 
+            // colEquipmentUnequip
+            // 
+            this.colEquipmentUnequip.HeaderText = "Unequip";
+            this.colEquipmentUnequip.Name = "colEquipmentUnequip";
+            this.colEquipmentUnequip.ReadOnly = true;
+            this.colEquipmentUnequip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colEquipmentUnequip.Text = "Unequip";
+            this.colEquipmentUnequip.UseColumnTextForButtonValue = true;
+            this.colEquipmentUnequip.Width = 50;
+            // 
+            // colQuestID
+            // 
+            this.colQuestID.HeaderText = "ID";
+            this.colQuestID.Name = "colQuestID";
+            this.colQuestID.ReadOnly = true;
+            this.colQuestID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuestID.Visible = false;
+            // 
+            // colQuestName
+            // 
+            this.colQuestName.HeaderText = "Name";
+            this.colQuestName.Name = "colQuestName";
+            this.colQuestName.ReadOnly = true;
+            this.colQuestName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colQuestStatus
+            // 
+            this.colQuestStatus.HeaderText = "Status";
+            this.colQuestStatus.Name = "colQuestStatus";
+            this.colQuestStatus.ReadOnly = true;
+            this.colQuestStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colSpellID
+            // 
+            this.colSpellID.HeaderText = "ID";
+            this.colSpellID.Name = "colSpellID";
+            this.colSpellID.ReadOnly = true;
+            this.colSpellID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSpellID.Visible = false;
+            // 
+            // colSpellName
+            // 
+            this.colSpellName.HeaderText = "Name";
+            this.colSpellName.Name = "colSpellName";
+            this.colSpellName.ReadOnly = true;
+            this.colSpellName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 556);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnTalk);
             this.Controls.Add(this.btnShop);
             this.Controls.Add(this.btnInn);
@@ -321,6 +440,7 @@
             this.Controls.Add(this.btnEast);
             this.Controls.Add(this.btnWest);
             this.Controls.Add(this.btnNorth);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MainScreen";
@@ -328,12 +448,12 @@
             this.Text = "Hero Quest";
             this.tbcInventory.ResumeLayout(false);
             this.tbpItems.ResumeLayout(false);
-            this.tbpEquipment.ResumeLayout(false);
-            this.tbpSpells.ResumeLayout(false);
-            this.tbpQuests.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).EndInit();
+            this.tbpEquipment.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvEquipment)).EndInit();
+            this.tbpSpells.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvSpells)).EndInit();
+            this.tbpQuests.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvQuests)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -365,6 +485,16 @@
         private System.Windows.Forms.Button btnInn;
         private System.Windows.Forms.Button btnShop;
         private System.Windows.Forms.Button btnTalk;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
+        private System.Windows.Forms.DataGridViewButtonColumn colEquipmentEquip;
+        private System.Windows.Forms.DataGridViewButtonColumn colEquipmentUnequip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
     }
 }
 
