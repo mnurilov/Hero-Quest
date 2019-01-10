@@ -30,7 +30,42 @@ namespace UI
             this.gameSession = gameSession;
             centerXCoordinate = gameSession.CurrentPlayer.CurrentLocation.XCoordinate;
             centerYCoordinate = gameSession.CurrentPlayer.CurrentLocation.YCoordinate;
+            LinkMapsWithEvent();
             UpdateMap();
+        }
+
+
+        private void LinkMapsWithEvent()
+        {
+            pb_n2_n2.Click += Map_Click;
+            pb_n2_n1.Click += Map_Click;
+            pb_n2_0.Click += Map_Click;
+            pb_n2_1.Click += Map_Click;
+            pb_n2_2.Click += Map_Click;
+
+            pb_n1_n2.Click += Map_Click;
+            pb_n1_n1.Click += Map_Click;
+            pb_n1_0.Click += Map_Click;
+            pb_n1_1.Click += Map_Click;
+            pb_n1_2.Click += Map_Click;
+
+            pb_0_n2.Click += Map_Click;
+            pb_0_n1.Click += Map_Click;
+            pb_0_0.Click += Map_Click;
+            pb_0_1.Click += Map_Click;
+            pb_0_2.Click += Map_Click;
+
+            pb_1_n2.Click += Map_Click;
+            pb_1_n1.Click += Map_Click;
+            pb_1_0.Click += Map_Click;
+            pb_1_1.Click += Map_Click;
+            pb_1_2.Click += Map_Click;
+
+            pb_2_n2.Click += Map_Click;
+            pb_2_n1.Click += Map_Click;
+            pb_2_0.Click += Map_Click;
+            pb_2_1.Click += Map_Click;
+            pb_2_2.Click += Map_Click;
         }
 
 
@@ -281,6 +316,58 @@ namespace UI
         {
             centerXCoordinate = centerXCoordinate + 1;
             UpdateMap();
+        }
+
+
+
+        //<------------Map Events------------->
+        private void Map_Click(object sender, EventArgs e)
+        {
+            Location location;
+
+            if (sender == pb_n2_n2) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 2);
+            else if (sender == pb_n2_n1) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 1);
+            else if (sender == pb_n2_0) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate);
+            else if (sender == pb_n2_1) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 1);
+            else if (sender == pb_n2_2) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 2);
+
+            else if (sender == pb_n1_n2) location = World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate - 2);
+            else if (sender == pb_n1_n1) location = World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate - 1);
+            else if (sender == pb_n1_0) location = World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate);
+            else if (sender == pb_n1_1) location = World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate + 1);
+            else if (sender == pb_n1_2) location = World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate + 2);
+
+            else if (sender == pb_0_n2) location = World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 2);
+            else if (sender == pb_0_n1) location = World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 1);
+            else if (sender == pb_0_0) location = World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate);
+            else if (sender == pb_0_1) location = World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate + 1);
+            else if (sender == pb_0_2) location = World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate + 2);
+
+            else if (sender == pb_1_n2) location = World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 2);
+            else if (sender == pb_1_n1) location = World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 1);
+            else if (sender == pb_1_0) location = World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate);
+            else if (sender == pb_1_1) location = World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate + 1);
+            else if (sender == pb_1_2) location = World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate + 2);
+
+            else if (sender == pb_2_n2) location = World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 2);
+            else if (sender == pb_2_n1) location = World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 1);
+            else if (sender == pb_2_0) location = World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate);
+            else if (sender == pb_2_1) location = World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate + 1);
+            else if (sender == pb_2_2) location = World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate + 2);
+
+            else location = null;
+
+            OpenInformationScreen(location);
+        }
+
+        private void OpenInformationScreen(Location location)
+        {
+            if (location != null && location.HasVisited)
+            {
+                InformationScreen informationScreen = new InformationScreen(gameSession, location);
+                informationScreen.StartPosition = FormStartPosition.CenterParent;
+                informationScreen.ShowDialog(this);
+            }
         }
     }
 }

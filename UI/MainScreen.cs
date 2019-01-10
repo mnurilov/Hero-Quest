@@ -31,6 +31,7 @@ namespace UI
             dgvSpells.CellClick += dgvSpells_CellClick;
             dgvBattleSpells.CellClick += dgvBattleSpells_CellClick;
             dgvBattleItems.CellClick += dgvBattleItems_CellClick;
+            dgvQuests.CellClick += dgvQuests_CellClick;
         }
 
 
@@ -553,6 +554,18 @@ namespace UI
         //<-------------Event Functions------------->
         private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex != 3)
+            {
+                var itemID = dgvItems.Rows[e.RowIndex].Cells[0].Value;
+
+                Item itemBeingUsed = World.FindItemByID(Convert.ToInt32(itemID));
+
+                InformationScreen informationScreen = new InformationScreen(gameSession, itemBeingUsed);
+                informationScreen.StartPosition = FormStartPosition.CenterParent;
+                informationScreen.ShowDialog(this);
+                UpdateUI();
+                return;
+            }
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -577,6 +590,19 @@ namespace UI
 
         private void dgvEquipmentEquip_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex != 3 && e.ColumnIndex != 2)
+            {
+                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the equipment object in the row
+                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+
+                InformationScreen informationScreen = new InformationScreen(gameSession, equipment);
+                informationScreen.StartPosition = FormStartPosition.CenterParent;
+                informationScreen.ShowDialog(this);
+                UpdateUI();
+                return;
+            }
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -623,6 +649,19 @@ namespace UI
 
         private void dgvSpells_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.ColumnIndex != 3)
+            {
+                var spellID = dgvSpells.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the spell object in the row
+                Spell spell = World.FindSpellByID(Convert.ToInt32(spellID));
+
+                InformationScreen informationScreen = new InformationScreen(gameSession, spell);
+                informationScreen.StartPosition = FormStartPosition.CenterParent;
+                informationScreen.ShowDialog(this);
+                UpdateUI();
+                return;
+            }
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -642,6 +681,20 @@ namespace UI
                 gameSession.CastSpellWhileTravelCommand(spell);
                 UpdateUI();
             }
+        }
+
+        private void dgvQuests_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var questID = dgvQuests.Rows[e.RowIndex].Cells[0].Value;
+
+            // Get the quest object in the row
+            Quest quest = World.FindQuestByID(Convert.ToInt32(questID));
+
+            InformationScreen informationScreen = new InformationScreen(gameSession, quest);
+            informationScreen.StartPosition = FormStartPosition.CenterParent;
+            informationScreen.ShowDialog(this);
+
+            UpdateUI();
         }
 
         private void dgvBattleSpells_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -745,7 +798,7 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InformationScreen informationScreen = new InformationScreen(gameSession, World.FindQuestByID(1));
+            InformationScreen informationScreen = new InformationScreen(gameSession, World.FindVendorByID(1));
             informationScreen.StartPosition = FormStartPosition.CenterParent;
             informationScreen.ShowDialog(this);
         }

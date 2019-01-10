@@ -14,6 +14,8 @@
 
 UI Stuff
 -set icon to the item icon for info screen set icons for all screens
+=quest stats yellow question mark for in progress
+-green checkk for success
 
 
 For Debugging
