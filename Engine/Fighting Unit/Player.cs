@@ -691,6 +691,11 @@ namespace Engine
         //Determines if the player can escape
         public bool Run(Enemy enemy)
         {
+            if (enemy.IsBoss)
+            {
+                return false;
+            }
+
             int roll = RandomNumberGenerator.RandomNumberBetween(0, 99);
 
             if(TotalSpeed >= enemy.Speed + 10)
@@ -809,6 +814,7 @@ namespace Engine
         private int CastReplenishSpell(ReplenishSpell replenishSpell)
         {
             double empoweredGreedModifier = 1;
+            int intellectAffectModifier = 60;
 
             //Check to see if player is using Greed or Empower
             if (Greed)
@@ -823,7 +829,9 @@ namespace Engine
 
             CurrentMana -= replenishSpell.ManaCost;
 
-            return ((int)(replenishSpell.ReplenishValue * empoweredGreedModifier));
+            double replenishAmount = (replenishSpell.ReplenishValue * (1 + ((double)TotalIntellect/intellectAffectModifier)));
+
+            return ((int)(replenishAmount * empoweredGreedModifier));
         }
 
 

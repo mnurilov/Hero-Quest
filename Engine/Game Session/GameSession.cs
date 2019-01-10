@@ -106,9 +106,6 @@ namespace Engine
             //Marks the location as visited so that graphically the fog on the world map will not appear for this location
             CurrentPlayer.CurrentLocation.HasVisited = true;
 
-            //<----------------Remove this after I finish with debugging----------------->
-            RaiseMessage(CurrentPlayer.CurrentLocation.ToString());
-
             //If an encounter would occur, determine the enemy
             if (CurrentPlayer.CurrentLocation.EncounterTriggered())
             {

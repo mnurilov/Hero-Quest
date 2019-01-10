@@ -43,6 +43,11 @@
             this.tbcInventory = new System.Windows.Forms.TabControl();
             this.tbpItems = new System.Windows.Forms.TabPage();
             this.dgvItems = new System.Windows.Forms.DataGridView();
+            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemUse = new UI.DataGridViewDisableButtonColumn();
+            this.test = new System.Windows.Forms.DataGridViewImageColumn();
             this.tbpEquipment = new System.Windows.Forms.TabPage();
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -84,6 +89,17 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.lblPlayerLevel = new System.Windows.Forms.Label();
             this.lblPlayerStrength = new System.Windows.Forms.Label();
             this.lblPlayerGold = new System.Windows.Forms.Label();
@@ -108,22 +124,6 @@
             this.btnClose = new System.Windows.Forms.Button();
             this.btnEmpower = new System.Windows.Forms.Button();
             this.btnGreed = new System.Windows.Forms.Button();
-            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemUse = new UI.DataGridViewDisableButtonColumn();
-            this.test = new System.Windows.Forms.DataGridViewImageColumn();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.label8 = new System.Windows.Forms.Label();
-            this.label9 = new System.Windows.Forms.Label();
-            this.label10 = new System.Windows.Forms.Label();
-            this.label11 = new System.Windows.Forms.Label();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -193,6 +193,8 @@
             // 
             // rtbWorldText
             // 
+            this.rtbWorldText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.rtbWorldText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbWorldText.Location = new System.Drawing.Point(826, 12);
             this.rtbWorldText.Name = "rtbWorldText";
             this.rtbWorldText.Size = new System.Drawing.Size(315, 373);
@@ -303,6 +305,49 @@
             this.dgvItems.RowTemplate.Height = 24;
             this.dgvItems.Size = new System.Drawing.Size(273, 181);
             this.dgvItems.TabIndex = 12;
+            // 
+            // colItemID
+            // 
+            this.colItemID.HeaderText = "ID";
+            this.colItemID.Name = "colItemID";
+            this.colItemID.ReadOnly = true;
+            this.colItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemID.Visible = false;
+            // 
+            // colItemName
+            // 
+            this.colItemName.HeaderText = "Name";
+            this.colItemName.Name = "colItemName";
+            this.colItemName.ReadOnly = true;
+            this.colItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colItemQuantity
+            // 
+            this.colItemQuantity.HeaderText = "Quantity";
+            this.colItemQuantity.Name = "colItemQuantity";
+            this.colItemQuantity.ReadOnly = true;
+            this.colItemQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemQuantity.Width = 50;
+            // 
+            // colItemUse
+            // 
+            this.colItemUse.HeaderText = "Use";
+            this.colItemUse.Name = "colItemUse";
+            this.colItemUse.ReadOnly = true;
+            this.colItemUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemUse.Text = "Use";
+            this.colItemUse.UseColumnTextForButtonValue = true;
+            this.colItemUse.Width = 30;
+            // 
+            // test
+            // 
+            this.test.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.test.HeaderText = "";
+            this.test.Image = ((System.Drawing.Image)(resources.GetObject("test.Image")));
+            this.test.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.test.Name = "test";
+            this.test.ReadOnly = true;
+            this.test.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // tbpEquipment
             // 
@@ -688,7 +733,7 @@
             // pictureBox10
             // 
             this.pictureBox10.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox10.Image")));
-            this.pictureBox10.Location = new System.Drawing.Point(12, 43);
+            this.pictureBox10.Location = new System.Drawing.Point(0, 31);
             this.pictureBox10.Name = "pictureBox10";
             this.pictureBox10.Size = new System.Drawing.Size(25, 25);
             this.pictureBox10.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -698,7 +743,7 @@
             // pictureBox11
             // 
             this.pictureBox11.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox11.Image")));
-            this.pictureBox11.Location = new System.Drawing.Point(12, 12);
+            this.pictureBox11.Location = new System.Drawing.Point(0, 0);
             this.pictureBox11.Name = "pictureBox11";
             this.pictureBox11.Size = new System.Drawing.Size(25, 25);
             this.pictureBox11.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
@@ -713,6 +758,8 @@
             this.panel1.Controls.Add(this.label9);
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.label7);
+            this.panel1.Controls.Add(this.pictureBox10);
+            this.panel1.Controls.Add(this.pictureBox11);
             this.panel1.Controls.Add(this.label6);
             this.panel1.Controls.Add(this.label5);
             this.panel1.Controls.Add(this.label4);
@@ -734,6 +781,109 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(232, 347);
             this.panel1.TabIndex = 32;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Arial", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label11.Location = new System.Drawing.Point(31, 36);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(96, 19);
+            this.label11.TabIndex = 21;
+            this.label11.Text = "Experience:";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Symbol", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(2)));
+            this.label10.Location = new System.Drawing.Point(54, 82);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(70, 21);
+            this.label10.TabIndex = 20;
+            this.label10.Text = "Health:";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(54, 108);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 19);
+            this.label9.TabIndex = 19;
+            this.label9.Text = "Mana:";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Font = new System.Drawing.Font("Century", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label8.Location = new System.Drawing.Point(54, 144);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(86, 21);
+            this.label8.TabIndex = 18;
+            this.label8.Text = "Strength:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(55, 175);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(65, 17);
+            this.label7.TabIndex = 17;
+            this.label7.Text = "Defense:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(54, 201);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(42, 17);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "Luck:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(54, 229);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 17);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "Speed:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(55, 260);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(60, 17);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "Intellect:";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(54, 291);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(82, 17);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "Resistance:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(54, 324);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 17);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "Gold:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(31, 8);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(46, 17);
+            this.label1.TabIndex = 11;
+            this.label1.Text = "Level:";
             // 
             // lblPlayerLevel
             // 
@@ -963,148 +1113,6 @@
             this.btnGreed.UseVisualStyleBackColor = true;
             this.btnGreed.Click += new System.EventHandler(this.btnGreed_Click);
             // 
-            // colItemID
-            // 
-            this.colItemID.HeaderText = "ID";
-            this.colItemID.Name = "colItemID";
-            this.colItemID.ReadOnly = true;
-            this.colItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemID.Visible = false;
-            // 
-            // colItemName
-            // 
-            this.colItemName.HeaderText = "Name";
-            this.colItemName.Name = "colItemName";
-            this.colItemName.ReadOnly = true;
-            this.colItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // colItemQuantity
-            // 
-            this.colItemQuantity.HeaderText = "Quantity";
-            this.colItemQuantity.Name = "colItemQuantity";
-            this.colItemQuantity.ReadOnly = true;
-            this.colItemQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemQuantity.Width = 50;
-            // 
-            // colItemUse
-            // 
-            this.colItemUse.HeaderText = "Use";
-            this.colItemUse.Name = "colItemUse";
-            this.colItemUse.ReadOnly = true;
-            this.colItemUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemUse.Text = "Use";
-            this.colItemUse.UseColumnTextForButtonValue = true;
-            this.colItemUse.Width = 30;
-            // 
-            // test
-            // 
-            this.test.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.test.HeaderText = "";
-            this.test.Image = ((System.Drawing.Image)(resources.GetObject("test.Image")));
-            this.test.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.test.Name = "test";
-            this.test.ReadOnly = true;
-            this.test.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(54, 15);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(46, 17);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Level:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(54, 324);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 17);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "Gold:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(54, 291);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(82, 17);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "Resistance:";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(55, 260);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(60, 17);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "Intellect:";
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(54, 229);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 17);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "Speed:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(54, 201);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(42, 17);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "Luck:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(55, 175);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(65, 17);
-            this.label7.TabIndex = 17;
-            this.label7.Text = "Defense:";
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(54, 144);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(66, 17);
-            this.label8.TabIndex = 18;
-            this.label8.Text = "Strength:";
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(54, 108);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(47, 17);
-            this.label9.TabIndex = 19;
-            this.label9.Text = "Mana:";
-            // 
-            // label10
-            // 
-            this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(54, 82);
-            this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(53, 17);
-            this.label10.TabIndex = 20;
-            this.label10.Text = "Health:";
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(54, 51);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(82, 17);
-            this.label11.TabIndex = 21;
-            this.label11.Text = "Experience:";
-            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1115,8 +1123,6 @@
             this.Controls.Add(this.btnClose);
             this.Controls.Add(this.dgvBattleItems);
             this.Controls.Add(this.dgvBattleSpells);
-            this.Controls.Add(this.pictureBox11);
-            this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.lblEnemyDescription);
             this.Controls.Add(this.lblEnemyName);
             this.Controls.Add(this.pbEnemyPicture);

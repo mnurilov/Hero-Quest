@@ -32,6 +32,8 @@ namespace Engine
         //Key is the enemy, Value is the weight (The appearance rate of the enemy)
         public Dictionary<Enemy, int> EnemiesInLocation { get; set; }
 
+        public Enemy BossInLocation { get; set; }
+
 
         public Location(int id, string name, string description, int encounterRate, int xCoordinate, int yCoordinate)
         {
@@ -61,6 +63,15 @@ namespace Engine
         //Selects an enemy from the enemies in the dictionary based on the weights given to them
         public Enemy SelectEnemy()
         {
+            if(BossInLocation != null && BossInLocation.CurrentHealth > 0)
+            {
+                return BossInLocation;
+            }
+            if(BossInLocation != null)
+            {
+                return null;
+            }
+
             int totalWeight = 0;
             Enemy selectedEnemy = null;
 
@@ -136,6 +147,10 @@ namespace Engine
                 {
                     info += ("Enemy Name: " + weightedEnemy.Key.Name + "\n");
                 }
+            }
+            if(BossInLocation != null)
+            {
+                info += ("Boss Name: " + BossInLocation.Name + "\n");
             }
             return info;
         }

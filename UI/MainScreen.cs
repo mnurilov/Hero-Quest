@@ -457,6 +457,14 @@ namespace UI
                     btnAttack.Visible = true;
                     btnMagic.Visible = true;
                     btnItems.Visible = true;
+                    if (gameSession.CurrentEnemy.IsBoss)
+                    {
+                        btnRun.Enabled = false;
+                    }
+                    else
+                    {
+                        btnRun.Enabled = true;
+                    }
                     btnRun.Visible = true;
                     btnNorth.Enabled = false;
                     btnSouth.Enabled = false;

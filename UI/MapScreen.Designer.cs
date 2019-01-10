@@ -386,7 +386,7 @@
             this.pbMoveMapUp.Location = new System.Drawing.Point(408, 0);
             this.pbMoveMapUp.Name = "pbMoveMapUp";
             this.pbMoveMapUp.Size = new System.Drawing.Size(30, 35);
-            this.pbMoveMapUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMoveMapUp.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMoveMapUp.TabIndex = 57;
             this.pbMoveMapUp.TabStop = false;
             this.pbMoveMapUp.Click += new System.EventHandler(this.pbMoveMapUp_Click);
@@ -398,7 +398,7 @@
             this.pbMoveMapDown.Location = new System.Drawing.Point(408, 810);
             this.pbMoveMapDown.Name = "pbMoveMapDown";
             this.pbMoveMapDown.Size = new System.Drawing.Size(30, 35);
-            this.pbMoveMapDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMoveMapDown.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMoveMapDown.TabIndex = 58;
             this.pbMoveMapDown.TabStop = false;
             this.pbMoveMapDown.Click += new System.EventHandler(this.pbMoveMapDown_Click);
@@ -410,7 +410,7 @@
             this.pbMoveMapRight.Location = new System.Drawing.Point(809, 408);
             this.pbMoveMapRight.Name = "pbMoveMapRight";
             this.pbMoveMapRight.Size = new System.Drawing.Size(35, 30);
-            this.pbMoveMapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMoveMapRight.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMoveMapRight.TabIndex = 59;
             this.pbMoveMapRight.TabStop = false;
             this.pbMoveMapRight.Click += new System.EventHandler(this.pbMoveMapRight_Click);
@@ -422,7 +422,7 @@
             this.pbMoveMapLeft.Location = new System.Drawing.Point(0, 408);
             this.pbMoveMapLeft.Name = "pbMoveMapLeft";
             this.pbMoveMapLeft.Size = new System.Drawing.Size(35, 30);
-            this.pbMoveMapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.pbMoveMapLeft.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pbMoveMapLeft.TabIndex = 60;
             this.pbMoveMapLeft.TabStop = false;
             this.pbMoveMapLeft.Click += new System.EventHandler(this.pbMoveMapLeft_Click);

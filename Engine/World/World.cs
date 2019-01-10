@@ -55,6 +55,7 @@ namespace Engine
         private const int EnemyIDOgre = 3;
         private const int EnemyIDDragon = 4;
         private const int EnemyIDSiren = 5;
+        private const int EnemyIDSwampMonster = 6;
 
         //<----------Quest ID's---------->
         private const int QuestIDCleanTheSewers = 1;
@@ -71,6 +72,7 @@ namespace Engine
         private const int LocationIDAlley = 7;
         private const int LocationIDSewers = 8;
         private const int LocationIDPond = 9;
+        private const int LocationIDSwamp = 10;
 
         //<----------List's which hold all things in the game world---------->
         private static readonly List<Item> items = new List<Item>();
@@ -327,6 +329,10 @@ namespace Engine
             //Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100, 0);
             //Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000, 0);
             Enemy siren = new Enemy(EnemyIDSiren, "Siren", "She's hot", 30, 50, 5, 5, 5, 5, 10, 10, 30, 30, 20, 100, 50, sirenSpells, "tail");
+            Enemy swampMonster = new Enemy(EnemyIDSwampMonster, "Swamp Monster", "He isa swamp monster", 60, 0, 30, 5, 0, 0, 0, 0, 5, 2, 100, 300, 0);
+
+            //<-----------Making a boss monster--------------->
+            swampMonster.IsBoss = true;
 
             //<----------Add enemies to the enemy list---------->
             enemies.Add(rat);
@@ -334,6 +340,7 @@ namespace Engine
             //enemies.Add(ogre);
             //enemies.Add(dragon);
             enemies.Add(siren);
+            enemies.Add(swampMonster);
         }
 
         private static void PopulateQuests()
@@ -380,10 +387,12 @@ namespace Engine
             Location alley = new Location(LocationIDAlley, "Alley", "It is a scary alley way", 0, -1, 2);
             Location sewers = new Location(LocationIDSewers, "Sewers", "Icky and Wicked", 0, -2, 2);
             Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100, 0, -1);
+            Location swamp = new Location(LocationIDSwamp, "Swamp", "A run down sadden place", 100, -1, 0);
 
             //<----------Linking up the locations---------->
             house.LocationToTheNorth = grassyPlains;
             house.LocationToTheSouth = pond;
+            house.LocationToTheWest = swamp;
 
             grassyPlains.LocationToTheNorth = town;
             grassyPlains.LocationToTheSouth = house;
@@ -407,6 +416,8 @@ namespace Engine
 
             pond.LocationToTheNorth = house;
 
+            swamp.LocationToTheEast = house;
+
             //<----------Add vendors to the locations---------->
             town.VendorInLocation = FindVendorByID(1);
 
@@ -419,6 +430,7 @@ namespace Engine
             grassyPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };
             barn.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(2), 1 } };
             pond.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(5), 1 } };
+            swamp.BossInLocation = FindEnemyByID(6);
 
             //<----------Add quests to the locations---------->
             town.QuestInLocation = FindQuestByID(1);
@@ -435,6 +447,7 @@ namespace Engine
             locations.Add(alley);
             locations.Add(sewers);
             locations.Add(pond);
+            locations.Add(swamp);
 
             //Link Travel Quests with their Destination Location
             UpdateTravelQuests();

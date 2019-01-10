@@ -90,6 +90,8 @@ namespace Engine
         public Dictionary<Equipment, int> WeightedEquipmentLootTable { get; set; }
         public Dictionary<Spell, int> WeightedSpellLootTable { get; set; }
 
+        public bool IsBoss { get; set; }
+
         
         public Enemy (int id, string name, string description, int maximumHealth, int maximumMana, int strength, 
             int defense, int luck, int speed, int intellect, int resistance, double criticalChanceRate,
@@ -233,8 +235,13 @@ namespace Engine
 
         private int CastReplenishSpell(ReplenishSpell replenishSpell)
         {
+            int intellectAffectModifier = 60;
+
             CurrentMana -= replenishSpell.ManaCost;
-            return replenishSpell.ReplenishValue;
+
+            double replenishAmount = replenishSpell.ReplenishValue * (1 + ((double)Intellect/intellectAffectModifier));
+
+            return (int)replenishAmount;
         }
         
         private Spell PickRandomSpell()
