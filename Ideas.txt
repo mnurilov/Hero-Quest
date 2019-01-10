@@ -1,20 +1,12 @@
-Spells in the game world shoudl be castable 
-
-Cases:
--Equipment is already equipped so equip button should be null but unequip should be fine
--Equipment is not equippable then equip button should be null and unequip should be null
--Equipment is not equipped then equip button should be normal but unequip should be null
-
 <-----Things to Do----->
 -Bosses
 -I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
--Make lines between map pictures
 -Different exp rates for different classes
 -When they cast a spell flash a picture for a second so it looks like an animation
 -sound effects
 -music
--Add icon to hero quest main page
--Icons to all stats Health gets a heart strength gets fist etc 
 -Fix how quests are linked with locations and how to location what you are looking for
--For quests in the player inventory make the column name status and then if complete have the word
-complete in green and the word in progress in yellow if not complete
+-Put a picture next to greed button when it is clicked
+-icons for different items quests spells equipment
+-Head equipment get helmet icon
+-Travel equipment gets boots etc

@@ -429,6 +429,15 @@ namespace Engine
             TotalSpeed = BaseSpeed;
             TotalIntellect = BaseIntellect;
             TotalResistance = BaseResistance;
+
+            if(CurrentHealth > TotalMaximumHealth)
+            {
+                CurrentHealth = TotalMaximumHealth;
+            }
+            if(CurrentMana > TotalMaximumMana)
+            {
+                CurrentMana = TotalMaximumMana;
+            }
         }
 
         private void UpdateTotalStats(Equipment equipment)
@@ -920,9 +929,33 @@ namespace Engine
 
         public void ActivateEmpowerment()
         {
-            if(EmpowerCounter == 4)
+            if(EmpowerCounter == EmpowerCounterCap)
             {
                 Empowered = true;
+            }
+        }
+
+        public bool IsEmpowered()
+        {
+            if (Empowered)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CanActivateEmpowerment()
+        {
+            if(EmpowerCounter == EmpowerCounterCap)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
             }
         }
         
@@ -930,6 +963,8 @@ namespace Engine
         {
             EmpowerCounter++;
         }
+
+       
 
 
         //<----------Greed Functions---------->

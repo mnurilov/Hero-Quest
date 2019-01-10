@@ -283,6 +283,52 @@ namespace Engine
             }
         }
 
+        public void ActivateEmpowermentCommand()
+        {
+            CurrentPlayer.ActivateEmpowerment();
+        }
+        
+        public bool IsEmpowered()
+        {
+            if (CurrentPlayer.IsEmpowered())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CanActivateEmpowerment()
+        {
+            if (CurrentPlayer.CanActivateEmpowerment())
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public void ActivateGreedCommand()
+        {
+            CurrentPlayer.ActivateGreed();
+        }
+
+        public bool IsGreedActivated()
+        {
+            if (CurrentPlayer.Greed)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
         private void PlayerAttack(BattleResult battleResult)
         {
             int damage = CurrentPlayer.Attack(CurrentEnemy, ref battleResult);
@@ -404,6 +450,7 @@ namespace Engine
             GameStates = GameState.Travel;
         }
 
+        
 
 
         //<----------Equipment Commands---------->

@@ -156,5 +156,28 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Siren.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Basic Potion.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Gold.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Health.png" />
+    <EmbeddedResource Include="Images\Mana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Damage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Defense.png" />
+    <EmbeddedResource Include="Images\Experience.png" />
+    <EmbeddedResource Include="Images\Intellect.png" />
+    <EmbeddedResource Include="Images\Level.png" />
+    <EmbeddedResource Include="Images\Luck.png" />
+    <EmbeddedResource Include="Images\Resistance.png" />
+    <EmbeddedResource Include="Images\Speed.png" />
+    <EmbeddedResource Include="Images\Strength.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

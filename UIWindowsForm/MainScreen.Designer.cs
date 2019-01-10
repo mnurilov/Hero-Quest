@@ -725,7 +725,7 @@
             this.colSpellIID,
             this.colBattleSpellName,
             this.colBattleSpellsButton});
-            this.dgvBattleSpells.Location = new System.Drawing.Point(746, 439);
+            this.dgvBattleSpells.Location = new System.Drawing.Point(895, 407);
             this.dgvBattleSpells.Name = "dgvBattleSpells";
             this.dgvBattleSpells.ReadOnly = true;
             this.dgvBattleSpells.RowHeadersVisible = false;
@@ -789,7 +789,7 @@
             this.colBattleItemID,
             this.colBattleItemName,
             this.colBattleItemQuantity});
-            this.dgvBattleItems.Location = new System.Drawing.Point(690, 414);
+            this.dgvBattleItems.Location = new System.Drawing.Point(895, 407);
             this.dgvBattleItems.Name = "dgvBattleItems";
             this.dgvBattleItems.ReadOnly = true;
             this.dgvBattleItems.RowHeadersVisible = false;
