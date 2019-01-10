@@ -179,5 +179,8 @@
     <EmbeddedResource Include="Images\Speed.png" />
     <EmbeddedResource Include="Images\Strength.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Healing.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

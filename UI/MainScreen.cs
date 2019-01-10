@@ -745,7 +745,7 @@ namespace UI
 
         private void button1_Click(object sender, EventArgs e)
         {
-            InformationScreen informationScreen = new InformationScreen(gameSession, World.FindEquipmentByID(2));
+            InformationScreen informationScreen = new InformationScreen(gameSession, World.FindQuestByID(1));
             informationScreen.StartPosition = FormStartPosition.CenterParent;
             informationScreen.ShowDialog(this);
         }

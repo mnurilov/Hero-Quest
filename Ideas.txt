@@ -10,3 +10,12 @@
 -icons for different items quests spells equipment
 -Head equipment get helmet icon
 -Travel equipment gets boots etc
+-Allow healing spells to scale with intellect
+
+UI Stuff
+-set icon to the item icon for info screen set icons for all screens
+
+
+For Debugging
+-Add an add all items equipment spells and quests function so I can have all things
+-A clear map function which allows me to see everything 

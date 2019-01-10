@@ -43,6 +43,14 @@ namespace UI
             {
                 CreateSpellInformationScreen((Spell)informationObject);
             }
+            else if(informationObject is Inn)
+            {
+                CreateInnInformationScreen((Inn)informationObject);
+            }
+            else if(informationObject is Quest)
+            {
+                CreateQuestInformationScreen((Quest)informationObject);
+            }
         }
 
         private void CreateItemInformationScreen(Item item)
@@ -50,8 +58,8 @@ namespace UI
             SetWindow(item.Name, 400, 270);
 
             PictureBox pbItemImage = CreatePictureBox(item.Name, new Point(0, 20), new Size(125, 125));
-            Label lblItemName = CreateLabel(item.Name, true, new Point(0, 0));
-            Label lblItemDescription = CreateLabel(item.Description, false, new Point(0, 165));
+            Label lblItemName = CreateLabel(item.Name, true, new Point(0, 0), new Size(0, 0));
+            Label lblItemDescription = CreateLabel(item.Description, false, new Point(0, 165), new Size(300, 200));
 
             CreateIconValueCombo("Gold", "Gold:", item.SellingGoldValue.ToString(), 145, 30);
 
@@ -78,8 +86,8 @@ namespace UI
             SetWindow(equipment.Name, 400, 320);
 
             PictureBox pbEquipmentImage = CreatePictureBox(equipment.Name, new Point(0, 20), new Size(125, 125));
-            Label lblEquipmentName = CreateLabel(equipment.Name, true, new Point(0, 0));
-            Label lblEquipmentDescription = CreateLabel(equipment.Description, false, new Point(0, 165));
+            Label lblEquipmentName = CreateLabel(equipment.Name, true, new Point(0, 0), new Size(0, 0));
+            Label lblEquipmentDescription = CreateLabel(equipment.Description, false, new Point(0, 165), new Size(300, 200));
 
             CreateIconValueCombo("Gold", "Gold:", equipment.SellingGoldValue.ToString(), 145, 20);
 
@@ -134,61 +142,96 @@ namespace UI
 
         private void CreateSpellInformationScreen(Spell spell)
         {
-            SetWindow(equipment.Name, 400, 320);
+            SetWindow(spell.Name, 400, 320);
 
             PictureBox pbSpellImage = CreatePictureBox(spell.Name, new Point(0, 20), new Size(125, 125));
-            Label lblSpellName = CreateLabel(equipment.Name, true, new Point(0, 0));
-            Label lblSpellDescription = CreateLabel(equipment.Description, false, new Point(0, 165));
+            Label lblSpellName = CreateLabel(spell.Name, true, new Point(0, 0), new Size(0, 0));
+            Label lblSpellDescription = CreateLabel(spell.Description, false, new Point(0, 165), new Size(300, 200));
 
-            CreateIconValueCombo("Gold", "Gold:", equipment.SellingGoldValue.ToString(), 145, 20);
+            CreateIconValueCombo("Gold", "Gold:", spell.SellingGoldValue.ToString(), 145, 20);
+            CreateIconValueCombo("Mana", "Mana Cost:", spell.ManaCost.ToString(), 145, 50);
+
+            if(spell is DamageSpell)
+            {
+                CreateIconValueCombo("Damage", "Base Damage:", ((DamageSpell)spell).DamageValue.ToString(), 145, 80);
+            }
+            else if(spell is ReplenishSpell)
+            {
+                CreateIconValueCombo("Healing", "Base Heal:", ((ReplenishSpell)spell).ReplenishValue.ToString(), 145, 80);
+            }
+
+            Controls.Add(pbSpellImage);
+            Controls.Add(lblSpellName);
+            Controls.Add(lblSpellDescription);
+        }
+
+        private void CreateInnInformationScreen(Inn inn)
+        {
+            SetWindow(inn.Name, 400, 320);
+
+            PictureBox pbSpellImage = CreatePictureBox(inn.Name, new Point(0, 20), new Size(125, 125));
+            Label lblSpellName = CreateLabel(inn.Name, true, new Point(0, 0), new Size(0, 0));
+            Label lblSpellDescription = CreateLabel(inn.Description, false, new Point(0, 165), new Size(300, 200));
+
+            CreateIconValueCombo("Gold", "Gold Cost:", inn.GoldCost.ToString(), 145, 20);
+
+            Controls.Add(pbSpellImage);
+            Controls.Add(lblSpellName);
+            Controls.Add(lblSpellDescription);
+        }
+
+        private void CreateQuestInformationScreen(Quest quest)
+        {
+            SetWindow(quest.Name, 400, 320);
+
+            PictureBox pbQuestImage = CreatePictureBox(quest.Name, new Point(0, 20), new Size(125, 125));
+            Label lblQuestName = CreateLabel(quest.Name, true, new Point(0, 0), new Size(0, 0));
+            Label lblQuestDescription = CreateLabel(quest.Description, false, new Point(0, 165), new Size(300, 200));
+            
+            if (quest.IsCompleted)
+            {
+                CreateIconValueCombo("", "Quest Status:", "Completed", 145, 20);
+            }
+            else
+            {
+                CreateIconValueCombo("", "Quest Status:", "In Progress", 145, 20);
+            }
+
+            Label lblRewards = CreateLabel("Rewards", true, new Point(145, 50), new Size(0, 0));
 
             int x = 145;
-            int y = 50;
+            int y = 80;
 
-            if (equipment.HealthBonus != 0)
+            if(quest.RewardGold != 0)
             {
-                CreateIconValueCombo("Health", "Health Bonus:", equipment.HealthBonus.ToString(), x, y);
+                CreateIconValueCombo("Gold", "Reward Gold:", quest.RewardGold.ToString(), x, y);
                 y += 30;
             }
-            if (equipment.ManaBonus != 0)
+            if(quest.RewardExperience != 0)
             {
-                CreateIconValueCombo("Mana", "Mana Bonus:", equipment.ManaBonus.ToString(), x, y);
+                CreateIconValueCombo("Experience", "Reward Experience:", quest.RewardExperience.ToString(), x, y);
                 y += 30;
             }
-            if (equipment.StrengthBonus != 0)
+            if(quest.RewardItem != null)
             {
-                CreateIconValueCombo("Strength", "Strength Bonus:", equipment.StrengthBonus.ToString(), x, y);
+                CreateIconValueCombo(quest.RewardItem.Name, "Reward Item:", quest.RewardItem.ToString(), x, y);
                 y += 30;
             }
-            if (equipment.DefenseBonus != 0)
+            if(quest.RewardEquipment != null)
             {
-                CreateIconValueCombo("Defense", "Defense Bonus:", equipment.DefenseBonus.ToString(), x, y);
+                CreateIconValueCombo(quest.RewardEquipment.Name, "Reward Equipment:", quest.RewardEquipment.ToString(), x, y);
                 y += 30;
             }
-            if (equipment.LuckBonus != 0)
+            if(quest.RewardSpell != null)
             {
-                CreateIconValueCombo("Luck", "Luck Bonus:", equipment.LuckBonus.ToString(), x, y);
-                y += 30;
-            }
-            if (equipment.SpeedBonus != 0)
-            {
-                CreateIconValueCombo("Speed", "Speed Bonus:", equipment.SpeedBonus.ToString(), x, y);
-                y += 30;
-            }
-            if (equipment.IntellectBonus != 0)
-            {
-                CreateIconValueCombo("Intellect", "Intellect Bonus:", equipment.IntellectBonus.ToString(), x, y);
-                y += 30;
-            }
-            if (equipment.ResistanceBonus != 0)
-            {
-                CreateIconValueCombo("Resistance", "Resistance Bonus:", equipment.ResistanceBonus.ToString(), x, y);
+                CreateIconValueCombo(quest.RewardSpell.Name, "Reward Spell:", quest.RewardSpell.Name, x, y);
                 y += 30;
             }
 
-            Controls.Add(pbEquipmentImage);
-            Controls.Add(lblEquipmentName);
-            Controls.Add(lblEquipmentDescription);
+            Controls.Add(pbQuestImage);
+            Controls.Add(lblQuestName);
+            Controls.Add(lblQuestDescription);
+            Controls.Add(lblRewards);
         }
 
         private void SetImage(PictureBox pictureBox, string imageName)
@@ -223,12 +266,16 @@ namespace UI
             return pictureBox;
         }
 
-        private Label CreateLabel(string labelText, bool autoSize, Point point)
+        private Label CreateLabel(string labelText, bool autoSize, Point point, Size size)
         {
             Label label = new Label();
             label.Text = labelText;
             label.AutoSize = autoSize;
             label.Location = point;
+            if (!autoSize)
+            {
+                label.Size = size;
+            }
 
             return label;
         }
@@ -236,8 +283,8 @@ namespace UI
         private void CreateIconValueCombo(string iconName, string labelName, string value, int x, int y)
         {
             PictureBox pbIconImage = CreatePictureBox(iconName, new Point(x, y), new Size(25, 25));
-            Label lblLabelName = CreateLabel(labelName, true, new Point(x + 30, y + 5));
-            Label lblValue = CreateLabel(value, true, new Point(x + 150, y + 5));
+            Label lblLabelName = CreateLabel(labelName, true, new Point(x + 30, y + 5), new Size(0, 0));
+            Label lblValue = CreateLabel(value, true, new Point(x + 150, y + 5), new Size(0, 0));
             
             Controls.Add(pbIconImage);
             Controls.Add(lblLabelName);
