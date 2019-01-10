@@ -42,6 +42,7 @@ namespace Engine
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(2));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(3));
@@ -241,6 +242,47 @@ namespace Engine
             }
         }
 
+        public void UseItemWhileTravelCommand(Item item)
+        {
+            int itemValue = CurrentPlayer.UseItem(item);
+
+            if (item is HealthReplenishingItem)
+            {
+                CurrentPlayer.CurrentHealth += itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and healed for " + itemValue + " hitpoints");
+            }
+            else if (item is ManaReplenishingItem)
+            {
+                CurrentPlayer.CurrentMana += itemValue;
+                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and replenished for " + itemValue + " manapoints");
+            }
+            else
+            {
+                throw new Exception("Player is using an item that cannot be used in the travel screen");
+            }
+        }
+
+        public void CastSpellWhileTravelCommand(Spell spell)
+        {
+            CheckGameState(GameState.Travel);
+
+            if (!CanPlayerCastSpell(spell))
+            {
+                RaiseMessage(CurrentPlayer.Name + " does not have enough mana to cast " + spell.Name);
+                return;
+            }
+
+            if (spell is ReplenishSpell)
+            {
+                int replenishValue = CurrentPlayer.CastSpellWhileTravel(spell);
+                PlayerCastReplenish(replenishValue, (ReplenishSpell)spell);
+            }
+            else
+            {
+                throw new Exception("Player is using a spell that cannot be used in the travel screen");
+            }
+        }
+
         private void PlayerAttack(BattleResult battleResult)
         {
             int damage = CurrentPlayer.Attack(CurrentEnemy, ref battleResult);
@@ -362,25 +404,6 @@ namespace Engine
             GameStates = GameState.Travel;
         }
 
-        public void UseItemWhileTravelCommand(Item item)
-        {
-            int itemValue = CurrentPlayer.UseItem(item);
-
-            if (item is HealthReplenishingItem)
-            {
-                CurrentPlayer.CurrentHealth += itemValue;
-                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and healed for " + itemValue + " hitpoints");
-            }
-            else if (item is ManaReplenishingItem)
-            {
-                CurrentPlayer.CurrentMana += itemValue;
-                RaiseMessage(CurrentPlayer.Name + " used a " + item.Name + " and replenished for " + itemValue + " manapoints");
-            }
-            else
-            {
-                throw new Exception("Player using an item that cannot be used in the travel screen");
-            }
-        }
 
 
         //<----------Equipment Commands---------->
@@ -398,9 +421,33 @@ namespace Engine
 
         public void UnEquipCommand(Equipment equipment)
         {
-            CurrentPlayer.DeEquip(equipment);
+            CurrentPlayer.Unequip(equipment);
 
-            RaiseMessage("You de equip " + equipment.Name);
+            RaiseMessage("You unequip " + equipment.Name);
+        }
+
+        public bool CheckIfEquippableCommand(Equipment equipment)
+        {
+            if (CurrentPlayer.CheckIfEquippable(equipment))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool CheckIfAlreadyEquipped(Equipment equipment)
+        {
+            if (CurrentPlayer.CheckIfAlreadyEquipped(equipment))
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
 
 

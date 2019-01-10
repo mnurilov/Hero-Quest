@@ -26,6 +26,10 @@ namespace UI
             gameSession.OnMessagedRaised += DisplayWorldText;
             UpdateUI();
             dgvItems.CellClick += dgvItems_CellClick;
+            dgvEquipment.CellClick += dgvEquipmentEquip_CellClick;
+            dgvEquipment.CellClick += dgvEquipmentUnequip_CellClick;
+            dgvSpells.CellClick += dgvSpells_CellClick;
+            dgvBattleSpells.CellClick += dgvBattleSpells_CellClick;
         }
 
 
@@ -58,10 +62,43 @@ namespace UI
         //<----------Updating UI Functions---------->
         private void UpdateUI()
         {
+            UpdateStats();
             UpdateButtons();
             UpdateDGVs();
             UpdateLocation();
             UpdateEnemy();
+        }
+
+        private void UpdateStats()
+        {
+            lblPlayerLevel.Text = gameSession.CurrentPlayer.Level.ToString();
+
+            lblPlayerExperience.Text = gameSession.CurrentPlayer.CurrentExperiencePoints + "/" + 
+                                       gameSession.CurrentPlayer.MaximumExperiencePoints;
+
+            lblPlayerHealth.Text = gameSession.CurrentPlayer.CurrentHealth + "/" + gameSession.CurrentPlayer.TotalMaximumHealth;
+
+            lblPlayerMana.Text = gameSession.CurrentPlayer.CurrentMana + "/" + gameSession.CurrentPlayer.TotalMaximumMana;
+
+            lblPlayerStrength.Text = gameSession.CurrentPlayer.TotalStrength + "(+" + 
+                                    (gameSession.CurrentPlayer.TotalStrength - gameSession.CurrentPlayer.BaseStrength) + ")";
+
+            lblPlayerDefense.Text = gameSession.CurrentPlayer.TotalDefense + "(+" +
+                                    (gameSession.CurrentPlayer.TotalDefense - gameSession.CurrentPlayer.BaseDefense) + ")";
+
+            lblPlayerLuck.Text = gameSession.CurrentPlayer.TotalLuck + "(+" +
+                                    (gameSession.CurrentPlayer.TotalLuck - gameSession.CurrentPlayer.BaseLuck) + ")";
+
+            lblPlayerSpeed.Text = gameSession.CurrentPlayer.TotalSpeed + "(+" +
+                                    (gameSession.CurrentPlayer.TotalSpeed - gameSession.CurrentPlayer.BaseSpeed) + ")";
+
+            lblPlayerIntellect.Text = gameSession.CurrentPlayer.TotalIntellect + "(+" +
+                                    (gameSession.CurrentPlayer.TotalIntellect - gameSession.CurrentPlayer.BaseIntellect) + ")";
+
+            lblPlayerResistance.Text = gameSession.CurrentPlayer.TotalResistance + "(+" +
+                                    (gameSession.CurrentPlayer.TotalResistance - gameSession.CurrentPlayer.BaseResistance) + ")";
+
+            lblPlayerGold.Text = gameSession.CurrentPlayer.Gold.ToString();
         }
 
         private void UpdateLocation()
@@ -84,6 +121,8 @@ namespace UI
             UpdateDGVEquipment();
             UpdateDGVSpells();
             UpdateDGVQuests();
+            UpdateDGVBattleSpells();
+            UpdateDGVBattleItems();
         }
 
         private void UpdateDGVItems()
@@ -125,6 +164,7 @@ namespace UI
 
         private void UpdateDGVEquipment()
         {
+            int rowIndex = 0;
             dgvEquipment.Rows.Clear();
             foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
             {
@@ -132,20 +172,59 @@ namespace UI
                 {
                     dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
                 }
+            
+                if (gameSession.GameStates == GameSession.GameState.Battle)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[2])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                if (!gameSession.CheckIfEquippableCommand(equipment))
+                {
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[2])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                if (gameSession.CheckIfAlreadyEquipped(equipment))
+                {
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[2])).Enabled = false;
+                }
+                else
+                {
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                rowIndex++;
             }
+            
             //dgvEquipment.CellClick += dgvEquipment_CellClick;
             //dgvEquipment.CellClick += dgvEquipment2_CellClick;
         }
 
         private void UpdateDGVSpells()
         {
+            int rowIndex = 0;
             dgvSpells.Rows.Clear();
             foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
                 if (!CheckIfInDGV(spell.ID, dgvSpells))
                 {
-                    dgvSpells.Rows.Add(spell.ID, spell.Name);
+                    dgvSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
                 }
+
+                if (gameSession.GameStates == GameSession.GameState.Battle)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                if(spell is DamageSpell)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
+
+                //Make the cast button to be off when the player doesn't have enough mana
+
+                rowIndex++;
             }
         }
 
@@ -183,6 +262,50 @@ namespace UI
                 rowIndex++;
             }
             //dgvQuests.CellClick += dgvQuests_CellClick;
+        }
+
+        private void UpdateDGVBattleSpells()
+        {
+            if(gameSession.GameStates == GameSession.GameState.Travel)
+            {
+                dgvBattleSpells.Visible = false;
+            }
+
+            int rowIndex = 0;
+            dgvBattleSpells.Rows.Clear();
+            foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
+            {
+                if (!CheckIfInDGV(spell.ID, dgvBattleSpells))
+                {
+                    dgvBattleSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
+                }
+
+                //Make the cast button to be off when the player doesn't have enough mana
+
+                rowIndex++;
+            }
+        }
+
+        private void UpdateDGVBattleItems()
+        {
+            if (gameSession.GameStates == GameSession.GameState.Travel)
+            {
+                dgvBattleItems.Visible = false;
+            }
+
+            int rowIndex = 0;
+            dgvBattleItems.Rows.Clear();
+            foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
+            {
+                if (!CheckIfInDGV(item.Key.ID, dgvBattleItems))
+                {
+                    dgvBattleSpells.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                }
+
+                //Make the cast button to be off when the player doesn't have enough mana
+
+                rowIndex++;
+            }
         }
 
         private bool CheckIfInDGV(int id, DataGridView dgv)
@@ -321,6 +444,26 @@ namespace UI
             }
         }
 
+        private void OpenBattleSpells()
+        {
+            UpdateDGVs();
+            dgvBattleSpells.Visible = true;
+        }
+
+        private void CloseBattleSpells()
+        {
+            UpdateDGVs();
+            dgvBattleSpells.Visible = false;
+        }
+
+        private void OpenBattleItems()
+        {
+            UpdateDGVs();
+            dgvBattleItems.Visible = true;
+        }
+
+
+        //<-------------Event Functions------------->
         private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gameSession.GameStates == GameSession.GameState.Battle)
@@ -345,7 +488,95 @@ namespace UI
             UpdateUI();
         }
 
+        private void dgvEquipmentEquip_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gameSession.GameStates == GameSession.GameState.Battle)
+            {
+                return;
+            }
+            if (((DataGridViewDisableButtonCell)(dgvEquipment.Rows[e.RowIndex].Cells[2])).Enabled == false)
+            {
+                return;
+            }
 
+            if (e.ColumnIndex == 2)
+            {
+                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the equipment object in the row
+                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+
+                gameSession.EquipCommand(equipment);
+                UpdateUI();
+            }
+        }
+
+        private void dgvEquipmentUnequip_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gameSession.GameStates == GameSession.GameState.Battle)
+            {
+                return;
+            }
+            if (((DataGridViewDisableButtonCell)(dgvEquipment.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == 3)
+            {
+                var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the equipment object in the row
+                Equipment equipment = World.FindEquipmentByID(Convert.ToInt32(equipmentID));
+
+                gameSession.UnEquipCommand(equipment);
+                UpdateUI();
+            }
+        }
+
+        private void dgvSpells_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gameSession.GameStates == GameSession.GameState.Battle)
+            {
+                return;
+            }
+            if (((DataGridViewDisableButtonCell)(dgvSpells.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == 3)
+            {
+                var spellID = dgvSpells.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the spell object in the row
+                Spell spell = World.FindSpellByID(Convert.ToInt32(spellID));
+
+                gameSession.CastSpellWhileTravelCommand(spell);
+                UpdateUI();
+            }
+        }
+
+        private void dgvBattleSpells_CellClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (gameSession.GameStates == GameSession.GameState.Travel)
+            {
+                return;
+            }
+
+            if (e.ColumnIndex == 3)
+            {
+                var spellID = dgvBattleSpells.Rows[e.RowIndex].Cells[0].Value;
+
+                // Get the spell object in the row
+                Spell spell = World.FindSpellByID(Convert.ToInt32(spellID));
+
+                gameSession.CastSpellCommand(spell);
+                UpdateUI();
+            }
+        }
+
+        
         //<----------Battle Buttons---------->
         private void btnAttack_Click(object sender, EventArgs e)
         {
@@ -355,12 +586,12 @@ namespace UI
 
         private void btnMagic_Click(object sender, EventArgs e)
         {
-
+            OpenBattleSpells();
         }
 
         private void btnItems_Click(object sender, EventArgs e)
         {
-
+            OpenBattleItems();
         }
 
         private void btnRun_Click(object sender, EventArgs e)
@@ -412,7 +643,5 @@ namespace UI
             informationScreen.StartPosition = FormStartPosition.CenterParent;
             informationScreen.ShowDialog(this);
         }
-
-       
     }
 }

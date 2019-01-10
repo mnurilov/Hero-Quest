@@ -1,41 +1,9 @@
-items
-equipment
-spell
-quest
-inn
-vendor
-location
+Spells in the game world shoudl be castable 
 
-
-Refactored Folder Classes
--Item
--Equipment
--Spell
--Quest
--Person
--Event Argument
--Inn
--Random Number Generator
--Vendor
--Clone Generator
--Location
--World(Mostly Done Gotta Think about how to Access Items in List Not using ID)
--Fighting Unit
--Game Session 
-
-TIPS FOR REFACTORING
--Smaller functions don't make finds huge
--Fix all the public and private and internal
--Make sure the UI is not touching the player class it can only access it through gameSession
--Make sure Player's function are doing simple things that don't change other classes
--Let Game Session handle interactions between objects
--Fix ordering
-
-
-CODE LAYOUT
--Engine will handle all calculations and logic
--GameSession will handle all the objects interacting with each other
--UI will handle display
+Cases:
+-Equipment is already equipped so equip button should be null but unequip should be fine
+-Equipment is not equippable then equip button should be null and unequip should be null
+-Equipment is not equipped then equip button should be normal but unequip should be null
 
 <-----Things to Do----->
 -Bosses

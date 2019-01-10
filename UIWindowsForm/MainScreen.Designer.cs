@@ -76,8 +76,6 @@
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colEquipmentDeEquip = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tabSpells = new System.Windows.Forms.TabPage();
             this.dgvSpells = new System.Windows.Forms.DataGridView();
             this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -95,7 +93,6 @@
             this.dgvBattleSpells = new System.Windows.Forms.DataGridView();
             this.colSpellIID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colBattleSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsButton = new System.Windows.Forms.DataGridViewButtonColumn();
             this.btnEmpower = new System.Windows.Forms.Button();
             this.button1 = new System.Windows.Forms.Button();
             this.btnGreed = new System.Windows.Forms.Button();
@@ -116,6 +113,12 @@
             this.ptbEmpower1 = new System.Windows.Forms.PictureBox();
             this.pbEnemyPicture = new System.Windows.Forms.PictureBox();
             this.pbLocationPicture = new System.Windows.Forms.PictureBox();
+            this.dataGridViewButtonColumn1 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn2 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.dataGridViewButtonColumn3 = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colBattleSpellsButton = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colEquipmentDeEquip = new System.Windows.Forms.DataGridViewButtonColumn();
             this.tbcInventory.SuspendLayout();
             this.tabItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -574,23 +577,6 @@
             this.colEquipmentName.Name = "colEquipmentName";
             this.colEquipmentName.ReadOnly = true;
             // 
-            // colEquipmentEquip
-            // 
-            this.colEquipmentEquip.HeaderText = "";
-            this.colEquipmentEquip.Name = "colEquipmentEquip";
-            this.colEquipmentEquip.ReadOnly = true;
-            this.colEquipmentEquip.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colEquipmentEquip.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colEquipmentEquip.Text = "Equip";
-            this.colEquipmentEquip.UseColumnTextForButtonValue = true;
-            // 
-            // colEquipmentDeEquip
-            // 
-            this.colEquipmentDeEquip.HeaderText = "";
-            this.colEquipmentDeEquip.Name = "colEquipmentDeEquip";
-            this.colEquipmentDeEquip.Text = "DeEquip";
-            this.colEquipmentDeEquip.UseColumnTextForButtonValue = true;
-            // 
             // tabSpells
             // 
             this.tabSpells.Controls.Add(this.dgvSpells);
@@ -739,7 +725,7 @@
             this.colSpellIID,
             this.colBattleSpellName,
             this.colBattleSpellsButton});
-            this.dgvBattleSpells.Location = new System.Drawing.Point(895, 409);
+            this.dgvBattleSpells.Location = new System.Drawing.Point(746, 439);
             this.dgvBattleSpells.Name = "dgvBattleSpells";
             this.dgvBattleSpells.ReadOnly = true;
             this.dgvBattleSpells.RowHeadersVisible = false;
@@ -760,12 +746,6 @@
             this.colBattleSpellName.HeaderText = "Name";
             this.colBattleSpellName.Name = "colBattleSpellName";
             this.colBattleSpellName.ReadOnly = true;
-            // 
-            // colBattleSpellsButton
-            // 
-            this.colBattleSpellsButton.HeaderText = "Select";
-            this.colBattleSpellsButton.Name = "colBattleSpellsButton";
-            this.colBattleSpellsButton.ReadOnly = true;
             // 
             // btnEmpower
             // 
@@ -809,7 +789,7 @@
             this.colBattleItemID,
             this.colBattleItemName,
             this.colBattleItemQuantity});
-            this.dgvBattleItems.Location = new System.Drawing.Point(895, 409);
+            this.dgvBattleItems.Location = new System.Drawing.Point(690, 414);
             this.dgvBattleItems.Name = "dgvBattleItems";
             this.dgvBattleItems.ReadOnly = true;
             this.dgvBattleItems.RowHeadersVisible = false;
@@ -960,6 +940,52 @@
             this.pbLocationPicture.TabIndex = 37;
             this.pbLocationPicture.TabStop = false;
             this.pbLocationPicture.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
+            // dataGridViewButtonColumn1
+            // 
+            this.dataGridViewButtonColumn1.HeaderText = "";
+            this.dataGridViewButtonColumn1.Name = "dataGridViewButtonColumn1";
+            this.dataGridViewButtonColumn1.ReadOnly = true;
+            this.dataGridViewButtonColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewButtonColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewButtonColumn1.Text = "Equip";
+            this.dataGridViewButtonColumn1.UseColumnTextForButtonValue = true;
+            // 
+            // dataGridViewButtonColumn2
+            // 
+            this.dataGridViewButtonColumn2.HeaderText = "";
+            this.dataGridViewButtonColumn2.Name = "dataGridViewButtonColumn2";
+            this.dataGridViewButtonColumn2.Text = "DeEquip";
+            this.dataGridViewButtonColumn2.UseColumnTextForButtonValue = true;
+            // 
+            // dataGridViewButtonColumn3
+            // 
+            this.dataGridViewButtonColumn3.HeaderText = "Select";
+            this.dataGridViewButtonColumn3.Name = "dataGridViewButtonColumn3";
+            this.dataGridViewButtonColumn3.ReadOnly = true;
+            // 
+            // colBattleSpellsButton
+            // 
+            this.colBattleSpellsButton.HeaderText = "Select";
+            this.colBattleSpellsButton.Name = "colBattleSpellsButton";
+            this.colBattleSpellsButton.ReadOnly = true;
+            // 
+            // colEquipmentEquip
+            // 
+            this.colEquipmentEquip.HeaderText = "";
+            this.colEquipmentEquip.Name = "colEquipmentEquip";
+            this.colEquipmentEquip.ReadOnly = true;
+            this.colEquipmentEquip.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colEquipmentEquip.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colEquipmentEquip.Text = "Equip";
+            this.colEquipmentEquip.UseColumnTextForButtonValue = true;
+            // 
+            // colEquipmentDeEquip
+            // 
+            this.colEquipmentDeEquip.HeaderText = "";
+            this.colEquipmentDeEquip.Name = "colEquipmentDeEquip";
+            this.colEquipmentDeEquip.Text = "DeEquip";
+            this.colEquipmentDeEquip.UseColumnTextForButtonValue = true;
             // 
             // MainScreen
             // 
@@ -1146,6 +1172,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
         private System.Windows.Forms.DataGridViewButtonColumn colEquipmentEquip;
         private System.Windows.Forms.DataGridViewButtonColumn colEquipmentDeEquip;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn1;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn2;
+        private System.Windows.Forms.DataGridViewButtonColumn dataGridViewButtonColumn3;
     }
 }
 

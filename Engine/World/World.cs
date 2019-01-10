@@ -258,6 +258,7 @@ namespace Engine
             equipments.Add(new Sword(WeaponEquipmentIDBronzeSword, "Bronze Sword", "A crummy sword", 10, 0, 0, 10, 0, 0, 0, 0, 0));
             equipments.Add(new Shield(ShieldEquipmentIDBronzeShield, "Bronze Shield", "A crummy shield", 10, 0, 0, 0, 10, 0, 0, 0, 0));
             equipments.Add(new Dagger(DaggerEquipmentIDBronzeDagger, "Bronze Dagger", "A garbage dagger", 10, 10, 10, 10, 10, 10, 10, 10, 10));
+            equipments.Add(new HeadEquipment(HeadEquipmentIDRuneHelmet, "Rune Helmet", "A top tier helmet", 100, 30, 0, 5, 30, 0, -5, 0, 0));
         }
 
         private static void PopulateSpells()

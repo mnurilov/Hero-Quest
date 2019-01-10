@@ -604,7 +604,7 @@ namespace Engine
         {
             if (CurrentMana < spell.ManaCost)
             {
-                return 0;
+                return -1;
             }
 
             if (spell is DamageSpell)
@@ -618,6 +618,23 @@ namespace Engine
             else
             {
                 throw new Exception("Somehow player is casting a spell that isn't a damage or replenish spell");
+            }
+        }
+
+        public int CastSpellWhileTravel(Spell spell)
+        {
+            if (CurrentMana < spell.ManaCost)
+            {
+                return -1;
+            }
+
+            if (spell is ReplenishSpell)
+            {
+                return CastReplenishSpell((ReplenishSpell)spell);
+            }
+            else
+            {
+                throw new Exception("Somehow the player is casting a spell in the travel screen that is not a replenish spell");
             }
         }
 
@@ -1196,7 +1213,7 @@ namespace Engine
             }
         }
 
-        public void DeEquip(Equipment equipment)
+        public void Unequip(Equipment equipment)
         {
             if (equipment is HeadEquipment)
             {
@@ -1260,6 +1277,169 @@ namespace Engine
             }
 
             CalculateAllTotalStats();
+        }
+
+        public bool CheckIfEquippable(Equipment equipment)
+        {
+            bool canEquip = false;
+
+            if (equipment is HeadEquipment)
+            {
+                canEquip = true;
+            }
+            else if (equipment is ChestEquipment)
+            {
+                canEquip = true;
+            }
+            else if (equipment is LegEquipment)
+            {
+                canEquip = true;
+            }
+            else if (equipment is Weapon)
+            {
+                if (equipment is Sword)
+                {
+                    if (playerClass == Class.Warrior)
+                    {
+                        canEquip = true;
+                    }
+                }
+                else if (equipment is Staff)
+                {
+                    if (playerClass == Class.Mage)
+                    {
+                        canEquip = true;
+                    }
+                }
+                else if (equipment is Dagger)
+                {
+                    if (playerClass == Class.Thief)
+                    {
+                        canEquip = true;
+                    }
+                }
+            }
+            else if (equipment is SideArm)
+            {
+                if (equipment is Shield)
+                {
+                    if (playerClass == Class.Warrior)
+                    {
+                        canEquip = true;
+                    }
+                }
+                else if (equipment is Tome)
+                {
+                    if (playerClass == Class.Mage)
+                    {
+                        canEquip = true;
+                    }
+                }
+                else if (equipment is ParryingDagger)
+                {
+                    if (playerClass == Class.Thief)
+                    {
+                        canEquip = true;
+                    }
+                }
+            }
+            
+            return canEquip;
+        }
+
+        public bool CheckIfAlreadyEquipped(Equipment equipment)
+        {
+            bool alreadyEquipped = false;
+
+            if (equipment is HeadEquipment)
+            {
+                if(CurrentHeadEquipment == equipment)
+                {
+                    alreadyEquipped = true;
+                }
+            }
+            else if (equipment is ChestEquipment)
+            {
+                if (CurrentChestEquipment == equipment)
+                {
+                    alreadyEquipped = true;
+                }
+            }
+            else if (equipment is LegEquipment)
+            {
+                if (CurrentLegEquipment == equipment)
+                {
+                    alreadyEquipped = true;
+                }
+            }
+            else if (equipment is Weapon)
+            {
+                if (equipment is Sword)
+                {
+                    if (playerClass == Class.Warrior)
+                    {
+                        if (CurrentWeapon == equipment)
+                        {
+                            alreadyEquipped = true;
+                        }
+                    }
+                }
+                else if (equipment is Staff)
+                {
+                    if (playerClass == Class.Mage)
+                    {
+                        if (CurrentWeapon == equipment)
+                        {
+                            alreadyEquipped = true;
+                        }
+                    }
+                }
+                else if (equipment is Dagger)
+                {
+                    if (playerClass == Class.Thief)
+                    {
+                        if (CurrentWeapon == equipment)
+                        {
+                            alreadyEquipped = true;
+                        }
+                    }
+                }
+            }
+            else if (equipment is SideArm)
+            {
+                if (equipment is Shield)
+                {
+                    if (playerClass == Class.Warrior)
+                    {
+                        if (CurrentSideArm == equipment)
+                        {
+                            alreadyEquipped = true;
+                        }
+                    }
+                }
+                else if (equipment is Tome)
+                {
+                    if (playerClass == Class.Mage)
+                    {
+                        if (CurrentSideArm == equipment)
+                        {
+                            alreadyEquipped = true;
+                        }
+                    }
+                }
+                else if (equipment is ParryingDagger)
+                {
+                    if (playerClass == Class.Thief)
+                    {
+                        if (CurrentSideArm == equipment)
+                        {
+                            alreadyEquipped = true;
+                        }
+                    }
+                }
+            }
+
+            return alreadyEquipped;
         }
 
 

@@ -51,12 +51,14 @@
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colEquipmentEquip = new System.Windows.Forms.DataGridViewButtonColumn();
-            this.colEquipmentUnequip = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.colEquipmentEquip = new UI.DataGridViewDisableButtonColumn();
+            this.colEquipmentUnequip = new UI.DataGridViewDisableButtonColumn();
             this.tbpSpells = new System.Windows.Forms.TabPage();
             this.dgvSpells = new System.Windows.Forms.DataGridView();
             this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpellManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpellCast = new UI.DataGridViewDisableButtonColumn();
             this.tbpQuests = new System.Windows.Forms.TabPage();
             this.dgvQuests = new System.Windows.Forms.DataGridView();
             this.colQuestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -86,6 +88,27 @@
             this.pictureBox10 = new System.Windows.Forms.PictureBox();
             this.pictureBox11 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblPlayerLevel = new System.Windows.Forms.Label();
+            this.lblPlayerStrength = new System.Windows.Forms.Label();
+            this.lblPlayerGold = new System.Windows.Forms.Label();
+            this.lblPlayerResistance = new System.Windows.Forms.Label();
+            this.lblPlayerIntellect = new System.Windows.Forms.Label();
+            this.lblPlayerSpeed = new System.Windows.Forms.Label();
+            this.lblPlayerLuck = new System.Windows.Forms.Label();
+            this.lblPlayerDefense = new System.Windows.Forms.Label();
+            this.lblPlayerMana = new System.Windows.Forms.Label();
+            this.lblPlayerHealth = new System.Windows.Forms.Label();
+            this.lblPlayerExperience = new System.Windows.Forms.Label();
+            this.dgvBattleSpells = new System.Windows.Forms.DataGridView();
+            this.colBattleSpellsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsCast = new UI.DataGridViewDisableButtonColumn();
+            this.dgvBattleItems = new System.Windows.Forms.DataGridView();
+            this.colBattleItemsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsUse = new UI.DataGridViewDisableButtonColumn();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -108,6 +131,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleSpells)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleItems)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNorth
@@ -300,7 +326,7 @@
             this.tbpEquipment.Location = new System.Drawing.Point(4, 25);
             this.tbpEquipment.Name = "tbpEquipment";
             this.tbpEquipment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpEquipment.Size = new System.Drawing.Size(273, 203);
+            this.tbpEquipment.Size = new System.Drawing.Size(273, 181);
             this.tbpEquipment.TabIndex = 1;
             this.tbpEquipment.Text = "Equipment";
             this.tbpEquipment.UseVisualStyleBackColor = true;
@@ -365,7 +391,7 @@
             this.tbpSpells.Controls.Add(this.dgvSpells);
             this.tbpSpells.Location = new System.Drawing.Point(4, 25);
             this.tbpSpells.Name = "tbpSpells";
-            this.tbpSpells.Size = new System.Drawing.Size(273, 203);
+            this.tbpSpells.Size = new System.Drawing.Size(273, 181);
             this.tbpSpells.TabIndex = 2;
             this.tbpSpells.Text = "Spells";
             this.tbpSpells.UseVisualStyleBackColor = true;
@@ -380,7 +406,9 @@
             this.dgvSpells.ColumnHeadersVisible = false;
             this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSpellID,
-            this.colSpellName});
+            this.colSpellName,
+            this.colSpellManaCost,
+            this.colSpellCast});
             this.dgvSpells.Location = new System.Drawing.Point(0, 0);
             this.dgvSpells.Name = "dgvSpells";
             this.dgvSpells.ReadOnly = true;
@@ -404,12 +432,28 @@
             this.colSpellName.ReadOnly = true;
             this.colSpellName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
+            // colSpellManaCost
+            // 
+            this.colSpellManaCost.HeaderText = "Mana Cost";
+            this.colSpellManaCost.Name = "colSpellManaCost";
+            this.colSpellManaCost.ReadOnly = true;
+            this.colSpellManaCost.Width = 50;
+            // 
+            // colSpellCast
+            // 
+            this.colSpellCast.HeaderText = "Cast";
+            this.colSpellCast.Name = "colSpellCast";
+            this.colSpellCast.ReadOnly = true;
+            this.colSpellCast.Text = "Cast";
+            this.colSpellCast.UseColumnTextForButtonValue = true;
+            this.colSpellCast.Width = 50;
+            // 
             // tbpQuests
             // 
             this.tbpQuests.Controls.Add(this.dgvQuests);
             this.tbpQuests.Location = new System.Drawing.Point(4, 25);
             this.tbpQuests.Name = "tbpQuests";
-            this.tbpQuests.Size = new System.Drawing.Size(273, 203);
+            this.tbpQuests.Size = new System.Drawing.Size(273, 181);
             this.tbpQuests.TabIndex = 3;
             this.tbpQuests.Text = "Quests";
             this.tbpQuests.UseVisualStyleBackColor = true;
@@ -680,16 +724,225 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.panel1.Controls.Add(this.lblPlayerLevel);
+            this.panel1.Controls.Add(this.lblPlayerStrength);
+            this.panel1.Controls.Add(this.lblPlayerGold);
+            this.panel1.Controls.Add(this.lblPlayerResistance);
+            this.panel1.Controls.Add(this.lblPlayerIntellect);
+            this.panel1.Controls.Add(this.lblPlayerSpeed);
+            this.panel1.Controls.Add(this.lblPlayerLuck);
+            this.panel1.Controls.Add(this.lblPlayerDefense);
+            this.panel1.Controls.Add(this.lblPlayerMana);
+            this.panel1.Controls.Add(this.lblPlayerHealth);
+            this.panel1.Controls.Add(this.lblPlayerExperience);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(293, 347);
             this.panel1.TabIndex = 32;
+            // 
+            // lblPlayerLevel
+            // 
+            this.lblPlayerLevel.AutoSize = true;
+            this.lblPlayerLevel.Location = new System.Drawing.Point(61, 12);
+            this.lblPlayerLevel.Name = "lblPlayerLevel";
+            this.lblPlayerLevel.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerLevel.TabIndex = 10;
+            // 
+            // lblPlayerStrength
+            // 
+            this.lblPlayerStrength.AutoSize = true;
+            this.lblPlayerStrength.Location = new System.Drawing.Point(61, 136);
+            this.lblPlayerStrength.Name = "lblPlayerStrength";
+            this.lblPlayerStrength.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerStrength.TabIndex = 9;
+            // 
+            // lblPlayerGold
+            // 
+            this.lblPlayerGold.AutoSize = true;
+            this.lblPlayerGold.Location = new System.Drawing.Point(61, 322);
+            this.lblPlayerGold.Name = "lblPlayerGold";
+            this.lblPlayerGold.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerGold.TabIndex = 8;
+            // 
+            // lblPlayerResistance
+            // 
+            this.lblPlayerResistance.AutoSize = true;
+            this.lblPlayerResistance.Location = new System.Drawing.Point(61, 291);
+            this.lblPlayerResistance.Name = "lblPlayerResistance";
+            this.lblPlayerResistance.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerResistance.TabIndex = 7;
+            // 
+            // lblPlayerIntellect
+            // 
+            this.lblPlayerIntellect.AutoSize = true;
+            this.lblPlayerIntellect.Location = new System.Drawing.Point(61, 260);
+            this.lblPlayerIntellect.Name = "lblPlayerIntellect";
+            this.lblPlayerIntellect.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerIntellect.TabIndex = 6;
+            // 
+            // lblPlayerSpeed
+            // 
+            this.lblPlayerSpeed.AutoSize = true;
+            this.lblPlayerSpeed.Location = new System.Drawing.Point(61, 229);
+            this.lblPlayerSpeed.Name = "lblPlayerSpeed";
+            this.lblPlayerSpeed.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerSpeed.TabIndex = 5;
+            // 
+            // lblPlayerLuck
+            // 
+            this.lblPlayerLuck.AutoSize = true;
+            this.lblPlayerLuck.Location = new System.Drawing.Point(61, 198);
+            this.lblPlayerLuck.Name = "lblPlayerLuck";
+            this.lblPlayerLuck.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerLuck.TabIndex = 4;
+            // 
+            // lblPlayerDefense
+            // 
+            this.lblPlayerDefense.AutoSize = true;
+            this.lblPlayerDefense.Location = new System.Drawing.Point(61, 167);
+            this.lblPlayerDefense.Name = "lblPlayerDefense";
+            this.lblPlayerDefense.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerDefense.TabIndex = 3;
+            // 
+            // lblPlayerMana
+            // 
+            this.lblPlayerMana.AutoSize = true;
+            this.lblPlayerMana.Location = new System.Drawing.Point(61, 105);
+            this.lblPlayerMana.Name = "lblPlayerMana";
+            this.lblPlayerMana.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerMana.TabIndex = 2;
+            // 
+            // lblPlayerHealth
+            // 
+            this.lblPlayerHealth.AutoSize = true;
+            this.lblPlayerHealth.Location = new System.Drawing.Point(61, 74);
+            this.lblPlayerHealth.Name = "lblPlayerHealth";
+            this.lblPlayerHealth.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerHealth.TabIndex = 1;
+            // 
+            // lblPlayerExperience
+            // 
+            this.lblPlayerExperience.AutoSize = true;
+            this.lblPlayerExperience.Location = new System.Drawing.Point(61, 43);
+            this.lblPlayerExperience.Name = "lblPlayerExperience";
+            this.lblPlayerExperience.Size = new System.Drawing.Size(0, 17);
+            this.lblPlayerExperience.TabIndex = 0;
+            // 
+            // dgvBattleSpells
+            // 
+            this.dgvBattleSpells.AllowUserToAddRows = false;
+            this.dgvBattleSpells.AllowUserToDeleteRows = false;
+            this.dgvBattleSpells.AllowUserToResizeColumns = false;
+            this.dgvBattleSpells.AllowUserToResizeRows = false;
+            this.dgvBattleSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBattleSpells.ColumnHeadersVisible = false;
+            this.dgvBattleSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colBattleSpellsID,
+            this.colBattleSpellsName,
+            this.colBattleSpellsManaCost,
+            this.colBattleSpellsCast});
+            this.dgvBattleSpells.Location = new System.Drawing.Point(522, 260);
+            this.dgvBattleSpells.Name = "dgvBattleSpells";
+            this.dgvBattleSpells.ReadOnly = true;
+            this.dgvBattleSpells.RowHeadersVisible = false;
+            this.dgvBattleSpells.RowTemplate.Height = 24;
+            this.dgvBattleSpells.Size = new System.Drawing.Size(240, 150);
+            this.dgvBattleSpells.TabIndex = 33;
+            this.dgvBattleSpells.Visible = false;
+            // 
+            // colBattleSpellsID
+            // 
+            this.colBattleSpellsID.HeaderText = "ID";
+            this.colBattleSpellsID.Name = "colBattleSpellsID";
+            this.colBattleSpellsID.ReadOnly = true;
+            this.colBattleSpellsID.Visible = false;
+            // 
+            // colBattleSpellsName
+            // 
+            this.colBattleSpellsName.HeaderText = "Name";
+            this.colBattleSpellsName.Name = "colBattleSpellsName";
+            this.colBattleSpellsName.ReadOnly = true;
+            this.colBattleSpellsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colBattleSpellsManaCost
+            // 
+            this.colBattleSpellsManaCost.HeaderText = "Mana Cost";
+            this.colBattleSpellsManaCost.Name = "colBattleSpellsManaCost";
+            this.colBattleSpellsManaCost.ReadOnly = true;
+            this.colBattleSpellsManaCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsManaCost.Width = 30;
+            // 
+            // colBattleSpellsCast
+            // 
+            this.colBattleSpellsCast.HeaderText = "Cast";
+            this.colBattleSpellsCast.Name = "colBattleSpellsCast";
+            this.colBattleSpellsCast.ReadOnly = true;
+            this.colBattleSpellsCast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsCast.Text = "Cast";
+            this.colBattleSpellsCast.UseColumnTextForButtonValue = true;
+            this.colBattleSpellsCast.Width = 40;
+            // 
+            // dgvBattleItems
+            // 
+            this.dgvBattleItems.AllowUserToAddRows = false;
+            this.dgvBattleItems.AllowUserToDeleteRows = false;
+            this.dgvBattleItems.AllowUserToResizeColumns = false;
+            this.dgvBattleItems.AllowUserToResizeRows = false;
+            this.dgvBattleItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvBattleItems.ColumnHeadersVisible = false;
+            this.dgvBattleItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.colBattleItemsID,
+            this.colBattleItemsName,
+            this.colBattleItemsQuantity,
+            this.colBattleItemsUse});
+            this.dgvBattleItems.Location = new System.Drawing.Point(509, 18);
+            this.dgvBattleItems.Name = "dgvBattleItems";
+            this.dgvBattleItems.ReadOnly = true;
+            this.dgvBattleItems.RowHeadersVisible = false;
+            this.dgvBattleItems.RowTemplate.Height = 24;
+            this.dgvBattleItems.Size = new System.Drawing.Size(240, 150);
+            this.dgvBattleItems.TabIndex = 34;
+            // 
+            // colBattleItemsID
+            // 
+            this.colBattleItemsID.HeaderText = "ID";
+            this.colBattleItemsID.Name = "colBattleItemsID";
+            this.colBattleItemsID.ReadOnly = true;
+            this.colBattleItemsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsID.Visible = false;
+            // 
+            // colBattleItemsName
+            // 
+            this.colBattleItemsName.HeaderText = "Name";
+            this.colBattleItemsName.Name = "colBattleItemsName";
+            this.colBattleItemsName.ReadOnly = true;
+            this.colBattleItemsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            // 
+            // colBattleItemsQuantity
+            // 
+            this.colBattleItemsQuantity.HeaderText = "Quantity";
+            this.colBattleItemsQuantity.Name = "colBattleItemsQuantity";
+            this.colBattleItemsQuantity.ReadOnly = true;
+            this.colBattleItemsQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsQuantity.Width = 30;
+            // 
+            // colBattleItemsUse
+            // 
+            this.colBattleItemsUse.HeaderText = "Use";
+            this.colBattleItemsUse.Name = "colBattleItemsUse";
+            this.colBattleItemsUse.ReadOnly = true;
+            this.colBattleItemsUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsUse.Text = "Use";
+            this.colBattleItemsUse.UseColumnTextForButtonValue = true;
+            this.colBattleItemsUse.Width = 40;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1153, 572);
+            this.Controls.Add(this.dgvBattleItems);
+            this.Controls.Add(this.dgvBattleSpells);
             this.Controls.Add(this.pictureBox11);
             this.Controls.Add(this.pictureBox10);
             this.Controls.Add(this.lblEnemyDescription);
@@ -751,6 +1004,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.pbEnemyPicture)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox10)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox11)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleSpells)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvBattleItems)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -782,15 +1039,9 @@
         private System.Windows.Forms.Button btnShop;
         private System.Windows.Forms.Button btnTalk;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
-        private System.Windows.Forms.DataGridViewButtonColumn colEquipmentEquip;
-        private System.Windows.Forms.DataGridViewButtonColumn colEquipmentUnequip;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuestID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuestName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
         private System.Windows.Forms.PictureBox pictureBox1;
         private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox3;
@@ -815,6 +1066,35 @@
         private System.Windows.Forms.PictureBox pictureBox10;
         private System.Windows.Forms.PictureBox pictureBox11;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
+        private DataGridViewDisableButtonColumn colEquipmentEquip;
+        private DataGridViewDisableButtonColumn colEquipmentUnequip;
+        private System.Windows.Forms.Label lblPlayerLevel;
+        private System.Windows.Forms.Label lblPlayerStrength;
+        private System.Windows.Forms.Label lblPlayerGold;
+        private System.Windows.Forms.Label lblPlayerResistance;
+        private System.Windows.Forms.Label lblPlayerIntellect;
+        private System.Windows.Forms.Label lblPlayerSpeed;
+        private System.Windows.Forms.Label lblPlayerLuck;
+        private System.Windows.Forms.Label lblPlayerDefense;
+        private System.Windows.Forms.Label lblPlayerMana;
+        private System.Windows.Forms.Label lblPlayerHealth;
+        private System.Windows.Forms.Label lblPlayerExperience;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellManaCost;
+        private DataGridViewDisableButtonColumn colSpellCast;
+        private System.Windows.Forms.DataGridView dgvBattleSpells;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsManaCost;
+        private DataGridViewDisableButtonColumn colBattleSpellsCast;
+        private System.Windows.Forms.DataGridView dgvBattleItems;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsQuantity;
+        private DataGridViewDisableButtonColumn colBattleItemsUse;
     }
 }
 
