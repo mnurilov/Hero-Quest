@@ -381,7 +381,6 @@
             // 
             // pbMoveMapUp
             // 
-            this.pbMoveMapUp.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMoveMapUp.Image = ((System.Drawing.Image)(resources.GetObject("pbMoveMapUp.Image")));
             this.pbMoveMapUp.Location = new System.Drawing.Point(408, 0);
             this.pbMoveMapUp.Name = "pbMoveMapUp";
@@ -393,7 +392,6 @@
             // 
             // pbMoveMapDown
             // 
-            this.pbMoveMapDown.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMoveMapDown.Image = ((System.Drawing.Image)(resources.GetObject("pbMoveMapDown.Image")));
             this.pbMoveMapDown.Location = new System.Drawing.Point(408, 810);
             this.pbMoveMapDown.Name = "pbMoveMapDown";
@@ -405,7 +403,6 @@
             // 
             // pbMoveMapRight
             // 
-            this.pbMoveMapRight.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMoveMapRight.Image = ((System.Drawing.Image)(resources.GetObject("pbMoveMapRight.Image")));
             this.pbMoveMapRight.Location = new System.Drawing.Point(809, 408);
             this.pbMoveMapRight.Name = "pbMoveMapRight";
@@ -417,7 +414,6 @@
             // 
             // pbMoveMapLeft
             // 
-            this.pbMoveMapLeft.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.pbMoveMapLeft.Image = ((System.Drawing.Image)(resources.GetObject("pbMoveMapLeft.Image")));
             this.pbMoveMapLeft.Location = new System.Drawing.Point(0, 408);
             this.pbMoveMapLeft.Name = "pbMoveMapLeft";

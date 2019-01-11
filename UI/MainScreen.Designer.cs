@@ -37,6 +37,14 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNorth = new System.Windows.Forms.Button();
             this.btnWest = new System.Windows.Forms.Button();
             this.btnEast = new System.Windows.Forms.Button();
@@ -76,7 +84,6 @@
             this.btnInn = new System.Windows.Forms.Button();
             this.btnShop = new System.Windows.Forms.Button();
             this.btnTalk = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
             this.pbPlayerHealth = new System.Windows.Forms.PictureBox();
             this.pbPlayerStrength = new System.Windows.Forms.PictureBox();
             this.pbPlayerMana = new System.Windows.Forms.PictureBox();
@@ -132,20 +139,27 @@
             this.lblPlayerHealth = new System.Windows.Forms.Label();
             this.lblPlayerExperience = new System.Windows.Forms.Label();
             this.dgvBattleSpells = new System.Windows.Forms.DataGridView();
-            this.colBattleSpellsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsCast = new UI.DataGridViewDisableButtonColumn();
             this.dgvBattleItems = new System.Windows.Forms.DataGridView();
-            this.colBattleItemsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleItemsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleItemsQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleItemsUse = new UI.DataGridViewDisableButtonColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnEmpower = new System.Windows.Forms.Button();
             this.btnGreed = new System.Windows.Forms.Button();
             this.pnPlayerLocation = new System.Windows.Forms.Panel();
             this.pnCurrentEnemy = new System.Windows.Forms.Panel();
+            this.pnInventory = new System.Windows.Forms.Panel();
+            this.colBattleItemsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsUse = new UI.DataGridViewDisableButtonColumn();
+            this.colBattleSpellsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsCast = new UI.DataGridViewDisableButtonColumn();
+            this.pnEmpower1 = new System.Windows.Forms.Panel();
+            this.pnEmpower2 = new System.Windows.Forms.Panel();
+            this.pnEmpower3 = new System.Windows.Forms.Panel();
+            this.pnEmpower4 = new System.Windows.Forms.Panel();
+            this.pbGreed = new System.Windows.Forms.PictureBox();
+            this.pbEmpower = new System.Windows.Forms.PictureBox();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -177,13 +191,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBattleItems)).BeginInit();
             this.pnPlayerLocation.SuspendLayout();
             this.pnCurrentEnemy.SuspendLayout();
+            this.pnInventory.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pbGreed)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmpower)).BeginInit();
             this.SuspendLayout();
             // 
             // btnNorth
             // 
-            this.btnNorth.Location = new System.Drawing.Point(956, 686);
+            this.btnNorth.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnNorth.Location = new System.Drawing.Point(952, 630);
             this.btnNorth.Name = "btnNorth";
-            this.btnNorth.Size = new System.Drawing.Size(75, 23);
+            this.btnNorth.Size = new System.Drawing.Size(118, 42);
             this.btnNorth.TabIndex = 0;
             this.btnNorth.Text = "North";
             this.btnNorth.UseVisualStyleBackColor = true;
@@ -191,9 +209,10 @@
             // 
             // btnWest
             // 
-            this.btnWest.Location = new System.Drawing.Point(872, 714);
+            this.btnWest.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnWest.Location = new System.Drawing.Point(795, 704);
             this.btnWest.Name = "btnWest";
-            this.btnWest.Size = new System.Drawing.Size(75, 23);
+            this.btnWest.Size = new System.Drawing.Size(118, 42);
             this.btnWest.TabIndex = 1;
             this.btnWest.Text = "West";
             this.btnWest.UseVisualStyleBackColor = true;
@@ -201,9 +220,10 @@
             // 
             // btnEast
             // 
-            this.btnEast.Location = new System.Drawing.Point(1041, 714);
+            this.btnEast.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEast.Location = new System.Drawing.Point(1103, 704);
             this.btnEast.Name = "btnEast";
-            this.btnEast.Size = new System.Drawing.Size(75, 23);
+            this.btnEast.Size = new System.Drawing.Size(118, 42);
             this.btnEast.TabIndex = 2;
             this.btnEast.Text = "East";
             this.btnEast.UseVisualStyleBackColor = true;
@@ -211,9 +231,10 @@
             // 
             // btnSouth
             // 
-            this.btnSouth.Location = new System.Drawing.Point(956, 745);
+            this.btnSouth.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnSouth.Location = new System.Drawing.Point(952, 778);
             this.btnSouth.Name = "btnSouth";
-            this.btnSouth.Size = new System.Drawing.Size(75, 23);
+            this.btnSouth.Size = new System.Drawing.Size(118, 42);
             this.btnSouth.TabIndex = 3;
             this.btnSouth.Text = "South";
             this.btnSouth.UseVisualStyleBackColor = true;
@@ -221,23 +242,24 @@
             // 
             // rtbWorldText
             // 
-            this.rtbWorldText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(192)))));
+            this.rtbWorldText.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.rtbWorldText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbWorldText.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbWorldText.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbWorldText.HideSelection = false;
-            this.rtbWorldText.Location = new System.Drawing.Point(662, 0);
+            this.rtbWorldText.Location = new System.Drawing.Point(761, 0);
             this.rtbWorldText.Name = "rtbWorldText";
-            this.rtbWorldText.Size = new System.Drawing.Size(492, 600);
+            this.rtbWorldText.ReadOnly = true;
+            this.rtbWorldText.Size = new System.Drawing.Size(629, 600);
             this.rtbWorldText.TabIndex = 4;
             this.rtbWorldText.Text = "";
             this.rtbWorldText.TextChanged += new System.EventHandler(this.rtbWorldText_TextChanged);
             // 
             // btnMap
             // 
-            this.btnMap.Location = new System.Drawing.Point(956, 714);
+            this.btnMap.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMap.Location = new System.Drawing.Point(952, 704);
             this.btnMap.Name = "btnMap";
-            this.btnMap.Size = new System.Drawing.Size(75, 23);
+            this.btnMap.Size = new System.Drawing.Size(118, 42);
             this.btnMap.TabIndex = 5;
             this.btnMap.Text = "Map";
             this.btnMap.UseVisualStyleBackColor = true;
@@ -245,18 +267,19 @@
             // 
             // lblLocationName
             // 
-            this.lblLocationName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocationName.Location = new System.Drawing.Point(11, 10);
+            this.lblLocationName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationName.Location = new System.Drawing.Point(14, 11);
             this.lblLocationName.Name = "lblLocationName";
-            this.lblLocationName.Size = new System.Drawing.Size(308, 36);
+            this.lblLocationName.Size = new System.Drawing.Size(402, 36);
             this.lblLocationName.TabIndex = 6;
             this.lblLocationName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // btnAttack
             // 
-            this.btnAttack.Location = new System.Drawing.Point(473, 658);
+            this.btnAttack.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAttack.Location = new System.Drawing.Point(380, 630);
             this.btnAttack.Name = "btnAttack";
-            this.btnAttack.Size = new System.Drawing.Size(75, 23);
+            this.btnAttack.Size = new System.Drawing.Size(118, 42);
             this.btnAttack.TabIndex = 7;
             this.btnAttack.Text = "Attack";
             this.btnAttack.UseVisualStyleBackColor = true;
@@ -264,9 +287,10 @@
             // 
             // btnMagic
             // 
-            this.btnMagic.Location = new System.Drawing.Point(582, 658);
+            this.btnMagic.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnMagic.Location = new System.Drawing.Point(593, 630);
             this.btnMagic.Name = "btnMagic";
-            this.btnMagic.Size = new System.Drawing.Size(75, 23);
+            this.btnMagic.Size = new System.Drawing.Size(118, 42);
             this.btnMagic.TabIndex = 8;
             this.btnMagic.Text = "Magic";
             this.btnMagic.UseVisualStyleBackColor = true;
@@ -274,9 +298,10 @@
             // 
             // btnItems
             // 
-            this.btnItems.Location = new System.Drawing.Point(473, 698);
+            this.btnItems.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnItems.Location = new System.Drawing.Point(380, 704);
             this.btnItems.Name = "btnItems";
-            this.btnItems.Size = new System.Drawing.Size(75, 23);
+            this.btnItems.Size = new System.Drawing.Size(118, 42);
             this.btnItems.TabIndex = 9;
             this.btnItems.Text = "Items";
             this.btnItems.UseVisualStyleBackColor = true;
@@ -284,9 +309,10 @@
             // 
             // btnRun
             // 
-            this.btnRun.Location = new System.Drawing.Point(582, 698);
+            this.btnRun.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnRun.Location = new System.Drawing.Point(593, 704);
             this.btnRun.Name = "btnRun";
-            this.btnRun.Size = new System.Drawing.Size(75, 23);
+            this.btnRun.Size = new System.Drawing.Size(118, 42);
             this.btnRun.TabIndex = 10;
             this.btnRun.Text = "Run";
             this.btnRun.UseVisualStyleBackColor = true;
@@ -298,19 +324,21 @@
             this.tbcInventory.Controls.Add(this.tbpEquipment);
             this.tbcInventory.Controls.Add(this.tbpSpells);
             this.tbcInventory.Controls.Add(this.tbpQuests);
-            this.tbcInventory.Location = new System.Drawing.Point(8, 658);
+            this.tbcInventory.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbcInventory.ItemSize = new System.Drawing.Size(60, 26);
+            this.tbcInventory.Location = new System.Drawing.Point(0, 0);
             this.tbcInventory.Name = "tbcInventory";
             this.tbcInventory.SelectedIndex = 0;
-            this.tbcInventory.Size = new System.Drawing.Size(304, 210);
+            this.tbcInventory.Size = new System.Drawing.Size(330, 233);
             this.tbcInventory.TabIndex = 11;
             // 
             // tbpItems
             // 
             this.tbpItems.Controls.Add(this.dgvItems);
-            this.tbpItems.Location = new System.Drawing.Point(4, 25);
+            this.tbpItems.Location = new System.Drawing.Point(4, 30);
             this.tbpItems.Name = "tbpItems";
             this.tbpItems.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpItems.Size = new System.Drawing.Size(296, 181);
+            this.tbpItems.Size = new System.Drawing.Size(322, 199);
             this.tbpItems.TabIndex = 0;
             this.tbpItems.Text = "Items";
             this.tbpItems.UseVisualStyleBackColor = true;
@@ -321,8 +349,8 @@
             this.dgvItems.AllowUserToDeleteRows = false;
             this.dgvItems.AllowUserToResizeColumns = false;
             this.dgvItems.AllowUserToResizeRows = false;
+            this.dgvItems.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvItems.ColumnHeadersVisible = false;
             this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colItemID,
             this.colItemName,
@@ -334,7 +362,7 @@
             this.dgvItems.ReadOnly = true;
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowTemplate.Height = 24;
-            this.dgvItems.Size = new System.Drawing.Size(273, 181);
+            this.dgvItems.Size = new System.Drawing.Size(322, 199);
             this.dgvItems.TabIndex = 12;
             // 
             // colItemID
@@ -345,57 +373,61 @@
             this.colItemID.Name = "colItemID";
             this.colItemID.ReadOnly = true;
             this.colItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colItemID.Visible = false;
             // 
             // colItemName
             // 
+            this.colItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colItemName.DefaultCellStyle = dataGridViewCellStyle2;
             this.colItemName.HeaderText = "Name";
             this.colItemName.Name = "colItemName";
             this.colItemName.ReadOnly = true;
             this.colItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colItemQuantity
             // 
             dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colItemQuantity.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colItemQuantity.HeaderText = "Quantity";
+            this.colItemQuantity.HeaderText = "Qty";
             this.colItemQuantity.Name = "colItemQuantity";
             this.colItemQuantity.ReadOnly = true;
             this.colItemQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemQuantity.Width = 50;
+            this.colItemQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colItemQuantity.Width = 40;
             // 
             // colItemUse
             // 
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colItemUse.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colItemUse.HeaderText = "Use";
+            this.colItemUse.HeaderText = "";
             this.colItemUse.Name = "colItemUse";
             this.colItemUse.ReadOnly = true;
             this.colItemUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colItemUse.Text = "Use";
             this.colItemUse.UseColumnTextForButtonValue = true;
-            this.colItemUse.Width = 30;
+            this.colItemUse.Width = 35;
             // 
             // test
             // 
-            this.test.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.test.HeaderText = "";
             this.test.Image = ((System.Drawing.Image)(resources.GetObject("test.Image")));
             this.test.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
             this.test.Name = "test";
             this.test.ReadOnly = true;
             this.test.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.test.Width = 25;
             // 
             // tbpEquipment
             // 
             this.tbpEquipment.Controls.Add(this.dgvEquipment);
-            this.tbpEquipment.Location = new System.Drawing.Point(4, 25);
+            this.tbpEquipment.Location = new System.Drawing.Point(4, 30);
             this.tbpEquipment.Name = "tbpEquipment";
             this.tbpEquipment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpEquipment.Size = new System.Drawing.Size(296, 181);
+            this.tbpEquipment.Size = new System.Drawing.Size(322, 199);
             this.tbpEquipment.TabIndex = 1;
             this.tbpEquipment.Text = "Equipment";
             this.tbpEquipment.UseVisualStyleBackColor = true;
@@ -406,8 +438,8 @@
             this.dgvEquipment.AllowUserToDeleteRows = false;
             this.dgvEquipment.AllowUserToResizeColumns = false;
             this.dgvEquipment.AllowUserToResizeRows = false;
+            this.dgvEquipment.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEquipment.ColumnHeadersVisible = false;
             this.dgvEquipment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEquipmentID,
             this.colEquipmentName,
@@ -418,59 +450,63 @@
             this.dgvEquipment.ReadOnly = true;
             this.dgvEquipment.RowHeadersVisible = false;
             this.dgvEquipment.RowTemplate.Height = 24;
-            this.dgvEquipment.Size = new System.Drawing.Size(273, 181);
+            this.dgvEquipment.Size = new System.Drawing.Size(322, 199);
             this.dgvEquipment.TabIndex = 12;
             // 
             // colEquipmentID
             // 
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colEquipmentID.DefaultCellStyle = dataGridViewCellStyle5;
             this.colEquipmentID.HeaderText = "ID";
             this.colEquipmentID.Name = "colEquipmentID";
             this.colEquipmentID.ReadOnly = true;
+            this.colEquipmentID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colEquipmentID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colEquipmentID.Visible = false;
             // 
             // colEquipmentName
             // 
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colEquipmentName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colEquipmentName.DefaultCellStyle = dataGridViewCellStyle6;
             this.colEquipmentName.HeaderText = "Name";
             this.colEquipmentName.Name = "colEquipmentName";
             this.colEquipmentName.ReadOnly = true;
             this.colEquipmentName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colEquipmentName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colEquipmentEquip
             // 
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colEquipmentEquip.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colEquipmentEquip.HeaderText = "Equip";
+            this.colEquipmentEquip.HeaderText = "";
             this.colEquipmentEquip.Name = "colEquipmentEquip";
             this.colEquipmentEquip.ReadOnly = true;
             this.colEquipmentEquip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colEquipmentEquip.Text = "Equip";
             this.colEquipmentEquip.UseColumnTextForButtonValue = true;
-            this.colEquipmentEquip.Width = 50;
+            this.colEquipmentEquip.Width = 60;
             // 
             // colEquipmentUnequip
             // 
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Nirmala UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.colEquipmentUnequip.DefaultCellStyle = dataGridViewCellStyle8;
-            this.colEquipmentUnequip.HeaderText = "Unequip";
+            this.colEquipmentUnequip.HeaderText = "";
             this.colEquipmentUnequip.Name = "colEquipmentUnequip";
             this.colEquipmentUnequip.ReadOnly = true;
             this.colEquipmentUnequip.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colEquipmentUnequip.Text = "Unequip";
             this.colEquipmentUnequip.UseColumnTextForButtonValue = true;
-            this.colEquipmentUnequip.Width = 50;
+            this.colEquipmentUnequip.Width = 60;
             // 
             // tbpSpells
             // 
             this.tbpSpells.Controls.Add(this.dgvSpells);
-            this.tbpSpells.Location = new System.Drawing.Point(4, 25);
+            this.tbpSpells.Location = new System.Drawing.Point(4, 30);
             this.tbpSpells.Name = "tbpSpells";
-            this.tbpSpells.Size = new System.Drawing.Size(296, 181);
+            this.tbpSpells.Size = new System.Drawing.Size(322, 199);
             this.tbpSpells.TabIndex = 2;
             this.tbpSpells.Text = "Spells";
             this.tbpSpells.UseVisualStyleBackColor = true;
@@ -481,8 +517,8 @@
             this.dgvSpells.AllowUserToDeleteRows = false;
             this.dgvSpells.AllowUserToResizeColumns = false;
             this.dgvSpells.AllowUserToResizeRows = false;
+            this.dgvSpells.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvSpells.ColumnHeadersVisible = false;
             this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSpellID,
             this.colSpellName,
@@ -493,7 +529,7 @@
             this.dgvSpells.ReadOnly = true;
             this.dgvSpells.RowHeadersVisible = false;
             this.dgvSpells.RowTemplate.Height = 24;
-            this.dgvSpells.Size = new System.Drawing.Size(273, 181);
+            this.dgvSpells.Size = new System.Drawing.Size(322, 199);
             this.dgvSpells.TabIndex = 12;
             // 
             // colSpellID
@@ -502,27 +538,33 @@
             this.colSpellID.Name = "colSpellID";
             this.colSpellID.ReadOnly = true;
             this.colSpellID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSpellID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colSpellID.Visible = false;
             // 
             // colSpellName
             // 
+            this.colSpellName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colSpellName.HeaderText = "Name";
             this.colSpellName.Name = "colSpellName";
             this.colSpellName.ReadOnly = true;
             this.colSpellName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSpellName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colSpellManaCost
             // 
             this.colSpellManaCost.HeaderText = "Mana Cost";
             this.colSpellManaCost.Name = "colSpellManaCost";
             this.colSpellManaCost.ReadOnly = true;
+            this.colSpellManaCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSpellManaCost.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colSpellManaCost.Width = 50;
             // 
             // colSpellCast
             // 
-            this.colSpellCast.HeaderText = "Cast";
+            this.colSpellCast.HeaderText = "";
             this.colSpellCast.Name = "colSpellCast";
             this.colSpellCast.ReadOnly = true;
+            this.colSpellCast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colSpellCast.Text = "Cast";
             this.colSpellCast.UseColumnTextForButtonValue = true;
             this.colSpellCast.Width = 50;
@@ -530,9 +572,9 @@
             // tbpQuests
             // 
             this.tbpQuests.Controls.Add(this.dgvQuests);
-            this.tbpQuests.Location = new System.Drawing.Point(4, 25);
+            this.tbpQuests.Location = new System.Drawing.Point(4, 30);
             this.tbpQuests.Name = "tbpQuests";
-            this.tbpQuests.Size = new System.Drawing.Size(296, 181);
+            this.tbpQuests.Size = new System.Drawing.Size(322, 199);
             this.tbpQuests.TabIndex = 3;
             this.tbpQuests.Text = "Quests";
             this.tbpQuests.UseVisualStyleBackColor = true;
@@ -543,8 +585,8 @@
             this.dgvQuests.AllowUserToDeleteRows = false;
             this.dgvQuests.AllowUserToResizeColumns = false;
             this.dgvQuests.AllowUserToResizeRows = false;
+            this.dgvQuests.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvQuests.ColumnHeadersVisible = false;
             this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colQuestID,
             this.colQuestName,
@@ -554,7 +596,7 @@
             this.dgvQuests.ReadOnly = true;
             this.dgvQuests.RowHeadersVisible = false;
             this.dgvQuests.RowTemplate.Height = 24;
-            this.dgvQuests.Size = new System.Drawing.Size(273, 181);
+            this.dgvQuests.Size = new System.Drawing.Size(322, 199);
             this.dgvQuests.TabIndex = 12;
             // 
             // colQuestID
@@ -563,27 +605,33 @@
             this.colQuestID.Name = "colQuestID";
             this.colQuestID.ReadOnly = true;
             this.colQuestID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuestID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colQuestID.Visible = false;
             // 
             // colQuestName
             // 
+            this.colQuestName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colQuestName.HeaderText = "Name";
             this.colQuestName.Name = "colQuestName";
             this.colQuestName.ReadOnly = true;
             this.colQuestName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuestName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // colQuestStatus
             // 
+            this.colQuestStatus.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.colQuestStatus.HeaderText = "Status";
             this.colQuestStatus.Name = "colQuestStatus";
             this.colQuestStatus.ReadOnly = true;
             this.colQuestStatus.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuestStatus.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             // 
             // btnInn
             // 
-            this.btnInn.Location = new System.Drawing.Point(728, 661);
+            this.btnInn.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnInn.Location = new System.Drawing.Point(1260, 630);
             this.btnInn.Name = "btnInn";
-            this.btnInn.Size = new System.Drawing.Size(75, 23);
+            this.btnInn.Size = new System.Drawing.Size(118, 42);
             this.btnInn.TabIndex = 12;
             this.btnInn.Text = "Inn";
             this.btnInn.UseVisualStyleBackColor = true;
@@ -591,9 +639,10 @@
             // 
             // btnShop
             // 
-            this.btnShop.Location = new System.Drawing.Point(728, 701);
+            this.btnShop.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnShop.Location = new System.Drawing.Point(1260, 704);
             this.btnShop.Name = "btnShop";
-            this.btnShop.Size = new System.Drawing.Size(75, 23);
+            this.btnShop.Size = new System.Drawing.Size(118, 42);
             this.btnShop.TabIndex = 13;
             this.btnShop.Text = "Shop";
             this.btnShop.UseVisualStyleBackColor = true;
@@ -601,23 +650,14 @@
             // 
             // btnTalk
             // 
-            this.btnTalk.Location = new System.Drawing.Point(728, 746);
+            this.btnTalk.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnTalk.Location = new System.Drawing.Point(1260, 778);
             this.btnTalk.Name = "btnTalk";
-            this.btnTalk.Size = new System.Drawing.Size(75, 23);
+            this.btnTalk.Size = new System.Drawing.Size(118, 42);
             this.btnTalk.TabIndex = 14;
             this.btnTalk.Text = "Talk";
             this.btnTalk.UseVisualStyleBackColor = true;
             this.btnTalk.Click += new System.EventHandler(this.btnTalk_Click);
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(728, 607);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 15;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // pbPlayerHealth
             // 
@@ -738,16 +778,16 @@
             // 
             // lblLocationDescription
             // 
-            this.lblLocationDescription.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblLocationDescription.Location = new System.Drawing.Point(11, 232);
+            this.lblLocationDescription.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblLocationDescription.Location = new System.Drawing.Point(14, 232);
             this.lblLocationDescription.Name = "lblLocationDescription";
-            this.lblLocationDescription.Size = new System.Drawing.Size(308, 57);
+            this.lblLocationDescription.Size = new System.Drawing.Size(402, 57);
             this.lblLocationDescription.TabIndex = 25;
             this.lblLocationDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // pbLocationPicture
             // 
-            this.pbLocationPicture.Location = new System.Drawing.Point(103, 79);
+            this.pbLocationPicture.Location = new System.Drawing.Point(153, 79);
             this.pbLocationPicture.Name = "pbLocationPicture";
             this.pbLocationPicture.Size = new System.Drawing.Size(125, 125);
             this.pbLocationPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -756,7 +796,7 @@
             // 
             // pbEnemyPicture
             // 
-            this.pbEnemyPicture.Location = new System.Drawing.Point(103, 79);
+            this.pbEnemyPicture.Location = new System.Drawing.Point(153, 79);
             this.pbEnemyPicture.Name = "pbEnemyPicture";
             this.pbEnemyPicture.Size = new System.Drawing.Size(125, 125);
             this.pbEnemyPicture.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -765,19 +805,19 @@
             // 
             // lblEnemyName
             // 
-            this.lblEnemyName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnemyName.Location = new System.Drawing.Point(11, 10);
+            this.lblEnemyName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnemyName.Location = new System.Drawing.Point(14, 10);
             this.lblEnemyName.Name = "lblEnemyName";
-            this.lblEnemyName.Size = new System.Drawing.Size(308, 36);
+            this.lblEnemyName.Size = new System.Drawing.Size(402, 36);
             this.lblEnemyName.TabIndex = 28;
             this.lblEnemyName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblEnemyDescription
             // 
-            this.lblEnemyDescription.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblEnemyDescription.Location = new System.Drawing.Point(11, 232);
+            this.lblEnemyDescription.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblEnemyDescription.Location = new System.Drawing.Point(14, 232);
             this.lblEnemyDescription.Name = "lblEnemyDescription";
-            this.lblEnemyDescription.Size = new System.Drawing.Size(308, 57);
+            this.lblEnemyDescription.Size = new System.Drawing.Size(402, 57);
             this.lblEnemyDescription.TabIndex = 29;
             this.lblEnemyDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
@@ -1206,46 +1246,14 @@
             this.colBattleSpellsName,
             this.colBattleSpellsManaCost,
             this.colBattleSpellsCast});
-            this.dgvBattleSpells.Location = new System.Drawing.Point(449, 625);
+            this.dgvBattleSpells.Location = new System.Drawing.Point(380, 630);
             this.dgvBattleSpells.Name = "dgvBattleSpells";
             this.dgvBattleSpells.ReadOnly = true;
             this.dgvBattleSpells.RowHeadersVisible = false;
             this.dgvBattleSpells.RowTemplate.Height = 24;
-            this.dgvBattleSpells.Size = new System.Drawing.Size(240, 150);
+            this.dgvBattleSpells.Size = new System.Drawing.Size(331, 116);
             this.dgvBattleSpells.TabIndex = 33;
             this.dgvBattleSpells.Visible = false;
-            // 
-            // colBattleSpellsID
-            // 
-            this.colBattleSpellsID.HeaderText = "ID";
-            this.colBattleSpellsID.Name = "colBattleSpellsID";
-            this.colBattleSpellsID.ReadOnly = true;
-            this.colBattleSpellsID.Visible = false;
-            // 
-            // colBattleSpellsName
-            // 
-            this.colBattleSpellsName.HeaderText = "Name";
-            this.colBattleSpellsName.Name = "colBattleSpellsName";
-            this.colBattleSpellsName.ReadOnly = true;
-            this.colBattleSpellsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            // 
-            // colBattleSpellsManaCost
-            // 
-            this.colBattleSpellsManaCost.HeaderText = "Mana Cost";
-            this.colBattleSpellsManaCost.Name = "colBattleSpellsManaCost";
-            this.colBattleSpellsManaCost.ReadOnly = true;
-            this.colBattleSpellsManaCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleSpellsManaCost.Width = 30;
-            // 
-            // colBattleSpellsCast
-            // 
-            this.colBattleSpellsCast.HeaderText = "Cast";
-            this.colBattleSpellsCast.Name = "colBattleSpellsCast";
-            this.colBattleSpellsCast.ReadOnly = true;
-            this.colBattleSpellsCast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleSpellsCast.Text = "Cast";
-            this.colBattleSpellsCast.UseColumnTextForButtonValue = true;
-            this.colBattleSpellsCast.Width = 40;
             // 
             // dgvBattleItems
             // 
@@ -1260,53 +1268,20 @@
             this.colBattleItemsName,
             this.colBattleItemsQuantity,
             this.colBattleItemsUse});
-            this.dgvBattleItems.Location = new System.Drawing.Point(449, 625);
+            this.dgvBattleItems.Location = new System.Drawing.Point(380, 630);
             this.dgvBattleItems.Name = "dgvBattleItems";
             this.dgvBattleItems.ReadOnly = true;
             this.dgvBattleItems.RowHeadersVisible = false;
             this.dgvBattleItems.RowTemplate.Height = 24;
-            this.dgvBattleItems.Size = new System.Drawing.Size(240, 150);
+            this.dgvBattleItems.Size = new System.Drawing.Size(331, 116);
             this.dgvBattleItems.TabIndex = 34;
-            // 
-            // colBattleItemsID
-            // 
-            this.colBattleItemsID.HeaderText = "ID";
-            this.colBattleItemsID.Name = "colBattleItemsID";
-            this.colBattleItemsID.ReadOnly = true;
-            this.colBattleItemsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsID.Visible = false;
-            // 
-            // colBattleItemsName
-            // 
-            this.colBattleItemsName.HeaderText = "Name";
-            this.colBattleItemsName.Name = "colBattleItemsName";
-            this.colBattleItemsName.ReadOnly = true;
-            this.colBattleItemsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsName.Width = 80;
-            // 
-            // colBattleItemsQuantity
-            // 
-            this.colBattleItemsQuantity.HeaderText = "Quantity";
-            this.colBattleItemsQuantity.Name = "colBattleItemsQuantity";
-            this.colBattleItemsQuantity.ReadOnly = true;
-            this.colBattleItemsQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsQuantity.Width = 30;
-            // 
-            // colBattleItemsUse
-            // 
-            this.colBattleItemsUse.HeaderText = "Use";
-            this.colBattleItemsUse.Name = "colBattleItemsUse";
-            this.colBattleItemsUse.ReadOnly = true;
-            this.colBattleItemsUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsUse.Text = "Use";
-            this.colBattleItemsUse.UseColumnTextForButtonValue = true;
-            this.colBattleItemsUse.Width = 40;
             // 
             // btnClose
             // 
-            this.btnClose.Location = new System.Drawing.Point(357, 658);
+            this.btnClose.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnClose.Location = new System.Drawing.Point(761, 630);
             this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.Size = new System.Drawing.Size(118, 42);
             this.btnClose.TabIndex = 35;
             this.btnClose.Text = "Close";
             this.btnClose.UseVisualStyleBackColor = true;
@@ -1315,9 +1290,10 @@
             // 
             // btnEmpower
             // 
-            this.btnEmpower.Location = new System.Drawing.Point(357, 698);
+            this.btnEmpower.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnEmpower.Location = new System.Drawing.Point(380, 778);
             this.btnEmpower.Name = "btnEmpower";
-            this.btnEmpower.Size = new System.Drawing.Size(75, 23);
+            this.btnEmpower.Size = new System.Drawing.Size(116, 42);
             this.btnEmpower.TabIndex = 36;
             this.btnEmpower.Text = "Empower";
             this.btnEmpower.UseVisualStyleBackColor = true;
@@ -1325,9 +1301,10 @@
             // 
             // btnGreed
             // 
-            this.btnGreed.Location = new System.Drawing.Point(357, 736);
+            this.btnGreed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnGreed.Location = new System.Drawing.Point(593, 778);
             this.btnGreed.Name = "btnGreed";
-            this.btnGreed.Size = new System.Drawing.Size(75, 23);
+            this.btnGreed.Size = new System.Drawing.Size(116, 42);
             this.btnGreed.TabIndex = 37;
             this.btnGreed.Text = "Greed";
             this.btnGreed.UseVisualStyleBackColor = true;
@@ -1341,7 +1318,7 @@
             this.pnPlayerLocation.Controls.Add(this.lblLocationDescription);
             this.pnPlayerLocation.Location = new System.Drawing.Point(330, 0);
             this.pnPlayerLocation.Name = "pnPlayerLocation";
-            this.pnPlayerLocation.Size = new System.Drawing.Size(330, 300);
+            this.pnPlayerLocation.Size = new System.Drawing.Size(431, 300);
             this.pnPlayerLocation.TabIndex = 38;
             // 
             // pnCurrentEnemy
@@ -1352,26 +1329,185 @@
             this.pnCurrentEnemy.Controls.Add(this.lblEnemyName);
             this.pnCurrentEnemy.Location = new System.Drawing.Point(330, 300);
             this.pnCurrentEnemy.Name = "pnCurrentEnemy";
-            this.pnCurrentEnemy.Size = new System.Drawing.Size(330, 300);
+            this.pnCurrentEnemy.Size = new System.Drawing.Size(431, 300);
             this.pnCurrentEnemy.TabIndex = 39;
+            // 
+            // pnInventory
+            // 
+            this.pnInventory.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.pnInventory.Controls.Add(this.tbcInventory);
+            this.pnInventory.Location = new System.Drawing.Point(0, 600);
+            this.pnInventory.Name = "pnInventory";
+            this.pnInventory.Size = new System.Drawing.Size(330, 233);
+            this.pnInventory.TabIndex = 40;
+            // 
+            // colBattleItemsID
+            // 
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsID.DefaultCellStyle = dataGridViewCellStyle13;
+            this.colBattleItemsID.HeaderText = "ID";
+            this.colBattleItemsID.Name = "colBattleItemsID";
+            this.colBattleItemsID.ReadOnly = true;
+            this.colBattleItemsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colBattleItemsID.Visible = false;
+            // 
+            // colBattleItemsName
+            // 
+            this.colBattleItemsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsName.DefaultCellStyle = dataGridViewCellStyle14;
+            this.colBattleItemsName.HeaderText = "Name";
+            this.colBattleItemsName.Name = "colBattleItemsName";
+            this.colBattleItemsName.ReadOnly = true;
+            this.colBattleItemsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colBattleItemsQuantity
+            // 
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsQuantity.DefaultCellStyle = dataGridViewCellStyle15;
+            this.colBattleItemsQuantity.HeaderText = "Quantity";
+            this.colBattleItemsQuantity.Name = "colBattleItemsQuantity";
+            this.colBattleItemsQuantity.ReadOnly = true;
+            this.colBattleItemsQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colBattleItemsQuantity.Width = 40;
+            // 
+            // colBattleItemsUse
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsUse.DefaultCellStyle = dataGridViewCellStyle16;
+            this.colBattleItemsUse.HeaderText = "Use";
+            this.colBattleItemsUse.Name = "colBattleItemsUse";
+            this.colBattleItemsUse.ReadOnly = true;
+            this.colBattleItemsUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsUse.Text = "Use";
+            this.colBattleItemsUse.UseColumnTextForButtonValue = true;
+            this.colBattleItemsUse.Width = 35;
+            // 
+            // colBattleSpellsID
+            // 
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsID.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colBattleSpellsID.HeaderText = "ID";
+            this.colBattleSpellsID.Name = "colBattleSpellsID";
+            this.colBattleSpellsID.ReadOnly = true;
+            this.colBattleSpellsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colBattleSpellsID.Visible = false;
+            // 
+            // colBattleSpellsName
+            // 
+            this.colBattleSpellsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsName.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colBattleSpellsName.HeaderText = "Name";
+            this.colBattleSpellsName.Name = "colBattleSpellsName";
+            this.colBattleSpellsName.ReadOnly = true;
+            this.colBattleSpellsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colBattleSpellsManaCost
+            // 
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsManaCost.DefaultCellStyle = dataGridViewCellStyle11;
+            this.colBattleSpellsManaCost.HeaderText = "Mana Cost";
+            this.colBattleSpellsManaCost.Name = "colBattleSpellsManaCost";
+            this.colBattleSpellsManaCost.ReadOnly = true;
+            this.colBattleSpellsManaCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsManaCost.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colBattleSpellsManaCost.Width = 50;
+            // 
+            // colBattleSpellsCast
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsCast.DefaultCellStyle = dataGridViewCellStyle12;
+            this.colBattleSpellsCast.HeaderText = "Cast";
+            this.colBattleSpellsCast.Name = "colBattleSpellsCast";
+            this.colBattleSpellsCast.ReadOnly = true;
+            this.colBattleSpellsCast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsCast.Text = "Cast";
+            this.colBattleSpellsCast.UseColumnTextForButtonValue = true;
+            this.colBattleSpellsCast.Width = 50;
+            // 
+            // pnEmpower1
+            // 
+            this.pnEmpower1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
+            this.pnEmpower1.Location = new System.Drawing.Point(380, 819);
+            this.pnEmpower1.Name = "pnEmpower1";
+            this.pnEmpower1.Size = new System.Drawing.Size(29, 14);
+            this.pnEmpower1.TabIndex = 41;
+            // 
+            // pnEmpower2
+            // 
+            this.pnEmpower2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(162)))), ((int)(((byte)(9)))));
+            this.pnEmpower2.Location = new System.Drawing.Point(409, 819);
+            this.pnEmpower2.Name = "pnEmpower2";
+            this.pnEmpower2.Size = new System.Drawing.Size(29, 14);
+            this.pnEmpower2.TabIndex = 42;
+            // 
+            // pnEmpower3
+            // 
+            this.pnEmpower3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(0)))));
+            this.pnEmpower3.Location = new System.Drawing.Point(438, 819);
+            this.pnEmpower3.Name = "pnEmpower3";
+            this.pnEmpower3.Size = new System.Drawing.Size(29, 14);
+            this.pnEmpower3.TabIndex = 42;
+            // 
+            // pnEmpower4
+            // 
+            this.pnEmpower4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(200)))), ((int)(((byte)(12)))));
+            this.pnEmpower4.Location = new System.Drawing.Point(467, 819);
+            this.pnEmpower4.Name = "pnEmpower4";
+            this.pnEmpower4.Size = new System.Drawing.Size(29, 14);
+            this.pnEmpower4.TabIndex = 42;
+            // 
+            // pbGreed
+            // 
+            this.pbGreed.Image = ((System.Drawing.Image)(resources.GetObject("pbGreed.Image")));
+            this.pbGreed.Location = new System.Drawing.Point(506, 752);
+            this.pbGreed.Name = "pbGreed";
+            this.pbGreed.Size = new System.Drawing.Size(81, 81);
+            this.pbGreed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbGreed.TabIndex = 43;
+            this.pbGreed.TabStop = false;
+            // 
+            // pbEmpower
+            // 
+            this.pbEmpower.Image = ((System.Drawing.Image)(resources.GetObject("pbEmpower.Image")));
+            this.pbEmpower.Location = new System.Drawing.Point(506, 752);
+            this.pbEmpower.Name = "pbEmpower";
+            this.pbEmpower.Size = new System.Drawing.Size(81, 81);
+            this.pbEmpower.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbEmpower.TabIndex = 44;
+            this.pbEmpower.TabStop = false;
             // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1153, 865);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.ClientSize = new System.Drawing.Size(1390, 833);
+            this.Controls.Add(this.pbEmpower);
+            this.Controls.Add(this.dgvBattleItems);
+            this.Controls.Add(this.dgvBattleSpells);
+            this.Controls.Add(this.pbGreed);
+            this.Controls.Add(this.pnEmpower4);
+            this.Controls.Add(this.pnEmpower3);
+            this.Controls.Add(this.pnEmpower2);
+            this.Controls.Add(this.pnEmpower1);
+            this.Controls.Add(this.pnInventory);
             this.Controls.Add(this.pnCurrentEnemy);
             this.Controls.Add(this.pnPlayerLocation);
             this.Controls.Add(this.btnGreed);
-            this.Controls.Add(this.button1);
             this.Controls.Add(this.btnEmpower);
             this.Controls.Add(this.btnClose);
-            this.Controls.Add(this.dgvBattleItems);
-            this.Controls.Add(this.dgvBattleSpells);
             this.Controls.Add(this.btnTalk);
             this.Controls.Add(this.btnShop);
             this.Controls.Add(this.btnInn);
-            this.Controls.Add(this.tbcInventory);
             this.Controls.Add(this.btnRun);
             this.Controls.Add(this.btnItems);
             this.Controls.Add(this.btnMagic);
@@ -1383,6 +1519,7 @@
             this.Controls.Add(this.btnWest);
             this.Controls.Add(this.btnNorth);
             this.Controls.Add(this.pnPlayerStats);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -1421,6 +1558,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvBattleItems)).EndInit();
             this.pnPlayerLocation.ResumeLayout(false);
             this.pnCurrentEnemy.ResumeLayout(false);
+            this.pnInventory.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.pbGreed)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pbEmpower)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1450,10 +1590,6 @@
         private System.Windows.Forms.Button btnInn;
         private System.Windows.Forms.Button btnShop;
         private System.Windows.Forms.Button btnTalk;
-        private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
         private System.Windows.Forms.PictureBox pbPlayerHealth;
         private System.Windows.Forms.PictureBox pbPlayerStrength;
         private System.Windows.Forms.PictureBox pbPlayerMana;
@@ -1485,20 +1621,8 @@
         private System.Windows.Forms.Label lblPlayerMana;
         private System.Windows.Forms.Label lblPlayerHealth;
         private System.Windows.Forms.Label lblPlayerExperience;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellManaCost;
-        private DataGridViewDisableButtonColumn colSpellCast;
         private System.Windows.Forms.DataGridView dgvBattleSpells;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsManaCost;
-        private DataGridViewDisableButtonColumn colBattleSpellsCast;
         private System.Windows.Forms.DataGridView dgvBattleItems;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsQuantity;
-        private DataGridViewDisableButtonColumn colBattleItemsUse;
         private System.Windows.Forms.Button btnClose;
         private System.Windows.Forms.Button btnEmpower;
         private System.Windows.Forms.Button btnGreed;
@@ -1527,15 +1651,37 @@
         private System.Windows.Forms.PictureBox pbPlayerDodgeChance;
         private System.Windows.Forms.Label lblPlayerClass;
         private System.Windows.Forms.Label lblPlayerClassLabel;
+        private System.Windows.Forms.Panel pnInventory;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
+        private DataGridViewDisableButtonColumn colEquipmentEquip;
+        private DataGridViewDisableButtonColumn colEquipmentUnequip;
         private System.Windows.Forms.DataGridViewTextBoxColumn colItemID;
         private System.Windows.Forms.DataGridViewTextBoxColumn colItemName;
         private System.Windows.Forms.DataGridViewTextBoxColumn colItemQuantity;
         private DataGridViewDisableButtonColumn colItemUse;
         private System.Windows.Forms.DataGridViewImageColumn test;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
-        private DataGridViewDisableButtonColumn colEquipmentEquip;
-        private DataGridViewDisableButtonColumn colEquipmentUnequip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellManaCost;
+        private DataGridViewDisableButtonColumn colSpellCast;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsQuantity;
+        private DataGridViewDisableButtonColumn colBattleItemsUse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsManaCost;
+        private DataGridViewDisableButtonColumn colBattleSpellsCast;
+        private System.Windows.Forms.Panel pnEmpower1;
+        private System.Windows.Forms.Panel pnEmpower2;
+        private System.Windows.Forms.Panel pnEmpower3;
+        private System.Windows.Forms.Panel pnEmpower4;
+        private System.Windows.Forms.PictureBox pbGreed;
+        private System.Windows.Forms.PictureBox pbEmpower;
     }
 }
 

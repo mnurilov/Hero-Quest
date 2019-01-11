@@ -1,3 +1,10 @@
+SortMode - NotSortable, Programmatic
+Sort
+Resizeable
+Readonly
+AutoSizeMode
+Width
+
 <-----Things to Do----->
 -Bosses
 -I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY

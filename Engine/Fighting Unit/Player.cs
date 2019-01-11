@@ -575,7 +575,6 @@ namespace Engine
             else if (Empowered)
             {
                 empoweredGreedModifier = EmpoweredModifier;
-                ResetEmpowerment();
             }
 
             //If the enemy would dodge the attack do not calculate damage
@@ -662,7 +661,6 @@ namespace Engine
             else if (Empowered)
             {
                 empoweredGreedModifier = EmpoweredModifier;
-                ResetEmpowerment();
             }
 
             //Depending on the item type being used calculate the item effect value accordingly
@@ -774,7 +772,6 @@ namespace Engine
             else if (Empowered)
             {
                 empoweredGreedModifier = EmpoweredModifier;
-                ResetEmpowerment();
             }
 
             //If the enemy would dodge the attack do not calculate spell damage
@@ -824,7 +821,6 @@ namespace Engine
             else if (Empowered)
             {
                 empoweredGreedModifier = EmpoweredModifier;
-                ResetEmpowerment();
             }
 
             CurrentMana -= replenishSpell.ManaCost;
@@ -940,6 +936,7 @@ namespace Engine
             if(EmpowerCounter == EmpowerCounterCap)
             {
                 Empowered = true;
+                EmpowerCounter = 0;
             }
         }
 

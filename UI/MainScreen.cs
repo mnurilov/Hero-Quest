@@ -185,9 +185,21 @@ namespace UI
 
         private void UpdateEnemy()
         {
-            lblEnemyName.Text = gameSession.CurrentEnemy?.Name;
-            lblEnemyDescription.Text = gameSession.CurrentEnemy?.Description;
-            SetImage(pbEnemyPicture, gameSession.CurrentEnemy?.Name);
+            if(gameSession.CurrentEnemy != null)
+            {
+                if (gameSession.CurrentEnemy.CurrentHealth > 0)
+                {
+                    lblEnemyName.Text = gameSession.CurrentEnemy?.Name;
+                    lblEnemyDescription.Text = gameSession.CurrentEnemy?.Description;
+                    SetImage(pbEnemyPicture, gameSession.CurrentEnemy?.Name);
+                }
+                else
+                {
+                    lblEnemyName.Text = "";
+                    lblEnemyDescription.Text = "";
+                    SetImage(pbEnemyPicture, null);
+                }
+            }
         }
 
         private void UpdateDGVs()
@@ -209,6 +221,10 @@ namespace UI
                 if (!CheckIfInDGV(item.Key.ID, dgvItems))
                 {
                     dgvItems.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                }
+                else
+                {
+                    continue;
                 }
 
                 if(gameSession.GameStates == GameSession.GameState.Battle)
@@ -235,6 +251,8 @@ namespace UI
 
                 rowIndex++;
             }
+
+            dgvItems.Sort(colItemID, ListSortDirection.Ascending);
         }
 
         private void UpdateDGVEquipment()
@@ -246,6 +264,10 @@ namespace UI
                 if (!CheckIfInDGV(equipment.ID, dgvEquipment))
                 {
                     dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
+                }
+                else
+                {
+                    continue;
                 }
             
                 if (gameSession.GameStates == GameSession.GameState.Battle)
@@ -272,8 +294,7 @@ namespace UI
                 rowIndex++;
             }
             
-            //dgvEquipment.CellClick += dgvEquipment_CellClick;
-            //dgvEquipment.CellClick += dgvEquipment2_CellClick;
+            dgvEquipment.Sort(colEquipmentID, ListSortDirection.Ascending);
         }
 
         private void UpdateDGVSpells()
@@ -285,6 +306,10 @@ namespace UI
                 if (!CheckIfInDGV(spell.ID, dgvSpells))
                 {
                     dgvSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
+                }
+                else
+                {
+                    continue;
                 }
 
                 if (gameSession.GameStates == GameSession.GameState.Battle)
@@ -301,6 +326,8 @@ namespace UI
 
                 rowIndex++;
             }
+
+            dgvSpells.Sort(colSpellID, ListSortDirection.Ascending);
         }
 
         private void UpdateDGVQuests()
@@ -327,16 +354,21 @@ namespace UI
                     //Sets color of status to green if complete yellow if incomplete
                     if (quest.IsCompleted)
                     {
-                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.LawnGreen;
+                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.FromArgb(28, 237, 91);
                     }
                     else
                     {
-                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.PaleGoldenrod;
+                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.FromArgb(242, 255, 145);
                     }
+                }
+                else
+                {
+                    continue;
                 }
                 rowIndex++;
             }
-            //dgvQuests.CellClick += dgvQuests_CellClick;
+
+            dgvQuests.Sort(colQuestID, ListSortDirection.Ascending);
         }
 
         private void UpdateDGVBattleSpells()
@@ -355,10 +387,15 @@ namespace UI
                     dgvBattleSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
                 }
 
-                //Make the cast button to be off when the player doesn't have enough mana
+                if(gameSession.CurrentPlayer.CurrentMana < spell.ManaCost)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvBattleSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
 
                 rowIndex++;
             }
+
+            dgvBattleSpells.Sort(colBattleSpellsID, ListSortDirection.Ascending);
         }
 
         private void UpdateDGVBattleItems()
@@ -379,6 +416,8 @@ namespace UI
                     }
                 }
             }
+
+            dgvBattleItems.Sort(colBattleItemsID, ListSortDirection.Ascending);
         }
 
         private bool CheckIfInDGV(int id, DataGridView dgv)
@@ -405,73 +444,74 @@ namespace UI
                 case GameSession.GameState.Travel:
                     if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth == null)
                     {
-                        btnNorth.Enabled = false;
+                        btnNorth.Visible = false;
                     }
                     else
                     {
-                        btnNorth.Enabled = true;
+                        btnNorth.Visible = true;
                     }
 
                     if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheSouth == null)
                     {
-                        btnSouth.Enabled = false;
+                        btnSouth.Visible = false;
                     }
                     else
                     {
-                        btnSouth.Enabled = true;
+                        btnSouth.Visible = true;
                     }
 
                     if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheWest == null)
                     {
-                        btnWest.Enabled = false;
+                        btnWest.Visible = false;
                     }
                     else
                     {
-                        btnWest.Enabled = true;
+                        btnWest.Visible = true;
                     }
 
                     if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheEast == null)
                     {
-                        btnEast.Enabled = false;
+                        btnEast.Visible = false;
                     }
                     else
                     {
-                        btnEast.Enabled = true;
+                        btnEast.Visible = true;
                     }
 
                     if (gameSession.CurrentPlayer.CurrentLocation.InnInLocation == null)
                     {
-                        btnInn.Enabled = false;
+                        btnInn.Visible = false;
                     }
                     else
                     {
-                        btnInn.Enabled = true;
+                        btnInn.Visible = true;
                     }
 
                     if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation == null)
                     {
-                        btnShop.Enabled = false;
+                        btnShop.Visible = false;
                     }
                     else
                     {
-                        btnShop.Enabled = true;
+                        btnShop.Visible = true;
                     }
 
                     if (gameSession.CurrentPlayer.CurrentLocation.QuestInLocation == null)
                     {
-                        btnTalk.Enabled = false;
+                        btnTalk.Visible = false;
                     }
                     else
                     {
-                        btnTalk.Enabled = true;
+                        btnTalk.Visible = true;
                     }
 
                     btnAttack.Visible = false;
                     btnMagic.Visible = false;
                     btnItems.Visible = false;
                     btnRun.Visible = false;
-                    btnEmpower.Visible = false;
+                    DisableEmpowerVisuals();
                     btnGreed.Visible = false;
+                    pbGreed.Visible = false;
                     btnClose.Visible = false;
                     break;
                 case GameSession.GameState.Battle:
@@ -487,19 +527,33 @@ namespace UI
                         btnRun.Enabled = true;
                     }
                     btnRun.Visible = true;
-                    btnNorth.Enabled = false;
-                    btnSouth.Enabled = false;
-                    btnWest.Enabled = false;
-                    btnEast.Enabled = false;
+                    btnNorth.Visible = false;
+                    btnSouth.Visible = false;
+                    btnWest.Visible = false;
+                    btnEast.Visible = false;
+                    btnMap.Visible = false;
+                    btnInn.Visible = false;
+                    btnShop.Visible = false;
+                    btnTalk.Visible = false;
+
+                    if (gameSession.TurnCounter == 1)
+                    {
+                        btnGreed.Visible = true;
+                    }
+                    else
+                    {
+                        btnGreed.Visible = false;
+                    }
 
                     if (gameSession.IsGreedActivated())
                     {
                         btnEmpower.Visible = false;
+                        btnGreed.Visible = false;
+                        pbGreed.Visible = true;
                     }
                     else
                     {
                         btnEmpower.Visible = true;
-
                     }
 
                     if (gameSession.CanActivateEmpowerment())
@@ -511,15 +565,47 @@ namespace UI
                         btnEmpower.Enabled = false;
                     }
 
-                    if (gameSession.TurnCounter == 1)
+                    if (gameSession.IsEmpowered())
                     {
-                        btnGreed.Visible = true;
+                        pbEmpower.Visible = true;
                     }
-                    else
+
+                    if(gameSession.CurrentPlayer.EmpowerCounter == 0)
                     {
-                        btnGreed.Visible = false;
+                        pnEmpower1.Visible = false;
+                        pnEmpower2.Visible = false;
+                        pnEmpower3.Visible = false;
+                        pnEmpower4.Visible = false;
                     }
-                    
+                    else if(gameSession.CurrentPlayer.EmpowerCounter == 1)
+                    {
+                        pnEmpower1.Visible = true;
+                        pnEmpower2.Visible = false;
+                        pnEmpower3.Visible = false;
+                        pnEmpower4.Visible = false;
+                    }
+                    else if(gameSession.CurrentPlayer.EmpowerCounter == 2)
+                    {
+                        pnEmpower1.Visible = true;
+                        pnEmpower2.Visible = true;
+                        pnEmpower3.Visible = false;
+                        pnEmpower4.Visible = false;
+                    }
+                    else if (gameSession.CurrentPlayer.EmpowerCounter == 3)
+                    {
+                        pnEmpower1.Visible = true;
+                        pnEmpower2.Visible = true;
+                        pnEmpower3.Visible = true;
+                        pnEmpower4.Visible = false;
+                    }
+                    else if (gameSession.CurrentPlayer.EmpowerCounter == 4)
+                    {
+                        pnEmpower1.Visible = true;
+                        pnEmpower2.Visible = true;
+                        pnEmpower3.Visible = true;
+                        pnEmpower4.Visible = true;
+                    }
+
                     break;
                 case GameSession.GameState.GameOver:
                     break;
@@ -528,7 +614,7 @@ namespace UI
 
         private void DisplayWorldText(object o, MessageEventArgs e)
         {
-            rtbWorldText.Text += e.Message + "\n";
+            rtbWorldText.Text += "~" + e.Message + "\n";
         }
         
         private void rtbWorldText_TextChanged(object sender, EventArgs e)
@@ -579,10 +665,25 @@ namespace UI
             btnClose.Visible = true;
         }
 
+        private void DisableEmpowerVisuals()
+        {
+            btnEmpower.Visible = false;
+            pnEmpower1.Visible = false;
+            pnEmpower2.Visible = false;
+            pnEmpower3.Visible = false;
+            pnEmpower4.Visible = false;
+            pbEmpower.Visible = false;
+        }
+
 
         //<-------------Event Functions------------->
         private void dgvItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+
             if (e.ColumnIndex != 3)
             {
                 var itemID = dgvItems.Rows[e.RowIndex].Cells[0].Value;
@@ -595,6 +696,7 @@ namespace UI
                 UpdateUI();
                 return;
             }
+
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -606,19 +708,25 @@ namespace UI
 
             // The 4th column has the "Use" button.
             // Row Index is not -1 is to make sure the user can't buy the column names
-            if (e.ColumnIndex == 3 && e.RowIndex != -1)
+            if (e.ColumnIndex == 3)
             {
                 // This gets the ID value of the entity, from the hidden 1st column
                 var itemID = dgvItems.Rows[e.RowIndex].Cells[0].Value;
-                
+
                 Item itemBeingUsed = World.FindItemByID(Convert.ToInt32(itemID));
                 gameSession.UseItemWhileTravelCommand(itemBeingUsed);
+                UpdateUI();
+                return;
             }
-            UpdateUI();
         }
 
         private void dgvEquipmentEquip_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex == -1)
+            {
+                return;
+            }
+            
             if (e.ColumnIndex != 3 && e.ColumnIndex != 2)
             {
                 var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
@@ -632,6 +740,7 @@ namespace UI
                 UpdateUI();
                 return;
             }
+
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -650,11 +759,17 @@ namespace UI
 
                 gameSession.EquipCommand(equipment);
                 UpdateUI();
+                return;
             }
         }
 
         private void dgvEquipmentUnequip_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -678,6 +793,11 @@ namespace UI
 
         private void dgvSpells_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if(e.RowIndex == -1)
+            {
+                return;
+            }
+
             if (e.ColumnIndex != 3)
             {
                 var spellID = dgvSpells.Rows[e.RowIndex].Cells[0].Value;
@@ -691,6 +811,7 @@ namespace UI
                 UpdateUI();
                 return;
             }
+
             if (gameSession.GameStates == GameSession.GameState.Battle)
             {
                 return;
@@ -714,6 +835,11 @@ namespace UI
 
         private void dgvQuests_CellClick(object sender, DataGridViewCellEventArgs e)
         {
+            if (e.RowIndex == -1)
+            {
+                return;
+            }
+
             var questID = dgvQuests.Rows[e.RowIndex].Cells[0].Value;
 
             // Get the quest object in the row
@@ -729,6 +855,10 @@ namespace UI
         private void dgvBattleSpells_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             if (gameSession.GameStates == GameSession.GameState.Travel)
+            {
+                return;
+            }
+            if (((DataGridViewDisableButtonCell)(dgvBattleSpells.Rows[e.RowIndex].Cells[3])).Enabled == false)
             {
                 return;
             }
@@ -822,14 +952,6 @@ namespace UI
             MapScreen mapScreen = new MapScreen(gameSession);
             mapScreen.StartPosition = FormStartPosition.CenterParent;
             mapScreen.ShowDialog(this);
-        }
-
-
-        private void button1_Click(object sender, EventArgs e)
-        {
-            InformationScreen informationScreen = new InformationScreen(gameSession, World.FindVendorByID(1));
-            informationScreen.StartPosition = FormStartPosition.CenterParent;
-            informationScreen.ShowDialog(this);
         }
 
         private void btnClose_Click(object sender, EventArgs e)

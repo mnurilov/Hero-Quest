@@ -46,6 +46,7 @@
             this.dgvPlayerInventory.AllowUserToDeleteRows = false;
             this.dgvPlayerInventory.AllowUserToResizeColumns = false;
             this.dgvPlayerInventory.AllowUserToResizeRows = false;
+            this.dgvPlayerInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvPlayerInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvPlayerInventory.Location = new System.Drawing.Point(12, 195);
             this.dgvPlayerInventory.Name = "dgvPlayerInventory";
@@ -61,6 +62,7 @@
             this.dgvVendorInventory.AllowUserToDeleteRows = false;
             this.dgvVendorInventory.AllowUserToResizeColumns = false;
             this.dgvVendorInventory.AllowUserToResizeRows = false;
+            this.dgvVendorInventory.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvVendorInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvVendorInventory.Location = new System.Drawing.Point(416, 195);
             this.dgvVendorInventory.Name = "dgvVendorInventory";

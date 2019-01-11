@@ -44,6 +44,7 @@ namespace Engine
         //<----------Vendor ID's---------->
         private const int VendorIDJohn = 1;
         private const int VendorIDBobby = 2;
+        private const int VendorIDJimmy = 3;
 
         //<----------Inn ID's---------->
         private const int InnIDParadise = 1;
@@ -280,9 +281,13 @@ namespace Engine
             john.AddToInventory(FindItemByID(3));
 
             Vendor bobby = new Vendor(VendorIDBobby, "Bobby", "A kind soul", null, new List<Equipment> { FindEquipmentByID(9) } );
+            bobby.AddToInventory(FindEquipmentByID(3));
+
+            Vendor jimmy = new Vendor(VendorIDJimmy, "Jimmy", "Doesn't care", null, null, new List<Spell> { FindSpellByID(1) } );
 
             vendors.Add(john);
             vendors.Add(bobby);
+            vendors.Add(jimmy);
         }
 
         private static void PopulateInns()
@@ -325,10 +330,10 @@ namespace Engine
 
             //<----------Enemy Creation---------->
             Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, null, "claws", ratLoots);
-            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 15, 15, 15, 15, 0, null, "fangs", snakeLoots);
+            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 10, 10, 15, 15, 0, null, "fangs", snakeLoots);
             //Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100, 0);
             //Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000, 0);
-            Enemy siren = new Enemy(EnemyIDSiren, "Siren", "She's hot", 30, 50, 5, 5, 5, 5, 10, 10, 30, 30, 20, 100, 50, sirenSpells, "tail");
+            Enemy siren = new Enemy(EnemyIDSiren, "Siren", "She's hot", 30, 50, 5, 5, 5, 5, 10, 10, 5, 5, 20, 100, 50, sirenSpells, "tail");
             Enemy swampMonster = new Enemy(EnemyIDSwampMonster, "Swamp Monster", "He isa swamp monster", 60, 0, 30, 5, 0, 0, 0, 0, 5, 2, 100, 300, 0);
 
             //<-----------Making a boss monster--------------->
@@ -420,6 +425,8 @@ namespace Engine
 
             //<----------Add vendors to the locations---------->
             town.VendorInLocation = FindVendorByID(1);
+            alley.VendorInLocation = FindVendorByID(2);
+            sewers.VendorInLocation = FindVendorByID(3);
 
             //<----------Add inns to the locations---------->
             town.InnInLocation = FindInnByID(1);

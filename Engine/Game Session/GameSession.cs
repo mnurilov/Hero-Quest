@@ -31,18 +31,22 @@ namespace Engine
         public GameSession()
         {
             //Fix this
-            CurrentPlayer = new Player(1, "Bob", Player.Class.Mage);
+            CurrentPlayer = new Player(1, "Bob", Player.Class.Thief);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(9), 10);
-            CurrentPlayer.PlayerItems.Add(World.FindItemByID(11), 3);
-            CurrentPlayer.PlayerItems.Add(World.FindItemByID(4), 3);
-            CurrentPlayer.PlayerItems.Add(World.FindItemByID(5), 5);
+            //CurrentPlayer.PlayerItems.Add(World.FindItemByID(11), 3);
+            //CurrentPlayer.PlayerItems.Add(World.FindItemByID(4), 3);
+            //CurrentPlayer.PlayerItems.Add(World.FindItemByID(5), 5);
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(1));
-            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
-            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
-            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
+            //CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(5));
+           // CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(7));
+            //CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(13));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(2));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(9));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(3));
+
+
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(3));

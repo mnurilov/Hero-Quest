@@ -70,23 +70,61 @@ namespace UI
             dgvPlayerInventory.Rows.Clear();
             dgvPlayerInventory.Columns.Clear();
 
-            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
-            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
-            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colGold", HeaderText = "Gold Value"});
-            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn { Name = "colQuantity", HeaderText = "Quantity" });
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn 
+            { 
+                Name = "colID", 
+                HeaderText = "ID", 
+                Resizable = DataGridViewTriState.False,
+                Visible = false,
+                ReadOnly = true,
+                SortMode = DataGridViewColumnSortMode.Programmatic,
+            });
+
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn
+            { 
+                Name = "colName", 
+                HeaderText = "Name",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+            });
+
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn 
+            { 
+                Name = "colQuantity", 
+                HeaderText = "Quantity",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                Width = 35,
+            });
+
+            dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn 
+            { 
+                Name = "colGold", 
+                HeaderText = "Gold Value",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                Width = 35,
+            });
+
             dgvPlayerInventory.Columns.Add(new DataGridViewButtonColumn
             {
                 Name = "btnSell",
                 HeaderText = "",
                 Text = "Sell 1",
-                UseColumnTextForButtonValue = true
+                UseColumnTextForButtonValue = true,
+                ReadOnly = true,
+                Width = 40,
             });
 
             foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
             {
                 if (!CheckIfInDGV(item.Key.ID, dgvPlayerInventory))
                 {
-                    dgvPlayerInventory.Rows.Add(item.Key.ID, item.Key.Name, item.Key.SellingGoldValue, item.Value);
+                    dgvPlayerInventory.Rows.Add(item.Key.ID, item.Key.Name, item.Value, item.Key.SellingGoldValue);
                 }
             }
         }
