@@ -21,3 +21,7 @@ UI Stuff
 For Debugging
 -Add an add all items equipment spells and quests function so I can have all things
 -A clear map function which allows me to see everything 
+
+Big L 
+Star
+Color based on status

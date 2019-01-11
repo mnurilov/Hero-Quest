@@ -77,6 +77,23 @@ namespace UI
             string normalBonus = " (+";
             string alternativeBonus = " (";
 
+            lblPlayerName.Text = gameSession.CurrentPlayer.Name;
+
+            lblPlayerClass.Text = gameSession.CurrentPlayer.GetClass().ToString();
+
+            switch (gameSession.CurrentPlayer.GetClass())
+            {
+                case Player.Class.Warrior:
+                    SetImage(pbPlayerClass, Player.Class.Warrior.ToString());
+                    break;
+                case Player.Class.Mage:
+                    SetImage(pbPlayerClass, Player.Class.Mage.ToString());
+                    break;
+                case Player.Class.Thief:
+                    SetImage(pbPlayerClass, Player.Class.Thief.ToString());
+                    break;
+            }
+
             lblPlayerLevel.Text = gameSession.CurrentPlayer.Level.ToString();
 
             lblPlayerExperience.Text = gameSession.CurrentPlayer.CurrentExperiencePoints + "/" + 
@@ -153,6 +170,10 @@ namespace UI
             }
             
             lblPlayerGold.Text = gameSession.CurrentPlayer.Gold.ToString();
+
+            lblPlayerCriticalChance.Text = ((int)gameSession.CurrentPlayer.CriticalChanceRate).ToString() + "%";
+
+            lblPlayerDodgeChance.Text = ((int)gameSession.CurrentPlayer.DodgeChanceRate).ToString() + "%";
         }
 
         private void UpdateLocation()

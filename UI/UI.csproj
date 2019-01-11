@@ -173,7 +173,6 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Health.png" />
-    <EmbeddedResource Include="Images\Mana.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Damage.png" />
@@ -190,6 +189,14 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Healing.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Mana.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Mage.png" />
+    <EmbeddedResource Include="Images\Thief.png" />
+    <EmbeddedResource Include="Images\Warrior.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

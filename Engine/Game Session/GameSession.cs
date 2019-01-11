@@ -31,7 +31,7 @@ namespace Engine
         public GameSession()
         {
             //Fix this
-            CurrentPlayer = new Player(1, "Bob", Player.Class.Thief);
+            CurrentPlayer = new Player(1, "Bob", Player.Class.Mage);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(9), 10);
