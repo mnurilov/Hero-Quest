@@ -664,14 +664,14 @@ namespace UI
 
         private void OpenBattleSpells()
         {
-            UpdateDGVs();
+            UpdateUI();
             dgvBattleSpells.Visible = true;
             btnClose.Visible = true;
         }
 
         private void CloseBattleSpellsAndItems()
         {
-            UpdateDGVs();
+            UpdateUI();
             dgvBattleSpells.Visible = false;
             dgvBattleItems.Visible = false;
             btnClose.Visible = false;
@@ -679,7 +679,7 @@ namespace UI
 
         private void OpenBattleItems()
         {
-            UpdateDGVs();
+            UpdateUI();
             dgvBattleItems.Visible = true;
             btnClose.Visible = true;
         }
@@ -944,6 +944,8 @@ namespace UI
             InnScreen innScreen = new InnScreen(gameSession);
             innScreen.StartPosition = FormStartPosition.CenterParent;
             innScreen.ShowDialog(this);
+
+            UpdateUI();
         }
 
 
@@ -953,6 +955,8 @@ namespace UI
             ShopScreen shopScreen = new ShopScreen(gameSession);
             shopScreen.StartPosition = FormStartPosition.CenterParent;
             shopScreen.ShowDialog(this);
+
+            UpdateUI();
         }
 
 
@@ -962,6 +966,8 @@ namespace UI
             QuestScreen questScreen = new QuestScreen(gameSession);
             questScreen.StartPosition = FormStartPosition.CenterParent;
             questScreen.ShowDialog(this);
+
+            UpdateUI();
         }
 
 
@@ -971,7 +977,10 @@ namespace UI
             MapScreen mapScreen = new MapScreen(gameSession);
             mapScreen.StartPosition = FormStartPosition.CenterParent;
             mapScreen.ShowDialog(this);
+
+            UpdateUI();
         }
+
 
         private void btnClose_Click(object sender, EventArgs e)
         {

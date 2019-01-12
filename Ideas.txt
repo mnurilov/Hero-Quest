@@ -1,4 +1,5 @@
-Fix how on vendor information screen the Gold Value Column Header Text doesn't show in full
+Make Hero Quest Introduction Screen Picture
+Make Hero Quest Title Screen Header 
 
 <-----Things to Do----->
 -Bosses

@@ -706,7 +706,8 @@ namespace UI
             dgv.AllowUserToResizeColumns = false;
             dgv.AllowUserToResizeRows = false;
             dgv.Location = point;
-            dgv.AutoResizeColumnHeadersHeight();
+            dgv.Height = 200;
+            dgv.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
 
             if(vendor.VendorItemInventory != null)
             {

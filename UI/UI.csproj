@@ -45,6 +45,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CharacterCreationScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CharacterCreationScreen.Designer.cs">
+      <DependentUpon>CharacterCreationScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="DataGridViewDisableButtonCell.cs" />
     <Compile Include="DataGridViewDisableButtonColumn.cs" />
     <Compile Include="InformationScreen.cs">
@@ -91,6 +97,9 @@
     <Compile Include="ShopScreen.Designer.cs">
       <DependentUpon>ShopScreen.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CharacterCreationScreen.resx">
+      <DependentUpon>CharacterCreationScreen.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="InformationScreen.resx">
       <DependentUpon>InformationScreen.cs</DependentUpon>
     </EmbeddedResource>
