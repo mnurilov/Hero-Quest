@@ -187,7 +187,7 @@ namespace UI
         {
             if(gameSession.CurrentEnemy != null)
             {
-                if (gameSession.CurrentEnemy.CurrentHealth > 0)
+                if (gameSession.GameStates == GameSession.GameState.Battle)
                 {
                     lblEnemyName.Text = gameSession.CurrentEnemy?.Name;
                     lblEnemyDescription.Text = gameSession.CurrentEnemy?.Description;
@@ -261,14 +261,7 @@ namespace UI
             dgvEquipment.Rows.Clear();
             foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
             {
-                if (!CheckIfInDGV(equipment.ID, dgvEquipment))
-                {
-                    dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
-                }
-                else
-                {
-                    continue;
-                }
+                dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
             
                 if (gameSession.GameStates == GameSession.GameState.Battle)
                 {
@@ -303,14 +296,7 @@ namespace UI
             dgvSpells.Rows.Clear();
             foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
-                if (!CheckIfInDGV(spell.ID, dgvSpells))
-                {
-                    dgvSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
-                }
-                else
-                {
-                    continue;
-                }
+                dgvSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
 
                 if (gameSession.GameStates == GameSession.GameState.Battle)
                 {
@@ -322,7 +308,10 @@ namespace UI
                     ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
                 }
 
-                //Make the cast button to be off when the player doesn't have enough mana
+                if(gameSession.CurrentPlayer.CurrentMana < spell.ManaCost)
+                {
+                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                }
 
                 rowIndex++;
             }
@@ -382,10 +371,7 @@ namespace UI
             dgvBattleSpells.Rows.Clear();
             foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
-                if (!CheckIfInDGV(spell.ID, dgvBattleSpells))
-                {
-                    dgvBattleSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
-                }
+                dgvBattleSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
 
                 if(gameSession.CurrentPlayer.CurrentMana < spell.ManaCost)
                 {
@@ -408,12 +394,9 @@ namespace UI
             dgvBattleItems.Rows.Clear();
             foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
             {
-                if (!CheckIfInDGV(item.Key.ID, dgvBattleItems))
+                if (item.Key is HealthReplenishingItem || item.Key is ManaReplenishingItem || item.Key is DamageItem)
                 {
-                    if (item.Key is HealthReplenishingItem || item.Key is ManaReplenishingItem || item.Key is DamageItem)
-                    {
-                        dgvBattleItems.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
-                    }
+                    dgvBattleItems.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
                 }
             }
 
@@ -513,6 +496,7 @@ namespace UI
                     btnGreed.Visible = false;
                     pbGreed.Visible = false;
                     btnClose.Visible = false;
+                    btnMap.Visible = true;
                     break;
                 case GameSession.GameState.Battle:
                     btnAttack.Visible = true;

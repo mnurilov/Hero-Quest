@@ -68,9 +68,10 @@ namespace UI
         private void CreateItemInformationScreen(Item item)
         {
             SetWindow(item.Name, 400, 270);
+            SetIcon("Item");
 
             CreatePictureBox(item.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(item.Name, true, new Point(0, 0), new Size(0, 0));
+            CreateLabel(item.Name, true, new Point(0, 0), new Size(0, 0), 14);
             CreateLabel(item.Description, false, new Point(0, 165), new Size(300, 200));
 
             CreateIconValueCombo("Gold", "Gold:", item.SellingGoldValue.ToString(), 145, 30);
@@ -441,7 +442,7 @@ namespace UI
         {
             PictureBox pictureBox = new PictureBox();
             pictureBox.Size = size;
-            pictureBox.BorderStyle = BorderStyle.FixedSingle;
+            pictureBox.BorderStyle = BorderStyle.None;
             pictureBox.SizeMode = PictureBoxSizeMode.StretchImage;
             SetImage(pictureBox, imageName);
             pictureBox.Location = point;
@@ -451,10 +452,18 @@ namespace UI
             return pictureBox;
         }
 
-        private Label CreateLabel(string labelText, bool autoSize, Point point, Size size)
+        private Label CreateLabel(string labelText, bool autoSize, Point point, Size size, int fontSize = 0)
         {
             Label label = new Label();
             label.Text = labelText;
+            if(fontSize == 0)
+            {
+                label.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+            }
+            else
+            {
+                label.Font = new Font("Century Gothic", fontSize, FontStyle.Regular);
+            }
             label.AutoSize = autoSize;
             label.Location = point;
             if (!autoSize)
@@ -501,9 +510,9 @@ namespace UI
         private void CreateIconValueCombo(string iconName, string labelName, string value, int x, int y)
         {
             PictureBox pbIconImage = CreatePictureBox(iconName, new Point(x, y), new Size(25, 25));
-            Label lblLabelName = CreateLabel(labelName, true, new Point(x + 30, y + 5), new Size(0, 0));
-            Label lblValue = CreateLabel(value, true, new Point(x + 150, y + 5), new Size(0, 0));
-            
+            Label lblLabelName = CreateLabel(labelName, true, new Point(x + 42, y + 2), new Size(0, 0));
+            Label lblValue = CreateLabel(value, true, new Point(x + 190, y + 2), new Size(0, 0));
+
             Controls.Add(pbIconImage);
             Controls.Add(lblLabelName);
             Controls.Add(lblValue);
@@ -538,5 +547,23 @@ namespace UI
             }
         }
 
+        private void SetIcon(string imageName)
+        {
+            if (imageName == null)
+            {
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images." + imageName + ".ico"))
+
+            {
+                if (resourceStream != null)
+                {
+                    Icon = new Icon(resourceStream);
+                }
+            }
+        }
     }
 }

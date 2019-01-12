@@ -371,10 +371,14 @@ namespace Engine
             Quest findTheSewers = new TravelQuest(QuestIDFindTheSewers, "Find the Sewers", "Go to the sewers and come back", garry,
                 FindLocationByID(8), 10, 100, null, FindEquipmentByID(5));
 
+            Quest fuckYoBitch = new KillQuest(4, "Fuck those Bitches", "Man bitches ain't shit but hoes and tricks", null, new Dictionary<Enemy, int>
+            { { FindEnemyByID(2), 4}}, 50, 26, FindItemByID(4), FindEquipmentByID(7), FindSpellByID(3));
+
             //<----------Add quests to the quest list---------->
             quests.Add(cleanTheSewers);
             quests.Add(antidoteConcoction);
             quests.Add(findTheSewers);
+            quests.Add(fuckYoBitch);
         }
 
         private static void PopulateLocations()
@@ -443,6 +447,7 @@ namespace Engine
             town.QuestInLocation = FindQuestByID(1);
             farmHut.QuestInLocation = FindQuestByID(2);
             alley.QuestInLocation = FindQuestByID(3);
+            sewers.QuestInLocation = FindQuestByID(4);
 
             //<-----------Add locations to the location list---------->
             locations.Add(house);

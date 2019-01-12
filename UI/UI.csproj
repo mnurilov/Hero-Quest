@@ -198,5 +198,29 @@
     <EmbeddedResource Include="Images\Thief.png" />
     <EmbeddedResource Include="Images\Warrior.png" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\John.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Billy.png" />
+    <EmbeddedResource Include="Images\Paradise.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Clean the Sewers.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Spell.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Equipment.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Item.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Item.ico" />
+    <EmbeddedResource Include="Images\Spell.ico" />
+    <EmbeddedResource Include="Images\Equipment.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

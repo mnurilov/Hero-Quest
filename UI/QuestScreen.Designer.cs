@@ -28,118 +28,95 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(QuestScreen));
             this.btnAccept = new System.Windows.Forms.Button();
-            this.btnReject = new System.Windows.Forms.Button();
-            this.lblQuestGiverName = new System.Windows.Forms.Label();
-            this.lblQuestGiverDescription = new System.Windows.Forms.Label();
-            this.lblQuestGiverStatement = new System.Windows.Forms.Label();
             this.lblQuestName = new System.Windows.Forms.Label();
             this.lblQuestDescription = new System.Windows.Forms.Label();
-            this.lblQuestRewards = new System.Windows.Forms.Label();
             this.lblQuestState = new System.Windows.Forms.Label();
+            this.pbQuest = new System.Windows.Forms.PictureBox();
+            this.lblQuestRewardsLabel = new System.Windows.Forms.Label();
+            ((System.ComponentModel.ISupportInitialize)(this.pbQuest)).BeginInit();
             this.SuspendLayout();
             // 
             // btnAccept
             // 
-            this.btnAccept.Location = new System.Drawing.Point(13, 361);
+            this.btnAccept.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnAccept.Location = new System.Drawing.Point(12, 348);
             this.btnAccept.Name = "btnAccept";
-            this.btnAccept.Size = new System.Drawing.Size(384, 77);
+            this.btnAccept.Size = new System.Drawing.Size(841, 77);
             this.btnAccept.TabIndex = 0;
             this.btnAccept.Text = "Accept";
             this.btnAccept.UseVisualStyleBackColor = true;
             this.btnAccept.Click += new System.EventHandler(this.btnAccept_Click);
             // 
-            // btnReject
-            // 
-            this.btnReject.Location = new System.Drawing.Point(403, 361);
-            this.btnReject.Name = "btnReject";
-            this.btnReject.Size = new System.Drawing.Size(385, 76);
-            this.btnReject.TabIndex = 1;
-            this.btnReject.Text = "Reject";
-            this.btnReject.UseVisualStyleBackColor = true;
-            this.btnReject.Click += new System.EventHandler(this.btnReject_Click);
-            // 
-            // lblQuestGiverName
-            // 
-            this.lblQuestGiverName.AutoSize = true;
-            this.lblQuestGiverName.Location = new System.Drawing.Point(13, 13);
-            this.lblQuestGiverName.Name = "lblQuestGiverName";
-            this.lblQuestGiverName.Size = new System.Drawing.Size(46, 17);
-            this.lblQuestGiverName.TabIndex = 2;
-            this.lblQuestGiverName.Text = "label1";
-            // 
-            // lblQuestGiverDescription
-            // 
-            this.lblQuestGiverDescription.AutoSize = true;
-            this.lblQuestGiverDescription.Location = new System.Drawing.Point(13, 34);
-            this.lblQuestGiverDescription.Name = "lblQuestGiverDescription";
-            this.lblQuestGiverDescription.Size = new System.Drawing.Size(46, 17);
-            this.lblQuestGiverDescription.TabIndex = 3;
-            this.lblQuestGiverDescription.Text = "label2";
-            // 
-            // lblQuestGiverStatement
-            // 
-            this.lblQuestGiverStatement.AutoSize = true;
-            this.lblQuestGiverStatement.Location = new System.Drawing.Point(13, 55);
-            this.lblQuestGiverStatement.Name = "lblQuestGiverStatement";
-            this.lblQuestGiverStatement.Size = new System.Drawing.Size(46, 17);
-            this.lblQuestGiverStatement.TabIndex = 4;
-            this.lblQuestGiverStatement.Text = "label3";
-            // 
             // lblQuestName
             // 
-            this.lblQuestName.AutoSize = true;
-            this.lblQuestName.Location = new System.Drawing.Point(353, 13);
+            this.lblQuestName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestName.Location = new System.Drawing.Point(37, 28);
             this.lblQuestName.Name = "lblQuestName";
-            this.lblQuestName.Size = new System.Drawing.Size(46, 17);
+            this.lblQuestName.Size = new System.Drawing.Size(343, 39);
             this.lblQuestName.TabIndex = 5;
             this.lblQuestName.Text = "label4";
+            this.lblQuestName.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblQuestDescription
             // 
-            this.lblQuestDescription.AutoSize = true;
-            this.lblQuestDescription.Location = new System.Drawing.Point(353, 34);
+            this.lblQuestDescription.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestDescription.Location = new System.Drawing.Point(37, 257);
             this.lblQuestDescription.Name = "lblQuestDescription";
-            this.lblQuestDescription.Size = new System.Drawing.Size(46, 17);
+            this.lblQuestDescription.Size = new System.Drawing.Size(343, 63);
             this.lblQuestDescription.TabIndex = 6;
             this.lblQuestDescription.Text = "label5";
-            // 
-            // lblQuestRewards
-            // 
-            this.lblQuestRewards.AutoSize = true;
-            this.lblQuestRewards.Location = new System.Drawing.Point(353, 55);
-            this.lblQuestRewards.Name = "lblQuestRewards";
-            this.lblQuestRewards.Size = new System.Drawing.Size(46, 17);
-            this.lblQuestRewards.TabIndex = 7;
-            this.lblQuestRewards.Text = "label6";
+            this.lblQuestDescription.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // lblQuestState
             // 
-            this.lblQuestState.AutoSize = true;
-            this.lblQuestState.Location = new System.Drawing.Point(208, 202);
+            this.lblQuestState.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestState.Location = new System.Drawing.Point(12, 374);
             this.lblQuestState.Name = "lblQuestState";
-            this.lblQuestState.Size = new System.Drawing.Size(46, 17);
+            this.lblQuestState.Size = new System.Drawing.Size(841, 35);
             this.lblQuestState.TabIndex = 8;
             this.lblQuestState.Text = "label1";
+            this.lblQuestState.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pbQuest
+            // 
+            this.pbQuest.Location = new System.Drawing.Point(143, 100);
+            this.pbQuest.Name = "pbQuest";
+            this.pbQuest.Size = new System.Drawing.Size(125, 125);
+            this.pbQuest.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.pbQuest.TabIndex = 27;
+            this.pbQuest.TabStop = false;
+            // 
+            // lblQuestRewardsLabel
+            // 
+            this.lblQuestRewardsLabel.AutoSize = true;
+            this.lblQuestRewardsLabel.Font = new System.Drawing.Font("Century Gothic", 10.8F, System.Drawing.FontStyle.Underline, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblQuestRewardsLabel.Location = new System.Drawing.Point(507, 40);
+            this.lblQuestRewardsLabel.Name = "lblQuestRewardsLabel";
+            this.lblQuestRewardsLabel.Size = new System.Drawing.Size(149, 22);
+            this.lblQuestRewardsLabel.TabIndex = 28;
+            this.lblQuestRewardsLabel.Text = "Quest Rewards";
             // 
             // QuestScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
+            this.ClientSize = new System.Drawing.Size(865, 437);
+            this.Controls.Add(this.lblQuestRewardsLabel);
+            this.Controls.Add(this.pbQuest);
             this.Controls.Add(this.lblQuestState);
-            this.Controls.Add(this.lblQuestRewards);
             this.Controls.Add(this.lblQuestDescription);
             this.Controls.Add(this.lblQuestName);
-            this.Controls.Add(this.lblQuestGiverStatement);
-            this.Controls.Add(this.lblQuestGiverDescription);
-            this.Controls.Add(this.lblQuestGiverName);
-            this.Controls.Add(this.btnReject);
             this.Controls.Add(this.btnAccept);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "QuestScreen";
             this.Text = "Quest";
+            ((System.ComponentModel.ISupportInitialize)(this.pbQuest)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -148,13 +125,10 @@
         #endregion
 
         private System.Windows.Forms.Button btnAccept;
-        private System.Windows.Forms.Button btnReject;
-        private System.Windows.Forms.Label lblQuestGiverName;
-        private System.Windows.Forms.Label lblQuestGiverDescription;
-        private System.Windows.Forms.Label lblQuestGiverStatement;
         private System.Windows.Forms.Label lblQuestName;
         private System.Windows.Forms.Label lblQuestDescription;
-        private System.Windows.Forms.Label lblQuestRewards;
         private System.Windows.Forms.Label lblQuestState;
+        private System.Windows.Forms.PictureBox pbQuest;
+        private System.Windows.Forms.Label lblQuestRewardsLabel;
     }
 }

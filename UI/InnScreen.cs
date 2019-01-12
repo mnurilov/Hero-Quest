@@ -4,7 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -15,6 +17,9 @@ namespace UI
     {
         GameSession gameSession;
 
+        readonly Assembly thisAssembly = Assembly.GetExecutingAssembly();
+
+
         public InnScreen(GameSession gameSession)
         {
             InitializeComponent();
@@ -24,10 +29,6 @@ namespace UI
 
         private void UpdateInnScreen()
         {
-            lblInnKeeperName.Text = gameSession.CurrentPlayer.CurrentLocation.InnInLocation.InnKeeper.Name;
-            lblInnKeeperDescription.Text = gameSession.CurrentPlayer.CurrentLocation.InnInLocation.InnKeeper.Description;
-            lblInnKeeperStatement.Text = gameSession.CurrentPlayer.CurrentLocation.InnInLocation.InnKeeper.Statement;
-
             lblInnName.Text = gameSession.CurrentPlayer.CurrentLocation.InnInLocation.Name;
             lblInnDescription.Text = gameSession.CurrentPlayer.CurrentLocation.InnInLocation.Description;
             lblInnGoldCost.Text = gameSession.CurrentPlayer.CurrentLocation.InnInLocation.GoldCost.ToString();
@@ -36,6 +37,8 @@ namespace UI
             lblPlayerHealth.Text = gameSession.CurrentPlayer.CurrentHealth + "/" + gameSession.CurrentPlayer.TotalMaximumHealth;
             lblPlayerMana.Text = gameSession.CurrentPlayer.CurrentMana + "/" + gameSession.CurrentPlayer.TotalMaximumMana;
             lblPlayerGold.Text = gameSession.CurrentPlayer.Gold.ToString();
+
+            SetImage(pbInn, gameSession.CurrentPlayer.CurrentLocation.InnInLocation.Name);
         }
 
         private void btnStayAtInn_Click(object sender, EventArgs e)
@@ -52,9 +55,24 @@ namespace UI
             UpdateInnScreen();
         }
 
-        private void btnExit_Click(object sender, EventArgs e)
+        private void SetImage(PictureBox pictureBox, string imageName)
         {
-            Close();
+            if (imageName == null)
+            {
+                pictureBox.Image = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    pictureBox.Image = new Bitmap(resourceStream);
+                }
+            }
         }
     }
 }

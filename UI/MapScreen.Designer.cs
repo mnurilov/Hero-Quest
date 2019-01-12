@@ -787,6 +787,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(255)))), ((int)(((byte)(192)))));
             this.ClientSize = new System.Drawing.Size(845, 845);
             this.Controls.Add(this.pnl_n2_2__n2_1);
             this.Controls.Add(this.pnl_n2_n1__n2_n2);
@@ -858,9 +859,11 @@
             this.Controls.Add(this.pb_n1_n1);
             this.Controls.Add(this.pb_2_2);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "MapScreen";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Map";
             ((System.ComponentModel.ISupportInitialize)(this.pb_2_2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pb_n1_n1)).EndInit();
