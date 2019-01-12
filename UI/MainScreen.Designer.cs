@@ -28,23 +28,23 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainScreen));
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
             this.btnNorth = new System.Windows.Forms.Button();
             this.btnWest = new System.Windows.Forms.Button();
             this.btnEast = new System.Windows.Forms.Button();
@@ -59,26 +59,24 @@
             this.tbcInventory = new System.Windows.Forms.TabControl();
             this.tbpItems = new System.Windows.Forms.TabPage();
             this.dgvItems = new System.Windows.Forms.DataGridView();
-            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colItemUse = new UI.DataGridViewDisableButtonColumn();
-            this.test = new System.Windows.Forms.DataGridViewImageColumn();
             this.tbpEquipment = new System.Windows.Forms.TabPage();
             this.dgvEquipment = new System.Windows.Forms.DataGridView();
             this.colEquipmentID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colEquipmentImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.colEquipmentName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colEquipmentEquip = new UI.DataGridViewDisableButtonColumn();
             this.colEquipmentUnequip = new UI.DataGridViewDisableButtonColumn();
             this.tbpSpells = new System.Windows.Forms.TabPage();
             this.dgvSpells = new System.Windows.Forms.DataGridView();
             this.colSpellID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colSpellImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.colSpellName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpellManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colSpellCast = new UI.DataGridViewDisableButtonColumn();
             this.tbpQuests = new System.Windows.Forms.TabPage();
             this.dgvQuests = new System.Windows.Forms.DataGridView();
             this.colQuestID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colQuestImage = new System.Windows.Forms.DataGridViewImageColumn();
             this.colQuestName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colQuestStatus = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.btnInn = new System.Windows.Forms.Button();
@@ -139,15 +137,7 @@
             this.lblPlayerHealth = new System.Windows.Forms.Label();
             this.lblPlayerExperience = new System.Windows.Forms.Label();
             this.dgvBattleSpells = new System.Windows.Forms.DataGridView();
-            this.colBattleSpellsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleSpellsCast = new UI.DataGridViewDisableButtonColumn();
             this.dgvBattleItems = new System.Windows.Forms.DataGridView();
-            this.colBattleItemsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleItemsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleItemsQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colBattleItemsUse = new UI.DataGridViewDisableButtonColumn();
             this.btnClose = new System.Windows.Forms.Button();
             this.btnEmpower = new System.Windows.Forms.Button();
             this.btnGreed = new System.Windows.Forms.Button();
@@ -160,6 +150,21 @@
             this.pnEmpower4 = new System.Windows.Forms.Panel();
             this.pbGreed = new System.Windows.Forms.PictureBox();
             this.pbEmpower = new System.Windows.Forms.PictureBox();
+            this.colItemID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colItemName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colItemUse = new UI.DataGridViewDisableButtonColumn();
+            this.colBattleItemsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colBattleItemsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsQuantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleItemsUse = new UI.DataGridViewDisableButtonColumn();
+            this.colBattleSpellsID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colBattleSpellsName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsManaCost = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colBattleSpellsCast = new UI.DataGridViewDisableButtonColumn();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -354,10 +359,10 @@
             this.dgvItems.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colItemID,
+            this.colItemImage,
             this.colItemName,
             this.colItemQuantity,
-            this.colItemUse,
-            this.test});
+            this.colItemUse});
             this.dgvItems.Location = new System.Drawing.Point(0, 0);
             this.dgvItems.Name = "dgvItems";
             this.dgvItems.ReadOnly = true;
@@ -365,62 +370,6 @@
             this.dgvItems.RowTemplate.Height = 24;
             this.dgvItems.Size = new System.Drawing.Size(322, 199);
             this.dgvItems.TabIndex = 12;
-            // 
-            // colItemID
-            // 
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colItemID.DefaultCellStyle = dataGridViewCellStyle1;
-            this.colItemID.HeaderText = "ID";
-            this.colItemID.Name = "colItemID";
-            this.colItemID.ReadOnly = true;
-            this.colItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.colItemID.Visible = false;
-            // 
-            // colItemName
-            // 
-            this.colItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colItemName.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colItemName.HeaderText = "Name";
-            this.colItemName.Name = "colItemName";
-            this.colItemName.ReadOnly = true;
-            this.colItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colItemQuantity
-            // 
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colItemQuantity.DefaultCellStyle = dataGridViewCellStyle3;
-            this.colItemQuantity.HeaderText = "Qty";
-            this.colItemQuantity.Name = "colItemQuantity";
-            this.colItemQuantity.ReadOnly = true;
-            this.colItemQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colItemQuantity.Width = 40;
-            // 
-            // colItemUse
-            // 
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colItemUse.DefaultCellStyle = dataGridViewCellStyle4;
-            this.colItemUse.HeaderText = "";
-            this.colItemUse.Name = "colItemUse";
-            this.colItemUse.ReadOnly = true;
-            this.colItemUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colItemUse.Text = "Use";
-            this.colItemUse.UseColumnTextForButtonValue = true;
-            this.colItemUse.Width = 35;
-            // 
-            // test
-            // 
-            this.test.HeaderText = "";
-            this.test.Image = ((System.Drawing.Image)(resources.GetObject("test.Image")));
-            this.test.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
-            this.test.Name = "test";
-            this.test.ReadOnly = true;
-            this.test.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.test.Width = 25;
             // 
             // tbpEquipment
             // 
@@ -443,6 +392,7 @@
             this.dgvEquipment.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvEquipment.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colEquipmentID,
+            this.colEquipmentImage,
             this.colEquipmentName,
             this.colEquipmentEquip,
             this.colEquipmentUnequip});
@@ -464,6 +414,15 @@
             this.colEquipmentID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colEquipmentID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colEquipmentID.Visible = false;
+            // 
+            // colEquipmentImage
+            // 
+            this.colEquipmentImage.HeaderText = "";
+            this.colEquipmentImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.colEquipmentImage.Name = "colEquipmentImage";
+            this.colEquipmentImage.ReadOnly = true;
+            this.colEquipmentImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colEquipmentImage.Width = 25;
             // 
             // colEquipmentName
             // 
@@ -522,6 +481,7 @@
             this.dgvSpells.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colSpellID,
+            this.colSpellImage,
             this.colSpellName,
             this.colSpellManaCost,
             this.colSpellCast});
@@ -541,6 +501,15 @@
             this.colSpellID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colSpellID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colSpellID.Visible = false;
+            // 
+            // colSpellImage
+            // 
+            this.colSpellImage.HeaderText = "";
+            this.colSpellImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.colSpellImage.Name = "colSpellImage";
+            this.colSpellImage.ReadOnly = true;
+            this.colSpellImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colSpellImage.Width = 25;
             // 
             // colSpellName
             // 
@@ -590,6 +559,7 @@
             this.dgvQuests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvQuests.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colQuestID,
+            this.colQuestImage,
             this.colQuestName,
             this.colQuestStatus});
             this.dgvQuests.Location = new System.Drawing.Point(0, 0);
@@ -608,6 +578,15 @@
             this.colQuestID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.colQuestID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
             this.colQuestID.Visible = false;
+            // 
+            // colQuestImage
+            // 
+            this.colQuestImage.HeaderText = "";
+            this.colQuestImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.colQuestImage.Name = "colQuestImage";
+            this.colQuestImage.ReadOnly = true;
+            this.colQuestImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colQuestImage.Width = 25;
             // 
             // colQuestName
             // 
@@ -1244,6 +1223,7 @@
             this.dgvBattleSpells.ColumnHeadersVisible = false;
             this.dgvBattleSpells.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colBattleSpellsID,
+            this.colBattleSpellImage,
             this.colBattleSpellsName,
             this.colBattleSpellsManaCost,
             this.colBattleSpellsCast});
@@ -1256,52 +1236,6 @@
             this.dgvBattleSpells.TabIndex = 33;
             this.dgvBattleSpells.Visible = false;
             // 
-            // colBattleSpellsID
-            // 
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleSpellsID.DefaultCellStyle = dataGridViewCellStyle9;
-            this.colBattleSpellsID.HeaderText = "ID";
-            this.colBattleSpellsID.Name = "colBattleSpellsID";
-            this.colBattleSpellsID.ReadOnly = true;
-            this.colBattleSpellsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleSpellsID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.colBattleSpellsID.Visible = false;
-            // 
-            // colBattleSpellsName
-            // 
-            this.colBattleSpellsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleSpellsName.DefaultCellStyle = dataGridViewCellStyle10;
-            this.colBattleSpellsName.HeaderText = "Name";
-            this.colBattleSpellsName.Name = "colBattleSpellsName";
-            this.colBattleSpellsName.ReadOnly = true;
-            this.colBattleSpellsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleSpellsName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colBattleSpellsManaCost
-            // 
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleSpellsManaCost.DefaultCellStyle = dataGridViewCellStyle11;
-            this.colBattleSpellsManaCost.HeaderText = "Mana Cost";
-            this.colBattleSpellsManaCost.Name = "colBattleSpellsManaCost";
-            this.colBattleSpellsManaCost.ReadOnly = true;
-            this.colBattleSpellsManaCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleSpellsManaCost.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colBattleSpellsManaCost.Width = 50;
-            // 
-            // colBattleSpellsCast
-            // 
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleSpellsCast.DefaultCellStyle = dataGridViewCellStyle12;
-            this.colBattleSpellsCast.HeaderText = "Cast";
-            this.colBattleSpellsCast.Name = "colBattleSpellsCast";
-            this.colBattleSpellsCast.ReadOnly = true;
-            this.colBattleSpellsCast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleSpellsCast.Text = "Cast";
-            this.colBattleSpellsCast.UseColumnTextForButtonValue = true;
-            this.colBattleSpellsCast.Width = 50;
-            // 
             // dgvBattleItems
             // 
             this.dgvBattleItems.AllowUserToAddRows = false;
@@ -1312,6 +1246,7 @@
             this.dgvBattleItems.ColumnHeadersVisible = false;
             this.dgvBattleItems.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colBattleItemsID,
+            this.colBattleItemImage,
             this.colBattleItemsName,
             this.colBattleItemsQuantity,
             this.colBattleItemsUse});
@@ -1323,52 +1258,6 @@
             this.dgvBattleItems.Size = new System.Drawing.Size(331, 116);
             this.dgvBattleItems.TabIndex = 34;
             // 
-            // colBattleItemsID
-            // 
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleItemsID.DefaultCellStyle = dataGridViewCellStyle13;
-            this.colBattleItemsID.HeaderText = "ID";
-            this.colBattleItemsID.Name = "colBattleItemsID";
-            this.colBattleItemsID.ReadOnly = true;
-            this.colBattleItemsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            this.colBattleItemsID.Visible = false;
-            // 
-            // colBattleItemsName
-            // 
-            this.colBattleItemsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleItemsName.DefaultCellStyle = dataGridViewCellStyle14;
-            this.colBattleItemsName.HeaderText = "Name";
-            this.colBattleItemsName.Name = "colBattleItemsName";
-            this.colBattleItemsName.ReadOnly = true;
-            this.colBattleItemsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            // 
-            // colBattleItemsQuantity
-            // 
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleItemsQuantity.DefaultCellStyle = dataGridViewCellStyle15;
-            this.colBattleItemsQuantity.HeaderText = "Quantity";
-            this.colBattleItemsQuantity.Name = "colBattleItemsQuantity";
-            this.colBattleItemsQuantity.ReadOnly = true;
-            this.colBattleItemsQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colBattleItemsQuantity.Width = 40;
-            // 
-            // colBattleItemsUse
-            // 
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.colBattleItemsUse.DefaultCellStyle = dataGridViewCellStyle16;
-            this.colBattleItemsUse.HeaderText = "Use";
-            this.colBattleItemsUse.Name = "colBattleItemsUse";
-            this.colBattleItemsUse.ReadOnly = true;
-            this.colBattleItemsUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colBattleItemsUse.Text = "Use";
-            this.colBattleItemsUse.UseColumnTextForButtonValue = true;
-            this.colBattleItemsUse.Width = 35;
-            // 
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -1376,7 +1265,7 @@
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(118, 42);
             this.btnClose.TabIndex = 35;
-            this.btnClose.Text = "Close";
+            this.btnClose.Text = "Back";
             this.btnClose.UseVisualStyleBackColor = true;
             this.btnClose.Visible = false;
             this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
@@ -1486,6 +1375,171 @@
             this.pbEmpower.TabIndex = 44;
             this.pbEmpower.TabStop = false;
             // 
+            // colItemID
+            // 
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colItemID.DefaultCellStyle = dataGridViewCellStyle1;
+            this.colItemID.HeaderText = "ID";
+            this.colItemID.Name = "colItemID";
+            this.colItemID.ReadOnly = true;
+            this.colItemID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colItemID.Visible = false;
+            // 
+            // colItemImage
+            // 
+            this.colItemImage.HeaderText = "";
+            this.colItemImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.colItemImage.Name = "colItemImage";
+            this.colItemImage.ReadOnly = true;
+            this.colItemImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemImage.Width = 25;
+            // 
+            // colItemName
+            // 
+            this.colItemName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colItemName.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colItemName.HeaderText = "Name";
+            this.colItemName.Name = "colItemName";
+            this.colItemName.ReadOnly = true;
+            this.colItemName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colItemQuantity
+            // 
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colItemQuantity.DefaultCellStyle = dataGridViewCellStyle3;
+            this.colItemQuantity.HeaderText = "Qty";
+            this.colItemQuantity.Name = "colItemQuantity";
+            this.colItemQuantity.ReadOnly = true;
+            this.colItemQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colItemQuantity.Width = 40;
+            // 
+            // colItemUse
+            // 
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colItemUse.DefaultCellStyle = dataGridViewCellStyle4;
+            this.colItemUse.HeaderText = "";
+            this.colItemUse.Name = "colItemUse";
+            this.colItemUse.ReadOnly = true;
+            this.colItemUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colItemUse.Text = "Use";
+            this.colItemUse.UseColumnTextForButtonValue = true;
+            this.colItemUse.Width = 35;
+            // 
+            // colBattleItemsID
+            // 
+            dataGridViewCellStyle13.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsID.DefaultCellStyle = dataGridViewCellStyle13;
+            this.colBattleItemsID.HeaderText = "ID";
+            this.colBattleItemsID.Name = "colBattleItemsID";
+            this.colBattleItemsID.ReadOnly = true;
+            this.colBattleItemsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colBattleItemsID.Visible = false;
+            // 
+            // colBattleItemImage
+            // 
+            this.colBattleItemImage.HeaderText = "";
+            this.colBattleItemImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.colBattleItemImage.Name = "colBattleItemImage";
+            this.colBattleItemImage.ReadOnly = true;
+            this.colBattleItemImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemImage.Width = 25;
+            // 
+            // colBattleItemsName
+            // 
+            this.colBattleItemsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsName.DefaultCellStyle = dataGridViewCellStyle14;
+            this.colBattleItemsName.HeaderText = "Name";
+            this.colBattleItemsName.Name = "colBattleItemsName";
+            this.colBattleItemsName.ReadOnly = true;
+            this.colBattleItemsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colBattleItemsQuantity
+            // 
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsQuantity.DefaultCellStyle = dataGridViewCellStyle15;
+            this.colBattleItemsQuantity.HeaderText = "Quantity";
+            this.colBattleItemsQuantity.Name = "colBattleItemsQuantity";
+            this.colBattleItemsQuantity.ReadOnly = true;
+            this.colBattleItemsQuantity.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsQuantity.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colBattleItemsQuantity.Width = 40;
+            // 
+            // colBattleItemsUse
+            // 
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleItemsUse.DefaultCellStyle = dataGridViewCellStyle16;
+            this.colBattleItemsUse.HeaderText = "Use";
+            this.colBattleItemsUse.Name = "colBattleItemsUse";
+            this.colBattleItemsUse.ReadOnly = true;
+            this.colBattleItemsUse.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleItemsUse.Text = "Use";
+            this.colBattleItemsUse.UseColumnTextForButtonValue = true;
+            this.colBattleItemsUse.Width = 35;
+            // 
+            // colBattleSpellsID
+            // 
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsID.DefaultCellStyle = dataGridViewCellStyle9;
+            this.colBattleSpellsID.HeaderText = "ID";
+            this.colBattleSpellsID.Name = "colBattleSpellsID";
+            this.colBattleSpellsID.ReadOnly = true;
+            this.colBattleSpellsID.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsID.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
+            this.colBattleSpellsID.Visible = false;
+            // 
+            // colBattleSpellImage
+            // 
+            this.colBattleSpellImage.HeaderText = "";
+            this.colBattleSpellImage.ImageLayout = System.Windows.Forms.DataGridViewImageCellLayout.Stretch;
+            this.colBattleSpellImage.Name = "colBattleSpellImage";
+            this.colBattleSpellImage.ReadOnly = true;
+            this.colBattleSpellImage.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellImage.Width = 25;
+            // 
+            // colBattleSpellsName
+            // 
+            this.colBattleSpellsName.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsName.DefaultCellStyle = dataGridViewCellStyle10;
+            this.colBattleSpellsName.HeaderText = "Name";
+            this.colBattleSpellsName.Name = "colBattleSpellsName";
+            this.colBattleSpellsName.ReadOnly = true;
+            this.colBattleSpellsName.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsName.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            // 
+            // colBattleSpellsManaCost
+            // 
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsManaCost.DefaultCellStyle = dataGridViewCellStyle11;
+            this.colBattleSpellsManaCost.HeaderText = "Mana Cost";
+            this.colBattleSpellsManaCost.Name = "colBattleSpellsManaCost";
+            this.colBattleSpellsManaCost.ReadOnly = true;
+            this.colBattleSpellsManaCost.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsManaCost.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colBattleSpellsManaCost.Width = 50;
+            // 
+            // colBattleSpellsCast
+            // 
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.colBattleSpellsCast.DefaultCellStyle = dataGridViewCellStyle12;
+            this.colBattleSpellsCast.HeaderText = "Cast";
+            this.colBattleSpellsCast.Name = "colBattleSpellsCast";
+            this.colBattleSpellsCast.ReadOnly = true;
+            this.colBattleSpellsCast.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colBattleSpellsCast.Text = "Cast";
+            this.colBattleSpellsCast.UseColumnTextForButtonValue = true;
+            this.colBattleSpellsCast.Width = 50;
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -1520,6 +1574,7 @@
             this.Controls.Add(this.btnWest);
             this.Controls.Add(this.btnNorth);
             this.Controls.Add(this.pnPlayerStats);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
@@ -1653,36 +1708,41 @@
         private System.Windows.Forms.Label lblPlayerClass;
         private System.Windows.Forms.Label lblPlayerClassLabel;
         private System.Windows.Forms.Panel pnInventory;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
-        private DataGridViewDisableButtonColumn colEquipmentEquip;
-        private DataGridViewDisableButtonColumn colEquipmentUnequip;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colItemQuantity;
-        private DataGridViewDisableButtonColumn colItemUse;
-        private System.Windows.Forms.DataGridViewImageColumn test;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellManaCost;
-        private DataGridViewDisableButtonColumn colSpellCast;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsQuantity;
-        private DataGridViewDisableButtonColumn colBattleItemsUse;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsName;
-        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsManaCost;
-        private DataGridViewDisableButtonColumn colBattleSpellsCast;
         private System.Windows.Forms.Panel pnEmpower1;
         private System.Windows.Forms.Panel pnEmpower2;
         private System.Windows.Forms.Panel pnEmpower3;
         private System.Windows.Forms.Panel pnEmpower4;
         private System.Windows.Forms.PictureBox pbGreed;
         private System.Windows.Forms.PictureBox pbEmpower;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentID;
+        private System.Windows.Forms.DataGridViewImageColumn colEquipmentImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colEquipmentName;
+        private DataGridViewDisableButtonColumn colEquipmentEquip;
+        private DataGridViewDisableButtonColumn colEquipmentUnequip;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellID;
+        private System.Windows.Forms.DataGridViewImageColumn colSpellImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colSpellManaCost;
+        private DataGridViewDisableButtonColumn colSpellCast;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestID;
+        private System.Windows.Forms.DataGridViewImageColumn colQuestImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colQuestStatus;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemID;
+        private System.Windows.Forms.DataGridViewImageColumn colItemImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colItemQuantity;
+        private DataGridViewDisableButtonColumn colItemUse;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsID;
+        private System.Windows.Forms.DataGridViewImageColumn colBattleSpellImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleSpellsManaCost;
+        private DataGridViewDisableButtonColumn colBattleSpellsCast;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsID;
+        private System.Windows.Forms.DataGridViewImageColumn colBattleItemImage;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsName;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colBattleItemsQuantity;
+        private DataGridViewDisableButtonColumn colBattleItemsUse;
     }
 }
 

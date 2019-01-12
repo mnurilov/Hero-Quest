@@ -3,4 +3,3 @@ C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\bin\Debug\Engine.pdb
 C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\obj\Debug\Engine.csproj.CoreCompileInputs.cache
 C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\obj\Debug\Engine.dll
 C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\obj\Debug\Engine.pdb
-C:\Users\Michael\Documents\GitHub\Hero-Quest\Engine\obj\Debug\Engine.csprojAssemblyReference.cache

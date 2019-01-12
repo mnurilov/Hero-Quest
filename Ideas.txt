@@ -1,9 +1,4 @@
-SortMode - NotSortable, Programmatic
-Sort
-Resizeable
-Readonly
-AutoSizeMode
-Width
+Fix how on vendor information screen the Gold Value Column Header Text doesn't show in full
 
 <-----Things to Do----->
 -Bosses
@@ -12,23 +7,7 @@ Width
 -When they cast a spell flash a picture for a second so it looks like an animation
 -sound effects
 -music
--Fix how quests are linked with locations and how to location what you are looking for
--Put a picture next to greed button when it is clicked
--icons for different items quests spells equipment
--Head equipment get helmet icon
--Travel equipment gets boots etc
--Allow healing spells to scale with intellect
-
-UI Stuff
--set icon to the item icon for info screen set icons for all screens
-=quest stats yellow question mark for in progress
--green checkk for success
-
 
 For Debugging
 -Add an add all items equipment spells and quests function so I can have all things
 -A clear map function which allows me to see everything 
-
-Big L 
-Star
-Color based on status

@@ -86,6 +86,17 @@ namespace UI
                 ReadOnly = true,
             });
 
+            dgvPlayerInventory.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
+            });
+
             dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn
             { 
                 Name = "colName", 
@@ -126,11 +137,16 @@ namespace UI
                 Width = 50,
             });
 
+            int rowIndex = 0;
             foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
             {
                 if (!CheckIfInDGV(item.Key.ID, dgvPlayerInventory))
                 {
-                    dgvPlayerInventory.Rows.Add(item.Key.ID, item.Key.Name, item.Value, item.Key.SellingGoldValue);
+                    dgvPlayerInventory.Rows.Add(item.Key.ID, null, item.Key.Name, item.Value + "x", item.Key.SellingGoldValue);
+
+                    SetDGVImage((DataGridViewImageCell)dgvPlayerInventory.Rows[rowIndex].Cells[1], item.Key.Name);
+
+                    rowIndex++;
                 }
             }
 
@@ -152,6 +168,17 @@ namespace UI
                 Resizable = DataGridViewTriState.False,
                 Visible = false,
                 ReadOnly = true,
+            });
+
+            dgvPlayerInventory.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
             });
 
             dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn 
@@ -188,15 +215,17 @@ namespace UI
 
             foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
             {
-                dgvPlayerInventory.Rows.Add(equipment.ID, equipment.Name, equipment.SellingGoldValue);
+                dgvPlayerInventory.Rows.Add(equipment.ID, null, equipment.Name, equipment.SellingGoldValue);
+
+                SetDGVImage((DataGridViewImageCell)dgvPlayerInventory.Rows[rowIndex].Cells[1], equipment.Name);
 
                 if (gameSession.CheckIfAlreadyEquipped(equipment))
                 {
-                    ((DataGridViewDisableButtonCell)(dgvPlayerInventory.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvPlayerInventory.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
                 else
                 {
-                    ((DataGridViewDisableButtonCell)(dgvPlayerInventory.Rows[rowIndex].Cells[3])).Enabled = true;
+                    ((DataGridViewDisableButtonCell)(dgvPlayerInventory.Rows[rowIndex].Cells[4])).Enabled = true;
                 }
 
                 rowIndex++;
@@ -220,6 +249,17 @@ namespace UI
                 Resizable = DataGridViewTriState.False,
                 Visible = false,
                 ReadOnly = true,
+            });
+
+            dgvPlayerInventory.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
             });
 
             dgvPlayerInventory.Columns.Add(new DataGridViewTextBoxColumn 
@@ -252,9 +292,15 @@ namespace UI
                 Width = 50,
             });
 
+            int rowIndex = 0;
+
             foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
-                dgvPlayerInventory.Rows.Add(spell.ID, spell.Name, spell.SellingGoldValue);
+                dgvPlayerInventory.Rows.Add(spell.ID, null, spell.Name, spell.SellingGoldValue);
+
+                SetDGVImage((DataGridViewImageCell)dgvPlayerInventory.Rows[rowIndex].Cells[1], spell.Name);
+
+                rowIndex++;
             }
 
             dgvPlayerInventory.Sort(dgvPlayerInventory.Columns[0], ListSortDirection.Ascending);
@@ -277,6 +323,17 @@ namespace UI
                 Resizable = DataGridViewTriState.False,
                 Visible = false,
                 ReadOnly = true,
+            });
+
+            dgvVendorInventory.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
             });
 
             dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn 
@@ -325,15 +382,17 @@ namespace UI
             {
                 if (!CheckIfInDGV(item.Key.ID, dgvVendorInventory))
                 {
-                    dgvVendorInventory.Rows.Add(item.Key.ID, item.Key.Name, item.Value, item.Key.GoldValue);
+                    dgvVendorInventory.Rows.Add(item.Key.ID, null, item.Key.Name, item.Value + "x", item.Key.GoldValue);
 
-                    if(gameSession.CurrentPlayer.Gold < item.Key.GoldValue)
+                    SetDGVImage((DataGridViewImageCell)dgvVendorInventory.Rows[rowIndex].Cells[1], item.Key.Name);
+
+                    if (gameSession.CurrentPlayer.Gold < item.Key.GoldValue)
                     {
-                        ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = false;
+                        ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[5])).Enabled = false;
                     }
                     else
                     {
-                        ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = true;
+                        ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[5])).Enabled = true;
                     }
                 }
                 rowIndex++;
@@ -357,6 +416,17 @@ namespace UI
                 Resizable = DataGridViewTriState.False,
                 Visible = false,
                 ReadOnly = true,
+            });
+
+            dgvVendorInventory.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
             });
 
             dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn 
@@ -393,15 +463,17 @@ namespace UI
 
             foreach (Equipment equipment in gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory)
             {
-                dgvVendorInventory.Rows.Add(equipment.ID, equipment.Name, equipment.GoldValue);
+                dgvVendorInventory.Rows.Add(equipment.ID, null, equipment.Name, equipment.GoldValue);
+
+                SetDGVImage((DataGridViewImageCell)dgvVendorInventory.Rows[rowIndex].Cells[1], equipment.Name);
 
                 if (gameSession.CurrentPlayer.Gold < equipment.GoldValue)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
                 else
                 {
-                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[3])).Enabled = true;
+                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = true;
                 }
 
                 rowIndex++;
@@ -425,6 +497,17 @@ namespace UI
                 Resizable = DataGridViewTriState.False,
                 Visible = false,
                 ReadOnly = true,
+            });
+
+            dgvVendorInventory.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
             });
 
             dgvVendorInventory.Columns.Add(new DataGridViewTextBoxColumn 
@@ -461,15 +544,17 @@ namespace UI
 
             foreach (Spell spell in gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorSpellInventory)
             {
-                dgvVendorInventory.Rows.Add(spell.ID, spell.Name, spell.GoldValue);
+                dgvVendorInventory.Rows.Add(spell.ID, null, spell.Name, spell.GoldValue);
+
+                SetDGVImage((DataGridViewImageCell)dgvVendorInventory.Rows[rowIndex].Cells[1], spell.Name);
 
                 if (gameSession.CurrentPlayer.Gold < spell.GoldValue)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
                 else
                 {
-                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[3])).Enabled = true;
+                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = true;
                 }
 
                 rowIndex++;
@@ -503,15 +588,15 @@ namespace UI
 
             if(gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
             {
-                columnIndex = 4;
+                columnIndex = 5;
             }
             else if(gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory != null)
             {
-                columnIndex = 3;
+                columnIndex = 4;
             }
             else if(gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorSpellInventory != null)
             {
-                columnIndex = 3;
+                columnIndex = 4;
             }
 
             // The 4th or 5th column has the "Buy 1" button.
@@ -551,15 +636,15 @@ namespace UI
 
             if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
             {
-                columnIndex = 4;
+                columnIndex = 5;
             }
             else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory != null)
             {
-                columnIndex = 3;
+                columnIndex = 4;
             }
             else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorSpellInventory != null)
             {
-                columnIndex = 3;
+                columnIndex = 4;
             }
 
             // The 4th or 5th column has the "Buy 1" button.
@@ -656,6 +741,26 @@ namespace UI
                 if (resourceStream != null)
                 {
                     pictureBox.Image = new Bitmap(resourceStream);
+                }
+            }
+        }
+
+        private void SetDGVImage(DataGridViewImageCell imageCell, string imageName)
+        {
+            if (imageName == null)
+            {
+                imageCell.Value = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    imageCell.Value = new Bitmap(resourceStream);
                 }
             }
         }

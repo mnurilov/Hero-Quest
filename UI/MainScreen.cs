@@ -220,33 +220,35 @@ namespace UI
             {
                 if (!CheckIfInDGV(item.Key.ID, dgvItems))
                 {
-                    dgvItems.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                    dgvItems.Rows.Add(item.Key.ID, null, item.Key.Name, item.Value + "x");
                 }
                 else
                 {
                     continue;
                 }
 
+                SetDGVImage((DataGridViewImageCell)dgvItems.Rows[rowIndex].Cells[1], item.Key.Name);
+
                 if(gameSession.GameStates == GameSession.GameState.Battle)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 if (item.Key is EnemyLoot)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
                 else if(item.Key is KeyItem)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
                 else if(item.Key is DamageItem)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
                 else if(item.Key is QuestItem)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvItems.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 rowIndex++;
@@ -261,27 +263,29 @@ namespace UI
             dgvEquipment.Rows.Clear();
             foreach (Equipment equipment in gameSession.CurrentPlayer.PlayerEquipments)
             {
-                dgvEquipment.Rows.Add(equipment.ID, equipment.Name);
-            
+                dgvEquipment.Rows.Add(equipment.ID, null, equipment.Name);
+
+                SetDGVImage((DataGridViewImageCell)dgvEquipment.Rows[rowIndex].Cells[1], equipment.Name);
+
                 if (gameSession.GameStates == GameSession.GameState.Battle)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[2])).Enabled = false;
                     ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 if (!gameSession.CheckIfEquippableCommand(equipment))
                 {
-                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[2])).Enabled = false;
                     ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 if (gameSession.CheckIfAlreadyEquipped(equipment))
                 {
-                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[2])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
                 }
                 else
                 {
-                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvEquipment.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 rowIndex++;
@@ -296,21 +300,23 @@ namespace UI
             dgvSpells.Rows.Clear();
             foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
-                dgvSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
+                dgvSpells.Rows.Add(spell.ID, null, spell.Name, spell.ManaCost);
+
+                SetDGVImage((DataGridViewImageCell)dgvSpells.Rows[rowIndex].Cells[1], spell.Name);
 
                 if (gameSession.GameStates == GameSession.GameState.Battle)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 if(spell is DamageSpell)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 if(gameSession.CurrentPlayer.CurrentMana < spell.ManaCost)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvSpells.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 rowIndex++;
@@ -338,16 +344,18 @@ namespace UI
                         status = "In Progress";
                     }
 
-                    dgvQuests.Rows.Add(quest.ID, quest.Name, status);
+                    dgvQuests.Rows.Add(quest.ID, null, quest.Name, status);
+                    
+                    SetDGVImage((DataGridViewImageCell)dgvQuests.Rows[rowIndex].Cells[1], quest.Name);
 
                     //Sets color of status to green if complete yellow if incomplete
                     if (quest.IsCompleted)
                     {
-                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.FromArgb(28, 237, 91);
+                        dgvQuests.Rows[rowIndex].Cells[3].Style.BackColor = Color.FromArgb(28, 237, 91);
                     }
                     else
                     {
-                        dgvQuests.Rows[rowIndex].Cells[2].Style.BackColor = Color.FromArgb(242, 255, 145);
+                        dgvQuests.Rows[rowIndex].Cells[3].Style.BackColor = Color.FromArgb(242, 255, 145);
                     }
                 }
                 else
@@ -371,11 +379,13 @@ namespace UI
             dgvBattleSpells.Rows.Clear();
             foreach (Spell spell in gameSession.CurrentPlayer.PlayerSpells)
             {
-                dgvBattleSpells.Rows.Add(spell.ID, spell.Name, spell.ManaCost);
+                dgvBattleSpells.Rows.Add(spell.ID, null, spell.Name, spell.ManaCost);
 
-                if(gameSession.CurrentPlayer.CurrentMana < spell.ManaCost)
+                SetDGVImage((DataGridViewImageCell)dgvBattleSpells.Rows[rowIndex].Cells[1], spell.Name);
+
+                if (gameSession.CurrentPlayer.CurrentMana < spell.ManaCost)
                 {
-                    ((DataGridViewDisableButtonCell)(dgvBattleSpells.Rows[rowIndex].Cells[3])).Enabled = false;
+                    ((DataGridViewDisableButtonCell)(dgvBattleSpells.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
 
                 rowIndex++;
@@ -391,12 +401,17 @@ namespace UI
                 dgvBattleItems.Visible = false;
             }
 
+            int rowIndex = 0;
             dgvBattleItems.Rows.Clear();
             foreach (KeyValuePair<Item, int> item in gameSession.CurrentPlayer.PlayerItems)
             {
                 if (item.Key is HealthReplenishingItem || item.Key is ManaReplenishingItem || item.Key is DamageItem)
                 {
-                    dgvBattleItems.Rows.Add(item.Key.ID, item.Key.Name, item.Value);
+                    dgvBattleItems.Rows.Add(item.Key.ID, null, item.Key.Name, item.Value + "x");
+
+                    SetDGVImage((DataGridViewImageCell)dgvBattleItems.Rows[rowIndex].Cells[1], item.Key.Name);
+
+                    rowIndex++;
                 }
             }
 
@@ -627,6 +642,26 @@ namespace UI
             }
         }
 
+        private void SetDGVImage(DataGridViewImageCell imageCell, string imageName)
+        {
+            if(imageName == null)
+            {
+                imageCell.Value = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    imageCell.Value = new Bitmap(resourceStream);
+                }
+            }
+        }
+
         private void OpenBattleSpells()
         {
             UpdateDGVs();
@@ -668,7 +703,7 @@ namespace UI
                 return;
             }
 
-            if (e.ColumnIndex != 3)
+            if (e.ColumnIndex != 4)
             {
                 var itemID = dgvItems.Rows[e.RowIndex].Cells[0].Value;
 
@@ -685,14 +720,14 @@ namespace UI
             {
                 return;
             }
-            if (((DataGridViewDisableButtonCell)(dgvItems.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            if (((DataGridViewDisableButtonCell)(dgvItems.Rows[e.RowIndex].Cells[4])).Enabled == false)
             {
                 return;
             }
 
             // The 4th column has the "Use" button.
             // Row Index is not -1 is to make sure the user can't buy the column names
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 // This gets the ID value of the entity, from the hidden 1st column
                 var itemID = dgvItems.Rows[e.RowIndex].Cells[0].Value;
@@ -711,7 +746,7 @@ namespace UI
                 return;
             }
             
-            if (e.ColumnIndex != 3 && e.ColumnIndex != 2)
+            if (e.ColumnIndex != 4 && e.ColumnIndex != 3)
             {
                 var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
 
@@ -729,12 +764,12 @@ namespace UI
             {
                 return;
             }
-            if (((DataGridViewDisableButtonCell)(dgvEquipment.Rows[e.RowIndex].Cells[2])).Enabled == false)
+            if (((DataGridViewDisableButtonCell)(dgvEquipment.Rows[e.RowIndex].Cells[3])).Enabled == false)
             {
                 return;
             }
 
-            if (e.ColumnIndex == 2)
+            if (e.ColumnIndex == 3)
             {
                 var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
 
@@ -758,12 +793,12 @@ namespace UI
             {
                 return;
             }
-            if (((DataGridViewDisableButtonCell)(dgvEquipment.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            if (((DataGridViewDisableButtonCell)(dgvEquipment.Rows[e.RowIndex].Cells[4])).Enabled == false)
             {
                 return;
             }
 
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 var equipmentID = dgvEquipment.Rows[e.RowIndex].Cells[0].Value;
 
@@ -782,7 +817,7 @@ namespace UI
                 return;
             }
 
-            if (e.ColumnIndex != 3)
+            if (e.ColumnIndex != 4)
             {
                 var spellID = dgvSpells.Rows[e.RowIndex].Cells[0].Value;
 
@@ -800,12 +835,12 @@ namespace UI
             {
                 return;
             }
-            if (((DataGridViewDisableButtonCell)(dgvSpells.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            if (((DataGridViewDisableButtonCell)(dgvSpells.Rows[e.RowIndex].Cells[4])).Enabled == false)
             {
                 return;
             }
 
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 var spellID = dgvSpells.Rows[e.RowIndex].Cells[0].Value;
 
@@ -842,12 +877,12 @@ namespace UI
             {
                 return;
             }
-            if (((DataGridViewDisableButtonCell)(dgvBattleSpells.Rows[e.RowIndex].Cells[3])).Enabled == false)
+            if (((DataGridViewDisableButtonCell)(dgvBattleSpells.Rows[e.RowIndex].Cells[4])).Enabled == false)
             {
                 return;
             }
 
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 var spellID = dgvBattleSpells.Rows[e.RowIndex].Cells[0].Value;
 
@@ -862,7 +897,7 @@ namespace UI
 
         private void dgvBattleItems_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            if (e.ColumnIndex == 3)
+            if (e.ColumnIndex == 4)
             {
                 var itemID = dgvBattleItems.Rows[e.RowIndex].Cells[0].Value;
 

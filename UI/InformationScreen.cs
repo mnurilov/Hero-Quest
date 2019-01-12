@@ -386,8 +386,8 @@ namespace UI
                 CreateLabel(location.QuestInLocation.Description, false, new Point(questPositionX, questPositionY + 229), new Size(343, 63), 11);
             }
         }
-        
-        
+
+
         //<----------Vendor DGV Update Functions----------->
         private void SetUpDGVVendorItems(DataGridView dgv, Vendor vendor)
         {
@@ -404,6 +404,17 @@ namespace UI
                 Resizable = DataGridViewTriState.False,
                 Visible = false,
                 ReadOnly = true,
+            });
+
+            dgv.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
             });
 
             dgv.Columns.Add(new DataGridViewTextBoxColumn
@@ -436,11 +447,17 @@ namespace UI
                 Width = 45,
             });
 
+            int rowIndex = 0;
+
             foreach (KeyValuePair<Item, int> item in vendor.VendorItemInventory)
             {
                 if (!CheckIfInDGV(item.Key.ID, dgv))
                 {
-                    dgv.Rows.Add(item.Key.ID, item.Key.Name, item.Key.GoldValue, item.Value);
+                    dgv.Rows.Add(item.Key.ID, null, item.Key.Name, item.Value + "x", item.Key.GoldValue);
+
+                    SetDGVImage((DataGridViewImageCell)dgv.Rows[rowIndex].Cells[1], item.Key.Name);
+
+                    rowIndex++;
                 }
             }
 
@@ -464,6 +481,17 @@ namespace UI
                 ReadOnly = true,
             });
 
+            dgv.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
+            });
+
             dgv.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "colName",
@@ -484,9 +512,15 @@ namespace UI
                 Width = 45,
             });
 
+            int rowIndex = 0;
+
             foreach (Equipment equipment in vendor.VendorEquipmentInventory)
             {
-                dgv.Rows.Add(equipment.ID, equipment.Name, equipment.GoldValue);
+                dgv.Rows.Add(equipment.ID, null, equipment.Name, equipment.GoldValue);
+
+                SetDGVImage((DataGridViewImageCell)dgv.Rows[rowIndex].Cells[1], equipment.Name);
+
+                rowIndex++;
             }
 
             dgv.Sort(dgv.Columns[0], ListSortDirection.Ascending);
@@ -509,6 +543,17 @@ namespace UI
                 ReadOnly = true,
             });
 
+            dgv.Columns.Add(new DataGridViewImageColumn
+            {
+                Name = "colImage",
+                HeaderText = "",
+                Resizable = DataGridViewTriState.False,
+                Visible = true,
+                ReadOnly = true,
+                ImageLayout = DataGridViewImageCellLayout.Stretch,
+                Width = 25,
+            });
+
             dgv.Columns.Add(new DataGridViewTextBoxColumn
             {
                 Name = "colName",
@@ -529,9 +574,15 @@ namespace UI
                 Width = 45,
             });
 
+            int rowIndex = 0;
+
             foreach (Spell spell in vendor.VendorSpellInventory)
             {
-                dgv.Rows.Add(spell.ID, spell.Name, spell.GoldValue);
+                dgv.Rows.Add(spell.ID, null, spell.Name, spell.GoldValue);
+
+                SetDGVImage((DataGridViewImageCell)dgv.Rows[rowIndex].Cells[1], spell.Name);
+
+                rowIndex++;
             }
 
             dgv.Sort(dgv.Columns[0], ListSortDirection.Ascending);
@@ -552,7 +603,6 @@ namespace UI
             }
             return false;
         }
-
 
 
         //<------------Click Events------------>
@@ -656,6 +706,7 @@ namespace UI
             dgv.AllowUserToResizeColumns = false;
             dgv.AllowUserToResizeRows = false;
             dgv.Location = point;
+            dgv.AutoResizeColumnHeadersHeight();
 
             if(vendor.VendorItemInventory != null)
             {
@@ -730,6 +781,26 @@ namespace UI
                 if (resourceStream != null)
                 {
                     Icon = new Icon(resourceStream);
+                }
+            }
+        }
+
+        private void SetDGVImage(DataGridViewImageCell imageCell, string imageName)
+        {
+            if (imageName == null)
+            {
+                imageCell.Value = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    imageCell.Value = new Bitmap(resourceStream);
                 }
             }
         }
