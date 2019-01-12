@@ -19,11 +19,14 @@ namespace UI
 
         readonly Assembly thisAssembly = Assembly.GetExecutingAssembly();
 
+        object informationObject;
+
 
         public InformationScreen(GameSession gameSession, object informationObject)
         {
             InitializeComponent();
             this.gameSession = gameSession;
+            this.informationObject = informationObject;
             UpdateUI(informationObject);
         }
 
@@ -67,298 +70,320 @@ namespace UI
 
         private void CreateItemInformationScreen(Item item)
         {
-            SetWindow(item.Name, 400, 270);
+            SetWindow(item.Name, 758, 388);
             SetIcon("Item");
 
-            CreatePictureBox(item.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(item.Name, true, new Point(0, 0), new Size(0, 0), 14);
-            CreateLabel(item.Description, false, new Point(0, 165), new Size(300, 200));
+            CreateLabel(item.Name, false, new Point(37, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(item.Name, new Point(143, 100), new Size(125, 125));
+            CreateLabel(item.Description, false, new Point(37, 257), new Size(343, 63), 11);
+            CreateLabel("Info", false, new Point(380, 34), new Size(284, 43), 11, true);
 
-            CreateIconValueCombo("Gold", "Gold:", item.SellingGoldValue.ToString(), 145, 30);
+            CreateIconValueCombo("Gold", "Gold:", item.SellingGoldValue.ToString(), 412, 100);
 
             if(item is HealthReplenishingItem)
             {
-                CreateIconValueCombo("Health", "Healing Amount:", ((HealthReplenishingItem)item).HealthReplenishingValue.ToString(), 145, 60);
+                CreateIconValueCombo("Health", "Healing Amount:", ((HealthReplenishingItem)item).HealthReplenishingValue.ToString(), 412, 140);
             }
             else if(item is ManaReplenishingItem)
             {
-                CreateIconValueCombo("Mana", "Replenishing Amount:", ((ManaReplenishingItem)item).ManaReplenishingValue.ToString(), 145, 60);
+                CreateIconValueCombo("Mana", "Replenishing Amount:", ((ManaReplenishingItem)item).ManaReplenishingValue.ToString(), 412, 140);
             }
             else if(item is DamageItem)
             {
-                CreateIconValueCombo("Damage", "Damage Amount:", ((DamageItem)item).DamageValue.ToString(), 145, 60);
+                CreateIconValueCombo("Damage", "Damage Amount:", ((DamageItem)item).DamageValue.ToString(), 412, 140);
             }
         }
 
         private void CreateEquipmentInformationScreen(Equipment equipment)
         {
-            SetWindow(equipment.Name, 400, 320);
+            SetWindow(equipment.Name, 758, 588);
+            SetIcon("Equipment");
 
-            CreatePictureBox(equipment.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(equipment.Name, true, new Point(0, 0), new Size(0, 0));
-            CreateLabel(equipment.Description, false, new Point(0, 165), new Size(300, 200));
+            CreateLabel(equipment.Name, false, new Point(37, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(equipment.Name, new Point(143, 100), new Size(125, 125));
+            CreateLabel(equipment.Description, false, new Point(37, 257), new Size(343, 63), 11);
+            CreateLabel("Info", false, new Point(380, 34), new Size(284, 43), 11, true);
 
-            CreateIconValueCombo("Gold", "Gold:", equipment.SellingGoldValue.ToString(), 145, 20);
+            CreateIconValueCombo("Gold", "Gold:", equipment.SellingGoldValue.ToString(), 412, 100);
 
-            int x = 145;
-            int y = 50;
+            int x = 412;
+            int y = 140;
 
             if(equipment.HealthBonus != 0)
             {
                 CreateIconValueCombo("Health", "Health Bonus:", equipment.HealthBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if(equipment.ManaBonus != 0)
             {
                 CreateIconValueCombo("Mana", "Mana Bonus:", equipment.ManaBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if(equipment.StrengthBonus != 0)
             {
                 CreateIconValueCombo("Strength", "Strength Bonus:", equipment.StrengthBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if (equipment.DefenseBonus != 0)
             {
                 CreateIconValueCombo("Defense", "Defense Bonus:", equipment.DefenseBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if (equipment.LuckBonus != 0)
             {
                 CreateIconValueCombo("Luck", "Luck Bonus:", equipment.LuckBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if (equipment.SpeedBonus != 0)
             {
                 CreateIconValueCombo("Speed", "Speed Bonus:", equipment.SpeedBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if (equipment.IntellectBonus != 0)
             {
                 CreateIconValueCombo("Intellect", "Intellect Bonus:", equipment.IntellectBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
             if (equipment.ResistanceBonus != 0)
             {
                 CreateIconValueCombo("Resistance", "Resistance Bonus:", equipment.ResistanceBonus.ToString(), x, y);
-                y += 30;
+                y += 40;
             }
         }
 
         private void CreateSpellInformationScreen(Spell spell)
         {
-            SetWindow(spell.Name, 400, 320);
+            SetWindow(spell.Name, 758, 388);
+            SetIcon("Spell");
 
-            CreatePictureBox(spell.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(spell.Name, true, new Point(0, 0), new Size(0, 0));
-            CreateLabel(spell.Description, false, new Point(0, 165), new Size(300, 200));
+            CreateLabel(spell.Name, false, new Point(37, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(spell.Name, new Point(143, 100), new Size(125, 125));
+            CreateLabel(spell.Description, false, new Point(37, 257), new Size(343, 63), 11);
+            CreateLabel("Info", false, new Point(380, 34), new Size(284, 43), 11, true);
 
-            CreateIconValueCombo("Gold", "Gold:", spell.SellingGoldValue.ToString(), 145, 20);
-            CreateIconValueCombo("Mana", "Mana Cost:", spell.ManaCost.ToString(), 145, 50);
+            CreateIconValueCombo("Gold", "Gold:", spell.SellingGoldValue.ToString(), 412, 100);
 
             if(spell is DamageSpell)
             {
-                CreateIconValueCombo("Damage", "Base Damage:", ((DamageSpell)spell).DamageValue.ToString(), 145, 80);
+                CreateIconValueCombo("Damage", "Base Damage:", ((DamageSpell)spell).DamageValue.ToString(), 412, 140);
             }
             else if(spell is ReplenishSpell)
             {
-                CreateIconValueCombo("Healing", "Base Heal:", ((ReplenishSpell)spell).ReplenishValue.ToString(), 145, 80);
+                CreateIconValueCombo("Healing", "Base Heal:", ((ReplenishSpell)spell).ReplenishValue.ToString(), 412, 140);
             }
         }
 
         private void CreateInnInformationScreen(Inn inn)
         {
-            SetWindow(inn.Name, 400, 320);
+            SetWindow(inn.Name, 708, 388);
+            SetIcon("Inn");
 
-            CreatePictureBox(inn.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(inn.Name, true, new Point(0, 0), new Size(0, 0));
-            CreateLabel(inn.Description, false, new Point(0, 165), new Size(300, 200));
+            CreateLabel(inn.Name, false, new Point(37, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(inn.Name, new Point(143, 100), new Size(125, 125));
+            CreateLabel(inn.Description, false, new Point(37, 257), new Size(343, 63), 11);
+            CreateLabel("Info", false, new Point(380, 34), new Size(284, 43), 11, true);
 
-            CreateIconValueCombo("Gold", "Gold Cost:", inn.GoldCost.ToString(), 145, 20);
+            CreateIconValueCombo("Gold", "Gold to stay a night:", inn.GoldCost.ToString(), 412, 100);
         }
 
         private void CreateQuestInformationScreen(Quest quest)
         {
-            SetWindow(quest.Name, 400, 500);
+            SetWindow(quest.Name, 758, 588);
+            SetIcon("Quest");
 
-            CreatePictureBox(quest.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(quest.Name, true, new Point(0, 0), new Size(0, 0));
-            CreateLabel(quest.Description, false, new Point(0, 165), new Size(100, 50));
-            
-            if (quest.IsCompleted)
-            {
-                CreateIconValueCombo("", "Quest Status:", "Completed", 145, 20);
-            }
-            else
-            {
-                CreateIconValueCombo("", "Quest Status:", "In Progress", 145, 20);
-            }
+            CreateLabel(quest.Name, false, new Point(37, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(quest.Name, new Point(143, 100), new Size(125, 125));
+            CreateLabel(quest.Description, false, new Point(37, 257), new Size(343, 63), 11);
+            CreateLabel("Quest Rewards", false, new Point(380, 34), new Size(284, 43), 11, true);
 
-            CreateLabel("Rewards", true, new Point(145, 50), new Size(0, 0));
-
-            int x = 145;
-            int y = 80;
+            int x = 412;
+            int y = 100;
 
             if(quest.RewardGold != 0)
             {
-                CreateIconValueCombo("Gold", "Reward Gold:", quest.RewardGold.ToString(), x, y);
-                y += 30;
+                CreateIconValueCombo("Gold", "Gold Reward:", quest.RewardGold.ToString(), x, y);
+                y += 40;
             }
             if(quest.RewardExperience != 0)
             {
-                CreateIconValueCombo("Experience", "Reward Experience:", quest.RewardExperience.ToString(), x, y);
-                y += 30;
+                CreateIconValueCombo("Experience", "Experience Reward:", quest.RewardExperience.ToString(), x, y);
+                y += 40;
             }
             if(quest.RewardItem != null)
             {
-                CreateIconValueCombo(quest.RewardItem.Name, "Reward Item:", quest.RewardItem.Name, x, y);
-                y += 30;
+                CreateIconValueCombo("Item", "Item Reward:", quest.RewardItem.Name, x, y);
+                y += 40;
             }
             if(quest.RewardEquipment != null)
             {
-                CreateIconValueCombo(quest.RewardEquipment.Name, "Reward Equipment:", quest.RewardEquipment.Name, x, y);
-                y += 30;
+                CreateIconValueCombo("Equipment", "Equipment Reward:", quest.RewardEquipment.Name, x, y);
+                y += 40;
             }
             if(quest.RewardSpell != null)
             {
-                CreateIconValueCombo(quest.RewardSpell.Name, "Reward Spell:", quest.RewardSpell.Name, x, y);
-                y += 30;
+                CreateIconValueCombo("Spell", "Spell Reward:", quest.RewardSpell.Name, x, y);
+                y += 40;
             }
 
-            CreateLabel("Requirements", true, new Point(0, 240), new Size(0, 0));
-
-            if(quest is TravelQuest)
+            if (!quest.IsCompleted)
             {
-                int xpos = 0;
-                int ypos = 260;
-                CreateLabel("Location:", true, new Point(xpos, ypos), new Size(0, 0));
+                CreateLabel("Progress", false, new Point(237, 320), new Size(284, 43), 11, true);
 
-                string locationInfo;
-
-                if (((TravelQuest)quest).RequiredLocation.HasVisited)
+                if (quest is TravelQuest)
                 {
-                    locationInfo = "You have visited " + ((TravelQuest)quest).RequiredLocation.Name;
-                }
-                else
-                {
-                    locationInfo = "You have not yet traveled to " + ((TravelQuest)quest).RequiredLocation.Name;
-                }
+                    int xpos = 237;
+                    int ypos = 377;
 
-                CreateLabel(locationInfo, true, new Point(xpos, ypos+ 30), new Size(0, 0));
-            }
-            else if(quest is GatherQuest)
-            {
-                int xpos = 0;
-                int ypos = 260;
-                CreateLabel("Items:", true, new Point(xpos, ypos), new Size(0, 0));
-                ypos += 20;
-                foreach (KeyValuePair<EnemyLoot, int> lootRequirement in ((GatherQuest)quest).RequiredEnemyLoots)
-                {
-                    string itemInfo;
+                    string locationInfo;
 
-                    if (gameSession.CurrentPlayer.PlayerItems.ContainsKey(lootRequirement.Key))
+                    if (((TravelQuest)quest).RequiredLocation.HasVisited)
                     {
-                        if(gameSession.CurrentPlayer.PlayerItems[lootRequirement.Key] <= lootRequirement.Value)
-                        {
-                            itemInfo = lootRequirement.Key.Name + ": " + gameSession.CurrentPlayer.PlayerItems[lootRequirement.Key]
-                                + "/" + lootRequirement.Value;
-                        }
-                        else
-                        {
-                            itemInfo = lootRequirement.Key.Name + ": " + lootRequirement.Value
-                                   + "/" + lootRequirement.Value;
-                        }
+                        locationInfo = "You have already visited " + ((TravelQuest)quest).RequiredLocation.Name;
                     }
                     else
                     {
-                        itemInfo = lootRequirement.Key.Name + ": " + "0" + "/" + lootRequirement.Value;
+                        locationInfo = "You have not yet traveled to " + ((TravelQuest)quest).RequiredLocation.Name;
                     }
 
-                    CreateLabel(itemInfo, true, new Point(xpos, ypos), new Size(0, 0));
-                    ypos += 20;
+                    CreateLabel(locationInfo, false, new Point(xpos, ypos), new Size(284, 43));
                 }
-
-            }
-            else if(quest is KillQuest)
-            {
-                int xpos = 0;
-                int ypos = 260;
-                CreateLabel("Enemies:", true, new Point(xpos, ypos), new Size(0, 0));
-                ypos += 20;
-                foreach(KeyValuePair<Enemy, int> enemyRequirement in ((KillQuest)quest).RequiredEnemies)
+                else if (quest is GatherQuest)
                 {
-                    string enemyInfo;
+                    int xpos = 237;
+                    int ypos = 377;
 
-                    if (((KillQuest)quest).EnemiesDefeatedSoFar.ContainsKey(enemyRequirement.Key))
+                    foreach (KeyValuePair<EnemyLoot, int> lootRequirement in ((GatherQuest)quest).RequiredEnemyLoots)
                     {
-                        if(((KillQuest)quest).EnemiesDefeatedSoFar[enemyRequirement.Key] <= enemyRequirement.Value)
+                        string itemInfo;
+
+                        if (gameSession.CurrentPlayer.PlayerItems.ContainsKey(lootRequirement.Key))
                         {
-                            enemyInfo = enemyRequirement.Key.Name + ": " + ((KillQuest)quest).EnemiesDefeatedSoFar[enemyRequirement.Key]
-                            + "/" + enemyRequirement.Value;
+                            if (gameSession.CurrentPlayer.PlayerItems[lootRequirement.Key] <= lootRequirement.Value)
+                            {
+                                itemInfo = gameSession.CurrentPlayer.PlayerItems[lootRequirement.Key] + "/" + lootRequirement.Value;
+                            }
+                            else
+                            {
+                                itemInfo = lootRequirement.Value + "/" + lootRequirement.Value;
+                            }
                         }
                         else
                         {
-                            enemyInfo = enemyRequirement.Key.Name + ": " + enemyRequirement.Value
-                            + "/" + enemyRequirement.Value;
+                            itemInfo = "0" + "/" + lootRequirement.Value;
                         }
-                        
+
+                        CreateIconValueCombo(lootRequirement.Key.Name, lootRequirement.Key.Name + ":", itemInfo, xpos, ypos);
+                        ypos += 40;
                     }
-                    else
+                }
+                else if (quest is KillQuest)
+                {
+                    int xpos = 237;
+                    int ypos = 377;
+
+                    foreach (KeyValuePair<Enemy, int> enemyRequirement in ((KillQuest)quest).RequiredEnemies)
                     {
-                        enemyInfo = enemyRequirement.Key.Name + ": " + "0" + "/" + enemyRequirement.Value;
+                        string enemyInfo;
+
+                        if (((KillQuest)quest).EnemiesDefeatedSoFar.ContainsKey(enemyRequirement.Key))
+                        {
+                            if (((KillQuest)quest).EnemiesDefeatedSoFar[enemyRequirement.Key] <= enemyRequirement.Value)
+                            {
+                                enemyInfo = ((KillQuest)quest).EnemiesDefeatedSoFar[enemyRequirement.Key] + "/" + enemyRequirement.Value;
+                            }
+                            else
+                            {
+                                enemyInfo = enemyRequirement.Value + "/" + enemyRequirement.Value;
+                            }
+                        }
+                        else
+                        {
+                            enemyInfo = "0" + "/" + enemyRequirement.Value;
+                        }
+
+                        CreateIconValueCombo(enemyRequirement.Key.Name, enemyRequirement.Key.Name + ":", enemyInfo, xpos, ypos);
+                        ypos += 40;
                     }
-                    
-                    CreateLabel(enemyInfo, true, new Point(xpos, ypos), new Size(0, 0));
-                    ypos += 20;
                 }
             }
+            else
+            {
+                CreateLabel("You have completed this quest", false, new Point(237, 377), new Size(284, 43));
+            }
+
         }
 
         private void CreateVendorInformationScreen(Vendor vendor)
         {
-            SetWindow(vendor.Name, 400, 320);
+            SetWindow(vendor.Name, 758, 388);
+            SetIcon("Shop");
 
-            CreatePictureBox(vendor.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(vendor.Name, true, new Point(0, 0), new Size(0, 0));
-            CreateLabel(vendor.Description, false, new Point(0, 165), new Size(100, 50));
+            CreateLabel(vendor.Name, false, new Point(37, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(vendor.Name, new Point(143, 100), new Size(125, 125));
+            CreateLabel(vendor.Description, false, new Point(37, 257), new Size(343, 63), 11);
+            CreateLabel(vendor.Name + "'s Inventory", false, new Point(380, 34), new Size(284, 43), 11, true);
 
-            CreateDataGridView(vendor, new Point(150, 20));
+            CreateDataGridView(vendor, new Point(400, 100));
         }
 
         private void CreateLocationInformationScreen(Location location)
         {
-            SetWindow(location.Name, 600, 500);
+            SetWindow(location.Name, 1254, 768);
+            SetIcon("Location");
 
-            CreatePictureBox(location.Name, new Point(0, 20), new Size(125, 125));
-            CreateLabel(location.Name, true, new Point(0, 0), new Size(0, 0));
-            CreateLabel(location.Description, false, new Point(0, 160), new Size(100, 50));
+            CreateLabel(location.Name, false, new Point(445, 28), new Size(343, 39), 14, false, true);
+            CreatePictureBox(location.Name, new Point(551, 100), new Size(125, 125));
+            CreateLabel(location.Description, false, new Point(445, 257), new Size(343, 63), 11);
 
-            if(location.InnInLocation != null)
+            CreateLabel("Locational Commodities", false, new Point(445, 330), new Size(343, 35), 12, true);
+
+            if (location.InnInLocation != null)
             {
-                int innPositionX = 0;
-                int innPositionY = 230;
+                int innPositionX = 37;
+                int innPositionY = 417;
 
-                CreatePictureBox(location.InnInLocation.Name, new Point(innPositionX, innPositionY), new Size(125, 125));
-                CreateLabel(location.InnInLocation.Name, true, new Point(innPositionX, innPositionY - 20), new Size(0, 0));
-                CreateLabel(location.InnInLocation.Description, false, new Point(innPositionX, innPositionY + 140), new Size(100, 50));
+                CreateLabel("Inn", false, new Point(innPositionX, innPositionY - 35), new Size(343, 39), 11, true);
+
+                CreateLabel(location.InnInLocation.Name, false, new Point(innPositionX, innPositionY), new Size(343, 39), 14, false, true);
+                
+                PictureBox pbInn = CreatePictureBox(location.InnInLocation.Name, new Point(innPositionX + 106, innPositionY + 72), 
+                    new Size(125, 125), true);
+                pbInn.Click += OpenInnInformationalScreen;
+                Controls.Add(pbInn);
+
+                CreateLabel(location.InnInLocation.Description, false, new Point(innPositionX, innPositionY + 229), new Size(343, 63), 11);
             }
             if(location.VendorInLocation != null)
             {
-                int vendorPositionX = 200;
-                int vendorPositionY = 230;
+                int vendorPositionX = 445;
+                int vendorPositionY = 417;
 
-                CreatePictureBox(location.VendorInLocation.Name, new Point(vendorPositionX, vendorPositionY), new Size(125, 125));
-                CreateLabel(location.VendorInLocation.Name, true, new Point(vendorPositionX, vendorPositionY - 20), new Size(0, 0));
-                CreateLabel(location.VendorInLocation.Description, false, new Point(vendorPositionX, vendorPositionY + 140), new Size(100, 50));
+                CreateLabel("Vendor", false, new Point(vendorPositionX, vendorPositionY - 35), new Size(343, 39), 11, true);
+
+                CreateLabel(location.VendorInLocation.Name, false, new Point(vendorPositionX, vendorPositionY), new Size(343, 39), 14, false, true);
+
+                PictureBox pbVendor = CreatePictureBox(location.VendorInLocation.Name, new Point(vendorPositionX + 106, vendorPositionY + 72),
+                    new Size(125, 125), true);
+                pbVendor.Click += OpenVendorInformationalScreen;
+                Controls.Add(pbVendor);
+                
+                CreateLabel(location.VendorInLocation.Description, false, new Point(vendorPositionX, vendorPositionY + 229), new Size(343, 63), 11);
             }
             if(location.QuestInLocation != null)
             {
-                int questPositionX = 400;
-                int questPositionY = 230;
+                int questPositionX = 853;
+                int questPositionY = 417;
 
-                CreatePictureBox(location.QuestInLocation.Name, new Point(questPositionX, questPositionY), new Size(125, 125));
-                CreateLabel(location.QuestInLocation.Name, true, new Point(questPositionX, questPositionY - 20), new Size(0, 0));
-                CreateLabel(location.QuestInLocation.Description, false, new Point(questPositionX, questPositionY + 140), new Size(100, 50));
+                CreateLabel("Quest", false, new Point(questPositionX, questPositionY - 35), new Size(343, 39), 11, true);
+
+                CreateLabel(location.QuestInLocation.Name, false, new Point(questPositionX, questPositionY), new Size(343, 39), 14, false, true);
+
+                PictureBox pbQuest = CreatePictureBox(location.QuestInLocation.Name, new Point(questPositionX + 106, questPositionY + 72),
+                    new Size(125, 125), true);
+                pbQuest.Click += OpenQuestInformationalScreen;
+                Controls.Add(pbQuest);
+
+                CreateLabel(location.QuestInLocation.Description, false, new Point(questPositionX, questPositionY + 229), new Size(343, 63), 11);
             }
         }
         
@@ -369,10 +394,47 @@ namespace UI
             dgv.Rows.Clear();
             dgv.Columns.Clear();
 
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colGold", HeaderText = "Gold Value" });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colQuantity", HeaderText = "Quantity" });
+            dgv.DefaultCellStyle.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colID",
+                HeaderText = "ID",
+                Resizable = DataGridViewTriState.False,
+                Visible = false,
+                ReadOnly = true,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colName",
+                HeaderText = "Name",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colQuantity",
+                HeaderText = "Qty",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                Width = 45,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colGold",
+                HeaderText = "Gold Value",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                Width = 45,
+            });
 
             foreach (KeyValuePair<Item, int> item in vendor.VendorItemInventory)
             {
@@ -381,6 +443,8 @@ namespace UI
                     dgv.Rows.Add(item.Key.ID, item.Key.Name, item.Key.GoldValue, item.Value);
                 }
             }
+
+            dgv.Sort(dgv.Columns[0], ListSortDirection.Ascending);
         }
 
         private void SetUpDGVVendorEquipment(DataGridView dgv, Vendor vendor)
@@ -388,17 +452,44 @@ namespace UI
             dgv.Rows.Clear();
             dgv.Columns.Clear();
 
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colGold", HeaderText = "Gold Value" });
+            dgv.DefaultCellStyle.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colID",
+                HeaderText = "ID",
+                Resizable = DataGridViewTriState.False,
+                Visible = false,
+                ReadOnly = true,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colName",
+                HeaderText = "Name",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colGold",
+                HeaderText = "Gold Value",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                Width = 45,
+            });
 
             foreach (Equipment equipment in vendor.VendorEquipmentInventory)
             {
-                if (!CheckIfInDGV(equipment.ID, dgv))
-                {
-                    dgv.Rows.Add(equipment.ID, equipment.Name, equipment.GoldValue);
-                }
+                dgv.Rows.Add(equipment.ID, equipment.Name, equipment.GoldValue);
             }
+
+            dgv.Sort(dgv.Columns[0], ListSortDirection.Ascending);
         }
 
         private void SetUpDGVVendorSpells(DataGridView dgv, Vendor vendor)
@@ -406,18 +497,44 @@ namespace UI
             dgv.Rows.Clear();
             dgv.Columns.Clear();
 
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colID", HeaderText = "ID", Visible = false });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colName", HeaderText = "Name" });
-            dgv.Columns.Add(new DataGridViewTextBoxColumn { Name = "colGold", HeaderText = "Gold Value" });
-            
+            dgv.DefaultCellStyle.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+            dgv.ColumnHeadersDefaultCellStyle.Font = new Font("Century Gothic", 9, FontStyle.Regular);
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colID",
+                HeaderText = "ID",
+                Resizable = DataGridViewTriState.False,
+                Visible = false,
+                ReadOnly = true,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colName",
+                HeaderText = "Name",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill,
+            });
+
+            dgv.Columns.Add(new DataGridViewTextBoxColumn
+            {
+                Name = "colGold",
+                HeaderText = "Gold Value",
+                SortMode = DataGridViewColumnSortMode.NotSortable,
+                Resizable = DataGridViewTriState.False,
+                ReadOnly = true,
+                Width = 45,
+            });
 
             foreach (Spell spell in vendor.VendorSpellInventory)
             {
-                if (!CheckIfInDGV(spell.ID, dgv))
-                {
-                    dgv.Rows.Add(spell.ID, spell.Name, spell.GoldValue);
-                }
+                dgv.Rows.Add(spell.ID, spell.Name, spell.GoldValue);
             }
+
+            dgv.Sort(dgv.Columns[0], ListSortDirection.Ascending);
         }
 
         //Checks if an object is in the data grid view
@@ -437,8 +554,32 @@ namespace UI
         }
 
 
+
+        //<------------Click Events------------>
+        private void OpenInnInformationalScreen(object sender, EventArgs e)
+        {
+            InformationScreen informationScreen = new InformationScreen(gameSession, ((Location)informationObject).InnInLocation);
+            informationScreen.StartPosition = FormStartPosition.CenterParent;
+            informationScreen.ShowDialog(this);
+        }
+
+        private void OpenVendorInformationalScreen(object sender, EventArgs e)
+        {
+            InformationScreen informationScreen = new InformationScreen(gameSession, ((Location)informationObject).VendorInLocation);
+            informationScreen.StartPosition = FormStartPosition.CenterParent;
+            informationScreen.ShowDialog(this);
+        }
+
+        private void OpenQuestInformationalScreen(object sender, EventArgs e)
+        {
+            InformationScreen informationScreen = new InformationScreen(gameSession, ((Location)informationObject).QuestInLocation);
+            informationScreen.StartPosition = FormStartPosition.CenterParent;
+            informationScreen.ShowDialog(this);
+        }
+
+
         //<------------Creation Functions-------------->
-        private PictureBox CreatePictureBox(string imageName, Point point, Size size)
+        private PictureBox CreatePictureBox(string imageName, Point point, Size size, bool dontAdd = false)
         {
             PictureBox pictureBox = new PictureBox();
             pictureBox.Size = size;
@@ -447,29 +588,56 @@ namespace UI
             SetImage(pictureBox, imageName);
             pictureBox.Location = point;
 
-            Controls.Add(pictureBox);
+            if (!dontAdd)
+            {
+                Controls.Add(pictureBox);
+            }
 
             return pictureBox;
         }
 
-        private Label CreateLabel(string labelText, bool autoSize, Point point, Size size, int fontSize = 0)
+        private Label CreateLabel(string labelText, bool autoSize, Point point, Size size, int fontSize = 0, bool underLine = false, bool bold = false)
         {
             Label label = new Label();
             label.Text = labelText;
             if(fontSize == 0)
             {
-                label.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+                if (underLine)
+                {
+                    label.Font = new Font("Century Gothic", 10, FontStyle.Underline);
+                }
+                else if (bold)
+                {
+                    label.Font = new Font("Century Gothic", 10, FontStyle.Bold);
+                }
+                else
+                {
+                    label.Font = new Font("Century Gothic", 10, FontStyle.Regular);
+                }
             }
             else
             {
-                label.Font = new Font("Century Gothic", fontSize, FontStyle.Regular);
+                if (underLine)
+                {
+                    label.Font = new Font("Century Gothic", fontSize, FontStyle.Underline);
+                }
+                else if (bold)
+                {
+                    label.Font = new Font("Century Gothic", fontSize, FontStyle.Bold);
+                }
+                else
+                {
+                    label.Font = new Font("Century Gothic", fontSize, FontStyle.Regular);
+                }
             }
             label.AutoSize = autoSize;
             label.Location = point;
             if (!autoSize)
             {
                 label.Size = size;
+                label.TextAlign = ContentAlignment.MiddleCenter;
             }
+
             Controls.Add(label);
 
             return label;
@@ -511,7 +679,7 @@ namespace UI
         {
             PictureBox pbIconImage = CreatePictureBox(iconName, new Point(x, y), new Size(25, 25));
             Label lblLabelName = CreateLabel(labelName, true, new Point(x + 42, y + 2), new Size(0, 0));
-            Label lblValue = CreateLabel(value, true, new Point(x + 190, y + 2), new Size(0, 0));
+            Label lblValue = CreateLabel(value, true, new Point(x + 205, y + 2), new Size(0, 0));
 
             Controls.Add(pbIconImage);
             Controls.Add(lblLabelName);

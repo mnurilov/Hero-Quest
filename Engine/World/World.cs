@@ -361,11 +361,22 @@ namespace Engine
             Person garry = new Person("Garry", "His grandpa doesn't love him", "Hey go to the sewers");
 
             //<-----------Quest Creation---------->
-            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place",
-                bob, new Dictionary<Enemy, int> { { FindEnemyByID(1), 3 } }, 10, 5, null, null, FindSpellByID(1));
 
+            Dictionary<Enemy, int> enemies = new Dictionary<Enemy, int>() 
+            {
+                {FindEnemyByID(1), 3},
+                {FindEnemyByID(2), 1},
+            };
+            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place",
+                bob, enemies, 10, 5, null, null, FindSpellByID(1));
+
+            Dictionary<EnemyLoot, int> loots = new Dictionary<EnemyLoot, int>()
+            {
+                {(EnemyLoot)FindItemByID(9), 3 },
+                {(EnemyLoot)FindItemByID(7), 2},
+            };
             Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction",
-                "Bring me 3 snake fangs so I can make the antidote", mary, new Dictionary<EnemyLoot, int> { { (EnemyLoot)FindItemByID(9), 3 } },
+                "Bring me 3 snake fangs so I can make the antidote", mary, loots,
                 5, 10, null, FindEquipmentByID(4));
 
             Quest findTheSewers = new TravelQuest(QuestIDFindTheSewers, "Find the Sewers", "Go to the sewers and come back", garry,

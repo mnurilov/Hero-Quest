@@ -222,5 +222,18 @@
     <EmbeddedResource Include="Images\Spell.ico" />
     <EmbeddedResource Include="Images\Equipment.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Quest.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Snake Fang.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Location.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Inn.ico" />
+    <EmbeddedResource Include="Images\Shop.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

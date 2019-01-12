@@ -58,7 +58,7 @@
             // 
             // lblInnName
             // 
-            this.lblInnName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblInnName.Font = new System.Drawing.Font("Century Gothic", 13.8F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblInnName.Location = new System.Drawing.Point(392, 87);
             this.lblInnName.Name = "lblInnName";
             this.lblInnName.Size = new System.Drawing.Size(312, 42);
