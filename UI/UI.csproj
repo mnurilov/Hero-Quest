@@ -53,6 +53,12 @@
     </Compile>
     <Compile Include="DataGridViewDisableButtonCell.cs" />
     <Compile Include="DataGridViewDisableButtonColumn.cs" />
+    <Compile Include="DeathScreen.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DeathScreen.Designer.cs">
+      <DependentUpon>DeathScreen.cs</DependentUpon>
+    </Compile>
     <Compile Include="InformationScreen.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -99,6 +105,9 @@
     </Compile>
     <EmbeddedResource Include="CharacterCreationScreen.resx">
       <DependentUpon>CharacterCreationScreen.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DeathScreen.resx">
+      <DependentUpon>DeathScreen.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="InformationScreen.resx">
       <DependentUpon>InformationScreen.cs</DependentUpon>

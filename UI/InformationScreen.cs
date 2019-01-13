@@ -225,6 +225,10 @@ namespace UI
                 y += 40;
             }
 
+            if (!gameSession.CurrentPlayer.PlayerQuests.Contains(quest))
+            {
+                return;
+            }
             if (!quest.IsCompleted)
             {
                 CreateLabel("Progress", false, new Point(237, 320), new Size(284, 43), 11, true);
@@ -310,7 +314,6 @@ namespace UI
             {
                 CreateLabel("You have completed this quest", false, new Point(237, 377), new Size(284, 43));
             }
-
         }
 
         private void CreateVendorInformationScreen(Vendor vendor)

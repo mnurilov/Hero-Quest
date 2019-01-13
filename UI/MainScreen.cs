@@ -15,14 +15,15 @@ namespace UI
 {
     public partial class MainScreen : Form
     {
-        GameSession gameSession = new GameSession();
+        GameSession gameSession;
         
         readonly Assembly thisAssembly = Assembly.GetExecutingAssembly();
 
 
-        public MainScreen()
+        public MainScreen(GameSession gameSession)
         {
             InitializeComponent();
+            this.gameSession = gameSession;
             gameSession.OnMessagedRaised += DisplayWorldText;
             UpdateUI();
             dgvItems.CellClick += dgvItems_CellClick;

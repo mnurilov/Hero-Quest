@@ -13,7 +13,7 @@ namespace UIWindowsForm
 {
     public partial class MainScreen : Form
     {
-        GameSession gameSession = new GameSession();
+        //GameSession gameSession = new GameSession();
 
         public MainScreen()
         {

@@ -1,6 +1,12 @@
 Make Hero Quest Introduction Screen Picture
 Make Hero Quest Title Screen Header 
 
++1000
+1050/1070
+
+
+50/70
+
 <-----Things to Do----->
 -Bosses
 -I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
@@ -8,7 +14,11 @@ Make Hero Quest Title Screen Header
 -When they cast a spell flash a picture for a second so it looks like an animation
 -sound effects
 -music
+-make when you die you teleport back to house you lose 80 percent of gold and you go back 1 level
+or maybe make the levels scale how far back they go
 
 For Debugging
 -Add an add all items equipment spells and quests function so I can have all things
 -A clear map function which allows me to see everything 
+
+854

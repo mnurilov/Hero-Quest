@@ -348,7 +348,10 @@ namespace Engine
             Empowered = false;
             Greed = false;
 
-            UpdateBaseStats();
+            int health = 0;
+            int mana = 0;
+
+            UpdateBaseStats(ref health, ref mana);
             ResetTotalStats();
 
             //After properly setting up the players base and total stats only now can we set his current health and mana
@@ -386,16 +389,20 @@ namespace Engine
         private void LevelUp()
         {
             Level++;
-            UpdateBaseStats();
+
+            int health = 0;
+            int mana = 0;
+            UpdateBaseStats(ref health, ref mana);
             CalculateAllTotalStats();
+            CurrentHealth += health;
+            CurrentMana += mana;
         }
 
         private void CalculateAllTotalStats()
         {
-            //Reset the total stats back to base stats numbers
             ResetTotalStats();
 
-            if(CurrentHeadEquipment != null)
+            if (CurrentHeadEquipment != null)
             {
                 UpdateTotalStats(CurrentHeadEquipment);
             }
@@ -416,6 +423,15 @@ namespace Engine
                 UpdateTotalStats(CurrentSideArm);
             }
 
+            if (CurrentHealth > TotalMaximumHealth)
+            {
+                CurrentHealth = TotalMaximumHealth;
+            }
+            if (CurrentMana > TotalMaximumMana)
+            {
+                CurrentMana = TotalMaximumMana;
+            }
+
             UpdateCriticalAndDodge();
         }
 
@@ -429,16 +445,33 @@ namespace Engine
             TotalSpeed = BaseSpeed;
             TotalIntellect = BaseIntellect;
             TotalResistance = BaseResistance;
-
-            if(CurrentHealth > TotalMaximumHealth)
-            {
-                CurrentHealth = TotalMaximumHealth;
-            }
-            if(CurrentMana > TotalMaximumMana)
-            {
-                CurrentMana = TotalMaximumMana;
-            }
         }
+
+        private void UpdateBaseStats(ref int health, ref int mana)
+        {
+            health = BaseMaximumHealth;
+            mana = BaseMaximumMana;
+
+            switch (playerClass)
+            {
+                case Class.Warrior:
+                    UpdateWarriorStats();
+                    break;
+                case Class.Mage:
+                    UpdateMageStats();
+                    break;
+                case Class.Thief:
+                    UpdateThiefStats();
+                    break;
+                default:
+                    throw new Exception("Error no class selected");
+            }
+
+            health = BaseMaximumHealth - health;
+            mana = BaseMaximumMana - mana;
+        }
+
+
 
         private void UpdateTotalStats(Equipment equipment)
         {
@@ -458,27 +491,9 @@ namespace Engine
             DodgeChanceRate = ((DodgeChanceRateScaleFactor * TotalLuck) / (TotalLuck + DodgeChanceRateConstant));
         }
 
-        private int GetUpdatedMaximumExperience() 
+        private int GetUpdatedMaximumExperience()
         {
             return (int)(Math.Round((ExperiencePointsScaleFactor * (Math.Pow(Level, ExperiencePointsExponent))) + ExperiencePointsConstant));
-        }
-
-        private void UpdateBaseStats()
-        {
-            switch (playerClass)
-            {
-                case Class.Warrior:
-                    UpdateWarriorStats();
-                    break;
-                case Class.Mage:
-                    UpdateMageStats();
-                    break;
-                case Class.Thief:
-                    UpdateThiefStats();
-                    break;
-                default:
-                    throw new Exception("Error no class selected");
-            }
         }
 
         private void UpdateWarriorStats()
@@ -555,6 +570,10 @@ namespace Engine
         private void MoveTo(Location newLocation)
         {
             CurrentLocation = newLocation;
+
+            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+            CurrentLocation.HasVisited = true;
+
             UpdateTravelQuests(newLocation);
         }
 
@@ -589,14 +608,28 @@ namespace Engine
             {
                 //Double the damage
                 battleResult = GameSession.BattleResult.Critical;
-                damage = (int)(((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * CriticalDamageModifier)
-                                   * empoweredGreedModifier);
+                if(TotalStrength <= 0)
+                {
+                    damage = 0;
+                }
+                else
+                {
+                    damage = (int)(((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * CriticalDamageModifier)
+                                       * empoweredGreedModifier);
+                }
             }
             //Else the player would normally strike the enemy then calculate the damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                damage = (int)((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredGreedModifier);
+                if(TotalStrength <= 0)
+                {
+                    damage = 0;
+                }
+                else
+                {
+                    damage = (int)((((TotalStrength * TotalStrength) / (TotalStrength + enemy.Defense)) * 2) * empoweredGreedModifier);
+                }
             }
 
             //If the player is not using Greed or using Empower then increase empower counter
@@ -778,6 +811,7 @@ namespace Engine
             if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= enemy.DodgeChanceRate)
             {
                 battleResult = GameSession.BattleResult.Missed;
+                CurrentMana -= damageSpell.ManaCost;
                 return 0;
             }
 
@@ -786,16 +820,16 @@ namespace Engine
             {
                 //Double the spell damage
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = (int)(((((TotalIntellect + damageSpell.DamageValue) / (TotalIntellect + enemy.Resistance)) * 2)
-                                        * CriticalDamageModifier) * empoweredGreedModifier);
+                spellDamage = (int)(((damageSpell.DamageValue + ((TotalIntellect * TotalIntellect) / (TotalIntellect + enemy.Resistance)))
+                    * empoweredGreedModifier) * CriticalDamageModifier);
                 CurrentMana -= damageSpell.ManaCost;
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = (int)(((TotalIntellect + damageSpell.DamageValue) / (TotalIntellect + enemy.Resistance) * 2)
-                                      * empoweredGreedModifier);
+                spellDamage = (int)((damageSpell.DamageValue + ((TotalIntellect * TotalIntellect)/(TotalIntellect + enemy.Resistance)))
+                    * empoweredGreedModifier);
                 CurrentMana -= damageSpell.ManaCost;
             }
 

@@ -204,7 +204,7 @@
             // btnNorth
             // 
             this.btnNorth.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnNorth.Location = new System.Drawing.Point(952, 630);
+            this.btnNorth.Location = new System.Drawing.Point(1047, 630);
             this.btnNorth.Name = "btnNorth";
             this.btnNorth.Size = new System.Drawing.Size(118, 42);
             this.btnNorth.TabIndex = 0;
@@ -215,7 +215,7 @@
             // btnWest
             // 
             this.btnWest.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnWest.Location = new System.Drawing.Point(795, 704);
+            this.btnWest.Location = new System.Drawing.Point(890, 704);
             this.btnWest.Name = "btnWest";
             this.btnWest.Size = new System.Drawing.Size(118, 42);
             this.btnWest.TabIndex = 1;
@@ -226,7 +226,7 @@
             // btnEast
             // 
             this.btnEast.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEast.Location = new System.Drawing.Point(1103, 704);
+            this.btnEast.Location = new System.Drawing.Point(1198, 704);
             this.btnEast.Name = "btnEast";
             this.btnEast.Size = new System.Drawing.Size(118, 42);
             this.btnEast.TabIndex = 2;
@@ -237,7 +237,7 @@
             // btnSouth
             // 
             this.btnSouth.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnSouth.Location = new System.Drawing.Point(952, 778);
+            this.btnSouth.Location = new System.Drawing.Point(1047, 778);
             this.btnSouth.Name = "btnSouth";
             this.btnSouth.Size = new System.Drawing.Size(118, 42);
             this.btnSouth.TabIndex = 3;
@@ -251,7 +251,7 @@
             this.rtbWorldText.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.rtbWorldText.Cursor = System.Windows.Forms.Cursors.Default;
             this.rtbWorldText.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rtbWorldText.Location = new System.Drawing.Point(761, 0);
+            this.rtbWorldText.Location = new System.Drawing.Point(856, 0);
             this.rtbWorldText.Name = "rtbWorldText";
             this.rtbWorldText.ReadOnly = true;
             this.rtbWorldText.ShortcutsEnabled = false;
@@ -263,7 +263,7 @@
             // btnMap
             // 
             this.btnMap.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMap.Location = new System.Drawing.Point(952, 704);
+            this.btnMap.Location = new System.Drawing.Point(1047, 704);
             this.btnMap.Name = "btnMap";
             this.btnMap.Size = new System.Drawing.Size(118, 42);
             this.btnMap.TabIndex = 5;
@@ -283,7 +283,7 @@
             // btnAttack
             // 
             this.btnAttack.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnAttack.Location = new System.Drawing.Point(380, 630);
+            this.btnAttack.Location = new System.Drawing.Point(475, 630);
             this.btnAttack.Name = "btnAttack";
             this.btnAttack.Size = new System.Drawing.Size(118, 42);
             this.btnAttack.TabIndex = 7;
@@ -294,7 +294,7 @@
             // btnMagic
             // 
             this.btnMagic.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnMagic.Location = new System.Drawing.Point(593, 630);
+            this.btnMagic.Location = new System.Drawing.Point(688, 630);
             this.btnMagic.Name = "btnMagic";
             this.btnMagic.Size = new System.Drawing.Size(118, 42);
             this.btnMagic.TabIndex = 8;
@@ -305,7 +305,7 @@
             // btnItems
             // 
             this.btnItems.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnItems.Location = new System.Drawing.Point(380, 704);
+            this.btnItems.Location = new System.Drawing.Point(475, 704);
             this.btnItems.Name = "btnItems";
             this.btnItems.Size = new System.Drawing.Size(118, 42);
             this.btnItems.TabIndex = 9;
@@ -316,7 +316,7 @@
             // btnRun
             // 
             this.btnRun.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRun.Location = new System.Drawing.Point(593, 704);
+            this.btnRun.Location = new System.Drawing.Point(688, 704);
             this.btnRun.Name = "btnRun";
             this.btnRun.Size = new System.Drawing.Size(118, 42);
             this.btnRun.TabIndex = 10;
@@ -332,10 +332,10 @@
             this.tbcInventory.Controls.Add(this.tbpQuests);
             this.tbcInventory.Font = new System.Drawing.Font("Century Gothic", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.tbcInventory.ItemSize = new System.Drawing.Size(60, 26);
-            this.tbcInventory.Location = new System.Drawing.Point(0, 0);
+            this.tbcInventory.Location = new System.Drawing.Point(0, 1);
             this.tbcInventory.Name = "tbcInventory";
             this.tbcInventory.SelectedIndex = 0;
-            this.tbcInventory.Size = new System.Drawing.Size(330, 233);
+            this.tbcInventory.Size = new System.Drawing.Size(422, 233);
             this.tbcInventory.TabIndex = 11;
             // 
             // tbpItems
@@ -344,7 +344,7 @@
             this.tbpItems.Location = new System.Drawing.Point(4, 30);
             this.tbpItems.Name = "tbpItems";
             this.tbpItems.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpItems.Size = new System.Drawing.Size(322, 199);
+            this.tbpItems.Size = new System.Drawing.Size(414, 199);
             this.tbpItems.TabIndex = 0;
             this.tbpItems.Text = "Items";
             this.tbpItems.UseVisualStyleBackColor = true;
@@ -368,7 +368,7 @@
             this.dgvItems.ReadOnly = true;
             this.dgvItems.RowHeadersVisible = false;
             this.dgvItems.RowTemplate.Height = 24;
-            this.dgvItems.Size = new System.Drawing.Size(322, 199);
+            this.dgvItems.Size = new System.Drawing.Size(414, 199);
             this.dgvItems.TabIndex = 12;
             // 
             // colItemID
@@ -432,7 +432,7 @@
             this.tbpEquipment.Location = new System.Drawing.Point(4, 30);
             this.tbpEquipment.Name = "tbpEquipment";
             this.tbpEquipment.Padding = new System.Windows.Forms.Padding(3);
-            this.tbpEquipment.Size = new System.Drawing.Size(322, 199);
+            this.tbpEquipment.Size = new System.Drawing.Size(414, 199);
             this.tbpEquipment.TabIndex = 1;
             this.tbpEquipment.Text = "Equipment";
             this.tbpEquipment.UseVisualStyleBackColor = true;
@@ -456,7 +456,7 @@
             this.dgvEquipment.ReadOnly = true;
             this.dgvEquipment.RowHeadersVisible = false;
             this.dgvEquipment.RowTemplate.Height = 24;
-            this.dgvEquipment.Size = new System.Drawing.Size(322, 199);
+            this.dgvEquipment.Size = new System.Drawing.Size(414, 199);
             this.dgvEquipment.TabIndex = 12;
             // 
             // colEquipmentID
@@ -521,7 +521,7 @@
             this.tbpSpells.Controls.Add(this.dgvSpells);
             this.tbpSpells.Location = new System.Drawing.Point(4, 30);
             this.tbpSpells.Name = "tbpSpells";
-            this.tbpSpells.Size = new System.Drawing.Size(322, 199);
+            this.tbpSpells.Size = new System.Drawing.Size(414, 199);
             this.tbpSpells.TabIndex = 2;
             this.tbpSpells.Text = "Spells";
             this.tbpSpells.UseVisualStyleBackColor = true;
@@ -545,7 +545,7 @@
             this.dgvSpells.ReadOnly = true;
             this.dgvSpells.RowHeadersVisible = false;
             this.dgvSpells.RowTemplate.Height = 24;
-            this.dgvSpells.Size = new System.Drawing.Size(322, 199);
+            this.dgvSpells.Size = new System.Drawing.Size(414, 199);
             this.dgvSpells.TabIndex = 12;
             // 
             // colSpellID
@@ -599,7 +599,7 @@
             this.tbpQuests.Controls.Add(this.dgvQuests);
             this.tbpQuests.Location = new System.Drawing.Point(4, 30);
             this.tbpQuests.Name = "tbpQuests";
-            this.tbpQuests.Size = new System.Drawing.Size(322, 199);
+            this.tbpQuests.Size = new System.Drawing.Size(414, 199);
             this.tbpQuests.TabIndex = 3;
             this.tbpQuests.Text = "Quests";
             this.tbpQuests.UseVisualStyleBackColor = true;
@@ -622,7 +622,7 @@
             this.dgvQuests.ReadOnly = true;
             this.dgvQuests.RowHeadersVisible = false;
             this.dgvQuests.RowTemplate.Height = 24;
-            this.dgvQuests.Size = new System.Drawing.Size(322, 199);
+            this.dgvQuests.Size = new System.Drawing.Size(414, 199);
             this.dgvQuests.TabIndex = 12;
             // 
             // colQuestID
@@ -664,7 +664,7 @@
             // btnInn
             // 
             this.btnInn.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnInn.Location = new System.Drawing.Point(1260, 630);
+            this.btnInn.Location = new System.Drawing.Point(1355, 630);
             this.btnInn.Name = "btnInn";
             this.btnInn.Size = new System.Drawing.Size(118, 42);
             this.btnInn.TabIndex = 12;
@@ -675,7 +675,7 @@
             // btnShop
             // 
             this.btnShop.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShop.Location = new System.Drawing.Point(1260, 704);
+            this.btnShop.Location = new System.Drawing.Point(1355, 704);
             this.btnShop.Name = "btnShop";
             this.btnShop.Size = new System.Drawing.Size(118, 42);
             this.btnShop.TabIndex = 13;
@@ -686,7 +686,7 @@
             // btnTalk
             // 
             this.btnTalk.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnTalk.Location = new System.Drawing.Point(1260, 778);
+            this.btnTalk.Location = new System.Drawing.Point(1355, 778);
             this.btnTalk.Name = "btnTalk";
             this.btnTalk.Size = new System.Drawing.Size(118, 42);
             this.btnTalk.TabIndex = 14;
@@ -926,14 +926,14 @@
             this.pnPlayerStats.Controls.Add(this.lblPlayerExperience);
             this.pnPlayerStats.Location = new System.Drawing.Point(0, 0);
             this.pnPlayerStats.Name = "pnPlayerStats";
-            this.pnPlayerStats.Size = new System.Drawing.Size(330, 600);
+            this.pnPlayerStats.Size = new System.Drawing.Size(425, 600);
             this.pnPlayerStats.TabIndex = 32;
             // 
             // lblPlayerClass
             // 
             this.lblPlayerClass.AutoSize = true;
             this.lblPlayerClass.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerClass.Location = new System.Drawing.Point(207, 50);
+            this.lblPlayerClass.Location = new System.Drawing.Point(219, 50);
             this.lblPlayerClass.Name = "lblPlayerClass";
             this.lblPlayerClass.Size = new System.Drawing.Size(69, 21);
             this.lblPlayerClass.TabIndex = 43;
@@ -953,7 +953,7 @@
             // 
             this.lblPlayerDodgeChance.AutoSize = true;
             this.lblPlayerDodgeChance.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerDodgeChance.Location = new System.Drawing.Point(207, 530);
+            this.lblPlayerDodgeChance.Location = new System.Drawing.Point(219, 530);
             this.lblPlayerDodgeChance.Name = "lblPlayerDodgeChance";
             this.lblPlayerDodgeChance.Size = new System.Drawing.Size(69, 21);
             this.lblPlayerDodgeChance.TabIndex = 41;
@@ -973,7 +973,7 @@
             // 
             this.lblPlayerGold.AutoSize = true;
             this.lblPlayerGold.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerGold.Location = new System.Drawing.Point(207, 570);
+            this.lblPlayerGold.Location = new System.Drawing.Point(219, 570);
             this.lblPlayerGold.Name = "lblPlayerGold";
             this.lblPlayerGold.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerGold.TabIndex = 8;
@@ -1003,7 +1003,7 @@
             // 
             this.lblPlayerCriticalChance.AutoSize = true;
             this.lblPlayerCriticalChance.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerCriticalChance.Location = new System.Drawing.Point(207, 490);
+            this.lblPlayerCriticalChance.Location = new System.Drawing.Point(219, 490);
             this.lblPlayerCriticalChance.Name = "lblPlayerCriticalChance";
             this.lblPlayerCriticalChance.Size = new System.Drawing.Size(69, 21);
             this.lblPlayerCriticalChance.TabIndex = 38;
@@ -1042,7 +1042,7 @@
             // 
             this.lblPlayerName.AutoSize = true;
             this.lblPlayerName.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerName.Location = new System.Drawing.Point(207, 10);
+            this.lblPlayerName.Location = new System.Drawing.Point(219, 10);
             this.lblPlayerName.Name = "lblPlayerName";
             this.lblPlayerName.Size = new System.Drawing.Size(77, 21);
             this.lblPlayerName.TabIndex = 34;
@@ -1172,7 +1172,7 @@
             // 
             this.lblPlayerLevel.AutoSize = true;
             this.lblPlayerLevel.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerLevel.Location = new System.Drawing.Point(207, 90);
+            this.lblPlayerLevel.Location = new System.Drawing.Point(219, 90);
             this.lblPlayerLevel.Name = "lblPlayerLevel";
             this.lblPlayerLevel.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerLevel.TabIndex = 10;
@@ -1182,7 +1182,7 @@
             // 
             this.lblPlayerStrength.AutoSize = true;
             this.lblPlayerStrength.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerStrength.Location = new System.Drawing.Point(207, 250);
+            this.lblPlayerStrength.Location = new System.Drawing.Point(219, 250);
             this.lblPlayerStrength.Name = "lblPlayerStrength";
             this.lblPlayerStrength.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerStrength.TabIndex = 9;
@@ -1192,7 +1192,7 @@
             // 
             this.lblPlayerResistance.AutoSize = true;
             this.lblPlayerResistance.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerResistance.Location = new System.Drawing.Point(207, 450);
+            this.lblPlayerResistance.Location = new System.Drawing.Point(219, 450);
             this.lblPlayerResistance.Name = "lblPlayerResistance";
             this.lblPlayerResistance.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerResistance.TabIndex = 7;
@@ -1202,7 +1202,7 @@
             // 
             this.lblPlayerIntellect.AutoSize = true;
             this.lblPlayerIntellect.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerIntellect.Location = new System.Drawing.Point(207, 410);
+            this.lblPlayerIntellect.Location = new System.Drawing.Point(219, 410);
             this.lblPlayerIntellect.Name = "lblPlayerIntellect";
             this.lblPlayerIntellect.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerIntellect.TabIndex = 6;
@@ -1212,7 +1212,7 @@
             // 
             this.lblPlayerSpeed.AutoSize = true;
             this.lblPlayerSpeed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerSpeed.Location = new System.Drawing.Point(207, 370);
+            this.lblPlayerSpeed.Location = new System.Drawing.Point(219, 370);
             this.lblPlayerSpeed.Name = "lblPlayerSpeed";
             this.lblPlayerSpeed.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerSpeed.TabIndex = 5;
@@ -1222,7 +1222,7 @@
             // 
             this.lblPlayerLuck.AutoSize = true;
             this.lblPlayerLuck.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerLuck.Location = new System.Drawing.Point(207, 330);
+            this.lblPlayerLuck.Location = new System.Drawing.Point(219, 330);
             this.lblPlayerLuck.Name = "lblPlayerLuck";
             this.lblPlayerLuck.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerLuck.TabIndex = 4;
@@ -1232,7 +1232,7 @@
             // 
             this.lblPlayerDefense.AutoSize = true;
             this.lblPlayerDefense.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerDefense.Location = new System.Drawing.Point(207, 290);
+            this.lblPlayerDefense.Location = new System.Drawing.Point(219, 290);
             this.lblPlayerDefense.Name = "lblPlayerDefense";
             this.lblPlayerDefense.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerDefense.TabIndex = 3;
@@ -1242,7 +1242,7 @@
             // 
             this.lblPlayerMana.AutoSize = true;
             this.lblPlayerMana.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerMana.Location = new System.Drawing.Point(207, 210);
+            this.lblPlayerMana.Location = new System.Drawing.Point(219, 210);
             this.lblPlayerMana.Name = "lblPlayerMana";
             this.lblPlayerMana.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerMana.TabIndex = 2;
@@ -1252,7 +1252,7 @@
             // 
             this.lblPlayerHealth.AutoSize = true;
             this.lblPlayerHealth.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerHealth.Location = new System.Drawing.Point(207, 170);
+            this.lblPlayerHealth.Location = new System.Drawing.Point(219, 170);
             this.lblPlayerHealth.Name = "lblPlayerHealth";
             this.lblPlayerHealth.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerHealth.TabIndex = 1;
@@ -1262,7 +1262,7 @@
             // 
             this.lblPlayerExperience.AutoSize = true;
             this.lblPlayerExperience.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblPlayerExperience.Location = new System.Drawing.Point(207, 130);
+            this.lblPlayerExperience.Location = new System.Drawing.Point(219, 130);
             this.lblPlayerExperience.Name = "lblPlayerExperience";
             this.lblPlayerExperience.Size = new System.Drawing.Size(42, 21);
             this.lblPlayerExperience.TabIndex = 0;
@@ -1282,7 +1282,7 @@
             this.colBattleSpellsName,
             this.colBattleSpellsManaCost,
             this.colBattleSpellsCast});
-            this.dgvBattleSpells.Location = new System.Drawing.Point(380, 630);
+            this.dgvBattleSpells.Location = new System.Drawing.Point(475, 630);
             this.dgvBattleSpells.Name = "dgvBattleSpells";
             this.dgvBattleSpells.ReadOnly = true;
             this.dgvBattleSpells.RowHeadersVisible = false;
@@ -1360,7 +1360,7 @@
             this.colBattleItemsName,
             this.colBattleItemsQuantity,
             this.colBattleItemsUse});
-            this.dgvBattleItems.Location = new System.Drawing.Point(380, 630);
+            this.dgvBattleItems.Location = new System.Drawing.Point(475, 630);
             this.dgvBattleItems.Name = "dgvBattleItems";
             this.dgvBattleItems.ReadOnly = true;
             this.dgvBattleItems.RowHeadersVisible = false;
@@ -1426,7 +1426,7 @@
             // btnClose
             // 
             this.btnClose.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnClose.Location = new System.Drawing.Point(761, 630);
+            this.btnClose.Location = new System.Drawing.Point(856, 630);
             this.btnClose.Name = "btnClose";
             this.btnClose.Size = new System.Drawing.Size(118, 42);
             this.btnClose.TabIndex = 35;
@@ -1438,7 +1438,7 @@
             // btnEmpower
             // 
             this.btnEmpower.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEmpower.Location = new System.Drawing.Point(380, 778);
+            this.btnEmpower.Location = new System.Drawing.Point(475, 778);
             this.btnEmpower.Name = "btnEmpower";
             this.btnEmpower.Size = new System.Drawing.Size(116, 42);
             this.btnEmpower.TabIndex = 36;
@@ -1449,7 +1449,7 @@
             // btnGreed
             // 
             this.btnGreed.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnGreed.Location = new System.Drawing.Point(593, 778);
+            this.btnGreed.Location = new System.Drawing.Point(688, 778);
             this.btnGreed.Name = "btnGreed";
             this.btnGreed.Size = new System.Drawing.Size(116, 42);
             this.btnGreed.TabIndex = 37;
@@ -1463,7 +1463,7 @@
             this.pnPlayerLocation.Controls.Add(this.pbLocationPicture);
             this.pnPlayerLocation.Controls.Add(this.lblLocationName);
             this.pnPlayerLocation.Controls.Add(this.lblLocationDescription);
-            this.pnPlayerLocation.Location = new System.Drawing.Point(330, 0);
+            this.pnPlayerLocation.Location = new System.Drawing.Point(425, 0);
             this.pnPlayerLocation.Name = "pnPlayerLocation";
             this.pnPlayerLocation.Size = new System.Drawing.Size(431, 300);
             this.pnPlayerLocation.TabIndex = 38;
@@ -1474,7 +1474,7 @@
             this.pnCurrentEnemy.Controls.Add(this.lblEnemyDescription);
             this.pnCurrentEnemy.Controls.Add(this.pbEnemyPicture);
             this.pnCurrentEnemy.Controls.Add(this.lblEnemyName);
-            this.pnCurrentEnemy.Location = new System.Drawing.Point(330, 300);
+            this.pnCurrentEnemy.Location = new System.Drawing.Point(425, 300);
             this.pnCurrentEnemy.Name = "pnCurrentEnemy";
             this.pnCurrentEnemy.Size = new System.Drawing.Size(431, 300);
             this.pnCurrentEnemy.TabIndex = 39;
@@ -1485,13 +1485,13 @@
             this.pnInventory.Controls.Add(this.tbcInventory);
             this.pnInventory.Location = new System.Drawing.Point(0, 600);
             this.pnInventory.Name = "pnInventory";
-            this.pnInventory.Size = new System.Drawing.Size(330, 233);
+            this.pnInventory.Size = new System.Drawing.Size(425, 233);
             this.pnInventory.TabIndex = 40;
             // 
             // pnEmpower1
             // 
             this.pnEmpower1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(251)))), ((int)(((byte)(11)))), ((int)(((byte)(11)))));
-            this.pnEmpower1.Location = new System.Drawing.Point(380, 819);
+            this.pnEmpower1.Location = new System.Drawing.Point(475, 819);
             this.pnEmpower1.Name = "pnEmpower1";
             this.pnEmpower1.Size = new System.Drawing.Size(29, 14);
             this.pnEmpower1.TabIndex = 41;
@@ -1499,7 +1499,7 @@
             // pnEmpower2
             // 
             this.pnEmpower2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(253)))), ((int)(((byte)(162)))), ((int)(((byte)(9)))));
-            this.pnEmpower2.Location = new System.Drawing.Point(409, 819);
+            this.pnEmpower2.Location = new System.Drawing.Point(504, 819);
             this.pnEmpower2.Name = "pnEmpower2";
             this.pnEmpower2.Size = new System.Drawing.Size(29, 14);
             this.pnEmpower2.TabIndex = 42;
@@ -1507,7 +1507,7 @@
             // pnEmpower3
             // 
             this.pnEmpower3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(236)))), ((int)(((byte)(242)))), ((int)(((byte)(0)))));
-            this.pnEmpower3.Location = new System.Drawing.Point(438, 819);
+            this.pnEmpower3.Location = new System.Drawing.Point(533, 819);
             this.pnEmpower3.Name = "pnEmpower3";
             this.pnEmpower3.Size = new System.Drawing.Size(29, 14);
             this.pnEmpower3.TabIndex = 42;
@@ -1515,7 +1515,7 @@
             // pnEmpower4
             // 
             this.pnEmpower4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(200)))), ((int)(((byte)(12)))));
-            this.pnEmpower4.Location = new System.Drawing.Point(467, 819);
+            this.pnEmpower4.Location = new System.Drawing.Point(562, 819);
             this.pnEmpower4.Name = "pnEmpower4";
             this.pnEmpower4.Size = new System.Drawing.Size(29, 14);
             this.pnEmpower4.TabIndex = 42;
@@ -1523,7 +1523,7 @@
             // pbGreed
             // 
             this.pbGreed.Image = ((System.Drawing.Image)(resources.GetObject("pbGreed.Image")));
-            this.pbGreed.Location = new System.Drawing.Point(504, 752);
+            this.pbGreed.Location = new System.Drawing.Point(599, 752);
             this.pbGreed.Name = "pbGreed";
             this.pbGreed.Size = new System.Drawing.Size(81, 81);
             this.pbGreed.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1533,7 +1533,7 @@
             // pbEmpower
             // 
             this.pbEmpower.Image = ((System.Drawing.Image)(resources.GetObject("pbEmpower.Image")));
-            this.pbEmpower.Location = new System.Drawing.Point(504, 752);
+            this.pbEmpower.Location = new System.Drawing.Point(599, 752);
             this.pbEmpower.Name = "pbEmpower";
             this.pbEmpower.Size = new System.Drawing.Size(81, 81);
             this.pbEmpower.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
@@ -1545,7 +1545,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
-            this.ClientSize = new System.Drawing.Size(1390, 833);
+            this.ClientSize = new System.Drawing.Size(1485, 833);
             this.Controls.Add(this.pbEmpower);
             this.Controls.Add(this.dgvBattleItems);
             this.Controls.Add(this.dgvBattleSpells);

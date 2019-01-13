@@ -28,10 +28,9 @@ namespace Engine
         public int TurnCounter;
 
 
-        public GameSession()
+        public GameSession(string playerName, Player.Class playerClass)
         {
-            //Fix this
-            CurrentPlayer = new Player(1, "Bob", Player.Class.Thief);
+            CurrentPlayer = new Player(1, playerName, playerClass);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(9), 10);
@@ -45,7 +44,6 @@ namespace Engine
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(2));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(9));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(3));
-
 
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
@@ -106,9 +104,6 @@ namespace Engine
                     CurrentPlayer.MoveEast();
                     break;
             }
-
-            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
-            CurrentPlayer.CurrentLocation.HasVisited = true;
 
             //If an encounter would occur, determine the enemy
             if (CurrentPlayer.CurrentLocation.EncounterTriggered())

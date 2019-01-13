@@ -16,5 +16,14 @@ namespace UI
         {
             InitializeComponent();
         }
+
+        private void btnPlay_Click(object sender, EventArgs e)
+        {
+            Hide();
+            CharacterCreationScreen characterCreationScreen = new CharacterCreationScreen();
+            characterCreationScreen.StartPosition = FormStartPosition.CenterParent;
+            characterCreationScreen.ShowDialog(this);
+            Close();
+        }
     }
 }

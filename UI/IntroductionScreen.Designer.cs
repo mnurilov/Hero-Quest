@@ -41,6 +41,7 @@
             this.btnPlay.TabIndex = 0;
             this.btnPlay.Text = "New Game";
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // IntroductionScreen
             // 
