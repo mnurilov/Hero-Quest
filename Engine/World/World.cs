@@ -35,6 +35,14 @@ namespace Engine
         private const int TomeEquipmentIDBronzeTome = 11;
         private const int TomeEquipmentIDRuneTome = 12;
         private const int DaggerEquipmentIDBronzeDagger = 13;
+        private const int NegativeHealthEquipmentID = 14;
+        private const int NegativeManaEquipmentID = 15;
+        private const int NegativeAttackEquipmentID = 16;
+        private const int NegativeDefenseEquipmentID = 17;
+        private const int NegativeLuckEquipmentID = 18;
+        private const int NegativeSpeedEquipmentID = 19;
+        private const int NegativeIntellectEquipmentID = 20;
+        private const int NegativeResistanceEquipmentID = 21;
 
         //<----------Spell ID's---------->
         private const int SpellIDFire = 1;
@@ -262,6 +270,10 @@ namespace Engine
             equipments.Add(new Shield(ShieldEquipmentIDBronzeShield, "Bronze Shield", "A crummy shield", 10, 0, 0, 0, 10, 0, 0, 0, 0));
             equipments.Add(new Dagger(DaggerEquipmentIDBronzeDagger, "Bronze Dagger", "A garbage dagger", 10, 10, 10, 10, 10, 10, 10, 10, 10));
             equipments.Add(new HeadEquipment(HeadEquipmentIDRuneHelmet, "Rune Helmet", "A top tier helmet", 100, 30, 0, 5, 30, 0, -5, 0, 0));
+
+            equipments.Add(new HeadEquipment(NegativeHealthEquipmentID, "Negative Health", "", 10, -100, 0, 0, 0, 0,0,0,0));
+            equipments.Add(new ChestEquipment(NegativeManaEquipmentID, "Negative Mana", "", 10, 0, -100, 0,0,0,0,0,0));
+            equipments.Add(new LegEquipment(NegativeAttackEquipmentID, "Negative Attack", "", 10, 0, 0, -100, 0,0,0,0,0));
         }
 
         private static void PopulateSpells()
