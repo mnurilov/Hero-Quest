@@ -409,6 +409,9 @@ namespace Engine
             Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100, 0, -1);
             Location swamp = new Location(LocationIDSwamp, "Swamp", "A run down sadden place", 100, -1, 0);
 
+            Person bob = new Person("Bob", "", "I think there is a treasure somewhere in the woods");
+            Person marley = new Person("Marley", "", "I don't know what the fuck is going on");
+
             //<----------Linking up the locations---------->
             house.LocationToTheNorth = grassyPlains;
             house.LocationToTheSouth = pond;
@@ -438,14 +441,28 @@ namespace Engine
 
             swamp.LocationToTheEast = house;
 
+
+            //<----------Adding loot to locations------------->
+            alley.ItemInLocation = FindItemByID(1);
+            sewers.EquipmentInLocation = FindEquipmentByID(1);
+            grassyPlains.SpellInLocation = FindSpellByID(1);
+
+        
+            //<----------Adding people to locations------------->
+            town.PersonInLocation = bob;
+
+            alley.PersonInLocation = marley;
+
             //<----------Add vendors to the locations---------->
             town.VendorInLocation = FindVendorByID(1);
             alley.VendorInLocation = FindVendorByID(2);
             sewers.VendorInLocation = FindVendorByID(3);
+        
 
             //<----------Add inns to the locations---------->
             town.InnInLocation = FindInnByID(1);
             farmHut.InnInLocation = FindInnByID(2);
+
 
             //<----------Add enemies to the locations---------->
             //Note: Enemy weights must be ordered from least to greatest
@@ -454,11 +471,13 @@ namespace Engine
             pond.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(5), 1 } };
             swamp.BossInLocation = FindEnemyByID(6);
 
+
             //<----------Add quests to the locations---------->
             town.QuestInLocation = FindQuestByID(1);
             farmHut.QuestInLocation = FindQuestByID(2);
             alley.QuestInLocation = FindQuestByID(3);
             sewers.QuestInLocation = FindQuestByID(4);
+
 
             //<-----------Add locations to the location list---------->
             locations.Add(house);

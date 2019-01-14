@@ -1,11 +1,10 @@
 Make Hero Quest Introduction Screen Picture
 Make Hero Quest Title Screen Header 
 
-+1000
-1050/1070
-
-
-50/70
+Things to happen on death
+Teleport back to Location.FindID(1) The starting location
+Lose 80 percent of your gold Ill adjust this accordingly
+go back in levels hmmm
 
 <-----Things to Do----->
 -Bosses

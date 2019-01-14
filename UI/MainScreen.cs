@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 using System.Reflection;
 using System.Windows.Forms;
 using Engine;
+using System.Threading;
 
 namespace UI
 {
@@ -26,6 +27,7 @@ namespace UI
             this.gameSession = gameSession;
             gameSession.OnMessagedRaised += DisplayWorldText;
             UpdateUI();
+            FormClosing += MainScreen_FormClosing;
             dgvItems.CellClick += dgvItems_CellClick;
             dgvEquipment.CellClick += dgvEquipmentEquip_CellClick;
             dgvEquipment.CellClick += dgvEquipmentUnequip_CellClick;
@@ -191,7 +193,7 @@ namespace UI
                 if (gameSession.GameStates == GameSession.GameState.Battle)
                 {
                     lblEnemyName.Text = gameSession.CurrentEnemy?.Name;
-                    lblEnemyDescription.Text = gameSession.CurrentEnemy?.Description;
+                    lblEnemyDescription.Text = gameSession.CurrentEnemy?.CurrentHealth + "/" + gameSession.CurrentEnemy?.MaximumHealth;
                     SetImage(pbEnemyPicture, gameSession.CurrentEnemy?.Name);
                 }
                 else
@@ -438,8 +440,6 @@ namespace UI
         {
             switch (gameSession.GameStates)
             {
-                case GameSession.GameState.Introduction:
-                    break;
                 case GameSession.GameState.Travel:
                     if (gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth == null)
                     {
@@ -497,11 +497,20 @@ namespace UI
 
                     if (gameSession.CurrentPlayer.CurrentLocation.QuestInLocation == null)
                     {
-                        btnTalk.Visible = false;
+                        btnQuest.Visible = false;
                     }
                     else
                     {
+                        btnQuest.Visible = true;
+                    }
+
+                    if(gameSession.CurrentPlayer.CurrentLocation.PersonInLocation != null)
+                    {
                         btnTalk.Visible = true;
+                    }
+                    else
+                    {
+                        btnTalk.Visible = false;
                     }
 
                     btnAttack.Visible = false;
@@ -513,6 +522,7 @@ namespace UI
                     pbGreed.Visible = false;
                     btnClose.Visible = false;
                     btnMap.Visible = true;
+                    btnSearch.Visible = true;
                     break;
                 case GameSession.GameState.Battle:
                     btnAttack.Visible = true;
@@ -531,9 +541,11 @@ namespace UI
                     btnSouth.Visible = false;
                     btnWest.Visible = false;
                     btnEast.Visible = false;
+                    btnSearch.Visible = false;
                     btnMap.Visible = false;
                     btnInn.Visible = false;
                     btnShop.Visible = false;
+                    btnQuest.Visible = false;
                     btnTalk.Visible = false;
 
                     if (gameSession.TurnCounter == 1)
@@ -608,13 +620,25 @@ namespace UI
 
                     break;
                 case GameSession.GameState.GameOver:
+                    DeathScreen deathScreen = new DeathScreen(gameSession);
+                    deathScreen.StartPosition = FormStartPosition.CenterParent;
+                    deathScreen.ShowDialog(this);
+
+                    UpdateUI();
                     break;
             }
         }
 
         private void DisplayWorldText(object o, MessageEventArgs e)
         {
-            rtbWorldText.Text += "~" + e.Message + "\n";
+            if(e.Message == "")
+            {
+                rtbWorldText.Text += "\n";
+            }
+            else
+            {
+                rtbWorldText.Text += "~" + e.Message + "\n";
+            }
         }
         
         private void rtbWorldText_TextChanged(object sender, EventArgs e)
@@ -893,6 +917,7 @@ namespace UI
                 gameSession.CastSpellCommand(spell);
                 UpdateUI();
                 CloseBattleSpellsAndItems();
+                AddNewLine();
             }
         }
 
@@ -909,6 +934,7 @@ namespace UI
                 gameSession.UseItemCommand(item);
                 UpdateUI();
                 CloseBattleSpellsAndItems();
+                AddNewLine();
             }
         }
 
@@ -919,6 +945,7 @@ namespace UI
             gameSession.AttackCommand();
             UpdateUI();
             CloseBattleSpellsAndItems();
+            AddNewLine();
         }
 
         private void btnMagic_Click(object sender, EventArgs e)
@@ -936,6 +963,7 @@ namespace UI
             gameSession.RunCommand();
             UpdateUI();
             CloseBattleSpellsAndItems();
+            AddNewLine();
         }
 
 
@@ -962,7 +990,7 @@ namespace UI
 
 
         //<----------Quest Buttons----------->
-        private void btnTalk_Click(object sender, EventArgs e)
+        private void btnQuest_Click(object sender, EventArgs e)
         {
             QuestScreen questScreen = new QuestScreen(gameSession);
             questScreen.StartPosition = FormStartPosition.CenterParent;
@@ -1001,6 +1029,99 @@ namespace UI
                 gameSession.ActivateGreedCommand();
             }
             UpdateUI();
+        }
+
+        private void MainScreen_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (e.CloseReason == CloseReason.UserClosing)
+            {
+                if (MessageBox.Show(this, "Really?", "Closing...",
+                     MessageBoxButtons.OKCancel, MessageBoxIcon.Question)
+                    == DialogResult.Cancel) e.Cancel = true;
+            }
+        }
+
+        private void AddNewLine()
+        {
+            rtbWorldText.Text += "\n";
+        }
+
+        private void btnSearch_Click(object sender, EventArgs e)
+        {
+            rtbWorldText.Text += "~" + gameSession.CurrentPlayer.Name + " starts looking for loot...\n";
+            Refresh();
+            DisableControls();
+            Update();
+            Buffer();
+            gameSession.SearchCommand();
+            UpdateUI();
+            Application.DoEvents();
+            EnableControls();
+            Update();
+        }
+
+        private void Buffer()
+        {
+            for (int i = 0; i < 100000; i++)
+            {
+                for (int y = 0; y < 10000; y++)
+                {
+                    int x = i + y;
+                }
+            }
+        }
+
+        private void DisableControls()
+        {
+            btnNorth.Enabled = false;
+            btnSouth.Enabled = false;
+            btnWest.Enabled = false;
+            btnEast.Enabled = false;
+            btnMap.Enabled = false;
+            btnInn.Enabled = false;
+            btnShop.Enabled = false;
+            btnQuest.Enabled = false;
+            btnTalk.Enabled = false;
+            dgvItems.Enabled = false;
+            dgvEquipment.Enabled = false;
+            dgvSpells.Enabled = false;
+            dgvQuests.Enabled = false;
+        }
+
+        private void EnableControls()
+        {
+            btnNorth.Enabled = true;
+            btnSouth.Enabled = true;
+            btnWest.Enabled = true;
+            btnEast.Enabled = true;
+            btnMap.Enabled = true;
+            btnInn.Enabled = true;
+            btnShop.Enabled = true;
+            btnQuest.Enabled = true;
+            btnTalk.Enabled = true;
+            dgvItems.Enabled = true;
+            dgvEquipment.Enabled = true;
+            dgvSpells.Enabled = true;
+            dgvQuests.Enabled = true;
+        }
+
+        private void btnTalk_Click(object sender, EventArgs e)
+        {
+            PersonScreen personScreen = new PersonScreen(gameSession);
+            personScreen.StartPosition = FormStartPosition.CenterParent;
+            personScreen.ShowDialog(this);
+
+            UpdateUI();
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Enabled = false;
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Enabled = true;
         }
     }
 }

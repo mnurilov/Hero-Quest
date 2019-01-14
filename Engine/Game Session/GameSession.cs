@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Engine
@@ -21,7 +22,7 @@ namespace Engine
         //Holds the result of a battle whether an entity missed, normally hit, or critical hit their opponent
         public enum BattleResult { Missed, Normal, Critical }
         public enum EnemyChoiceTaken { Attack, CastSpell, Replenish }
-        public enum GameState { Introduction, Travel, Battle, GameOver }
+        public enum GameState { Travel, Battle, GameOver }
         public GameState GameStates;
 
         //Counts the turns in a battle 
@@ -122,6 +123,58 @@ namespace Engine
             }
         }
 
+        public void SearchCommand()
+        {
+            object loot = CurrentPlayer.SearchForLoot();
+            
+            //LookingForLoot();
+
+            if(loot == null)
+            {
+                FoundNothing();
+            }
+            else if(loot is Item)
+            {
+                FoundItem((Item)loot);
+            }
+            else if(loot is Equipment)
+            {
+                FoundEquipment((Equipment)loot);
+            }
+            else if(loot is Spell)
+            {
+                FoundSpell((Spell)loot);
+            }
+            else
+            {
+                throw new Exception("Somehow player is looting an unknown object from a location");
+            }
+        }
+
+        private void LookingForLoot()
+        {
+            RaiseMessage(CurrentPlayer.Name + " is looking for loot");
+        }
+
+        private void FoundItem(Item item)
+        {
+            RaiseMessage(CurrentPlayer.Name + " has found a " + item.Name);
+        }
+
+        private void FoundEquipment(Equipment equipment)
+        {
+            RaiseMessage(CurrentPlayer.Name + " has found a " + equipment.Name);
+        }
+        
+        private void FoundSpell(Spell spell)
+        {
+            RaiseMessage(CurrentPlayer.Name + " has found a " + spell.Name);
+        }
+
+        private void FoundNothing()
+        {
+            RaiseMessage(CurrentPlayer.Name + " has found nothing");
+        }
 
         //<----------Battle Commands----------->
         public void AttackCommand()
@@ -437,16 +490,23 @@ namespace Engine
 
         private void GainBattleRewards()
         {
+            RaiseMessage("");
             RaiseMessage(CurrentPlayer.Name + " has slain a " + CurrentEnemy.Name);
-            CurrentPlayer.GainEnemyRewards(CurrentEnemy);
+            List<string> playerLoot = CurrentPlayer.GainEnemyRewards(CurrentEnemy);
+            if(playerLoot.Count != 0)
+            {
+                RaiseMessage(CurrentEnemy.Name + "'s Loot");
+            }
+            foreach(string loot in playerLoot)
+            {
+                RaiseMessage(loot);
+            }
             CurrentPlayer.UpdateKillQuests(CurrentEnemy);
             CurrentPlayer.ResetEmpowerment();
             CurrentPlayer.DisableGreed();
             TurnCounter = 0;
             GameStates = GameState.Travel;
         }
-
-        
 
 
         //<----------Equipment Commands---------->
@@ -599,6 +659,7 @@ namespace Engine
 
             if (CurrentPlayer.CurrentHealth <= 0)
             {
+                RaiseMessage("");
                 RaiseMessage(CurrentEnemy.Name + " has slain a " + CurrentPlayer.Name);
                 GameStates = GameState.GameOver;
             }
@@ -629,6 +690,7 @@ namespace Engine
 
             if (CurrentPlayer.CurrentHealth <= 0)
             {
+                RaiseMessage("");
                 RaiseMessage(CurrentEnemy.Name + " has slain a " + CurrentPlayer.Name);
                 GameStates = GameState.GameOver;
             }

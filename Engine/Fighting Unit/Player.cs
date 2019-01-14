@@ -472,7 +472,6 @@ namespace Engine
         }
 
 
-
         private void UpdateTotalStats(Equipment equipment)
         {
             TotalMaximumHealth += equipment.HealthBonus;
@@ -726,6 +725,14 @@ namespace Engine
             {
                 return false;
             }
+            if (Empowered)
+            {
+                return true;
+            }
+            if (Greed)
+            {
+                return false;
+            }
 
             int roll = RandomNumberGenerator.RandomNumberBetween(0, 99);
 
@@ -866,64 +873,80 @@ namespace Engine
 
 
         //<----------Enemy Loot Functions---------->
-        public void GainEnemyRewards(Enemy enemy)
+        public List<string> GainEnemyRewards(Enemy enemy)
         {
+            List<string> playerLoots = new List<string>();
+
             Gold += enemy.RewardGold;
+            if(enemy.RewardGold != 0)
+            {
+                playerLoots.Add("Gold: " + enemy.RewardGold);
+            }
+
             GainExperience(enemy.RewardExperiencePoints);
+            if(enemy.RewardExperiencePoints != 0)
+            {
+                playerLoots.Add("Experience: " + enemy.RewardExperiencePoints);
+            }
 
             if (enemy.WeightedItemLootTable != null && Greed == true)
             {
-                GreedLootItemFromEnemy(enemy);
+                GreedLootItemFromEnemy(enemy, ref playerLoots);
             }
             else if (enemy.WeightedItemLootTable != null && Greed == false)
             {
-                LootItemFromEnemy(enemy);
+                LootItemFromEnemy(enemy, ref playerLoots);
             }
 
             if (enemy.WeightedEquipmentLootTable != null && Greed == true)
             {
-                GreedLootEquipmentFromEnemy(enemy);
+                GreedLootEquipmentFromEnemy(enemy, ref playerLoots);
             }
             else if(enemy.WeightedEquipmentLootTable != null && Greed == false)
             {
-                LootEquipmentFromEnemy(enemy);
+                LootEquipmentFromEnemy(enemy, ref playerLoots);
             }
 
             if(enemy.WeightedSpellLootTable != null && Greed == true)
             {
-                GreedLootSpellFromEnemy(enemy);
+                GreedLootSpellFromEnemy(enemy, ref playerLoots);
             }
             else if(enemy.WeightedSpellLootTable != null && Greed == false)
             {
-                LootSpellFromEnemy(enemy);
+                LootSpellFromEnemy(enemy, ref playerLoots);
             }
+
+            return playerLoots;
         }
 
-        private void GreedLootItemFromEnemy(Enemy enemy)
+        private void GreedLootItemFromEnemy(Enemy enemy, ref List<string> playerLoot)
         {
             foreach (KeyValuePair<Item, int> weightedItemLoot in enemy.WeightedItemLootTable)
             {
                 AddItem(weightedItemLoot.Key);
+                playerLoot.Add("Item: " + weightedItemLoot.Key.Name);
             }
         }
         
-        private void GreedLootEquipmentFromEnemy(Enemy enemy)
+        private void GreedLootEquipmentFromEnemy(Enemy enemy, ref List<string> playerLoot)
         {
             foreach (KeyValuePair<Equipment, int> weightedEquipmentLoot in enemy.WeightedEquipmentLootTable)
             {
                 AddEquipment(weightedEquipmentLoot.Key);
+                playerLoot.Add("Equipment: " + weightedEquipmentLoot.Key.Name);
             }
         }
 
-        private void GreedLootSpellFromEnemy(Enemy enemy)
+        private void GreedLootSpellFromEnemy(Enemy enemy, ref List<string> playerLoot)
         {
             foreach(KeyValuePair<Spell, int> weightedSpellLoot in enemy.WeightedSpellLootTable)
             {
                 AddSpell(weightedSpellLoot.Key);
+                playerLoot.Add("Spell: " + weightedSpellLoot.Key.Name);
             }
         }
 
-        private void LootItemFromEnemy(Enemy enemy)
+        private void LootItemFromEnemy(Enemy enemy, ref List<string> playerLoot)
         {
             foreach (KeyValuePair<Item, int> weightedItemLoot in enemy.WeightedItemLootTable)
             {
@@ -931,28 +954,31 @@ namespace Engine
                 if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= weightedItemLoot.Value)
                 {
                     AddItem(weightedItemLoot.Key);
+                    playerLoot.Add("Item: " + weightedItemLoot.Key.Name);
                 }
             }
         }
 
-        private void LootEquipmentFromEnemy(Enemy enemy)
+        private void LootEquipmentFromEnemy(Enemy enemy, ref List<string> playerLoot)
         {
             foreach (KeyValuePair<Equipment, int> weightedEquipmentLoot in enemy.WeightedEquipmentLootTable)
             {
                 if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= weightedEquipmentLoot.Value)
                 {
                     AddEquipment(weightedEquipmentLoot.Key);
+                    playerLoot.Add("Equipment: " + weightedEquipmentLoot.Key.Name);
                 }
             }
         }
 
-        private void LootSpellFromEnemy(Enemy enemy)
+        private void LootSpellFromEnemy(Enemy enemy, ref List<string> playerLoot)
         {
             foreach (KeyValuePair<Spell, int> weightedSpellLoot in enemy.WeightedSpellLootTable)
             {
                 if (RandomNumberGenerator.RandomNumberBetween(1, 100) <= weightedSpellLoot.Value)
                 {
                     AddSpell(weightedSpellLoot.Key);
+                    playerLoot.Add("Spell: " + weightedSpellLoot.Key.Name);
                 }
             }
         }
@@ -1002,8 +1028,6 @@ namespace Engine
         {
             EmpowerCounter++;
         }
-
-       
 
 
         //<----------Greed Functions---------->
@@ -1723,6 +1747,37 @@ namespace Engine
                 }
             }
         }
+
+
+        public object SearchForLoot()
+        {
+            if(CurrentLocation.HasLootInLocation())
+            {
+                object loot = CurrentLocation.GiveLootInLocation();
+
+                if (loot is Item)
+                {
+                    AddItem((Item)loot);
+                }
+                else if (loot is Equipment)
+                {
+                    AddEquipment((Equipment)loot);
+                }
+                else if (loot is Spell)
+                {
+                    AddSpell((Spell)loot);
+                }
+                else
+                {
+                    throw new Exception("Somehow player is looting an unknown object from a location");
+                }
+
+                return loot;
+            }
+            return null;
+        }
+
+
 
 
         public override string ToString()

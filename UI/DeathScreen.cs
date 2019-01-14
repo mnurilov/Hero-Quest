@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Engine;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -12,9 +13,24 @@ namespace UI
 {
     public partial class DeathScreen : Form
     {
-        public DeathScreen()
+        GameSession gameSession;
+
+
+        public DeathScreen(GameSession gameSession)
         {
             InitializeComponent();
+            this.gameSession = gameSession;
+            UpdateDeathScreen();
+        }
+
+        private void UpdateDeathScreen()
+        {
+
+        }
+
+        private void btnContinue_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

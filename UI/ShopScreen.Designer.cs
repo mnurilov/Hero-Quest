@@ -194,7 +194,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(217)))), ((int)(((byte)(130)))), ((int)(((byte)(72)))));
             this.ClientSize = new System.Drawing.Size(800, 609);
             this.Controls.Add(this.lblVendorInventoryLabel);
             this.Controls.Add(this.lblPlayerInventoryLabel);

@@ -24,6 +24,12 @@ namespace Engine
         public Location LocationToTheWest { get; set; }
         public Location LocationToTheEast { get; set; }
 
+        public Person PersonInLocation { get; set; }
+
+        public Item ItemInLocation { get; set; }
+        public Equipment EquipmentInLocation { get; set; }
+        public Spell SpellInLocation { get; set; }
+
         //<----------Location population---------->
         public Vendor VendorInLocation { get; set; }
         public Inn InnInLocation { get; set; }
@@ -46,6 +52,41 @@ namespace Engine
             HasVisited = false;
         }
         
+
+        public bool HasLootInLocation()
+        {
+            if(ItemInLocation != null || EquipmentInLocation != null || SpellInLocation != null)
+            {
+                return true;
+            }
+            return false;
+        }
+
+        public object GiveLootInLocation()
+        {
+            if(ItemInLocation != null)
+            {
+                Item item = ItemInLocation;
+                ItemInLocation = null;
+                return item;
+            }
+            else if(EquipmentInLocation != null)
+            {
+                Equipment equipment = EquipmentInLocation;
+                EquipmentInLocation = null;
+                return equipment;
+            }
+            else if(SpellInLocation != null)
+            {
+                Spell spell = SpellInLocation;
+                SpellInLocation = null;
+                return spell;
+            }
+            else
+            {
+                return null;
+            }
+        }
 
         //Checks if an encounter with an enemy will be triggered 
         public bool EncounterTriggered()
