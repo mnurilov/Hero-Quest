@@ -508,6 +508,37 @@ namespace Engine
             GameStates = GameState.Travel;
         }
 
+        public string OnDeath()
+        {
+            string deathMessage = "";
+
+            int goldLost = 0;
+            int levelLost = 0;
+
+            CurrentPlayer.OnDeath(ref goldLost, ref levelLost);
+
+            deathMessage += "You lose " + goldLost + " gold!!!\n";
+            if(levelLost > 1)
+            {
+                deathMessage += "You have gone down " + levelLost + " levels!!!\n";
+            }
+            else if(levelLost == 1)
+            {
+                deathMessage += "You have gone down " + levelLost + " level!!!\n";
+            }
+            else
+            {
+
+            }
+            deathMessage += "You have been brought back to " + World.FindLocationByID(1).Name;
+
+            return deathMessage;
+        }
+
+        public void ReturnToWorld()
+        {
+            GameStates = GameState.Travel;
+        }
 
         //<----------Equipment Commands---------->
         public void EquipCommand(Equipment equipment)

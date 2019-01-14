@@ -190,9 +190,13 @@ namespace Engine
             {
                 //Increase damage by critical damage modifier
                 battleResult = GameSession.BattleResult.Critical;
-                if(player.TotalDefense <= 0)
+                if(player.TotalDefense <= -10)
                 {
-                    damage = (int)(((((Strength * Strength) / (Strength + 1)) * 2) * (Math.Abs((double)player.TotalDefense) / 4)) * CriticalDamageModifier);
+                    damage = (int)(((((Strength * Strength) / (Strength + 1)) * 2) * (Math.Abs((double)player.TotalDefense) / 10)) * CriticalDamageModifier);
+                }
+                else if(player.TotalDefense <= 0)
+                {
+                    damage = (int)((((Strength * Strength) / (Strength + 1)) * 2) * CriticalDamageModifier);
                 }
                 else
                 {
@@ -203,9 +207,14 @@ namespace Engine
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                if(player.TotalDefense <= 0)
+                if(player.TotalDefense <= -10)
                 {
-                    damage = (int)((((Strength * Strength) / (Strength + 1)) * 2) * (Math.Abs((double)player.TotalDefense) / 4));
+                    
+                    damage = (int)((((Strength * Strength) / (Strength + 1)) * 2) * (Math.Abs((double)player.TotalDefense) / 10));
+                }
+                else if(player.TotalDefense <= 0)
+                {
+                    damage = (int)(((Strength * Strength) / (Strength + 1)) * 2);
                 }
                 else
                 {
@@ -233,14 +242,37 @@ namespace Engine
             {
                 //Increase damage by critical damage modifier
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = (int)((damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + player.TotalResistance))) * CriticalDamageModifier);
+                if (player.TotalResistance <= -10)
+                {
+                    spellDamage = (int)(((damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + 1)))
+                        * (Math.Abs((double)player.TotalResistance) / 10)) * CriticalDamageModifier);
+                }
+                else if (player.TotalResistance <= 0)
+                {
+                    spellDamage = (int)((damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + 1))) * CriticalDamageModifier);
+                }
+                else
+                {
+                    spellDamage = (int)((damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + player.TotalResistance))) * CriticalDamageModifier);
+                }
                 CurrentMana -= damageSpell.ManaCost;
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = (int)(damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + player.TotalResistance)));
+                if (player.TotalResistance <= -10)
+                {
+                    spellDamage = (int)((damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + 1))) * (Math.Abs((double)player.TotalResistance) / 10));
+                }
+                else if (player.TotalResistance <= 0)
+                {
+                    spellDamage = (int)(damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + 1)));
+                }
+                else
+                {
+                    spellDamage = (int)(damageSpell.DamageValue + ((Intellect * Intellect) / (Intellect + player.TotalResistance)));
+                }
                 CurrentMana -= damageSpell.ManaCost;
             }
 

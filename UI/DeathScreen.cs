@@ -25,12 +25,14 @@ namespace UI
 
         private void UpdateDeathScreen()
         {
-
+            lblExplanation.Text = "";
+            lblExplanation.Text += gameSession.OnDeath();
         }
 
         private void btnContinue_Click(object sender, EventArgs e)
         {
-
+            gameSession.ReturnToWorld();
+            Close();
         }
     }
 }

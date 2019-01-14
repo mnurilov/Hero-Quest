@@ -1777,8 +1777,58 @@ namespace Engine
             return null;
         }
 
+        public void OnDeath(ref int goldLost, ref int levelLost)
+        {
+            UnEquipAll();
+
+            double goldModifier = 0.2;
+            double levelModifier = 0.80;
+
+            goldLost = Gold;
+            Gold = (int)(Gold * goldModifier);
+            goldLost = goldLost - Gold;
 
 
+            levelLost = Level;
+            Level = (int)(Level * levelModifier);
+            levelLost = levelLost - Level;
+
+            CurrentExperiencePoints = 0;
+            MaximumExperiencePoints = GetUpdatedMaximumExperience();
+
+            int health = 0;
+            int mana = 0;
+
+            UpdateBaseStats(ref health, ref mana);
+            ResetTotalStats();
+
+            //After properly setting up the players base and total stats only now can we set his current health and mana
+            CurrentHealth = TotalMaximumHealth;
+            CurrentMana = TotalMaximumMana;
+
+            //After setting up total stats update critical and dodge rates
+            UpdateCriticalAndDodge();
+
+            MoveTo(World.FindLocationByID(1));
+        }
+
+        public void UnEquipAll()
+        {
+            Unequip(CurrentHeadEquipment);
+            CurrentHeadEquipment = null;
+
+            Unequip(CurrentChestEquipment);
+            CurrentChestEquipment = null;
+
+            Unequip(CurrentLegEquipment);
+            CurrentLegEquipment = null;
+
+            Unequip(CurrentWeapon);
+            CurrentWeapon = null;
+
+            Unequip(CurrentSideArm);
+            CurrentSideArm = null;
+        }
 
         public override string ToString()
         {
