@@ -1,23 +1,60 @@
-Make Hero Quest Introduction Screen Picture
-Make Hero Quest Title Screen Header 
-
-Things to happen on death
-Teleport back to Location.FindID(1) The starting location
-Lose 80 percent of your gold Ill adjust this accordingly
-go back in levels hmmm
+make key and quest items not sellable
+make it visible that a location cannot be travelled to make it disenabled and not invisible
+fix the location quests
+Monkey Boss having thrash spell
+Make items equipment and spells clickable in shop menu
+Make the location pictures be able to have different looks even if they have the same name
+Close inn on recover
 
 <-----Things to Do----->
--Bosses
--I EXCLUDED 4 CLASSES FROM THE CLASSES MAKE SURE TO TRULY REMOVE THOSE CLASSES WHEN YOU ARE READY
--Different exp rates for different classes
+-Make Hero Quest Introduction Screen Picture
+-Make Hero Quest Title Screen Header 
 -When they cast a spell flash a picture for a second so it looks like an animation
 -sound effects
 -music
--make when you die you teleport back to house you lose 80 percent of gold and you go back 1 level
-or maybe make the levels scale how far back they go
 
 For Debugging
 -Add an add all items equipment spells and quests function so I can have all things
 -A clear map function which allows me to see everything 
 
-854
+//Turn greed and empower off on death
+Give death messages
+//Fast travel for visited places
+//Warn the player they got rewards for quest
+//Close window on form click
+//Why does search clickable 10 times
+//On death health for enemy does not reset
+//Don't decrease level 
+
+
+
+Apple Orchards
+Bee as enemy
+
+dirt path
+ant as enemy
+
+Jimmy's House 
+Please help me with apples my moms gonna kill me
+
+Village
+Rack shack inn
+SHop with base equipment kit and weapons for all classes
+
+Farmer's Hut
+Kill 3 boars they've been scaring my livestock
+
+Woods
+Stop you shouldn't go north their is a crazy monkey stopping anyone from leaving the village
+
+Everything to left is woods
+snakes
+spiders
+
+pond has no enemy and a search item
+
+Monkey Boss
+Bridge
+
+Grassy Plains 
+Go travel to Blank blank village

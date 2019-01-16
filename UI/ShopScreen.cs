@@ -146,6 +146,11 @@ namespace UI
 
                     SetDGVImage((DataGridViewImageCell)dgvPlayerInventory.Rows[rowIndex].Cells[1], item.Key.Name);
 
+                    if(item.Key is KeyItem || item.Key is QuestItem)
+                    {
+                        ((DataGridViewDisableButtonCell)(dgvPlayerInventory.Rows[rowIndex].Cells[5])).Enabled = false;
+                    }
+
                     rowIndex++;
                 }
             }
@@ -471,6 +476,10 @@ namespace UI
                 {
                     ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = false;
                 }
+                else if (!gameSession.CurrentPlayer.CheckIfEquippable(equipment))
+                {
+                    ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = false;
+                }
                 else
                 {
                     ((DataGridViewDisableButtonCell)(dgvVendorInventory.Rows[rowIndex].Cells[4])).Enabled = true;
@@ -599,6 +608,39 @@ namespace UI
                 columnIndex = 4;
             }
 
+            if (e.ColumnIndex != columnIndex)
+            {
+                var entityID = dgvPlayerInventory.Rows[e.RowIndex].Cells[0].Value;
+
+                if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
+                {
+                    Item itemBeingViewed = World.FindItemByID(Convert.ToInt32(entityID));
+                    
+                    InformationScreen informationScreen = new InformationScreen(gameSession, itemBeingViewed);
+                    informationScreen.StartPosition = FormStartPosition.CenterParent;
+                    informationScreen.ShowDialog(this);
+                }
+                else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory != null)
+                {
+                    Equipment equipmentBeingViewed = World.FindEquipmentByID(Convert.ToInt32(entityID));
+
+                    InformationScreen informationScreen = new InformationScreen(gameSession, equipmentBeingViewed);
+                    informationScreen.StartPosition = FormStartPosition.CenterParent;
+                    informationScreen.ShowDialog(this);
+                }
+                else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorSpellInventory != null)
+                {
+                    Spell spellBeingViewed = World.FindSpellByID(Convert.ToInt32(entityID));
+                    
+                    InformationScreen informationScreen = new InformationScreen(gameSession, spellBeingViewed);
+                    informationScreen.StartPosition = FormStartPosition.CenterParent;
+                    informationScreen.ShowDialog(this);
+                }
+
+                UpdateUI();
+                return;
+            }
+
             // The 4th or 5th column has the "Buy 1" button.
             // Row Index is not -1 is to make sure the user can't buy the column names
             if (e.ColumnIndex == columnIndex && e.RowIndex != -1)
@@ -609,6 +651,10 @@ namespace UI
                 if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
                 {
                     Item itemBeingSold = World.FindItemByID(Convert.ToInt32(entityID));
+                    if (itemBeingSold is KeyItem || itemBeingSold is QuestItem)
+                    {
+                        return;
+                    }
                     gameSession.SellToStoreCommand(itemBeingSold);
                 }
                 else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory != null)
@@ -647,6 +693,39 @@ namespace UI
                 columnIndex = 4;
             }
 
+            if (e.ColumnIndex != columnIndex)
+            {
+                var entityID = dgvVendorInventory.Rows[e.RowIndex].Cells[0].Value;
+
+                if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorItemInventory != null)
+                {
+                    Item itemBeingViewed = World.FindItemByID(Convert.ToInt32(entityID));
+
+                    InformationScreen informationScreen = new InformationScreen(gameSession, itemBeingViewed);
+                    informationScreen.StartPosition = FormStartPosition.CenterParent;
+                    informationScreen.ShowDialog(this);
+                }
+                else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory != null)
+                {
+                    Equipment equipmentBeingViewed = World.FindEquipmentByID(Convert.ToInt32(entityID));
+
+                    InformationScreen informationScreen = new InformationScreen(gameSession, equipmentBeingViewed);
+                    informationScreen.StartPosition = FormStartPosition.CenterParent;
+                    informationScreen.ShowDialog(this);
+                }
+                else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorSpellInventory != null)
+                {
+                    Spell spellBeingViewed = World.FindSpellByID(Convert.ToInt32(entityID));
+
+                    InformationScreen informationScreen = new InformationScreen(gameSession, spellBeingViewed);
+                    informationScreen.StartPosition = FormStartPosition.CenterParent;
+                    informationScreen.ShowDialog(this);
+                }
+
+                UpdateUI();
+                return;
+            }
+
             // The 4th or 5th column has the "Buy 1" button.
             // Row Index is not -1 is to make sure the user can't buy the column names
             if (e.ColumnIndex == columnIndex && e.RowIndex != -1)
@@ -662,6 +741,11 @@ namespace UI
                 else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorEquipmentInventory != null)
                 {
                     Equipment equipmentBeingSold = World.FindEquipmentByID(Convert.ToInt32(entityID));
+                    if (!gameSession.CurrentPlayer.CheckIfEquippable(equipmentBeingSold))
+                    {
+                        UpdateUI();
+                        return;
+                    }
                     gameSession.BuyFromStoreCommand(equipmentBeingSold);
                 }
                 else if (gameSession.CurrentPlayer.CurrentLocation.VendorInLocation.VendorSpellInventory != null)

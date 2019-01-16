@@ -26,6 +26,9 @@ namespace Engine
 
         public Person PersonInLocation { get; set; }
 
+        public object RequiredObjectToEnter { get; set; }
+        public bool IsAllowedToEnter { get; set; }
+
         public Item ItemInLocation { get; set; }
         public Equipment EquipmentInLocation { get; set; }
         public Spell SpellInLocation { get; set; }
@@ -50,6 +53,7 @@ namespace Engine
             this.XCoordinate = xCoordinate;
             this.YCoordinate = yCoordinate;
             HasVisited = false;
+            IsAllowedToEnter = true;
         }
         
 

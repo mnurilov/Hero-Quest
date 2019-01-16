@@ -270,7 +270,7 @@ namespace UI
             {
                 using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
-                    thisAssembly.GetName().Name + ".Images." + "Fog" + ".png"))
+                    thisAssembly.GetName().Name + ".Images.Locations." + "Fog" + ".png"))
 
                 {
                     if (resourceStream != null)
@@ -282,7 +282,7 @@ namespace UI
             }
             using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
-                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+                    thisAssembly.GetName().Name + ".Images.Locations." + imageName + ".png"))
 
             {
                 if(resourceStream != null)

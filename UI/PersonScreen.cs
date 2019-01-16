@@ -54,5 +54,10 @@ namespace UI
                 }
             }
         }
+
+        private void PersonScreen_MouseClick(object sender, MouseEventArgs e)
+        {
+            Close();
+        }
     }
 }

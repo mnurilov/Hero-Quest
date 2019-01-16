@@ -183,7 +183,7 @@
     <EmbeddedResource Include="Images\Town.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Fog.png" />
+    <EmbeddedResource Include="Images\Locations\Fog.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Rat.png" />
@@ -261,6 +261,21 @@
   <ItemGroup>
     <EmbeddedResource Include="Images\Inn.ico" />
     <EmbeddedResource Include="Images\Shop.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Locations\Apple Orchard.png" />
+    <EmbeddedResource Include="Images\Locations\Bridge.png" />
+    <EmbeddedResource Include="Images\Locations\Dirt Path.png" />
+    <EmbeddedResource Include="Images\Locations\Farm.png" />
+    <EmbeddedResource Include="Images\Locations\Farmer%27s Hut.png" />
+    <EmbeddedResource Include="Images\Locations\Grassy Plains.png" />
+    <EmbeddedResource Include="Images\Locations\Hermit Village.png" />
+    <EmbeddedResource Include="Images\Locations\Home.png" />
+    <EmbeddedResource Include="Images\Locations\Jimmy%27s House.png" />
+    <EmbeddedResource Include="Images\Locations\Woods.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Locations\River.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

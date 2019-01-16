@@ -9,14 +9,14 @@ namespace Engine
     public class GatherQuest : Quest
     {
         //Key is the enemy loot, Value is quantity of the enemy loot
-        public Dictionary<EnemyLoot, int> RequiredEnemyLoots { get; set; }
+        public Dictionary<Item, int> RequiredItems { get; set; }
 
 
-        public GatherQuest(int id, string name, string description, Person questGiver, Dictionary<EnemyLoot, int> requiredEnemyLoots,
+        public GatherQuest(int id, string name, string description, Person questGiver, Dictionary<Item, int> requiredItems,
             int rewardGold = 0, int rewardExperience = 0, Item rewardItem = null, Equipment rewardEquipment = null,
             Spell rewardSpell = null) : base(id, name, description, questGiver, rewardGold, rewardExperience, rewardItem, rewardEquipment, rewardSpell)
         {
-            this.RequiredEnemyLoots = requiredEnemyLoots;
+            this.RequiredItems = requiredItems;
         }
 
 
@@ -25,9 +25,9 @@ namespace Engine
             string info = "";
 
             info += base.ToString();
-            foreach (KeyValuePair<EnemyLoot, int> requiredEnemyLoot in RequiredEnemyLoots)
+            foreach (KeyValuePair<Item, int> requiredItem in RequiredItems)
             {
-                info += ("Enemy Loot: " + requiredEnemyLoot.Key.Name + "\t" + "Quantity: " + requiredEnemyLoot.Value + "\n");
+                info += ("Item: " + requiredItem.Key.Name + "\t" + "Quantity: " + requiredItem.Value + "\n");
             }
 
             return info;

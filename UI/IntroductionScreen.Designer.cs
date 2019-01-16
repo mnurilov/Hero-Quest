@@ -35,7 +35,7 @@
             // btnPlay
             // 
             this.btnPlay.Font = new System.Drawing.Font("Century Gothic", 16.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnPlay.Location = new System.Drawing.Point(279, 468);
+            this.btnPlay.Location = new System.Drawing.Point(279, 501);
             this.btnPlay.Name = "btnPlay";
             this.btnPlay.Size = new System.Drawing.Size(202, 51);
             this.btnPlay.TabIndex = 0;
@@ -49,7 +49,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(742, 583);
+            this.ClientSize = new System.Drawing.Size(782, 603);
             this.Controls.Add(this.btnPlay);
             this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;

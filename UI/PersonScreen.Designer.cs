@@ -79,6 +79,7 @@
             this.MinimizeBox = false;
             this.Name = "PersonScreen";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
+            this.MouseClick += new System.Windows.Forms.MouseEventHandler(this.PersonScreen_MouseClick);
             ((System.ComponentModel.ISupportInitialize)(this.pbPerson)).EndInit();
             this.ResumeLayout(false);
 

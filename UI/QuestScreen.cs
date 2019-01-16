@@ -59,7 +59,16 @@ namespace UI
 
                 if (quest.IsCompleted)
                 {
-                    lblQuestState.Text = "You completed the quest!";
+                    if (quest.QuestGivenIn)
+                    {
+                        lblQuestState.Text = "You have already completed the quest!";
+                    }
+                    else
+                    {
+                        lblQuestState.Text = "You have already completed the quest!";
+                        MessageBox.Show("You give in the quest and receive all the respective rewards!");
+                        quest.QuestGivenIn = true;
+                    }
                 }
                 else
                 {

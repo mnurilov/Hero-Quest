@@ -423,6 +423,14 @@ namespace Engine
                 UpdateTotalStats(CurrentSideArm);
             }
 
+            if (TotalMaximumHealth < 1)
+            {
+                TotalMaximumHealth = 1;
+            }
+            if (TotalMaximumMana < 1)
+            {
+                TotalMaximumMana = 1;
+            }
             if (CurrentHealth > TotalMaximumHealth)
             {
                 CurrentHealth = TotalMaximumHealth;
@@ -486,8 +494,16 @@ namespace Engine
 
         private void UpdateCriticalAndDodge()
         {
-            CriticalChanceRate = ((CriticalChanceRateScaleFactor * TotalLuck) / (TotalLuck + CriticalChanceRateConstant));
-            DodgeChanceRate = ((DodgeChanceRateScaleFactor * TotalLuck) / (TotalLuck + DodgeChanceRateConstant));
+            if(TotalLuck <= 0)
+            {
+                CriticalChanceRate = 0;
+                DodgeChanceRate = 0;
+            }
+            else
+            {
+                CriticalChanceRate = ((CriticalChanceRateScaleFactor * TotalLuck) / (TotalLuck + CriticalChanceRateConstant));
+                DodgeChanceRate = ((DodgeChanceRateScaleFactor * TotalLuck) / (TotalLuck + DodgeChanceRateConstant));
+            }
         }
 
         private int GetUpdatedMaximumExperience()
@@ -566,17 +582,139 @@ namespace Engine
         }
 
         //Moves the player to a different location
-        private void MoveTo(Location newLocation)
+        public void MoveTo(Location newLocation)
         {
-            CurrentLocation = newLocation;
+            if(newLocation.IsAllowedToEnter == false)
+            {
+                if(newLocation.RequiredObjectToEnter != null)
+                {
+                    if(newLocation.RequiredObjectToEnter is Item)
+                    {
+                        if (PlayerItems.ContainsKey((Item)newLocation.RequiredObjectToEnter))
+                        {
+                            newLocation.IsAllowedToEnter = true;
 
-            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
-            CurrentLocation.HasVisited = true;
+                            CurrentLocation = newLocation;
 
-            UpdateTravelQuests(newLocation);
+                            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+                            CurrentLocation.HasVisited = true;
+
+                            UpdateTravelQuests(newLocation);
+                        }
+                    }
+                    else if(newLocation.RequiredObjectToEnter is Equipment)
+                    {
+                        if (PlayerEquipments.Contains((Equipment)newLocation.RequiredObjectToEnter))
+                        {
+                            newLocation.IsAllowedToEnter = true;
+
+                            CurrentLocation = newLocation;
+
+                            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+                            CurrentLocation.HasVisited = true;
+
+                            UpdateTravelQuests(newLocation);
+                        }
+                    }
+                    else if(newLocation.RequiredObjectToEnter is Spell)
+                    {
+                        if (PlayerSpells.Contains((Spell)newLocation.RequiredObjectToEnter))
+                        {
+                            newLocation.IsAllowedToEnter = true;
+
+                            CurrentLocation = newLocation;
+
+                            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+                            CurrentLocation.HasVisited = true;
+
+                            UpdateTravelQuests(newLocation);
+                        }
+                    }
+                    else if(newLocation.RequiredObjectToEnter is Quest)
+                    {
+                        if (PlayerQuests.Contains((Quest)newLocation.RequiredObjectToEnter) && ((Quest)newLocation.RequiredObjectToEnter).QuestGivenIn)
+                        {
+                            newLocation.IsAllowedToEnter = true;
+
+                            CurrentLocation = newLocation;
+
+                            //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+                            CurrentLocation.HasVisited = true;
+
+                            UpdateTravelQuests(newLocation);
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Somehow required object to enter location is not one of the four I described");
+                    }
+                }
+            }
+            else
+            {
+                CurrentLocation = newLocation;
+
+                //Marks the location as visited so that graphically the fog on the world map will not appear for this location
+                CurrentLocation.HasVisited = true;
+
+                UpdateTravelQuests(newLocation);
+            }
         }
 
+        public bool CanTravel(Location location)
+        {
+            bool canTravel = false;
 
+            if(location == null)
+            {
+                return canTravel;
+            }
+
+            if (location.IsAllowedToEnter == false)
+            {
+                if (location.RequiredObjectToEnter != null)
+                {
+                    if (location.RequiredObjectToEnter is Item)
+                    {
+                        if (PlayerItems.ContainsKey((Item)location.RequiredObjectToEnter))
+                        {
+                            canTravel = true;
+                        }
+                    }
+                    else if (location.RequiredObjectToEnter is Equipment)
+                    {
+                        if (PlayerEquipments.Contains((Equipment)location.RequiredObjectToEnter))
+                        {
+                            canTravel = true;
+                        }
+                    }
+                    else if (location.RequiredObjectToEnter is Spell)
+                    {
+                        if (PlayerSpells.Contains((Spell)location.RequiredObjectToEnter))
+                        {
+                            canTravel = true;
+                        }
+                    }
+                    else if (location.RequiredObjectToEnter is Quest)
+                    {
+                        if (PlayerQuests.Contains((Quest)location.RequiredObjectToEnter) && ((Quest)location.RequiredObjectToEnter).QuestGivenIn)
+                        {
+                            canTravel = true;
+                        }
+                    }
+                    else
+                    {
+                        throw new Exception("Somehow required object to enter location is not one of the four I described");
+                    }
+                }
+            }
+            else
+            {
+                canTravel = true;
+            }
+
+            return canTravel;
+        }
         //<----------Battle Functions---------->
         public int Attack(Enemy enemy, ref GameSession.BattleResult battleResult)
         {
@@ -827,16 +965,31 @@ namespace Engine
             {
                 //Double the spell damage
                 battleResult = GameSession.BattleResult.Critical;
-                spellDamage = (int)(((damageSpell.DamageValue + ((TotalIntellect * TotalIntellect) / (TotalIntellect + enemy.Resistance)))
+                if(TotalIntellect <= 0)
+                {
+                    spellDamage = 0;
+                }
+                else
+                {
+                    spellDamage = (int)(((damageSpell.DamageValue + ((TotalIntellect * TotalIntellect) / (TotalIntellect + enemy.Resistance)))
                     * empoweredGreedModifier) * CriticalDamageModifier);
+                }
+                
                 CurrentMana -= damageSpell.ManaCost;
             }
             //Else the player would normally strike the enemy then calculate the spell damage accordingly
             else
             {
                 battleResult = GameSession.BattleResult.Normal;
-                spellDamage = (int)((damageSpell.DamageValue + ((TotalIntellect * TotalIntellect)/(TotalIntellect + enemy.Resistance)))
-                    * empoweredGreedModifier);
+                if(TotalIntellect <= 0)
+                {
+                    spellDamage = 0;
+                }
+                else
+                {
+                    spellDamage = (int)((damageSpell.DamageValue + ((TotalIntellect * TotalIntellect) / (TotalIntellect + enemy.Resistance)))
+                        * empoweredGreedModifier);
+                }
                 CurrentMana -= damageSpell.ManaCost;
             }
 
@@ -865,8 +1018,13 @@ namespace Engine
             }
 
             CurrentMana -= replenishSpell.ManaCost;
+            
+            double replenishAmount = (replenishSpell.ReplenishValue * (1 + ((double)TotalIntellect / intellectAffectModifier)));
 
-            double replenishAmount = (replenishSpell.ReplenishValue * (1 + ((double)TotalIntellect/intellectAffectModifier)));
+            if(replenishAmount <= 0)
+            {
+                replenishAmount = 0;
+            }
 
             return ((int)(replenishAmount * empoweredGreedModifier));
         }
@@ -1703,19 +1861,16 @@ namespace Engine
 
             foreach (KeyValuePair<Item, int> item in PlayerItems)
             {
-                if (item.Key is EnemyLoot)
+                if (gatherQuest.RequiredItems.ContainsKey(item.Key))
                 {
-                    if (gatherQuest.RequiredEnemyLoots.ContainsKey((EnemyLoot)item.Key))
+                    if (item.Value >= gatherQuest.RequiredItems[item.Key])
                     {
-                        if (item.Value >= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
-                        {
-                            correctItems++;
-                        }
+                        correctItems++;
                     }
                 }
             }
 
-            if (correctItems == gatherQuest.RequiredEnemyLoots.Count())
+            if (correctItems == gatherQuest.RequiredItems.Count())
             {
                 return true;
             }
@@ -1731,18 +1886,15 @@ namespace Engine
 
             foreach (KeyValuePair<Item, int> item in cloneItemInventory)
             {
-                if (item.Key is EnemyLoot)
+                if (gatherQuest.RequiredItems.ContainsKey(item.Key))
                 {
-                    if (gatherQuest.RequiredEnemyLoots.ContainsKey((EnemyLoot)item.Key))
+                    if (item.Value > gatherQuest.RequiredItems[item.Key])
                     {
-                        if (item.Value > gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
-                        {
-                            PlayerItems[item.Key] -= gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)];
-                        }
-                        else if (item.Value == gatherQuest.RequiredEnemyLoots[((EnemyLoot)item.Key)])
-                        {
-                            PlayerItems.Remove(item.Key);
-                        }
+                        PlayerItems[item.Key] -= gatherQuest.RequiredItems[item.Key];
+                    }
+                    else if (item.Value == gatherQuest.RequiredItems[item.Key])
+                    {
+                        PlayerItems.Remove(item.Key);
                     }
                 }
             }

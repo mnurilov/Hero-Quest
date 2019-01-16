@@ -32,7 +32,8 @@ namespace Engine
         public GameSession(string playerName, Player.Class playerClass)
         {
             CurrentPlayer = new Player(1, playerName, playerClass);
-            CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
+
+            /*CurrentPlayer.PlayerItems.Add(World.FindItemByID(1), 3);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(2), 6);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(9), 10);
             CurrentPlayer.PlayerItems.Add(World.FindItemByID(11), 3);
@@ -46,9 +47,24 @@ namespace Engine
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(9));
             CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(3));
 
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(14));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(15));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(16));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(17));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(18));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(19));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(20));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(21));
+
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(22));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(23));
+            CurrentPlayer.PlayerEquipments.Add(World.FindEquipmentByID(24));
+
+
+
             CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(2));
-            CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
-            CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(3));
+            //CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(1));
+            CurrentPlayer.PlayerSpells.Add(World.FindSpellByID(3));*/
 
             //Set the game state to the starting state
             GameStates = GameState.Travel;
@@ -96,6 +112,7 @@ namespace Engine
                     CurrentPlayer.MoveNorth();
                     break;
                 case Direction.South:
+
                     CurrentPlayer.MoveSouth();
                     break;
                 case Direction.West:
@@ -121,6 +138,11 @@ namespace Engine
             {
                 GameStates = GameState.Battle;
             }
+        }
+
+        public bool CanTravel(Location location)
+        {
+            return CurrentPlayer.CanTravel(location);
         }
 
         public void SearchCommand()
@@ -531,6 +553,12 @@ namespace Engine
 
             }
             deathMessage += "You have been brought back to " + World.FindLocationByID(1).Name;
+
+            CurrentPlayer.DisableGreed();
+            CurrentPlayer.ResetEmpowerment();
+
+            CurrentEnemy.CurrentHealth = CurrentEnemy.MaximumHealth;
+            CurrentEnemy.CurrentMana = CurrentEnemy.MaximumMana;
 
             return deathMessage;
         }

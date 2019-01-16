@@ -25,7 +25,7 @@ namespace UI
 
         private void UpdateDeathScreen()
         {
-            lblExplanation.Text = "";
+            lblExplanation.Text = gameSession.CurrentEnemy.Name + " has defeated you in battle!\n";
             lblExplanation.Text += gameSession.OnDeath();
         }
 

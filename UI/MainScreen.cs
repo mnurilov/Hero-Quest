@@ -87,13 +87,13 @@ namespace UI
             switch (gameSession.CurrentPlayer.GetClass())
             {
                 case Player.Class.Warrior:
-                    SetImage(pbPlayerClass, Player.Class.Warrior.ToString());
+                    SetImageIcon(pbPlayerClass, Player.Class.Warrior.ToString());
                     break;
                 case Player.Class.Mage:
-                    SetImage(pbPlayerClass, Player.Class.Mage.ToString());
+                    SetImageIcon(pbPlayerClass, Player.Class.Mage.ToString());
                     break;
                 case Player.Class.Thief:
-                    SetImage(pbPlayerClass, Player.Class.Thief.ToString());
+                    SetImageIcon(pbPlayerClass, Player.Class.Thief.ToString());
                     break;
             }
 
@@ -183,7 +183,7 @@ namespace UI
         {
             lblLocationName.Text = gameSession.CurrentPlayer.CurrentLocation.Name;
             lblLocationDescription.Text = gameSession.CurrentPlayer.CurrentLocation.Description;
-            SetImage(pbLocationPicture, gameSession.CurrentPlayer.CurrentLocation.Name);
+            SetImageLocation(pbLocationPicture, gameSession.CurrentPlayer.CurrentLocation.Name);
         }
 
         private void UpdateEnemy()
@@ -194,13 +194,13 @@ namespace UI
                 {
                     lblEnemyName.Text = gameSession.CurrentEnemy?.Name;
                     lblEnemyDescription.Text = gameSession.CurrentEnemy?.CurrentHealth + "/" + gameSession.CurrentEnemy?.MaximumHealth;
-                    SetImage(pbEnemyPicture, gameSession.CurrentEnemy?.Name);
+                    SetImageEnemy(pbEnemyPicture, gameSession.CurrentEnemy?.Name);
                 }
                 else
                 {
                     lblEnemyName.Text = "";
                     lblEnemyDescription.Text = "";
-                    SetImage(pbEnemyPicture, null);
+                    SetImageEnemy(pbEnemyPicture, null);
                 }
             }
         }
@@ -477,6 +477,42 @@ namespace UI
                         btnEast.Visible = true;
                     }
 
+                    if (gameSession.CanTravel(gameSession.CurrentPlayer.CurrentLocation.LocationToTheNorth))
+                    {
+                        btnNorth.Enabled = true;
+                    }
+                    else
+                    {
+                        btnNorth.Enabled = false;
+                    }
+
+                    if (gameSession.CanTravel(gameSession.CurrentPlayer.CurrentLocation.LocationToTheSouth))
+                    {
+                        btnSouth.Enabled = true;
+                    }
+                    else
+                    {
+                        btnSouth.Enabled = false;
+                    }
+
+                    if (gameSession.CanTravel(gameSession.CurrentPlayer.CurrentLocation.LocationToTheWest))
+                    {
+                        btnWest.Enabled = true;
+                    }
+                    else
+                    {
+                        btnWest.Enabled = false;
+                    }
+
+                    if (gameSession.CanTravel(gameSession.CurrentPlayer.CurrentLocation.LocationToTheEast))
+                    {
+                        btnEast.Enabled = true;
+                    }
+                    else
+                    {
+                        btnEast.Enabled = false;
+                    }
+
                     if (gameSession.CurrentPlayer.CurrentLocation.InnInLocation == null)
                     {
                         btnInn.Visible = false;
@@ -620,6 +656,7 @@ namespace UI
 
                     break;
                 case GameSession.GameState.GameOver:
+                    Thread.Sleep(3000);
                     DeathScreen deathScreen = new DeathScreen(gameSession);
                     deathScreen.StartPosition = FormStartPosition.CenterParent;
                     deathScreen.ShowDialog(this);
@@ -647,7 +684,7 @@ namespace UI
             rtbWorldText.ScrollToCaret();
         }
 
-        private void SetImage(PictureBox pictureBox, string imageName)
+        private void SetImageLocation(PictureBox pictureBox, string imageName)
         {
             if (imageName == null)
             {
@@ -657,7 +694,7 @@ namespace UI
 
             using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
-                    thisAssembly.GetName().Name + ".Images." + imageName + ".png"))
+                    thisAssembly.GetName().Name + ".Images.Locations." + imageName + ".png"))
 
             {
                 if (resourceStream != null)
@@ -666,6 +703,47 @@ namespace UI
                 }
             }
         }
+
+        private void SetImageEnemy(PictureBox pictureBox, string imageName)
+        {
+            if (imageName == null)
+            {
+                pictureBox.Image = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images.Enemies." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    pictureBox.Image = new Bitmap(resourceStream);
+                }
+            }
+        }
+
+        private void SetImageIcon(PictureBox pictureBox, string imageName)
+        {
+            if (imageName == null)
+            {
+                pictureBox.Image = null;
+                return;
+            }
+
+            using (Stream resourceStream =
+                thisAssembly.GetManifestResourceStream(
+                    thisAssembly.GetName().Name + ".Images.Icons." + imageName + ".png"))
+
+            {
+                if (resourceStream != null)
+                {
+                    pictureBox.Image = new Bitmap(resourceStream);
+                }
+            }
+        }
+
 
         private void SetDGVImage(DataGridViewImageCell imageCell, string imageName)
         {
@@ -1077,6 +1155,7 @@ namespace UI
             btnSouth.Enabled = false;
             btnWest.Enabled = false;
             btnEast.Enabled = false;
+            btnSearch.Enabled = false;
             btnMap.Enabled = false;
             btnInn.Enabled = false;
             btnShop.Enabled = false;
@@ -1094,6 +1173,7 @@ namespace UI
             btnSouth.Enabled = true;
             btnWest.Enabled = true;
             btnEast.Enabled = true;
+            btnSearch.Enabled = true;
             btnMap.Enabled = true;
             btnInn.Enabled = true;
             btnShop.Enabled = true;

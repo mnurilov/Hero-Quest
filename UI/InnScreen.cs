@@ -46,6 +46,7 @@ namespace UI
             if (gameSession.StayAtInnCommand(gameSession.CurrentPlayer.CurrentLocation.InnInLocation))
             {
                 MessageBox.Show("You spent the night at the inn and fully replenished your health and mana");
+                Close();
             }
             else
             {

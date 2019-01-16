@@ -14,6 +14,8 @@ namespace Engine
         public bool IsCompleted { get; set; }
         public Person QuestGiver { get; set; }
 
+        public bool QuestGivenIn { get; set; }
+
         //<----------Rewards for the quest---------->
         public int RewardGold { get; set; }
         public int RewardExperience { get; set; }
@@ -30,6 +32,7 @@ namespace Engine
             this.Name = name;
             this.Description = description;
             IsCompleted = false;
+            QuestGivenIn = false;
             this.QuestGiver = questGiver;
             this.RewardGold = rewardGold;
             this.RewardExperience = rewardExperience;

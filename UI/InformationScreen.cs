@@ -256,7 +256,7 @@ namespace UI
                     int xpos = 237;
                     int ypos = 377;
 
-                    foreach (KeyValuePair<EnemyLoot, int> lootRequirement in ((GatherQuest)quest).RequiredEnemyLoots)
+                    foreach (KeyValuePair<Item, int> lootRequirement in ((GatherQuest)quest).RequiredItems)
                     {
                         string itemInfo;
 

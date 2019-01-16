@@ -19,7 +19,11 @@ namespace Engine
         private const int ItemIDRatCarcass = 8;
         private const int ItemIDSnakeFang = 9;
         private const int ItemIDOgreTooth = 10;
-        private const int ItemIDFireInJar = 11;
+        
+
+        private const int ItemIDApple = 12;
+        private const int ItemIDMilk = 13;
+        private const int ItemIDFireInJar = 14;
 
         //<----------Equipment ID's---------->
         private const int HeadEquipmentIDBronzeHelmet = 1;
@@ -44,50 +48,61 @@ namespace Engine
         private const int NegativeIntellectEquipmentID = 20;
         private const int NegativeResistanceEquipmentID = 21;
 
+        //Starting Gear
+        private const int HeadEquipmentIDLeatherCoif = 22;
+        private const int ChestEquipmentIDLeatherBody = 23;
+        private const int LegEquipmentIDLeatherChaps = 24;
+        private const int SwordIDWoodenSword = 25;
+        private const int StaffIDWoodenStaff = 26;
+        private const int DaggerIDWoodenDagger = 27;
+
         //<----------Spell ID's---------->
         private const int SpellIDFire = 1;
-        private const int SpellIDThunder = 2;
-        private const int SpellIDCure = 3;
 
         //<----------Vendor ID's---------->
-        private const int VendorIDJohn = 1;
-        private const int VendorIDBobby = 2;
-        private const int VendorIDJimmy = 3;
+        private const int VendorIDHermitBill = 1;
 
         //<----------Inn ID's---------->
-        private const int InnIDParadise = 1;
-        private const int InnIDCozyInn = 2;
+        private const int InnIDRustyShack = 1;
 
         //<----------Enemy ID's---------->
-        private const int EnemyIDRat = 1;
-        private const int EnemyIDSnake = 2;
-        private const int EnemyIDOgre = 3;
-        private const int EnemyIDDragon = 4;
-        private const int EnemyIDSiren = 5;
-        private const int EnemyIDSwampMonster = 6;
+        private const int EnemyIDAnt = 1;
+        private const int EnemyIDWorm = 2;
+        private const int EnemyIDBoar = 3;
+        private const int EnemyIDSnake = 4;
+        private const int EnemyIDSpider = 5;
+        private const int EnemyIDMonkey = 6; //Boss
+
 
         //<----------Quest ID's---------->
-        private const int QuestIDCleanTheSewers = 1;
-        private const int QuestIDAntidoteConcoction = 2;
-        private const int QuestIDFindTheSewers = 3;
+        private const int QuestIDJimmysErrand = 1;
+        private const int QuestIDCleanTheBarn = 2;
 
         //<----------Location ID's---------->
         private const int LocationIDHome = 1;
-        private const int LocationIDGrassPlains = 2;
-        private const int LocationIDTown = 3;
-        private const int LocationIDFarm = 4;
-        private const int LocationIDBarn = 5;
-        private const int LocationIDFarmHut = 6;
-        private const int LocationIDAlley = 7;
-        private const int LocationIDSewers = 8;
-        private const int LocationIDPond = 9;
-        private const int LocationIDSwamp = 10;
+        private const int LocationIDDirtPath = 2;
+        private const int LocationIDJimmysHouse = 3;
+        private const int LocationIDAppleOrchard1 = 4;
+        private const int LocationIDAppleOrchard2 = 5;
+        private const int LocationIDAppleOrchard3 = 6;
+        private const int LocationIDHermitVillage = 7;
+        private const int LocationIDFarmersHut = 8;
+        private const int LocationIDFarm = 9;
+        private const int LocationIDWoods1 = 10;
+        private const int LocationIDWoods2 = 11;
+        private const int LocationIDWoods3 = 12;
+        private const int LocationIDWoods4 = 13;
+        private const int LocationIDWoods5 = 14;
+        private const int LocationIDRiver = 15;
+        private const int LocationIDBridge = 16;
+        private const int LocationIDGrassyPlains = 17;
 
         //<----------List's which hold all things in the game world---------->
         private static readonly List<Item> items = new List<Item>();
         private static readonly List<Equipment> equipments = new List<Equipment>();
         private static readonly List<Spell> spells = new List<Spell>();
         private static readonly List<Vendor> vendors = new List<Vendor>();
+        private static readonly List<Person> persons = new List<Person>();
         private static readonly List<Inn> inns = new List<Inn>();
         private static readonly List<Enemy> enemies = new List<Enemy>();
         private static readonly List<Quest> quests = new List<Quest>();
@@ -102,6 +117,8 @@ namespace Engine
 
             //Vendors must be after items, equipments, and spells so that they can have those objects in their shop
             PopulateVendors();
+
+            PopulatePeople();
 
             PopulateInns();
             PopulateEnemies();
@@ -124,6 +141,18 @@ namespace Engine
             }
             return null;
         }
+
+        public static Item FindItemByName(string name)
+        {
+            foreach (Item item in items)
+            {
+                if (item.Name == name)
+                {
+                    return item;
+                }
+            }
+            return null;
+        }
         
         //Finds a specific equipment piece based on ID
         public static Equipment FindEquipmentByID(int ID)
@@ -131,6 +160,18 @@ namespace Engine
             foreach (Equipment equipment in equipments)
             {
                 if (equipment.ID == ID)
+                {
+                    return equipment;
+                }
+            }
+            return null;
+        }
+
+        public static Equipment FindEquipmentByName(string name)
+        {
+            foreach (Equipment equipment in equipments)
+            {
+                if (equipment.Name == name)
                 {
                     return equipment;
                 }
@@ -151,6 +192,18 @@ namespace Engine
             return null;
         }
 
+        public static Spell FindSpellByName(string name)
+        {
+            foreach (Spell spell in spells)
+            {
+                if (spell.Name == name)
+                {
+                    return spell;
+                }
+            }
+            return null;
+        }
+
         //Finds a specific vendor based on ID
         public static Vendor FindVendorByID(int ID)
         {
@@ -164,12 +217,48 @@ namespace Engine
             return null;
         }
 
+        public static Vendor FindVendorByName(string name)
+        {
+            foreach (Vendor vendor in vendors)
+            {
+                if (vendor.Name == name)
+                {
+                    return vendor;
+                }
+            }
+            return null;
+        }
+
+        public static Person FindPersonByName(string name)
+        {
+            foreach (Person person in persons)
+            {
+                if (person.Name == name)
+                {
+                    return person;
+                }
+            }
+            return null;
+        }
+
         //Finds a specific inn based on ID
         public static Inn FindInnByID(int ID)
         {
             foreach (Inn inn in inns)
             {
                 if (inn.ID == ID)
+                {
+                    return inn;
+                }
+            }
+            return null;
+        }
+
+        public static Inn FindInnByName(string name)
+        {
+            foreach (Inn inn in inns)
+            {
+                if (inn.Name == name)
                 {
                     return inn;
                 }
@@ -190,12 +279,36 @@ namespace Engine
             return null;
         }
 
+        public static Enemy FindEnemyByName(string name)
+        {
+            foreach (Enemy enemy in enemies)
+            {
+                if (enemy.Name == name)
+                {
+                    return enemy;
+                }
+            }
+            return null;
+        }
+
         //Finds a specific quest based on ID
         public static Quest FindQuestByID(int ID)
         {
             foreach(Quest quest in quests)
             {
                 if(quest.ID == ID)
+                {
+                    return quest;
+                }
+            }
+            return null;
+        }
+
+        public static Quest FindQuestByName(string name)
+        {
+            foreach (Quest quest in quests)
+            {
+                if (quest.Name == name)
                 {
                     return quest;
                 }
@@ -256,6 +369,11 @@ namespace Engine
             items.Add(new EnemyLoot(ItemIDRatTail, "Rat Tail", "A severed tail", 10));
             items.Add(new EnemyLoot(ItemIDSnakeFang, "Snake Fang", "A fang of a snake", 30));
             items.Add(new DamageItem(ItemIDFireInJar, "Fire in Jar", "It's a fire in a jar", 20, 20));
+
+
+            items.Add(new QuestItem(ItemIDApple, "Apple", "You know what they say one a day", 3));
+            items.Add(new HealthReplenishingItem(ItemIDMilk, "Milk", "Good for the bones", 5, 10));
+            items.Add(new DamageItem(ItemIDFireInJar, "Fire in Jar", "It is literally fire in a jar chuck it at an enemy", 10, 20));
         }
 
         private static void PopulateEquipments()
@@ -274,32 +392,52 @@ namespace Engine
             equipments.Add(new HeadEquipment(NegativeHealthEquipmentID, "Negative Health", "", 10, -100, 0, 0, 0, 0,0,0,0));
             equipments.Add(new ChestEquipment(NegativeManaEquipmentID, "Negative Mana", "", 10, 0, -100, 0,0,0,0,0,0));
             equipments.Add(new LegEquipment(NegativeAttackEquipmentID, "Negative Attack", "", 10, 0, 0, -100, 0,0,0,0,0));
+            equipments.Add(new HeadEquipment(NegativeDefenseEquipmentID, "Negative Defense", "", 10, 0, 0, 0, -50, 0,0,0,0));
+            equipments.Add(new ChestEquipment(NegativeLuckEquipmentID, "Negative Luck", "", 10, 0,0,0,0, -100,0,0,0));
+            equipments.Add(new LegEquipment(NegativeSpeedEquipmentID, "Negative Speed", "", 10, 0,0,0,0,0,-100,0,0));
+            equipments.Add(new HeadEquipment(NegativeIntellectEquipmentID, "Negative Intellect", "", 10,0,0,0,0,0,0,-100,0));
+            equipments.Add(new ChestEquipment(NegativeResistanceEquipmentID, "Negative Resistance", "", 10, 0,0,0,0,0,0,0,-50));
+
+
+            //Starting Equipment
+            equipments.Add(new HeadEquipment(HeadEquipmentIDLeatherCoif, "Leather Coif", "Slightly protects your precious head", 10, 2, 0, 0, 1, 0, 0, 0, 1));
+            equipments.Add(new ChestEquipment(ChestEquipmentIDLeatherBody, "Leather Body", "Slightly protects your precious body", 30, 5, 0, 0, 3, 0, 0, 0, 3));
+            equipments.Add(new LegEquipment(LegEquipmentIDLeatherChaps, "Leather Chaps", "Slightly protects your precious booty", 20, 3, 0, 0, 2, 0, 0, 0, 2));
+            equipments.Add(new Sword(SwordIDWoodenSword, "Wooden Sword", "It can't even cut through broccoli", 20, 0, 0, 3, 0, 0, 0, 0, 0));
+            equipments.Add(new Staff(StaffIDWoodenStaff, "Wooden Staff", "Kinda small to be called a staff", 20, 0, 0, 0, 0, 0, 0, 3, 0));
+            equipments.Add(new Dagger(DaggerIDWoodenDagger, "Wooden Dagger", "Is this just a t-shaped branch", 20, 0, 0, 1, 0, 1, 1, 0, 0));
         }
 
         private static void PopulateSpells()
         {
             //Format of Spell Creation:
             //(Spell ID, Name, Description, Gold Value, Mana Cost, Spell Affect Value)
-            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 10, 5, 10));
-            spells.Add(new DamageSpell(SpellIDThunder, "Thunder", "Summons thunder to deafen your enemy", 20, 10, 50));
-            spells.Add(new ReplenishSpell(SpellIDCure, "Cure", "Heals you", 10, 2, 20));
+            spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 10, 3, 3));
         }
 
         private static void PopulateVendors()
         {
             //Format of Vendor Creation:
             //(Vendor ID, Name, Description, Optional: Item Inventory, Optional: Equipment Inventory, Optional: Spell Inventory)
-            Vendor john = new Vendor(VendorIDJohn, "John", "A business man at heart", new Dictionary<Item, int> { { FindItemByID(1), 4 } });
-            john.AddToInventory(FindItemByID(3));
 
-            Vendor bobby = new Vendor(VendorIDBobby, "Bobby", "A kind soul", null, new List<Equipment> { FindEquipmentByID(9) } );
-            bobby.AddToInventory(FindEquipmentByID(3));
+            List<Equipment> hermitBillInventory = new List<Equipment>()
+            {
+                { FindEquipmentByName("Leather Coif")},
+                {FindEquipmentByName("Leather Body")},
+                {FindEquipmentByName("Leather Chaps")},
+                {FindEquipmentByName("Wooden Sword")},
+                {FindEquipmentByName("Wooden Staff")},
+                {FindEquipmentByName("Wooden Dagger")},
+            };
+            Vendor hermitBill = new Vendor(VendorIDHermitBill, "Hermit Bill", "This is some good stuff right here", null, hermitBillInventory);
 
-            Vendor jimmy = new Vendor(VendorIDJimmy, "Jimmy", "Doesn't care", null, null, new List<Spell> { FindSpellByID(1) } );
+            vendors.Add(hermitBill);
+        }
 
-            vendors.Add(john);
-            vendors.Add(bobby);
-            vendors.Add(jimmy);
+        private static void PopulatePeople()
+        {
+            persons.Add(new Person("Jimmy", "", "My mom needs 3 apples. So you can't pass until you get me those 3 apples!"));
+            persons.Add(new Person("Bobby", "", "Don't go north! Their is a crazy monkey stopping anyone from leaving the village!"));
         }
 
         private static void PopulateInns()
@@ -307,17 +445,11 @@ namespace Engine
             //Format of Inn Creation:
             //(Inn ID, Name, Description, Gold Cost For Admission, Inn Keeper)
 
-            //<----------Inn Keeper Creation---------->
-            Person innKeeperBilly = new Person("Billy", "Who cares", "Sup faggot");
-            Person innKeeperMandy = new Person("Mandy", "Grumpy little shit", "Hates billy");
-
             //<----------Inn Creation---------->
-            Inn paradise = new Inn(InnIDParadise, "Paradise", "Guess what it is", 30, innKeeperBilly);
-            Inn cozyInn = new Inn(InnIDCozyInn, "Cozy Inn", "Til 9o'clockerino", 40, innKeeperMandy);
+            Inn rustyShack = new Inn(InnIDRustyShack, "Rusty Shack", "How long ago was this built?", 10, null);
 
             //<----------Add inns to the inn list---------->
-            inns.Add(paradise);
-            inns.Add(cozyInn);
+            inns.Add(rustyShack); 
         }
 
         private static void PopulateEnemies()
@@ -341,23 +473,23 @@ namespace Engine
             sirenSpells.Add(FindSpellByID(3));
 
             //<----------Enemy Creation---------->
-            Enemy rat = new Enemy(EnemyIDRat, "Rat", "A small rodent", 5, 0, 3, 0, 0, 0, 0, 0, 10, 10, 10, 10, 0, null, "claws", ratLoots);
-            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "A slippery snek", 5, 0, 5, 5, 10, 6, 0, 5, 10, 10, 15, 15, 0, null, "fangs", snakeLoots);
-            //Enemy ogre = new Enemy(EnemyIDOgre, "Ogre", "A horrendous creature", 30, 0, 15, 10, 0, 0, 0, 0, 5, 5, 100, 100, 0);
-            //Enemy dragon = new Enemy(EnemyIDDragon, "Dragon", "A fearsome beast", 300, 50, 100, 50, 0, 50, 0, 50, 10, 10, 1000, 1000, 0);
-            Enemy siren = new Enemy(EnemyIDSiren, "Siren", "She's hot", 30, 50, 5, 5, 5, 5, 10, 10, 5, 5, 20, 100, 50, sirenSpells, "tail");
-            Enemy swampMonster = new Enemy(EnemyIDSwampMonster, "Swamp Monster", "He isa swamp monster", 60, 0, 30, 5, 0, 0, 0, 0, 5, 2, 100, 300, 0);
+            Enemy ant = new Enemy(EnemyIDAnt, "Ant", "To many of these things", 4, 0, 1, 0, 1, 1, 1, 1, 0, 0, 1, 1, 0, null, "head");
+            Enemy worm = new Enemy(EnemyIDWorm, "Worm", "Icky slimy crawlers", 6, 0, 2, 0, 1, 1, 1, 1, 0, 0, 3, 3, 0, null, "body");
+            Enemy boar = new Enemy(EnemyIDBoar, "Boar", "Is that a pig", 10, 0, 3, 3, 1, 7, 1, 4, 0, 0, 7, 7, 0, null, "tusks");
+            Enemy snake = new Enemy(EnemyIDSnake, "Snake", "Slippery snek", 15, 0, 6, 2, 5, 5, 1, 3, 2, 2, 8, 8, 0, null, "tail");
+            Enemy spider = new Enemy(EnemyIDSpider, "Spider", "Maybe if I let it bite me...", 15, 0, 3, 7, 1, 5, 1, 3, 2, 2, 8, 8, 0, null, "web");
+            Enemy monkey = new Enemy(EnemyIDMonkey, "Monkey", "Oooo Oooo Ahhh Ahhh", 30, 10, 10, 10, 0, 10, 10, 10, 5, 5, 50, 50, 25, null);
 
             //<-----------Making a boss monster--------------->
-            swampMonster.IsBoss = true;
+            monkey.IsBoss = true;
 
             //<----------Add enemies to the enemy list---------->
-            enemies.Add(rat);
+            enemies.Add(ant);
+            enemies.Add(worm);
+            enemies.Add(boar);
             enemies.Add(snake);
-            //enemies.Add(ogre);
-            //enemies.Add(dragon);
-            enemies.Add(siren);
-            enemies.Add(swampMonster);
+            enemies.Add(spider);
+            enemies.Add(monkey);
         }
 
         private static void PopulateQuests()
@@ -367,27 +499,26 @@ namespace Engine
             //Optional: Quest Experience Points Reward, Optional: Quest Reward Item, Optional: Quest Reward Equipment,
             //Optional: Quest Reward Spell)
 
-            //<-----------Quest Giver Creation----------->
-            Person bob = new Person("Bob", "An average joe", "Hey help I got rats!");
-            Person mary = new Person("Mary", "A sassy child", "Hey I lost my pet snake");
-            Person garry = new Person("Garry", "His grandpa doesn't love him", "Hey go to the sewers");
 
             //<-----------Quest Creation---------->
-
-            Dictionary<Enemy, int> enemies = new Dictionary<Enemy, int>() 
+            Dictionary<Item, int> jimmysErrandRequirements = new Dictionary<Item, int>()
             {
-                {FindEnemyByID(1), 3},
-                {FindEnemyByID(2), 1},
+                { FindItemByName("Apple"), 3 },
             };
-            Quest cleanTheSewers = new KillQuest(QuestIDCleanTheSewers, "Clean the Sewers", "Kill 3 rats in the sewers to help clean out the place",
-                bob, enemies, 10, 5, null, null, FindSpellByID(1));
+            Quest jimmysErrand = new GatherQuest(QuestIDJimmysErrand, "Jimmy's Errand", "Collect 3 apples from the apple orchard", null, 
+                jimmysErrandRequirements, 5, 10, null, null, FindSpellByName("Fire"));
 
-            Dictionary<EnemyLoot, int> loots = new Dictionary<EnemyLoot, int>()
+
+            Dictionary<Enemy, int> cleanTheBarnRequirements = new Dictionary<Enemy, int>()
             {
-                {(EnemyLoot)FindItemByID(9), 3 },
-                {(EnemyLoot)FindItemByID(7), 2},
+                { FindEnemyByName("Boar"), 3}
             };
-            Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction",
+            Quest cleanTheBarn = new KillQuest(QuestIDCleanTheBarn, "Clean the Barn", "Kill 3 boars at the farm", null,
+                cleanTheBarnRequirements, 10, 20, FindItemByName("Fire in Jar"));
+
+            
+            
+            /*Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction",
                 "Bring me 3 snake fangs so I can make the antidote", mary, loots,
                 5, 10, null, FindEquipmentByID(4));
 
@@ -395,13 +526,11 @@ namespace Engine
                 FindLocationByID(8), 10, 100, null, FindEquipmentByID(5));
 
             Quest fuckYoBitch = new KillQuest(4, "Fuck those Bitches", "Man bitches ain't shit but hoes and tricks", null, new Dictionary<Enemy, int>
-            { { FindEnemyByID(2), 4}}, 50, 26, FindItemByID(4), FindEquipmentByID(7), FindSpellByID(3));
+            { { FindEnemyByID(2), 4}}, 50, 26, FindItemByID(4), FindEquipmentByID(7), FindSpellByID(3));*/
 
             //<----------Add quests to the quest list---------->
-            quests.Add(cleanTheSewers);
-            quests.Add(antidoteConcoction);
-            quests.Add(findTheSewers);
-            quests.Add(fuckYoBitch);
+            quests.Add(jimmysErrand);
+            quests.Add(cleanTheBarn);
         }
 
         private static void PopulateLocations()
@@ -410,102 +539,182 @@ namespace Engine
             //(Location ID, Name, Description, Chance of Encountering an Enemy, X Coordinate, Y Coordinate)
 
             //<----------Creation of Locations----------->
-            Location house = new Location(LocationIDHome, "House", "Hey it's your house, it's dirty!", 0, 0, 0);
-            Location grassyPlains = new Location(LocationIDGrassPlains, "Grassy Plains", "A nice vibrant grassy plains", 100, 0, 1);
-            Location town = new Location(LocationIDTown, "Town", "What a beautiful town", 0, 0, 2);
-            Location farm = new Location(LocationIDFarm, "Farm", "It's a farm! Alright I'm bored back to my phone", 0, 1, 2);
-            Location barn = new Location(LocationIDBarn, "Barn", "It smells terrible in here", 100, 1, 3);
-            Location farmHut = new Location(LocationIDFarmHut, "Farm Hut", "It's the farmer's hut, say hello!", 0, 2, 2);
-            Location alley = new Location(LocationIDAlley, "Alley", "It is a scary alley way", 0, -1, 2);
-            Location sewers = new Location(LocationIDSewers, "Sewers", "Icky and Wicked", 0, -2, 2);
-            Location pond = new Location(LocationIDPond, "Pond", "Calming mist", 100, 0, -1);
-            Location swamp = new Location(LocationIDSwamp, "Swamp", "A run down sadden place", 100, -1, 0);
+            Location home = new Location(LocationIDHome, "Home", "It's your home, sadly you won't be seeing much of it", 0, 0, 0);
+            Location dirtPath = new Location(LocationIDDirtPath, "Dirt Path", "A winding path", 100, 1, 0);
+            Location jimmysHouse = new Location(LocationIDJimmysHouse, "Jimmy's House", "It's that little shit Jimmy's house", 0, 2, 0);
+            Location appleOrchard1 = new Location(LocationIDAppleOrchard1, "Apple Orchard", "Who put all these apples here", 50, 2, -1);
+            Location appleOrchard2 = new Location(LocationIDAppleOrchard2, "Apple Orchard", "Who put all these apples here", 50, 1, -1);
+            Location appleOrchard3 = new Location(LocationIDAppleOrchard3, "Apple Orchard", "Who put all these apples here", 50, 2, -2);
+            Location hermitVillage = new Location(LocationIDHermitVillage, "Hermit Village", "So this is where all those hermits go", 0, 3, 0);
+            Location farmersHut = new Location(LocationIDFarmersHut, "Farmer's Hut", "It is a hut where a farmer resides", 0, 3, 1);
+            Location farm = new Location(LocationIDFarm, "Farm", "Smells like shit", 100, 4, 1);
+            Location woods1 = new Location(LocationIDWoods1, "Woods", "Who put all these trees here", 0, 2, 1);
+            Location woods2 = new Location(LocationIDWoods2, "Woods", "Who put all these trees here", 60, 1, 1);
+            Location woods3 = new Location(LocationIDWoods3, "Woods", "Who put all these trees here", 60, 1, 2);
+            Location woods4 = new Location(LocationIDWoods4, "Woods", "Who put all these trees here", 60, 0, 1);
+            Location woods5 = new Location(LocationIDWoods5, "Woods", "Who put all these trees here", 60, 0, 2);
+            Location river = new Location(LocationIDRiver, "River", "Whoooooooshhhhhhh", 0, -1, 2);
+            Location bridge = new Location(LocationIDBridge, "Bridge", "Connects hermit village with the outside world", 100, 2, 2);
+            Location grassyPlains = new Location(LocationIDGrassyPlains, "Grassy Plains", "FREEEEEEEEDOM", 0, 2, 3);
 
             Person bob = new Person("Bob", "", "I think there is a treasure somewhere in the woods");
             Person marley = new Person("Marley", "", "I don't know what the fuck is going on");
 
             //<----------Linking up the locations---------->
-            house.LocationToTheNorth = grassyPlains;
-            house.LocationToTheSouth = pond;
-            house.LocationToTheWest = swamp;
+            home.LocationToTheEast = dirtPath;
 
-            grassyPlains.LocationToTheNorth = town;
-            grassyPlains.LocationToTheSouth = house;
+            dirtPath.LocationToTheWest = home;
+            dirtPath.LocationToTheEast = jimmysHouse;
 
-            town.LocationToTheSouth = grassyPlains;
-            town.LocationToTheWest = alley;
-            town.LocationToTheEast = farm;
+            jimmysHouse.LocationToTheSouth = appleOrchard1;
+            jimmysHouse.LocationToTheEast = hermitVillage;
+            jimmysHouse.LocationToTheWest = dirtPath;
 
-            farm.LocationToTheNorth = barn;
-            farm.LocationToTheEast = farmHut;
-            farm.LocationToTheWest = town;
+            appleOrchard1.LocationToTheNorth = jimmysHouse;
+            appleOrchard1.LocationToTheWest = appleOrchard2;
+            appleOrchard1.LocationToTheSouth = appleOrchard3;
 
-            barn.LocationToTheSouth = farm;
+            appleOrchard2.LocationToTheEast = appleOrchard1;
 
-            farmHut.LocationToTheWest = farm;
+            appleOrchard3.LocationToTheNorth = appleOrchard1;
 
-            alley.LocationToTheEast = town;
-            alley.LocationToTheWest = sewers;
+            hermitVillage.LocationToTheWest = jimmysHouse;
+            hermitVillage.LocationToTheNorth = farmersHut;
 
-            sewers.LocationToTheEast = alley;
+            farmersHut.LocationToTheSouth = hermitVillage;
+            farmersHut.LocationToTheEast = farm;
+            farmersHut.LocationToTheWest = woods1;
 
-            pond.LocationToTheNorth = house;
+            farm.LocationToTheWest = farmersHut;
 
-            swamp.LocationToTheEast = house;
+            woods1.LocationToTheNorth = bridge;
+            woods1.LocationToTheWest = woods2;
+            woods1.LocationToTheEast = farmersHut;
 
+            woods2.LocationToTheEast = woods1;
+            woods2.LocationToTheNorth = woods3;
+            woods2.LocationToTheWest = woods4;
+
+            woods3.LocationToTheSouth = woods2;
+            woods3.LocationToTheWest = woods5;
+
+            woods4.LocationToTheEast = woods2;
+            woods4.LocationToTheNorth = woods5;
+
+            woods5.LocationToTheEast = woods3;
+            woods5.LocationToTheSouth = woods4;
+            woods5.LocationToTheWest = river;
+
+            river.LocationToTheEast = woods5;
+
+            bridge.LocationToTheSouth = woods1;
+            bridge.LocationToTheNorth = grassyPlains;
+
+            grassyPlains.LocationToTheSouth = bridge;
+
+
+            //<----------Check if player is allowed to enter------------->
+            hermitVillage.IsAllowedToEnter = false;
+            hermitVillage.RequiredObjectToEnter = FindQuestByName("Jimmy's Errand");
+
+            woods1.IsAllowedToEnter = false;
+            woods1.RequiredObjectToEnter = FindQuestByName("Clean the Barn");
 
             //<----------Adding loot to locations------------->
-            alley.ItemInLocation = FindItemByID(1);
-            sewers.EquipmentInLocation = FindEquipmentByID(1);
-            grassyPlains.SpellInLocation = FindSpellByID(1);
+            home.ItemInLocation = FindItemByName("Milk");
+            appleOrchard1.ItemInLocation = FindItemByName("Apple");
+            appleOrchard2.ItemInLocation = FindItemByName("Apple");
+            appleOrchard3.ItemInLocation = FindItemByName("Apple");
+            farm.ItemInLocation = FindItemByName("Milk");
+            river.ItemInLocation = FindItemByName("Fire in Jar");
 
-        
+
             //<----------Adding people to locations------------->
-            town.PersonInLocation = bob;
+            jimmysHouse.PersonInLocation = FindPersonByName("Jimmy");
+            woods1.PersonInLocation = FindPersonByName("Bobby");
 
-            alley.PersonInLocation = marley;
 
             //<----------Add vendors to the locations---------->
-            town.VendorInLocation = FindVendorByID(1);
-            alley.VendorInLocation = FindVendorByID(2);
-            sewers.VendorInLocation = FindVendorByID(3);
-        
+            hermitVillage.VendorInLocation = FindVendorByName("Hermit Bill");
+
 
             //<----------Add inns to the locations---------->
-            town.InnInLocation = FindInnByID(1);
-            farmHut.InnInLocation = FindInnByID(2);
+            hermitVillage.InnInLocation = FindInnByName("Rusty Shack");
 
 
             //<----------Add enemies to the locations---------->
             //Note: Enemy weights must be ordered from least to greatest
-            grassyPlains.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(1), 30 } };
-            barn.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(2), 1 } };
-            pond.EnemiesInLocation = new Dictionary<Enemy, int> { { FindEnemyByID(5), 1 } };
-            swamp.BossInLocation = FindEnemyByID(6);
+            dirtPath.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Ant"), 1 },
+            };
+            appleOrchard1.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Worm"), 1},
+            };
+            appleOrchard2.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Worm"), 1},
+            };
+            appleOrchard3.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Worm"), 1},
+            };
+            farm.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Boar"), 1},
+            };
+            woods2.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Snake"), 1 },
+                { FindEnemyByName("Spider"), 1},
+            };
+            woods3.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Snake"), 1 },
+                { FindEnemyByName("Spider"), 1},
+            };
+            woods4.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Snake"), 1 },
+                { FindEnemyByName("Spider"), 1},
+            };
+            woods5.EnemiesInLocation = new Dictionary<Enemy, int>
+            {
+                { FindEnemyByName("Snake"), 1 },
+                { FindEnemyByName("Spider"), 1},
+            };
+            bridge.BossInLocation = FindEnemyByName("Monkey");
 
 
             //<----------Add quests to the locations---------->
-            town.QuestInLocation = FindQuestByID(1);
-            farmHut.QuestInLocation = FindQuestByID(2);
-            alley.QuestInLocation = FindQuestByID(3);
-            sewers.QuestInLocation = FindQuestByID(4);
+            jimmysHouse.QuestInLocation = FindQuestByName("Jimmy's Errand");
+            farmersHut.QuestInLocation = FindQuestByName("Clean the Barn");
 
 
             //<-----------Add locations to the location list---------->
-            locations.Add(house);
-            locations.Add(grassyPlains);
-            locations.Add(town);
+            locations.Add(home);
+            locations.Add(dirtPath);
+            locations.Add(jimmysHouse);
+            locations.Add(appleOrchard1);
+            locations.Add(appleOrchard2);
+            locations.Add(appleOrchard3);
+            locations.Add(hermitVillage);
+            locations.Add(farmersHut);
             locations.Add(farm);
-            locations.Add(barn);
-            locations.Add(farmHut);
-            locations.Add(alley);
-            locations.Add(sewers);
-            locations.Add(pond);
-            locations.Add(swamp);
+            locations.Add(woods1);
+            locations.Add(woods2);
+            locations.Add(woods3);
+            locations.Add(woods4);
+            locations.Add(woods5);
+            locations.Add(river);
+            locations.Add(bridge);
+            locations.Add(grassyPlains);
+
 
             //Link Travel Quests with their Destination Location
-            UpdateTravelQuests();
-            ((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
+            //UpdateTravelQuests();
+            //((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
         }
 
         private static void UpdateTravelQuests()
