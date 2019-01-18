@@ -2,6 +2,8 @@ Hero Quest
 Not using libraries
 Locations still show even though I specificed to use ID check if that didnt fuck up
 
+Give In the Quest
+
 once
 I have a rudamentary knowledge of programming and how to make a big project
 then 
