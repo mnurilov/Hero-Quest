@@ -1,14 +1,35 @@
-make key and quest items not sellable
-make it visible that a location cannot be travelled to make it disenabled and not invisible
-fix the location quests
+Hero Quest
+Not using libraries
+Locations still show even though I specificed to use ID check if that didnt fuck up
+
+once
+I have a rudamentary knowledge of programming and how to make a big project
+then 
+I decided I need to throw myself into a big project that would force me to learn everything was 
+going well until
+until
+I hit a huge wall and I couldn't understand how to hurdle over it
+finally
+I studied code design so I can understnad how to manage a huge projects with ten thousand lines
+of code. And I completed the game and learnt a lot from it
+
+
+
+CANCEL APPOINTMENT WITH LAZARE
+
+12:10 MAKE THE CALL
+
+
+
+It seems things update correctly but the given button is not showing correctly
+
+Have a hole in ground/cave/hidden passage leading to some crazy ass shit
+
 Monkey Boss having thrash spell
-Make items equipment and spells clickable in shop menu
-Make the location pictures be able to have different looks even if they have the same name
-Close inn on recover
+Make the death message more clear 
+Make Quests be seperated from giving in 
 
 <-----Things to Do----->
--Make Hero Quest Introduction Screen Picture
--Make Hero Quest Title Screen Header 
 -When they cast a spell flash a picture for a second so it looks like an animation
 -sound effects
 -music
@@ -17,44 +38,7 @@ For Debugging
 -Add an add all items equipment spells and quests function so I can have all things
 -A clear map function which allows me to see everything 
 
-//Turn greed and empower off on death
-Give death messages
-//Fast travel for visited places
-//Warn the player they got rewards for quest
-//Close window on form click
-//Why does search clickable 10 times
-//On death health for enemy does not reset
-//Don't decrease level 
 
 
-
-Apple Orchards
-Bee as enemy
-
-dirt path
-ant as enemy
-
-Jimmy's House 
-Please help me with apples my moms gonna kill me
-
-Village
-Rack shack inn
-SHop with base equipment kit and weapons for all classes
-
-Farmer's Hut
-Kill 3 boars they've been scaring my livestock
-
-Woods
-Stop you shouldn't go north their is a crazy monkey stopping anyone from leaving the village
-
-Everything to left is woods
-snakes
-spiders
-
-pond has no enemy and a search item
-
-Monkey Boss
-Bridge
-
-Grassy Plains 
-Go travel to Blank blank village
+$ rm .git/refs/heads/master
+To fix the fucking stupid unborn shit

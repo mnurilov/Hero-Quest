@@ -658,6 +658,7 @@ namespace Engine
                 CurrentLocation.HasVisited = true;
 
                 UpdateTravelQuests(newLocation);
+                UpdateAllQuests();
             }
         }
 
@@ -1729,14 +1730,21 @@ namespace Engine
             PlayerQuests.Add(quest);
         }
 
-        public bool CheckIfQuestComplete(Quest quest)
+        public void UpdateAllQuests()
+        {
+            foreach(Quest quest in PlayerQuests)
+            {
+                CheckIfQuestComplete(quest);
+            }
+        }
+
+        private bool CheckIfQuestComplete(Quest quest)
         {
             if(quest is GatherQuest)
             {
                 if(IsGatherQuestComplete((GatherQuest)quest) == true)
                 {
                     ((GatherQuest)quest).IsCompleted = true;
-                    RemoveGatherQuestRequirements((GatherQuest)quest);
                     return true;
                 }
             }
@@ -1880,7 +1888,7 @@ namespace Engine
             }
         }
 
-        private void RemoveGatherQuestRequirements(GatherQuest gatherQuest)
+        public void RemoveGatherQuestRequirements(GatherQuest gatherQuest)
         {
             Dictionary<Item, int> cloneItemInventory = CloneGenerator.CloneItemInventory(PlayerItems);
 
@@ -1899,7 +1907,6 @@ namespace Engine
                 }
             }
         }
-
 
         public object SearchForLoot()
         {
@@ -1929,21 +1936,17 @@ namespace Engine
             return null;
         }
 
-        public void OnDeath(ref int goldLost, ref int levelLost)
+        public void OnDeath(ref int goldLost, ref int experienceLost)
         {
             UnEquipAll();
 
-            double goldModifier = 0.2;
-            double levelModifier = 0.80;
+            double goldModifier = 0.5;
 
             goldLost = Gold;
             Gold = (int)(Gold * goldModifier);
             goldLost = goldLost - Gold;
 
-
-            levelLost = Level;
-            Level = (int)(Level * levelModifier);
-            levelLost = levelLost - Level;
+            experienceLost = CurrentExperiencePoints;
 
             CurrentExperiencePoints = 0;
             MaximumExperiencePoints = GetUpdatedMaximumExperience();
@@ -1980,6 +1983,23 @@ namespace Engine
 
             Unequip(CurrentSideArm);
             CurrentSideArm = null;
+        }
+
+        public bool LocationalQuestCheck(Location location, ref Quest questChosen)
+        {
+            foreach(Quest quest in PlayerQuests)
+            {
+                if(quest is TravelQuest)
+                {
+                    if(((TravelQuest)quest).RequiredLocation == location)
+                    {
+                        questChosen = quest;
+                        return true;
+                    }
+                }
+            }
+            questChosen = null;
+            return false;
         }
 
         public override string ToString()

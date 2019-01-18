@@ -79,39 +79,39 @@ namespace UI
         private void UpdatePictureBoxes()
         {
             //Top Row
-            SetImage(pb_n2_2, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 2)?.Name);
-            SetImage(pb_n1_2, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate + 2)?.Name);
-            SetImage(pb_0_2, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate + 2)?.Name);
-            SetImage(pb_1_2, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate + 2)?.Name);
-            SetImage(pb_2_2, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate + 2)?.Name);
+            SetImage(pb_n2_2, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 2));
+            SetImage(pb_n1_2, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate + 2));
+            SetImage(pb_0_2, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate + 2));
+            SetImage(pb_1_2, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate + 2));
+            SetImage(pb_2_2, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate + 2));
 
             //Top Middle Row
-            SetImage(pb_n2_1, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 1)?.Name);
-            SetImage(pb_n1_1, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate + 1)?.Name);
-            SetImage(pb_0_1, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate + 1)?.Name);
-            SetImage(pb_1_1, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate + 1)?.Name);
-            SetImage(pb_2_1, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate + 1)?.Name);
+            SetImage(pb_n2_1, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate + 1));
+            SetImage(pb_n1_1, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate + 1));
+            SetImage(pb_0_1, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate + 1));
+            SetImage(pb_1_1, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate + 1));
+            SetImage(pb_2_1, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate + 1));
 
             //Middle Row
-            SetImage(pb_n2_0, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate)?.Name);
-            SetImage(pb_n1_0, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate)?.Name);
-            SetImage(pb_0_0, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate)?.Name);
-            SetImage(pb_1_0, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate)?.Name);
-            SetImage(pb_2_0, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate)?.Name);
+            SetImage(pb_n2_0, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate));
+            SetImage(pb_n1_0, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate));
+            SetImage(pb_0_0, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate));
+            SetImage(pb_1_0, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate));
+            SetImage(pb_2_0, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate));
 
             //Bottom Middle Row
-            SetImage(pb_n2_n1, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 1)?.Name);
-            SetImage(pb_n1_n1, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate - 1)?.Name);
-            SetImage(pb_0_n1, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 1)?.Name);
-            SetImage(pb_1_n1, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 1)?.Name);
-            SetImage(pb_2_n1, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 1)?.Name);
+            SetImage(pb_n2_n1, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 1));
+            SetImage(pb_n1_n1, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate - 1));
+            SetImage(pb_0_n1, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 1));
+            SetImage(pb_1_n1, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 1));
+            SetImage(pb_2_n1, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 1));
 
             //Bottom Row
-            SetImage(pb_n2_n2, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 2)?.Name);
-            SetImage(pb_n1_n2, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate - 2)?.Name);
-            SetImage(pb_0_n2, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 2)?.Name);
-            SetImage(pb_1_n2, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 2)?.Name);
-            SetImage(pb_2_n2, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 2)?.Name);
+            SetImage(pb_n2_n2, World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 2));
+            SetImage(pb_n1_n2, World.FindLocationByCoordinate(centerXCoordinate - 1, centerYCoordinate - 2));
+            SetImage(pb_0_n2, World.FindLocationByCoordinate(centerXCoordinate, centerYCoordinate - 2));
+            SetImage(pb_1_n2, World.FindLocationByCoordinate(centerXCoordinate + 1, centerYCoordinate - 2));
+            SetImage(pb_2_n2, World.FindLocationByCoordinate(centerXCoordinate + 2, centerYCoordinate - 2));
         }
 
         private void UpdateMapConnections()
@@ -258,15 +258,15 @@ namespace UI
             }
         }
 
-        private void SetImage(PictureBox pictureBox, string imageName)
+        private void SetImage(PictureBox pictureBox, Location location)
         {
-            if(imageName == null)
+            if(location == null)
             {
                 pictureBox.Image = null;
                 return;
             }
 
-            if (World.FindLocationByName(imageName).HasVisited == false)
+            if (location.HasVisited == false)
             {
                 using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
@@ -282,7 +282,7 @@ namespace UI
             }
             using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
-                    thisAssembly.GetName().Name + ".Images.Locations." + imageName + ".png"))
+                    thisAssembly.GetName().Name + ".Images.Locations." + "(" + location.ID + ") " + location.Name + ".png"))
 
             {
                 if(resourceStream != null)

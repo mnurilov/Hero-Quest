@@ -67,6 +67,7 @@ namespace UI
         //<----------Updating UI Functions---------->
         private void UpdateUI()
         {
+            gameSession.CurrentPlayer.UpdateAllQuests();
             UpdateStats();
             UpdateButtons();
             UpdateDGVs();
@@ -549,6 +550,36 @@ namespace UI
                         btnTalk.Visible = false;
                     }
 
+
+                    Quest quest = gameSession.CurrentPlayer.CurrentLocation.QuestInLocation;
+                    if (quest != null)
+                    {
+                        if (gameSession.CurrentPlayer.PlayerQuests.Contains(quest) && quest.IsCompleted && !quest.QuestGivenIn)
+                        {
+                            btnGiveIn.Visible = true;
+                        }
+                        else
+                        {
+                            btnGiveIn.Visible = false;
+                        }
+                    }
+                    else if(gameSession.CurrentPlayer.LocationalQuestCheck(gameSession.CurrentPlayer.CurrentLocation, ref quest))
+                    {
+                        if (!quest.QuestGivenIn)
+                        {
+                            btnGiveIn.Visible = true;
+                        }
+                        else
+                        {
+                            btnGiveIn.Visible = false;
+                        }
+                    }
+                    else
+                    {
+                        btnGiveIn.Visible = false;
+                    }
+
+
                     btnAttack.Visible = false;
                     btnMagic.Visible = false;
                     btnItems.Visible = false;
@@ -583,6 +614,7 @@ namespace UI
                     btnShop.Visible = false;
                     btnQuest.Visible = false;
                     btnTalk.Visible = false;
+                    btnGiveIn.Visible = false;
 
                     if (gameSession.TurnCounter == 1)
                     {
@@ -1132,6 +1164,7 @@ namespace UI
             Update();
             Buffer();
             gameSession.SearchCommand();
+            AddNewLine();
             UpdateUI();
             Application.DoEvents();
             EnableControls();
@@ -1193,15 +1226,39 @@ namespace UI
 
             UpdateUI();
         }
-
-        private void button1_Click(object sender, EventArgs e)
+        
+        private void btnGiveIn_Click(object sender, EventArgs e)
         {
-            Enabled = false;
-        }
+            Quest quest = gameSession.CurrentPlayer.CurrentLocation.QuestInLocation;
 
-        private void button2_Click(object sender, EventArgs e)
-        {
-            Enabled = true;
+            if (quest != null)
+            {
+                if(gameSession.CurrentPlayer.PlayerQuests.Contains(quest) && quest.IsCompleted && !quest.QuestGivenIn)
+                {
+                    gameSession.CurrentPlayer.GainQuestRewards(quest);
+                    if(quest is GatherQuest)
+                    {
+                        gameSession.CurrentPlayer.RemoveGatherQuestRequirements((GatherQuest)quest);
+                    }
+                    MessageBox.Show("You give in the quest and receive all the respective rewards!");
+                    quest.QuestGivenIn = true;
+                }
+                UpdateUI();
+                return;
+            }
+
+            if (gameSession.CurrentPlayer.LocationalQuestCheck(gameSession.CurrentPlayer.CurrentLocation, ref quest))
+            {
+                if (!quest.QuestGivenIn)
+                {
+                    gameSession.CurrentPlayer.GainQuestRewards(quest);
+                    MessageBox.Show("You give in the quest and receive all the respective rewards!");
+                    quest.QuestGivenIn = true;
+                }
+            }
+
+
+            UpdateUI();
         }
     }
 }

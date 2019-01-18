@@ -26,21 +26,7 @@ namespace UI
             InitializeComponent();
             this.gameSession = gameSession;
             this.quest = gameSession.CurrentPlayer.CurrentLocation.QuestInLocation;
-            CheckQuestCompletion();
             UpdateUI();
-        }
-
-
-        private void CheckQuestCompletion()
-        {
-            if (quest.IsCompleted)
-            {
-                return;
-            }
-            else
-            {
-                gameSession.CheckIfQuestCompleted(quest);
-            }
         }
 
 
@@ -61,13 +47,11 @@ namespace UI
                 {
                     if (quest.QuestGivenIn)
                     {
-                        lblQuestState.Text = "You have already completed the quest!";
+                        lblQuestState.Text = "You have finished the quest!";
                     }
                     else
                     {
-                        lblQuestState.Text = "You have already completed the quest!";
-                        MessageBox.Show("You give in the quest and receive all the respective rewards!");
-                        quest.QuestGivenIn = true;
+                        lblQuestState.Text = "You have completed the quest you must hand it in";
                     }
                 }
                 else
@@ -143,9 +127,6 @@ namespace UI
                 }
             }
         }
-
-
-
 
 
         private PictureBox CreatePictureBox(string imageName, Point point, Size size)

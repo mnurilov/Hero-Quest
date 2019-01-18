@@ -77,6 +77,7 @@ namespace Engine
         //<----------Quest ID's---------->
         private const int QuestIDJimmysErrand = 1;
         private const int QuestIDCleanTheBarn = 2;
+        private const int QuestIDTestLocation = 3;
 
         //<----------Location ID's---------->
         private const int LocationIDHome = 1;
@@ -516,6 +517,10 @@ namespace Engine
             Quest cleanTheBarn = new KillQuest(QuestIDCleanTheBarn, "Clean the Barn", "Kill 3 boars at the farm", null,
                 cleanTheBarnRequirements, 10, 20, FindItemByName("Fire in Jar"));
 
+
+            Quest testLocation = new TravelQuest(QuestIDTestLocation, "Test Location", "Go to the home", null, FindLocationByName("Home"),
+                10, 10);
+
             
             
             /*Quest antidoteConcoction = new GatherQuest(QuestIDAntidoteConcoction, "Antidote Concoction",
@@ -531,12 +536,14 @@ namespace Engine
             //<----------Add quests to the quest list---------->
             quests.Add(jimmysErrand);
             quests.Add(cleanTheBarn);
+            quests.Add(testLocation);
         }
 
         private static void PopulateLocations()
         {
             //Format of Location Creation:
             //(Location ID, Name, Description, Chance of Encountering an Enemy, X Coordinate, Y Coordinate)
+
 
             //<----------Creation of Locations----------->
             Location home = new Location(LocationIDHome, "Home", "It's your home, sadly you won't be seeing much of it", 0, 0, 0);
@@ -559,6 +566,7 @@ namespace Engine
 
             Person bob = new Person("Bob", "", "I think there is a treasure somewhere in the woods");
             Person marley = new Person("Marley", "", "I don't know what the fuck is going on");
+
 
             //<----------Linking up the locations---------->
             home.LocationToTheEast = dirtPath;
@@ -619,6 +627,7 @@ namespace Engine
 
             woods1.IsAllowedToEnter = false;
             woods1.RequiredObjectToEnter = FindQuestByName("Clean the Barn");
+
 
             //<----------Adding loot to locations------------->
             home.ItemInLocation = FindItemByName("Milk");
@@ -690,6 +699,7 @@ namespace Engine
             //<----------Add quests to the locations---------->
             jimmysHouse.QuestInLocation = FindQuestByName("Jimmy's Errand");
             farmersHut.QuestInLocation = FindQuestByName("Clean the Barn");
+            hermitVillage.QuestInLocation = FindQuestByName("Test Location");
 
 
             //<-----------Add locations to the location list---------->
@@ -713,13 +723,13 @@ namespace Engine
 
 
             //Link Travel Quests with their Destination Location
-            //UpdateTravelQuests();
+            UpdateTravelQuests();
             //((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
         }
 
         private static void UpdateTravelQuests()
         {
-
+            ((TravelQuest)FindQuestByName("Test Location")).RequiredLocation = FindLocationByName("Home");
         }
     }
 }

@@ -112,7 +112,6 @@ namespace Engine
                     CurrentPlayer.MoveNorth();
                     break;
                 case Direction.South:
-
                     CurrentPlayer.MoveSouth();
                     break;
                 case Direction.West:
@@ -122,6 +121,8 @@ namespace Engine
                     CurrentPlayer.MoveEast();
                     break;
             }
+
+
 
             //If an encounter would occur, determine the enemy
             if (CurrentPlayer.CurrentLocation.EncounterTriggered())
@@ -535,23 +536,12 @@ namespace Engine
             string deathMessage = "";
 
             int goldLost = 0;
-            int levelLost = 0;
+            int experienceLost = 0;
 
-            CurrentPlayer.OnDeath(ref goldLost, ref levelLost);
+            CurrentPlayer.OnDeath(ref goldLost, ref experienceLost);
 
             deathMessage += "You lose " + goldLost + " gold!!!\n";
-            if(levelLost > 1)
-            {
-                deathMessage += "You have gone down " + levelLost + " levels!!!\n";
-            }
-            else if(levelLost == 1)
-            {
-                deathMessage += "You have gone down " + levelLost + " level!!!\n";
-            }
-            else
-            {
-
-            }
+            deathMessage += "You lose " + experienceLost + " experience points!!!\n";
             deathMessage += "You have been brought back to " + World.FindLocationByID(1).Name;
 
             CurrentPlayer.DisableGreed();
@@ -654,18 +644,18 @@ namespace Engine
 
 
         //<----------Quest Commands---------->
-        public bool CheckIfQuestCompleted(Quest quest)
+        private bool CheckIfQuestCompleted(Quest quest)
         {
             if (!CurrentPlayer.PlayerQuests.Contains(quest))
             {
                 return false;
             }
-            if(CurrentPlayer.CheckIfQuestComplete(quest) == true)
+            //if(CurrentPlayer.CheckIfQuestComplete(quest) == true)
             {
                 CurrentPlayer.GainQuestRewards(quest);
                 return true;
             }
-            return false;
+           // return false;
         }
 
 

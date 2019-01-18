@@ -240,7 +240,7 @@ namespace UI
 
                     string locationInfo;
 
-                    if (((TravelQuest)quest).RequiredLocation.HasVisited)
+                    if (((TravelQuest)quest).HasVisitedLocation)
                     {
                         locationInfo = "You have already visited " + ((TravelQuest)quest).RequiredLocation.Name;
                     }
