@@ -1,27 +1,10 @@
-Hero Quest
-Not using libraries
 Locations still show even though I specificed to use ID check if that didnt fuck up
-
+Class Icons
 Give In the Quest
-
-once
-I have a rudamentary knowledge of programming and how to make a big project
-then 
-I decided I need to throw myself into a big project that would force me to learn everything was 
-going well until
-until
-I hit a huge wall and I couldn't understand how to hurdle over it
-finally
-I studied code design so I can understnad how to manage a huge projects with ten thousand lines
-of code. And I completed the game and learnt a lot from it
-
-
+Victory Screen
+West Road 1
 
 CANCEL APPOINTMENT WITH LAZARE
-
-12:10 MAKE THE CALL
-
-
 
 It seems things update correctly but the given button is not showing correctly
 
@@ -29,7 +12,6 @@ Have a hole in ground/cave/hidden passage leading to some crazy ass shit
 
 Monkey Boss having thrash spell
 Make the death message more clear 
-Make Quests be seperated from giving in 
 
 <-----Things to Do----->
 -When they cast a spell flash a picture for a second so it looks like an animation
@@ -37,8 +19,13 @@ Make Quests be seperated from giving in
 -music
 
 For Debugging
--Add an add all items equipment spells and quests function so I can have all things
--A clear map function which allows me to see everything 
+-add all items equipment spells and quests
+//-No fog
+//-Teleport
+//-Unlock all Areas
+//-Remove Encounters
+-Level Control
+//-Class Switch
 
 
 

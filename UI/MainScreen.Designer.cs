@@ -168,6 +168,14 @@
             this.btnSearch = new System.Windows.Forms.Button();
             this.btnTalk = new System.Windows.Forms.Button();
             this.btnGiveIn = new System.Windows.Forms.Button();
+            this.btnClearFog = new System.Windows.Forms.Button();
+            this.btnRemoveRequirements = new System.Windows.Forms.Button();
+            this.btnRemoveEncounters = new System.Windows.Forms.Button();
+            this.btnChangeWarrior = new System.Windows.Forms.Button();
+            this.btnClassMage = new System.Windows.Forms.Button();
+            this.btnClassThief = new System.Windows.Forms.Button();
+            this.btnLevelUp = new System.Windows.Forms.Button();
+            this.btnLevelDown = new System.Windows.Forms.Button();
             this.tbcInventory.SuspendLayout();
             this.tbpItems.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvItems)).BeginInit();
@@ -1576,12 +1584,100 @@
             this.btnGiveIn.UseVisualStyleBackColor = true;
             this.btnGiveIn.Click += new System.EventHandler(this.btnGiveIn_Click);
             // 
+            // btnClearFog
+            // 
+            this.btnClearFog.Location = new System.Drawing.Point(1489, 0);
+            this.btnClearFog.Name = "btnClearFog";
+            this.btnClearFog.Size = new System.Drawing.Size(44, 101);
+            this.btnClearFog.TabIndex = 48;
+            this.btnClearFog.Text = "Fog";
+            this.btnClearFog.UseVisualStyleBackColor = true;
+            this.btnClearFog.Click += new System.EventHandler(this.btnClearFog_Click);
+            // 
+            // btnRemoveRequirements
+            // 
+            this.btnRemoveRequirements.Location = new System.Drawing.Point(1489, 103);
+            this.btnRemoveRequirements.Name = "btnRemoveRequirements";
+            this.btnRemoveRequirements.Size = new System.Drawing.Size(44, 101);
+            this.btnRemoveRequirements.TabIndex = 49;
+            this.btnRemoveRequirements.Text = "Block";
+            this.btnRemoveRequirements.UseVisualStyleBackColor = true;
+            this.btnRemoveRequirements.Click += new System.EventHandler(this.btnRemoveRequirements_Click);
+            // 
+            // btnRemoveEncounters
+            // 
+            this.btnRemoveEncounters.Location = new System.Drawing.Point(1489, 208);
+            this.btnRemoveEncounters.Name = "btnRemoveEncounters";
+            this.btnRemoveEncounters.Size = new System.Drawing.Size(44, 101);
+            this.btnRemoveEncounters.TabIndex = 50;
+            this.btnRemoveEncounters.Text = "Encounters";
+            this.btnRemoveEncounters.UseVisualStyleBackColor = true;
+            this.btnRemoveEncounters.Click += new System.EventHandler(this.btnRemoveEncounters_Click);
+            // 
+            // btnChangeWarrior
+            // 
+            this.btnChangeWarrior.Location = new System.Drawing.Point(1194, 596);
+            this.btnChangeWarrior.Name = "btnChangeWarrior";
+            this.btnChangeWarrior.Size = new System.Drawing.Size(93, 28);
+            this.btnChangeWarrior.TabIndex = 51;
+            this.btnChangeWarrior.Text = "Warrior";
+            this.btnChangeWarrior.UseVisualStyleBackColor = true;
+            this.btnChangeWarrior.Click += new System.EventHandler(this.btnChangeWarrior_Click);
+            // 
+            // btnClassMage
+            // 
+            this.btnClassMage.Location = new System.Drawing.Point(1293, 596);
+            this.btnClassMage.Name = "btnClassMage";
+            this.btnClassMage.Size = new System.Drawing.Size(93, 28);
+            this.btnClassMage.TabIndex = 52;
+            this.btnClassMage.Text = "Mage";
+            this.btnClassMage.UseVisualStyleBackColor = true;
+            this.btnClassMage.Click += new System.EventHandler(this.btnClassMage_Click);
+            // 
+            // btnClassThief
+            // 
+            this.btnClassThief.Location = new System.Drawing.Point(1392, 596);
+            this.btnClassThief.Name = "btnClassThief";
+            this.btnClassThief.Size = new System.Drawing.Size(93, 28);
+            this.btnClassThief.TabIndex = 53;
+            this.btnClassThief.Text = "Thief";
+            this.btnClassThief.UseVisualStyleBackColor = true;
+            this.btnClassThief.Click += new System.EventHandler(this.btnClassThief_Click);
+            // 
+            // btnLevelUp
+            // 
+            this.btnLevelUp.Location = new System.Drawing.Point(1489, 315);
+            this.btnLevelUp.Name = "btnLevelUp";
+            this.btnLevelUp.Size = new System.Drawing.Size(44, 101);
+            this.btnLevelUp.TabIndex = 54;
+            this.btnLevelUp.Text = "Up";
+            this.btnLevelUp.UseVisualStyleBackColor = true;
+            this.btnLevelUp.Click += new System.EventHandler(this.btnLevelUp_Click);
+            // 
+            // btnLevelDown
+            // 
+            this.btnLevelDown.Location = new System.Drawing.Point(1489, 422);
+            this.btnLevelDown.Name = "btnLevelDown";
+            this.btnLevelDown.Size = new System.Drawing.Size(44, 101);
+            this.btnLevelDown.TabIndex = 55;
+            this.btnLevelDown.Text = "Down";
+            this.btnLevelDown.UseVisualStyleBackColor = true;
+            this.btnLevelDown.Click += new System.EventHandler(this.btnLevelDown_Click);
+            // 
             // MainScreen
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(192)))), ((int)(((byte)(255)))));
             this.ClientSize = new System.Drawing.Size(1606, 833);
+            this.Controls.Add(this.btnLevelDown);
+            this.Controls.Add(this.btnLevelUp);
+            this.Controls.Add(this.btnClassThief);
+            this.Controls.Add(this.btnClassMage);
+            this.Controls.Add(this.btnChangeWarrior);
+            this.Controls.Add(this.btnRemoveEncounters);
+            this.Controls.Add(this.btnRemoveRequirements);
+            this.Controls.Add(this.btnClearFog);
             this.Controls.Add(this.btnGiveIn);
             this.Controls.Add(this.btnTalk);
             this.Controls.Add(this.btnSearch);
@@ -1785,6 +1881,14 @@
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.Button btnTalk;
         private System.Windows.Forms.Button btnGiveIn;
+        private System.Windows.Forms.Button btnClearFog;
+        private System.Windows.Forms.Button btnRemoveRequirements;
+        private System.Windows.Forms.Button btnRemoveEncounters;
+        private System.Windows.Forms.Button btnChangeWarrior;
+        private System.Windows.Forms.Button btnClassMage;
+        private System.Windows.Forms.Button btnClassThief;
+        private System.Windows.Forms.Button btnLevelUp;
+        private System.Windows.Forms.Button btnLevelDown;
     }
 }
 

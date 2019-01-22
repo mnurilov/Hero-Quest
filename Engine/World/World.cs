@@ -97,6 +97,26 @@ namespace Engine
         private const int LocationIDRiver = 15;
         private const int LocationIDBridge = 16;
         private const int LocationIDGrassyPlains = 17;
+        private const int LocationIDCrossRoads = 18;
+        private const int LocationIDWestRoads = 19;
+        private const int LocationIDEastRoads = 20;
+        private const int LocationIDRiver1 = 21;
+        private const int LocationIDRiver2 = 22;
+        private const int LocationIDRiver3 = 23;
+        private const int LocationIDRiver4 = 24;
+        private const int LocationIDPond = 25;
+        private const int LocationIDHazyForest1 = 26;
+        private const int LocationIDHazyForest2 = 27;
+        private const int LocationIDHazyForest3 = 28;
+        private const int LocationIDHazyForest4 = 29;
+        private const int LocationIDHazyForest5 = 30;
+        private const int LocationIDHazyForest6 = 31;
+        private const int LocationIDWitchsHouse = 32;
+        private const int LocationIDMainRoad1 = 33;
+        private const int LocationIDMainRoad2 = 34;
+        private const int LocationIDMainRoad3 = 35;
+        private const int LocationIDMainRoad4 = 36;
+        //TOWNNNNNNNN
 
         //<----------List's which hold all things in the game world---------->
         private static readonly List<Item> items = new List<Item>();
@@ -563,6 +583,25 @@ namespace Engine
             Location river = new Location(LocationIDRiver, "River", "Whoooooooshhhhhhh", 0, -1, 2);
             Location bridge = new Location(LocationIDBridge, "Bridge", "Connects hermit village with the outside world", 100, 2, 2);
             Location grassyPlains = new Location(LocationIDGrassyPlains, "Grassy Plains", "FREEEEEEEEDOM", 0, 2, 3);
+            Location crossRoads = new Location(LocationIDCrossRoads, "Cross Roads", "Which way will you go", 0, 2, 4);
+            Location westRoads = new Location(LocationIDWestRoads, "West Roads", "To the left to the left", 0, 1, 4);
+            Location eastRoads = new Location(LocationIDEastRoads, "East Roads", "You are going in the right direction", 0, 3, 4);
+            Location river1 = new Location(LocationIDRiver1, "River", "This river filled with debris", 50, 0, 4);
+            Location river2 = new Location(LocationIDRiver2, "River", "This river filled with debris", 50, 0, 5);
+            Location river3 = new Location(LocationIDRiver3, "River", "This river filled with debris", 50, 0, 6);
+            Location river4 = new Location(LocationIDRiver4, "River", "This river filled with debris", 50, 0, 7);
+            Location pond = new Location(LocationIDPond, "Pond", "A quiet and serene pond", 100, -1, 7);
+            Location hazyForest1 = new Location(LocationIDHazyForest1, "Hazy Forest", "This place makes your skin crawl", 75, 4, 4);
+            Location hazyForest2 = new Location(LocationIDHazyForest2, "Hazy Forest", "This place makes your skin crawl", 75, 5, 4);
+            Location hazyForest3 = new Location(LocationIDHazyForest3, "Hazy Forest", "This place makes your skin crawl", 75, 4, 5);
+            Location hazyForest4 = new Location(LocationIDHazyForest4, "Hazy Forest", "This place makes your skin crawl", 75, 5, 5);
+            Location hazyForest5 = new Location(LocationIDHazyForest5, "Hazy Forest", "This place makes your skin crawl", 75, 4, 6);
+            Location hazyForest6 = new Location(LocationIDHazyForest6, "Hazy Forest", "This place makes your skin crawl", 75, 5, 6);
+            Location witchsHouse = new Location(LocationIDWitchsHouse, "Witch's House", "It smells like candy!", 0, 6, 5);
+            Location mainroad1 = new Location(LocationIDMainRoad1, "Main Road", "This road is well maintained", 0, 1, 7);
+            Location mainroad2 = new Location(LocationIDMainRoad2, "Main Road", "This road is well maintained", 0, 2, 7);
+            Location mainroad3 = new Location(LocationIDMainRoad3, "Main Road", "This road is well maintained", 0, 3, 7);
+            Location mainroad4 = new Location(LocationIDMainRoad4, "Main Road", "This road is well maintained", 0, 4, 7);
 
             Person bob = new Person("Bob", "", "I think there is a treasure somewhere in the woods");
             Person marley = new Person("Marley", "", "I don't know what the fuck is going on");
@@ -720,6 +759,25 @@ namespace Engine
             locations.Add(river);
             locations.Add(bridge);
             locations.Add(grassyPlains);
+            locations.Add(crossRoads);
+            locations.Add(westRoads);
+            locations.Add(eastRoads);
+            locations.Add(river1);
+            locations.Add(river2);
+            locations.Add(river3);
+            locations.Add(river4);
+            locations.Add(pond);
+            locations.Add(hazyForest1);
+            locations.Add(hazyForest2);
+            locations.Add(hazyForest3);
+            locations.Add(hazyForest4);
+            locations.Add(hazyForest5);
+            locations.Add(hazyForest6);
+            locations.Add(witchsHouse);
+            locations.Add(mainroad1);
+            locations.Add(mainroad2);
+            locations.Add(mainroad3);
+            locations.Add(mainroad4);
 
 
             //Link Travel Quests with their Destination Location

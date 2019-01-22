@@ -339,9 +339,13 @@ namespace UI
                 {
                     //Sets a string to completed or in progress to signify the player's current progress on the quest
                     string status = "";
-                    if (quest.IsCompleted)
+                    if (quest.IsCompleted && quest.QuestGivenIn)
                     {
                         status = "Completed";
+                    }
+                    else if(quest.IsCompleted && !quest.QuestGivenIn)
+                    {
+                        status = "Give In";
                     }
                     else
                     {
@@ -353,9 +357,13 @@ namespace UI
                     SetDGVImage((DataGridViewImageCell)dgvQuests.Rows[rowIndex].Cells[1], quest.Name);
 
                     //Sets color of status to green if complete yellow if incomplete
-                    if (quest.IsCompleted)
+                    if (quest.IsCompleted && quest.QuestGivenIn)
                     {
                         dgvQuests.Rows[rowIndex].Cells[3].Style.BackColor = Color.FromArgb(28, 237, 91);
+                    }
+                    else if(quest.IsCompleted && !quest.QuestGivenIn)
+                    {
+                        dgvQuests.Rows[rowIndex].Cells[3].Style.BackColor = Color.FromArgb(100, 100, 100);
                     }
                     else
                     {
@@ -1258,6 +1266,65 @@ namespace UI
             }
 
 
+            UpdateUI();
+        }
+
+
+        //<--------------Debug Functions------------>
+        private void btnClearFog_Click(object sender, EventArgs e)
+        {
+            for(int i = 1; World.FindLocationByID(i) != null; i++)
+            {
+                World.FindLocationByID(i).HasVisited = true;
+            }
+            UpdateUI();
+        }
+
+        private void btnRemoveRequirements_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; World.FindLocationByID(i) != null; i++)
+            {
+                World.FindLocationByID(i).IsAllowedToEnter = true;
+            }
+            UpdateUI();
+        }
+
+        private void btnRemoveEncounters_Click(object sender, EventArgs e)
+        {
+            for (int i = 1; World.FindLocationByID(i) != null; i++)
+            {
+                World.FindLocationByID(i).EncounterRate = 0;
+            }
+            UpdateUI();
+        }
+
+        private void btnChangeWarrior_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.SetClass(Player.Class.Warrior);
+            UpdateUI();
+        }
+
+        private void btnClassMage_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.SetClass(Player.Class.Mage);
+            UpdateUI();
+        }
+
+        private void btnClassThief_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.SetClass(Player.Class.Thief);
+            UpdateUI();
+        }
+
+        private void btnLevelUp_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.DebugLevelUp();
+            UpdateUI();
+        }
+
+        private void btnLevelDown_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.DebugLevelDown();
             UpdateUI();
         }
     }

@@ -102,6 +102,11 @@ namespace Engine
             MoveCommand(Direction.East);
         }
 
+        public void MoveToCommand(Location location)
+        {
+            CurrentPlayer.MoveTo(location);
+        }
+
         private void MoveCommand(Direction direction)
         {
             CheckGameState(GameState.Travel);

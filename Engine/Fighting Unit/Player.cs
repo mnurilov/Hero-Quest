@@ -217,6 +217,20 @@ namespace Engine
         {
             return playerClass;
         }
+    
+        //Debugging Purposes
+        public void SetClass(Class playerClass)
+        {
+            this.playerClass = playerClass;
+            int health = 0;
+            int mana = 0;
+            UnEquipAll();
+            UpdateBaseStats(ref health, ref mana);
+            ResetTotalStats();
+            UpdateCriticalAndDodge();
+            currentHealth = TotalMaximumHealth;
+            currentMana = TotalMaximumMana;
+        }
 
         public string Name { get; set; }
 
@@ -384,6 +398,35 @@ namespace Engine
                 CurrentExperiencePoints -= MaximumExperiencePoints;
                 MaximumExperiencePoints = GetUpdatedMaximumExperience();
             }
+        }
+
+        public void DebugLevelUp()
+        {
+            LevelUp();
+            MaximumExperiencePoints = GetUpdatedMaximumExperience();
+        }
+
+        public void DebugLevelDown()
+        {
+            UnEquipAll();
+
+            Level = Level - 1;
+
+            CurrentExperiencePoints = 0;
+            MaximumExperiencePoints = GetUpdatedMaximumExperience();
+
+            int health = 0;
+            int mana = 0;
+
+            UpdateBaseStats(ref health, ref mana);
+            ResetTotalStats();
+
+            //After properly setting up the players base and total stats only now can we set his current health and mana
+            CurrentHealth = TotalMaximumHealth;
+            CurrentMana = TotalMaximumMana;
+
+            //After setting up total stats update critical and dodge rates
+            UpdateCriticalAndDodge();
         }
 
         private void LevelUp()
