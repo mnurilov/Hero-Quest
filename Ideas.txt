@@ -24,7 +24,7 @@ For Debugging
 //-Teleport
 //-Unlock all Areas
 //-Remove Encounters
--Level Control
+//-Level Control
 //-Class Switch
 
 

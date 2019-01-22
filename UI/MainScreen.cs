@@ -1327,5 +1327,11 @@ namespace UI
             gameSession.CurrentPlayer.DebugLevelDown();
             UpdateUI();
         }
+
+        private void btnGiveAllThings_Click(object sender, EventArgs e)
+        {
+            gameSession.CurrentPlayer.DebugAddAll();
+            UpdateUI();
+        }
     }
 }

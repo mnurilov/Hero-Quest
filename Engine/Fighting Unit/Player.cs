@@ -1427,6 +1427,23 @@ namespace Engine
         }
 
 
+        public void DebugAddAll()
+        {
+            for(int i = 1; World.FindItemByID(i) != null; i++)
+            {
+                AddItem(World.FindItemByID(i));
+            }
+            for (int i = 1; World.FindEquipmentByID(i) != null; i++)
+            {
+                AddEquipment(World.FindEquipmentByID(i));
+            }
+            for (int i = 1; World.FindSpellByID(i) != null; i++)
+            {
+                AddSpell(World.FindSpellByID(i));
+            }
+        }
+
+
         //<----------Equipment Methods--------->
         public bool Equip(Equipment equipment)
         {
