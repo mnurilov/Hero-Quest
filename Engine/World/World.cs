@@ -694,18 +694,33 @@ namespace Engine
 
             hazyForest3.LocationToTheSouth = hazyForest1;
             hazyForest3.LocationToTheEast = hazyForest4;
-            Location pond = new Location(LocationIDPond, "Pond", "A quiet and serene pond", 100, -1, 7);
-            Location hazyForest1 = new Location(LocationIDHazyForest1, "Hazy Forest", "This place makes your skin crawl", 75, 4, 4);
-            Location hazyForest2 = new Location(LocationIDHazyForest2, "Hazy Forest", "This place makes your skin crawl", 75, 5, 4);
-            Location hazyForest3 = new Location(LocationIDHazyForest3, "Hazy Forest", "This place makes your skin crawl", 75, 4, 5);
-            Location hazyForest4 = new Location(LocationIDHazyForest4, "Hazy Forest", "This place makes your skin crawl", 75, 5, 5);
-            Location hazyForest5 = new Location(LocationIDHazyForest5, "Hazy Forest", "This place makes your skin crawl", 75, 4, 6);
-            Location hazyForest6 = new Location(LocationIDHazyForest6, "Hazy Forest", "This place makes your skin crawl", 75, 5, 6);
-            Location witchsHouse = new Location(LocationIDWitchsHouse, "Witch's House", "It smells like candy!", 0, 6, 5);
-            Location mainroad1 = new Location(LocationIDMainRoad1, "Main Road", "This road is well maintained", 0, 1, 7);
-            Location mainroad2 = new Location(LocationIDMainRoad2, "Main Road", "This road is well maintained", 0, 2, 7);
-            Location mainroad3 = new Location(LocationIDMainRoad3, "Main Road", "This road is well maintained", 0, 3, 7);
-            Location mainroad4 = new Location(LocationIDMainRoad4, "Main Road", "This road is well maintained", 0, 4, 7);
+            hazyForest3.LocationToTheNorth = hazyForest5;
+
+            hazyForest4.LocationToTheSouth = hazyForest2;
+            hazyForest4.LocationToTheWest = hazyForest3;
+            hazyForest4.LocationToTheEast = witchsHouse;
+            hazyForest4.LocationToTheNorth = hazyForest6;
+
+            hazyForest5.LocationToTheSouth = hazyForest3;
+            hazyForest5.LocationToTheEast = hazyForest6;
+            hazyForest5.LocationToTheNorth = mainroad4;
+
+            hazyForest6.LocationToTheSouth = hazyForest4;
+            hazyForest6.LocationToTheWest = hazyForest5;
+
+            witchsHouse.LocationToTheWest = hazyForest4;
+
+            mainroad1.LocationToTheWest = river4;
+            mainroad1.LocationToTheEast = mainroad2;
+
+            mainroad2.LocationToTheWest = mainroad1;
+            mainroad2.LocationToTheEast = mainroad3;
+
+            mainroad3.LocationToTheWest = mainroad2;
+            mainroad3.LocationToTheEast = mainroad4;
+
+            mainroad4.LocationToTheWest = mainroad3;
+            mainroad4.LocationToTheSouth = hazyForest5;
 
 
             //<----------Check if player is allowed to enter------------->

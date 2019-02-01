@@ -4,8 +4,6 @@ Give In the Quest
 Victory Screen
 West Road 1
 
-CANCEL APPOINTMENT WITH LAZARE
-
 It seems things update correctly but the given button is not showing correctly
 
 Have a hole in ground/cave/hidden passage leading to some crazy ass shit
@@ -19,7 +17,7 @@ Make the death message more clear
 -music
 
 For Debugging
--add all items equipment spells and quests
+//-add all items equipment spells and quests
 //-No fog
 //-Teleport
 //-Unlock all Areas
@@ -28,6 +26,8 @@ For Debugging
 //-Class Switch
 
 
-
-$ rm .git/refs/heads/master
-To fix the fucking stupid unborn shit
+GitHub Fix Unborn Head
+Make sure to remove refs/remotes/origin/master file and then do commands
+- rm .git/refs/heads/master
+- git gc --prune=now
+- git fetch
