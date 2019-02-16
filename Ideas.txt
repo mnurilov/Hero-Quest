@@ -1,20 +1,40 @@
-Locations still show even though I specificed to use ID check if that didnt fuck up
-Class Icons
-Give In the Quest
-Victory Screen
-West Road 1
+Story Ideas
+A wizard tower meltdown, infects the nearby animals infusing them with magic and giving them
+new powers whilst also mutating them. These animals with their new found sentience and powers
+have decided the humans are at fault for all their issues and need to pay. You must go and defeat
+the leader of the animals and put to the conflict. 
 
-It seems things update correctly but the given button is not showing correctly
+You must collect 3 shards to access the king
 
-Have a hole in ground/cave/hidden passage leading to some crazy ass shit
+OOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOOo
+You need to be infused by magic from wizards to even access the animal leader area
 
-Monkey Boss having thrash spell
-Make the death message more clear 
+Final Area
+-All enemies in this area are the one who were closest to the initial meltdown
+-Boss was the closest to the impact
+
+Three areas
+-One will be an area affected by black magic during the meltdown they will share a theme of 
+being black and having negative stats as well as the void set
+-Lovely Magic
+-Anger Red Magic 
+
+Order
+1 Red
+2 Love
+3 Void
+
 
 <-----Things to Do----->
 -When they cast a spell flash a picture for a second so it looks like an animation
 -sound effects
 -music
+Locations still show even though I specificed to use ID check if that didnt fuck up
+Class Icons
+Victory Screen
+
+Monkey Boss having thrash spell
+Make the death message more clear 
 
 For Debugging
 //-add all items equipment spells and quests
@@ -24,7 +44,6 @@ For Debugging
 //-Remove Encounters
 //-Level Control
 //-Class Switch
-
 
 GitHub Fix Unborn Head
 Make sure to remove refs/remotes/origin/master file and then do commands
