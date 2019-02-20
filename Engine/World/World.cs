@@ -80,6 +80,7 @@ namespace Engine
         private const int QuestIDTestLocation = 3;
 
         //<----------Location ID's---------->
+        //Tutorial Area
         private const int LocationIDHome = 1;
         private const int LocationIDDirtPath = 2;
         private const int LocationIDJimmysHouse = 3;
@@ -96,6 +97,8 @@ namespace Engine
         private const int LocationIDWoods5 = 14;
         private const int LocationIDRiver = 15;
         private const int LocationIDBridge = 16;
+
+        //Route to the Kingdom
         private const int LocationIDGrassyPlains = 17;
         private const int LocationIDCrossRoads = 18;
         private const int LocationIDWestRoads = 19;
@@ -116,7 +119,49 @@ namespace Engine
         private const int LocationIDMainRoad2 = 34;
         private const int LocationIDMainRoad3 = 35;
         private const int LocationIDMainRoad4 = 36;
-        //TOWNNNNNNNN
+
+        //Kingdom
+        private const int LocationIDHextopia =  37;
+        private const int LocationIDResidentialDistrict = 38;
+        private const int LocationIDShoppingDistrict1 = 39;
+        private const int LocationIDShoppingDistrict2 = 40;
+        private const int LocationIDShoppingDistrict3 = 41;
+        private const int LocationIDGrandWizardsHouse = 42;
+        private const int LocationIDHextopiaCastle = 43;
+        private const int LocationIDBackRoads1 = 44;
+        private const int LocationIDBackRoads2 = 45;
+        private const int LocationIDBackRoads3 = 46;
+        private const int LocationIDBackRoads4 = 47;
+        private const int LocationIDBackRoads5 = 48;
+
+        //Shard Area 1
+        private const int LocationIDWilbursGym = 49;
+        private const int LocationIDBenchs1 = 50;
+        private const int LocationIDBenchs2 = 51;
+        private const int LocationIDBenchs3 = 52;
+        private const int LocationIDCardioArea1 = 53;
+        private const int LocationIDCardioArea2 = 54;
+        private const int LocationIDCardioArea3 = 55;
+        private const int LocationIDManagersOffice = 56;
+        private const int LocationIDFreeWeightArea1 = 57;
+        private const int LocationIDFreeWeightArea2 = 58;
+        private const int LocationIDFreeWeightArea3 = 59;
+        private const int LocationIDBicepCurlMachine = 60;
+        private const int LocationIDMirrors1 = 61;
+        private const int LocationIDMirrors2 = 62;
+        private const int LocationIDMirrors3 = 63;
+        private const int LocationIDSquatRacks1 = 64;
+        private const int LocationIDSquatRacks2 = 65;
+        private const int LocationIDSquatRacks3 = 66;
+        private const int LocationIDSquatRacks4 = 67;
+        private const int LocationIDBathroom = 68;
+        private const int LocationIDShadyCorner = 69;
+        private const int LocationIDAbsArea1 = 70;
+        private const int LocationIDAbsArea2 = 71;
+        private const int LocationIDAbsArea3 = 72;
+        private const int LocationIDSmithMachine = 73;
+        private const int LocationIDBackAlley = 74;
+
 
         //<----------List's which hold all things in the game world---------->
         private static readonly List<Item> items = new List<Item>();
@@ -566,6 +611,7 @@ namespace Engine
 
 
             //<----------Creation of Locations----------->
+            //Tutorial Area
             Location home = new Location(LocationIDHome, "Home", "It's your home, sadly you won't be seeing much of it", 0, 0, 0);
             Location dirtPath = new Location(LocationIDDirtPath, "Dirt Path", "A winding path", 100, 1, 0);
             Location jimmysHouse = new Location(LocationIDJimmysHouse, "Jimmy's House", "It's that little shit Jimmy's house", 0, 2, 0);
@@ -582,6 +628,8 @@ namespace Engine
             Location woods5 = new Location(LocationIDWoods5, "Woods", "Who put all these trees here", 60, 0, 2);
             Location river = new Location(LocationIDRiver, "River", "Whoooooooshhhhhhh", 0, -1, 2);
             Location bridge = new Location(LocationIDBridge, "Bridge", "Connects hermit village with the outside world", 100, 2, 2);
+
+            //Route to Kingdom
             Location grassyPlains = new Location(LocationIDGrassyPlains, "Grassy Plains", "FREEEEEEEEDOM", 0, 2, 3);
             Location crossRoads = new Location(LocationIDCrossRoads, "Cross Roads", "Which way will you go", 0, 2, 4);
             Location westRoads = new Location(LocationIDWestRoads, "West Roads", "To the left to the left", 0, 1, 4);
@@ -602,6 +650,49 @@ namespace Engine
             Location mainroad2 = new Location(LocationIDMainRoad2, "Main Road", "This road is well maintained", 0, 2, 7);
             Location mainroad3 = new Location(LocationIDMainRoad3, "Main Road", "This road is well maintained", 0, 3, 7);
             Location mainroad4 = new Location(LocationIDMainRoad4, "Main Road", "This road is well maintained", 0, 4, 7);
+
+            //Kingdom
+            Location hextopia = new Location(LocationIDHextopia, "Hextopia", "Kingdom of the strongest civilization in the world", 0, 2, 8);
+            Location residentialDistrict = new Location(LocationIDResidentialDistrict, "Residential District", "You can take a nice nap here", 0, 1, 8);
+            Location shoppingDistrict1 = new Location(LocationIDShoppingDistrict1, "Shopping District", "Look at all the nice things", 0, 3, 9);
+            Location shoppingDistrict2 = new Location(LocationIDShoppingDistrict2, "Shopping District", "Look at all the nice things", 0, 3, 8);
+            Location shoppingDistrict3 = new Location(LocationIDShoppingDistrict3, "Shopping District", "Look at all the nice things", 0, 4, 8);
+            Location grandWizardsHouse = new Location(LocationIDGrandWizardsHouse, "Grand Wizard's House", "Its the GRAND WIZZZORRRRRD BABYYYY", 0, 1, 9);
+            Location hextopiaCastle = new Location(LocationIDHextopiaCastle, "Hextopia Castle", "Its so shiny!", 0, 2, 9);
+            Location backRoads1 = new Location(LocationIDBackRoads1, "Back Roads", "You feel your adventure just starting", 50, 2, 10);
+            Location backRoads2 = new Location(LocationIDBackRoads2, "Back Roads", "You feel your adventure just starting", 50, 3, 10);
+            Location backRoads3 = new Location(LocationIDBackRoads3, "Back Roads", "You feel your adventure just starting", 50, 3, 11);
+            Location backRoads4 = new Location(LocationIDBackRoads4, "Back Roads", "You feel your adventure just starting", 50, 4, 11);
+            Location backRoads5 = new Location(LocationIDBackRoads5, "Back Roads", "You feel your adventure just starting", 50, 4, 12);
+
+            //Shard Area 1
+            Location wilbursGym = new Location(LocationIDWilbursGym, "Wilbur's Gym", "You feel pumped!", 0, 5, 12);
+            Location benchs1 = new Location(LocationIDBenchs1, "Benchs", "No one is putting their weights back", 75, 6, 12);
+            Location benchs2 = new Location(LocationIDBenchs2, "Benchs", "No one is putting their weights back", 75, 7, 12);
+            Location benchs3 = new Location(LocationIDBenchs3, "Benchs", "No one is putting their weights back", 75, 8, 12);
+            Location cardioArea1 = new Location(LocationIDCardioArea1, "Cardio Area", "They're killing their gains!", 75, 6, 13);
+            Location cardioArea2 = new Location(LocationIDCardioArea2, "Cardio Area", "They're killing their gains!", 75, 7, 13);
+            Location cardioArea3 = new Location(LocationIDCardioArea3, "Cardio Area", "They're killing their gains!", 75, 8, 13);
+            Location managersOffice = new Location(LocationIDManagersOffice, "Managers Office", "He's old and angry", 0, 6, 11);
+            Location freeWeightArea1 = new Location(LocationIDFreeWeightArea1, "Free Weight Area", "Where the fuck are all the 10's", 75, 7, 11);
+            Location freeWeightArea2 = new Location(LocationIDFreeWeightArea2, "Free Weight Area", "Where the fuck are all the 10's", 75, 8, 11);
+            Location freeWeightArea3 = new Location(LocationIDFreeWeightArea3, "Free Weight Area", "Where the fuck are all the 10's", 75, 9, 11);
+            Location bicepCurlMachine = new Location(LocationIDBicepCurlMachine, "Bicep Curl Machine", "Everyones favorite", 0, 9, 12);
+            Location mirrors1 = new Location(LocationIDMirrors1, "Mirrors", "Look how good they look", 75, 10, 13);
+            Location mirrors2 = new Location(LocationIDMirrors2, "Mirrors", "Look how good they look", 75, 10, 12);
+            Location mirrors3 = new Location(LocationIDMirrors3, "Mirrors", "Look how good they look", 75, 10, 11);
+            Location squatRacks1 = new Location(LocationIDSquatRacks1, "Squat Racks", "Bubble butt bubble bubble bubble butt", 75, 9, 13);
+            Location squatRacks2 = new Location(LocationIDSquatRacks2, "Squat Racks", "Bubble butt bubble bubble bubble butt", 75, 9, 14);
+            Location squatRacks3 = new Location(LocationIDSquatRacks3, "Squat Racks", "Bubble butt bubble bubble bubble butt", 75, 10, 14);
+            Location squatRacks4 = new Location(LocationIDSquatRacks4, "Squat Racks", "Bubble butt bubble bubble bubble butt", 75, 9, 15);
+            Location bathroom = new Location(LocationIDBathroom, "Bathroom", "This place is pretty shitty", 0, 8, 14);
+            Location shadyCorner = new Location(LocationIDShadyCorner, "Shady Corner", "Smells like a doctor's office", 0, 10, 15);
+            Location absArea1 = new Location(LocationIDAbsArea1, "Abs Area", "Look at all the washboards", 75, 11, 15);
+            Location absArea2 = new Location(LocationIDAbsArea2, "Abs Area", "Look at all the washboards", 75, 12, 15);
+            Location absArea3 = new Location(LocationIDAbsArea3, "Abs Area", "Look at all the washboards", 75, 12, 14);
+            Location smithMachine = new Location(LocationIDSmithMachine, "Smith Machine", "Balance is for poopy heads", 0, 12, 13);
+            Location backAlley = new Location(LocationIDBackAlley, "Back Alley", "Alpha male's territory", 100, 12, 12);
+
 
             Person bob = new Person("Bob", "", "I think there is a treasure somewhere in the woods");
             Person marley = new Person("Marley", "", "I don't know what the fuck is going on");
@@ -715,12 +806,136 @@ namespace Engine
 
             mainroad2.LocationToTheWest = mainroad1;
             mainroad2.LocationToTheEast = mainroad3;
+            mainroad2.LocationToTheNorth = hextopia;
 
             mainroad3.LocationToTheWest = mainroad2;
             mainroad3.LocationToTheEast = mainroad4;
 
             mainroad4.LocationToTheWest = mainroad3;
             mainroad4.LocationToTheSouth = hazyForest5;
+
+            hextopia.LocationToTheSouth = mainroad2;
+            hextopia.LocationToTheWest = residentialDistrict;
+            hextopia.LocationToTheEast = shoppingDistrict2;
+            hextopia.LocationToTheNorth = hextopiaCastle;
+
+            residentialDistrict.LocationToTheEast = hextopia;
+            residentialDistrict.LocationToTheNorth = grandWizardsHouse;
+            
+            grandWizardsHouse.LocationToTheSouth = residentialDistrict;
+            
+            shoppingDistrict2.LocationToTheWest = hextopia;
+            shoppingDistrict2.LocationToTheNorth = shoppingDistrict1;
+            shoppingDistrict2.LocationToTheEast = shoppingDistrict3;
+
+            shoppingDistrict1.LocationToTheSouth = shoppingDistrict2;
+            
+            shoppingDistrict3.LocationToTheWest = shoppingDistrict2;
+
+            hextopiaCastle.LocationToTheSouth = hextopia;
+            hextopiaCastle.LocationToTheNorth = backRoads1;
+
+            backRoads1.LocationToTheSouth = hextopiaCastle;
+            backRoads1.LocationToTheEast = backRoads2;
+
+            backRoads2.LocationToTheWest = backRoads1;
+            backRoads2.LocationToTheNorth = backRoads3;
+
+            backRoads3.LocationToTheSouth = backRoads2;
+            backRoads3.LocationToTheEast = backRoads4;
+
+            backRoads4.LocationToTheWest = backRoads3;
+            backRoads4.LocationToTheNorth = backRoads5;
+
+            backRoads5.LocationToTheSouth = backRoads4;
+            backRoads5.LocationToTheEast = wilbursGym;
+
+            wilbursGym.LocationToTheWest = backRoads5;
+            wilbursGym.LocationToTheEast = benchs1;
+
+            benchs1.LocationToTheEast = benchs2;
+            benchs1.LocationToTheWest = wilbursGym;
+            benchs1.LocationToTheNorth = cardioArea1;
+            benchs1.LocationToTheSouth = managersOffice;
+
+            benchs2.LocationToTheWest = benchs1;
+            benchs2.LocationToTheNorth = cardioArea2;
+            benchs2.LocationToTheSouth = freeWeightArea1;
+            benchs2.LocationToTheEast = benchs3;
+
+            benchs3.LocationToTheWest = benchs2;
+            benchs3.LocationToTheNorth = cardioArea3;
+            benchs3.LocationToTheSouth = freeWeightArea2;
+            benchs3.LocationToTheEast = bicepCurlMachine;
+
+            cardioArea1.LocationToTheSouth = benchs1;
+            cardioArea1.LocationToTheEast = cardioArea2;
+
+            cardioArea2.LocationToTheSouth = benchs2;
+            cardioArea2.LocationToTheWest = cardioArea1;
+            cardioArea2.LocationToTheEast = cardioArea3;
+
+            cardioArea3.LocationToTheWest = cardioArea2;
+            cardioArea3.LocationToTheSouth = benchs3;
+
+            managersOffice.LocationToTheNorth = benchs1;
+            managersOffice.LocationToTheEast = freeWeightArea1;
+
+            freeWeightArea1.LocationToTheWest = managersOffice;
+            freeWeightArea1.LocationToTheNorth = benchs2;
+            freeWeightArea1.LocationToTheEast = freeWeightArea2;
+
+            freeWeightArea2.LocationToTheWest = freeWeightArea1;
+            freeWeightArea2.LocationToTheNorth = benchs3;
+            freeWeightArea2.LocationToTheEast = freeWeightArea3;
+
+            freeWeightArea3.LocationToTheWest = freeWeightArea2;
+
+            bicepCurlMachine.LocationToTheWest = benchs3;
+            bicepCurlMachine.LocationToTheEast = mirrors2;
+            bicepCurlMachine.LocationToTheNorth = squatRacks1;
+
+            mirrors1.LocationToTheSouth = mirrors2;
+
+            mirrors2.LocationToTheNorth = mirrors1;
+            mirrors2.LocationToTheWest = bicepCurlMachine;
+            mirrors2.LocationToTheSouth = mirrors3;
+
+            mirrors3.LocationToTheNorth = mirrors2;
+
+            squatRacks1.LocationToTheSouth = bicepCurlMachine;
+            squatRacks1.LocationToTheNorth = squatRacks2;
+
+            squatRacks2.LocationToTheWest = bathroom;
+            squatRacks2.LocationToTheNorth = squatRacks4;
+            squatRacks2.LocationToTheSouth = squatRacks1;
+            squatRacks2.LocationToTheEast = squatRacks3;
+
+            squatRacks3.LocationToTheWest = squatRacks2;
+            squatRacks3.LocationToTheNorth = shadyCorner;
+
+            squatRacks4.LocationToTheSouth = squatRacks2;
+            squatRacks4.LocationToTheEast = shadyCorner;
+
+            bathroom.LocationToTheEast = squatRacks2;
+
+            shadyCorner.LocationToTheWest = squatRacks4;
+            shadyCorner.LocationToTheSouth = squatRacks3;
+            shadyCorner.LocationToTheEast = absArea1;
+
+            absArea1.LocationToTheWest = shadyCorner;
+            absArea1.LocationToTheEast = absArea2;
+
+            absArea2.LocationToTheWest = absArea1;
+            absArea2.LocationToTheSouth = absArea3;
+
+            absArea3.LocationToTheNorth = absArea2;
+            absArea3.LocationToTheSouth = smithMachine;
+
+            smithMachine.LocationToTheNorth = absArea3;
+            smithMachine.LocationToTheSouth = backAlley;
+
+            backAlley.LocationToTheNorth = smithMachine;
 
 
             //<----------Check if player is allowed to enter------------->
@@ -841,6 +1056,45 @@ namespace Engine
             locations.Add(mainroad2);
             locations.Add(mainroad3);
             locations.Add(mainroad4);
+            locations.Add(hextopia);
+            locations.Add(residentialDistrict);
+            locations.Add(shoppingDistrict1);
+            locations.Add(shoppingDistrict2);
+            locations.Add(shoppingDistrict3);
+            locations.Add(grandWizardsHouse);
+            locations.Add(hextopiaCastle);
+            locations.Add(backRoads1);
+            locations.Add(backRoads2);
+            locations.Add(backRoads3);
+            locations.Add(backRoads4);
+            locations.Add(backRoads5);
+            locations.Add(wilbursGym);
+            locations.Add(benchs1);
+            locations.Add(benchs2);
+            locations.Add(benchs3);
+            locations.Add(cardioArea1);
+            locations.Add(cardioArea2);
+            locations.Add(cardioArea3);
+            locations.Add(managersOffice);
+            locations.Add(freeWeightArea1);
+            locations.Add(freeWeightArea2);
+            locations.Add(freeWeightArea3);
+            locations.Add(bicepCurlMachine);
+            locations.Add(mirrors1);
+            locations.Add(mirrors2);
+            locations.Add(mirrors3);
+            locations.Add(squatRacks1);
+            locations.Add(squatRacks2);
+            locations.Add(squatRacks3);
+            locations.Add(squatRacks4);
+            locations.Add(bathroom);
+            locations.Add(shadyCorner);
+            locations.Add(absArea1);
+            locations.Add(absArea2);
+            locations.Add(absArea3);
+            locations.Add(smithMachine);
+            locations.Add(backAlley);
+
 
 
             //Link Travel Quests with their Destination Location
