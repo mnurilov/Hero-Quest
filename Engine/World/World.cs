@@ -162,6 +162,45 @@ namespace Engine
         private const int LocationIDSmithMachine = 73;
         private const int LocationIDBackAlley = 74;
 
+        //Shard Area 2
+        private const int LocationIDDock1 = 75;
+        private const int LocationIDDock2 = 76;
+        private const int LocationIDShipyard = 77;
+        private const int LocationIDOcean1 = 78;
+        private const int LocationIDOcean2 = 79;
+        private const int LocationIDColorfulSands = 80;
+        private const int LocationIDCupcakeHouse = 81;
+        private const int LocationIDFlapjacksHouse = 82;
+        private const int LocationIDCandyCanePlains1 = 83;
+        private const int LocationIDCandyCanePlains2 = 84;
+        private const int LocationIDCandyCanePlains3 = 85;
+        private const int LocationIDCandyCanePlains4 = 86;
+        private const int LocationIDCandyCanePlains5 = 87;
+        private const int LocationIDCandyCanePlains6 = 88;
+        private const int LocationIDChocolateRiver1 = 89;
+        private const int LocationIDChocolateRiver2 = 90;
+        private const int LocationIDChocolateRiver3 = 91;
+        private const int LocationIDChocolateRiver4 = 92;
+        private const int LocationIDPuddingSwamp1 = 93; 
+        private const int LocationIDPuddingSwamp2 = 94;
+        private const int LocationIDPuddingSwamp3 = 95;
+        private const int LocationIDPuddingSwamp4 = 96;
+        private const int LocationIDLollipopJungle1 = 97;
+        private const int LocationIDLollipopJungle2 = 98;
+        private const int LocationIDLollipopJungle3 = 99;
+        private const int LocationIDLollipopJungle4 = 100;
+        private const int LocationIDLollipopJungle5 = 101;
+        private const int LocationIDLollipopJungle6 = 102;
+        private const int LocationIDBlandBerrysHouse = 103;
+        private const int LocationIDGingerBreadHouse = 104;
+        private const int LocationIDFrostedTree = 105; //Magic Apple here to give you spell
+        private const int LocationIDCottonCandyHills1 = 106;
+        private const int LocationIDCottonCandyHills2 = 107;
+        private const int LocationIDCottonCandyHills3 = 108;
+        private const int LocationIDMarshallowMountain1 = 109;
+        private const int LocationIDMarshallowMountain2 = 110;
+        private const int LocationIDMarshallowMountain3 = 111;
+        private const int LocationIDMarshallowMountainPeak = 112;
 
         //<----------List's which hold all things in the game world---------->
         private static readonly List<Item> items = new List<Item>();
@@ -631,7 +670,7 @@ namespace Engine
 
             //Route to Kingdom
             Location grassyPlains = new Location(LocationIDGrassyPlains, "Grassy Plains", "FREEEEEEEEDOM", 0, 2, 3);
-            Location crossRoads = new Location(LocationIDCrossRoads, "Cross Roads", "Which way will you go", 0, 2, 4);
+            Location crossRoads = new Location(LocationIDCrossRoads, "Cross Roads", "Two roads diverged in a yellow wood", 0, 2, 4);
             Location westRoads = new Location(LocationIDWestRoads, "West Roads", "To the left to the left", 0, 1, 4);
             Location eastRoads = new Location(LocationIDEastRoads, "East Roads", "You are going in the right direction", 0, 3, 4);
             Location river1 = new Location(LocationIDRiver1, "River", "This river filled with debris", 50, 0, 4);
@@ -693,6 +732,46 @@ namespace Engine
             Location smithMachine = new Location(LocationIDSmithMachine, "Smith Machine", "Balance is for poopy heads", 0, 12, 13);
             Location backAlley = new Location(LocationIDBackAlley, "Back Alley", "Alpha male's territory", 100, 12, 12);
 
+            //Shard Area 2
+            //Muffin man final boss
+            Location dock1 = new Location(LocationIDDock1, "Dock", "I wonder where this leads to", 0, 13, 12);
+            Location dock2 = new Location(LocationIDDock2, "Dock", "I wonder where this leads to", 0, 14, 12);
+            Location shipyard = new Location(LocationIDShipyard, "Shipyard", "What a surprise!", 0, 15, 12);
+            Location ocean1 = new Location(LocationIDOcean1, "Ocean", "duunnn dunnn... duuuunnnn duun... duuunnnnnnnn dun dun dun dun dun dun dun dun dun dun dunnnnnnnnnnn dunnnn", 0, 15, 13);
+            Location ocean2 = new Location(LocationIDOcean2, "Ocean", "duunnn dunnn... duuuunnnn duun... duuunnnnnnnn dun dun dun dun dun dun dun dun dun dun dunnnnnnnnnnn dunnnn", 0, 15, 14);
+            Location colorfulSands = new Location(LocationIDColorfulSands, "Colorful Sands", "I think it has crabs", 0, 15, 15); 
+            Location cupcakeHouse = new Location(LocationIDCupcakeHouse, "CupcakeHouse", "The interior design is exquisite", 0, 14, 15);
+            Location flapjacksHouse = new Location(LocationIDFlapjacksHouse, "Flapjack's House", "I found Candy Island, Captain K'nuckles!", 0, 16, 15);
+            Location candyCanePlains1 = new Location(LocationIDCandyCanePlains1, "Candy Cane Plains", "It's beginning to feel a lot like Christmasssss", 75, 15, 16);
+            Location candyCanePlains2 = new Location(LocationIDCandyCanePlains2, "Candy Cane Plains", "It's beginning to feel a lot like Christmasssss", 75, 14, 16);
+            Location candyCanePlains3 = new Location(LocationIDCandyCanePlains3, "Candy Cane Plains", "It's beginning to feel a lot like Christmasssss", 75, 14, 17);
+            Location candyCanePlains4 = new Location(LocationIDCandyCanePlains4, "Candy Cane Plains", "It's beginning to feel a lot like Christmasssss", 75, 15, 17);
+            Location candyCanePlains5 = new Location(LocationIDCandyCanePlains5, "Candy Cane Plains", "It's beginning to feel a lot like Christmasssss", 75, 16, 17);
+            Location candyCanePlains6 = new Location(LocationIDCandyCanePlains6, "Candy Cane Plains", "It's beginning to feel a lot like Christmasssss", 75, 16, 16);
+            Location chocolateRiver1 = new Location(LocationIDChocolateRiver1, "Chocolate River", "That is chocolate right?", 75, 16, 18);
+            Location chocolateRiver2 = new Location(LocationIDChocolateRiver2, "Chocolate River", "That is chocolate right?", 75, 17, 18);
+            Location chocolateRiver3 = new Location(LocationIDChocolateRiver3, "Chocolate River", "That is chocolate right?", 75, 18, 18);
+            Location chocolateRiver4 = new Location(LocationIDChocolateRiver4, "Chocolate River", "That is chocolate right?", 75, 19, 18);
+            Location puddingSwamp1 = new Location(LocationIDPuddingSwamp1, "Pudding Swamp", "What are you doing in my swamp?", 50, 18, 17);
+            Location puddingSwamp2 = new Location(LocationIDPuddingSwamp2, "Pudding Swamp", "What are you doing in my swamp?", 50, 19, 17);
+            Location puddingSwamp3 = new Location(LocationIDPuddingSwamp3, "Pudding Swamp", "What are you doing in my swamp?", 50, 19, 16);
+            Location puddingSwamp4 = new Location(LocationIDPuddingSwamp4, "Pudding Swamp", "What are you doing in my swamp?", 50, 18, 16);
+            Location lollipopJungle1 = new Location(LocationIDLollipopJungle1, "Lollipop Jungle", "Where are the loli's?", 75, 20, 18);
+            Location lollipopJungle2 = new Location(LocationIDLollipopJungle2, "Lollipop Jungle", "Where are the loli's?", 75, 20, 19);
+            Location lollipopJungle3 = new Location(LocationIDLollipopJungle3, "Lollipop Jungle", "Where are the loli's?", 75, 20, 20);
+            Location lollipopJungle4 = new Location(LocationIDLollipopJungle4, "Lollipop Jungle", "Where are the loli's?", 75, 21, 20);
+            Location lollipopJungle5 = new Location(LocationIDLollipopJungle5, "Lollipop Jungle", "Where are the loli's?", 75, 21, 19);
+            Location lollipopJungle6 = new Location(LocationIDLollipopJungle6, "Lollipop Jungle", "Where are the loli's?", 75, 21, 18);
+            Location blandBerrysHouse = new Location(LocationIDBlandBerrysHouse, "Bland Berry's House", "It smells normal", 0, 21, 17);
+            Location gingerBreadHouse = new Location(LocationIDGingerBreadHouse, "Ginger Bread House", "This seems fishy", 0, 20, 21);
+            Location frostedTree = new Location(LocationIDFrostedTree, "Frosted Tree", "Lick ittt", 0, 21, 21);
+            Location cottonCandyHills1 = new Location(LocationIDCottonCandyHills1, "Cotton Candy Hills", "Uhm ackshually it should be called Sugar Hills", 50, 22, 19);
+            Location cottonCandyHills2 = new Location(LocationIDCottonCandyHills2, "Cotton Candy Hills", "Uhm ackshually it should be called Sugar Hills", 50, 23, 19);
+            Location cottonCandyHills3 = new Location(LocationIDCottonCandyHills3, "Cotton Candy Hills", "Uhm ackshually it should be called Sugar Hills", 50, 24, 19);
+            Location marshallowMountain1 = new Location(LocationIDMarshallowMountain1, "Marshallow Mountain", "Looks like a straight 90 degree climb", 75, 25, 19);
+            Location marshallowMountain2 = new Location(LocationIDMarshallowMountain2, "Marshallow Mountain", "Looks like a straight 90 degree climb", 75, 25, 20);
+            Location marshallowMountain3 = new Location(LocationIDMarshallowMountain3, "Marshallow Mountain", "Looks like a straight 90 degree climb", 75, 25, 21);
+            Location marshallowMountainPeak = new Location(LocationIDMarshallowMountainPeak, "Marshallow Mountain Peak", "The view up here is great", 100, 25, 22);
 
             Person bob = new Person("Bob", "", "I think there is a treasure somewhere in the woods");
             Person marley = new Person("Marley", "", "I don't know what the fuck is going on");
@@ -936,6 +1015,130 @@ namespace Engine
             smithMachine.LocationToTheSouth = backAlley;
 
             backAlley.LocationToTheNorth = smithMachine;
+            backAlley.LocationToTheEast = dock1;
+
+            dock1.LocationToTheWest = backAlley;
+            dock1.LocationToTheEast = dock2;
+
+            dock2.LocationToTheWest = dock1;
+            dock2.LocationToTheEast = shipyard;
+
+            shipyard.LocationToTheWest = dock2;
+            shipyard.LocationToTheNorth = ocean1;
+
+            ocean1.LocationToTheSouth = shipyard;
+            ocean1.LocationToTheNorth = ocean2;
+
+            ocean2.LocationToTheSouth = ocean1;
+            ocean2.LocationToTheNorth = colorfulSands;
+
+            colorfulSands.LocationToTheSouth = ocean2;
+            colorfulSands.LocationToTheWest = cupcakeHouse;
+            colorfulSands.LocationToTheEast = flapjacksHouse;
+            colorfulSands.LocationToTheNorth = candyCanePlains1;
+
+            cupcakeHouse.LocationToTheEast = colorfulSands;
+
+            flapjacksHouse.LocationToTheWest = colorfulSands;
+
+            candyCanePlains1.LocationToTheSouth = colorfulSands;
+            candyCanePlains1.LocationToTheWest = candyCanePlains2;
+            candyCanePlains1.LocationToTheNorth = candyCanePlains4;
+            candyCanePlains1.LocationToTheEast = candyCanePlains6;
+
+            candyCanePlains2.LocationToTheEast = candyCanePlains1;
+            candyCanePlains2.LocationToTheNorth = candyCanePlains3;
+
+            candyCanePlains3.LocationToTheSouth = candyCanePlains2;
+            candyCanePlains3.LocationToTheEast = candyCanePlains4;
+
+            candyCanePlains4.LocationToTheWest = candyCanePlains3;
+            candyCanePlains4.LocationToTheSouth = candyCanePlains1;
+            candyCanePlains4.LocationToTheEast = candyCanePlains5;
+
+            candyCanePlains5.LocationToTheWest = candyCanePlains4;
+            candyCanePlains5.LocationToTheSouth = candyCanePlains6;
+            candyCanePlains5.LocationToTheNorth = chocolateRiver1;
+
+            candyCanePlains6.LocationToTheNorth = candyCanePlains5;
+            candyCanePlains6.LocationToTheWest = candyCanePlains1;
+
+            chocolateRiver1.LocationToTheSouth = candyCanePlains5;
+            chocolateRiver1.LocationToTheEast = chocolateRiver2;
+
+            chocolateRiver2.LocationToTheWest = chocolateRiver1;
+            chocolateRiver2.LocationToTheEast = chocolateRiver3;
+
+            chocolateRiver3.LocationToTheWest = chocolateRiver2;
+            chocolateRiver3.LocationToTheEast = chocolateRiver4;
+            chocolateRiver3.LocationToTheSouth = puddingSwamp1;
+
+            chocolateRiver4.LocationToTheWest = chocolateRiver3;
+            chocolateRiver4.LocationToTheEast = lollipopJungle1;
+
+            puddingSwamp1.LocationToTheNorth = chocolateRiver3;
+            puddingSwamp1.LocationToTheEast = puddingSwamp2;
+            puddingSwamp1.LocationToTheSouth = puddingSwamp4;
+            
+            puddingSwamp2.LocationToTheWest = puddingSwamp1;
+            puddingSwamp2.LocationToTheSouth = puddingSwamp3;
+
+            puddingSwamp3.LocationToTheNorth = puddingSwamp2;
+            puddingSwamp3.LocationToTheWest = puddingSwamp4;
+
+            puddingSwamp4.LocationToTheEast = puddingSwamp3;
+            puddingSwamp4.LocationToTheNorth = puddingSwamp1;
+
+            lollipopJungle1.LocationToTheWest = chocolateRiver4;
+            lollipopJungle1.LocationToTheNorth = lollipopJungle2;
+            lollipopJungle1.LocationToTheEast = lollipopJungle6;
+
+            lollipopJungle2.LocationToTheSouth = lollipopJungle1;
+            lollipopJungle2.LocationToTheNorth = lollipopJungle3;
+            lollipopJungle2.LocationToTheEast = lollipopJungle5;
+
+            lollipopJungle3.LocationToTheSouth = lollipopJungle2;
+            lollipopJungle3.LocationToTheEast = lollipopJungle4;
+            lollipopJungle3.LocationToTheNorth = gingerBreadHouse;
+
+            lollipopJungle4.LocationToTheWest = lollipopJungle3;
+            lollipopJungle4.LocationToTheSouth = lollipopJungle5;
+            lollipopJungle4.LocationToTheNorth = frostedTree;
+
+            lollipopJungle5.LocationToTheWest = lollipopJungle2;
+            lollipopJungle5.LocationToTheNorth = lollipopJungle4;
+            lollipopJungle5.LocationToTheSouth = lollipopJungle6;
+            lollipopJungle5.LocationToTheEast = cottonCandyHills1;
+
+            lollipopJungle6.LocationToTheNorth = lollipopJungle5;
+            lollipopJungle6.LocationToTheWest = lollipopJungle1;
+            lollipopJungle6.LocationToTheSouth = blandBerrysHouse;
+
+            blandBerrysHouse.LocationToTheNorth = lollipopJungle6;
+
+            gingerBreadHouse.LocationToTheSouth = lollipopJungle3;
+
+            frostedTree.LocationToTheSouth = lollipopJungle4;
+
+            cottonCandyHills1.LocationToTheWest = lollipopJungle5;
+            cottonCandyHills1.LocationToTheEast = cottonCandyHills2;
+            
+            cottonCandyHills2.LocationToTheWest = cottonCandyHills1;
+            cottonCandyHills2.LocationToTheEast = cottonCandyHills3;
+
+            cottonCandyHills3.LocationToTheWest = cottonCandyHills2;
+            cottonCandyHills3.LocationToTheEast = marshallowMountain1;
+
+            marshallowMountain1.LocationToTheWest = cottonCandyHills3;
+            marshallowMountain1.LocationToTheNorth = marshallowMountain2;
+
+            marshallowMountain2.LocationToTheSouth = marshallowMountain1;
+            marshallowMountain2.LocationToTheNorth = marshallowMountain3;
+
+            marshallowMountain3.LocationToTheSouth = marshallowMountain2;
+            marshallowMountain3.LocationToTheNorth = marshallowMountainPeak;
+
+            marshallowMountainPeak.LocationToTheSouth = marshallowMountain3;
 
 
             //<----------Check if player is allowed to enter------------->
@@ -1094,7 +1297,44 @@ namespace Engine
             locations.Add(absArea3);
             locations.Add(smithMachine);
             locations.Add(backAlley);
-
+            locations.Add(dock1);
+            locations.Add(dock2);
+            locations.Add(shipyard);
+            locations.Add(ocean1);
+            locations.Add(ocean2);
+            locations.Add(colorfulSands);
+            locations.Add(cupcakeHouse);
+            locations.Add(flapjacksHouse);
+            locations.Add(candyCanePlains1);
+            locations.Add(candyCanePlains2);
+            locations.Add(candyCanePlains3);
+            locations.Add(candyCanePlains4);
+            locations.Add(candyCanePlains5);
+            locations.Add(candyCanePlains6);
+            locations.Add(chocolateRiver1);
+            locations.Add(chocolateRiver2);
+            locations.Add(chocolateRiver3);
+            locations.Add(chocolateRiver4);
+            locations.Add(puddingSwamp1);
+            locations.Add(puddingSwamp2);
+            locations.Add(puddingSwamp3);
+            locations.Add(puddingSwamp4);
+            locations.Add(lollipopJungle1);
+            locations.Add(lollipopJungle2);
+            locations.Add(lollipopJungle3);
+            locations.Add(lollipopJungle4);
+            locations.Add(lollipopJungle5);
+            locations.Add(lollipopJungle6);
+            locations.Add(blandBerrysHouse);
+            locations.Add(gingerBreadHouse);
+            locations.Add(frostedTree);
+            locations.Add(cottonCandyHills1);
+            locations.Add(cottonCandyHills2);
+            locations.Add(cottonCandyHills3);
+            locations.Add(marshallowMountain1);
+            locations.Add(marshallowMountain2);
+            locations.Add(marshallowMountain3);
+            locations.Add(marshallowMountainPeak);
 
 
             //Link Travel Quests with their Destination Location
