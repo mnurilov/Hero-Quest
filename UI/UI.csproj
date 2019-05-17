@@ -263,17 +263,17 @@
     <EmbeddedResource Include="Images\Enemies\Ant.png" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Images\Locations\%281%29 Home.png" />
-    <EmbeddedResource Include="Images\Locations\%2810%29 Woods.png" />
-    <EmbeddedResource Include="Images\Locations\%2815%29 River.png" />
-    <EmbeddedResource Include="Images\Locations\%2816%29 Bridge.png" />
-    <EmbeddedResource Include="Images\Locations\%2817%29 Grassy Plains.png" />
-    <EmbeddedResource Include="Images\Locations\%282%29 Dirt Path.png" />
-    <EmbeddedResource Include="Images\Locations\%283%29 Jimmy%27s House.png" />
-    <EmbeddedResource Include="Images\Locations\%284%29 Apple Orchard.png" />
-    <EmbeddedResource Include="Images\Locations\%287%29 Hermit Village.png" />
-    <EmbeddedResource Include="Images\Locations\%288%29 Farmer%27s Hut.png" />
-    <EmbeddedResource Include="Images\Locations\%289%29 Farm.png" />
+    <EmbeddedResource Include="Images\Locations\Home.png" />
+    <EmbeddedResource Include="Images\Locations\Woods.png" />
+    <EmbeddedResource Include="Images\Locations\River.png" />
+    <EmbeddedResource Include="Images\Locations\Bridge.png" />
+    <EmbeddedResource Include="Images\Locations\Grassy Plains.png" />
+    <EmbeddedResource Include="Images\Locations\Dirt Path.png" />
+    <EmbeddedResource Include="Images\Locations\Jimmy%27s House.png" />
+    <EmbeddedResource Include="Images\Locations\Apple Orchard.png" />
+    <EmbeddedResource Include="Images\Locations\Hermit Village.png" />
+    <EmbeddedResource Include="Images\Locations\Farmer%27s Hut.png" />
+    <EmbeddedResource Include="Images\Locations\Farm.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Locations\Fog.png" />
