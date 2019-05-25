@@ -282,7 +282,7 @@ namespace UI
             }
             using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
-                    thisAssembly.GetName().Name + ".Images.Locations." + "(" + location.ID + ") " + location.Name + ".png"))
+                    thisAssembly.GetName().Name + ".Images.Locations." + location.Name + ".png"))
 
             {
                 if(resourceStream != null)
@@ -369,7 +369,7 @@ namespace UI
 
         private void Map_RightClick(object sender, EventArgs e)
         {
-            Location location;
+            /*Location location;
 
             if (sender == pb_n2_n2) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 2);
             else if (sender == pb_n2_n1) location = World.FindLocationByCoordinate(centerXCoordinate - 2, centerYCoordinate - 1);
@@ -411,7 +411,7 @@ namespace UI
                 centerYCoordinate = location.YCoordinate;
             }
 
-            UpdateMap();
+            UpdateMap();*/
         }
 
         private void OpenInformationScreen(Location location)

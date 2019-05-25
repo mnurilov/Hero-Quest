@@ -184,7 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Rat.png" />
-    <EmbeddedResource Include="Images\Snake.png" />
+    <EmbeddedResource Include="Images\Enemies\Snake.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Siren.png" />
@@ -277,6 +277,34 @@
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Images\Locations\Fog.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Apple.png" />
+    <EmbeddedResource Include="Images\Enemies\Boar.png" />
+    <EmbeddedResource Include="Images\Bobby.png" />
+    <EmbeddedResource Include="Images\Fire in Jar.png" />
+    <EmbeddedResource Include="Images\Fire.png" />
+    <EmbeddedResource Include="Images\Hermit Bill.png" />
+    <EmbeddedResource Include="Images\Jimmy.png" />
+    <EmbeddedResource Include="Images\Leather Body.png" />
+    <EmbeddedResource Include="Images\Leather Chaps.png" />
+    <EmbeddedResource Include="Images\Leather Coif.png" />
+    <EmbeddedResource Include="Images\Milk.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Rusty Shack.png" />
+    <EmbeddedResource Include="Images\Enemies\Spider.png" />
+    <EmbeddedResource Include="Images\Wooden Dagger.png" />
+    <EmbeddedResource Include="Images\Wooden Staff.png" />
+    <EmbeddedResource Include="Images\Wooden Sword.png" />
+    <EmbeddedResource Include="Images\Enemies\Worm.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Enemies\Monkey.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Clean the Barn.png" />
+    <EmbeddedResource Include="Images\Jimmy%27s Errand.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

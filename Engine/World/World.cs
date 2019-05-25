@@ -518,6 +518,7 @@ namespace Engine
             //Format of Spell Creation:
             //(Spell ID, Name, Description, Gold Value, Mana Cost, Spell Affect Value)
             spells.Add(new DamageSpell(SpellIDFire, "Fire", "Summons fire to burn your enemy", 10, 3, 3));
+            spells.Add(new DamageSpell(2, "Thrash", "Thrash around", 100, 5, 12));
         }
 
         private static void PopulateVendors()
@@ -583,7 +584,10 @@ namespace Engine
             Enemy boar = new Enemy(EnemyIDBoar, "Boar", "Is that a pig", 10, 0, 3, 3, 1, 7, 1, 4, 0, 0, 7, 7, 0, null, "tusks");
             Enemy snake = new Enemy(EnemyIDSnake, "Snake", "Slippery snek", 15, 0, 6, 2, 5, 5, 1, 3, 2, 2, 8, 8, 0, null, "tail");
             Enemy spider = new Enemy(EnemyIDSpider, "Spider", "Maybe if I let it bite me...", 15, 0, 3, 7, 1, 5, 1, 3, 2, 2, 8, 8, 0, null, "web");
-            Enemy monkey = new Enemy(EnemyIDMonkey, "Monkey", "Oooo Oooo Ahhh Ahhh", 30, 10, 10, 10, 0, 10, 10, 10, 5, 5, 50, 50, 25, null);
+            
+            List<Spell> monkeySpells = new List<Spell>();
+            monkeySpells.Add(FindSpellByID(2));
+            Enemy monkey = new Enemy(EnemyIDMonkey, "Monkey", "Oooo Oooo Ahhh Ahhh", 150, 20, 15, 15, 0, 10, 15, 15, 5, 5, 200, 200, 25, monkeySpells);
 
             //<-----------Making a boss monster--------------->
             monkey.IsBoss = true;
@@ -1219,7 +1223,7 @@ namespace Engine
             //<----------Add quests to the locations---------->
             jimmysHouse.QuestInLocation = FindQuestByName("Jimmy's Errand");
             farmersHut.QuestInLocation = FindQuestByName("Clean the Barn");
-            hermitVillage.QuestInLocation = FindQuestByName("Test Location");
+            //hermitVillage.QuestInLocation = FindQuestByName("Test Location");
 
 
             //<-----------Add locations to the location list---------->
@@ -1318,6 +1322,7 @@ namespace Engine
             locations.Add(puddingSwamp1);
             locations.Add(puddingSwamp2);
             locations.Add(puddingSwamp3);
+
             locations.Add(puddingSwamp4);
             locations.Add(lollipopJungle1);
             locations.Add(lollipopJungle2);
@@ -1338,7 +1343,7 @@ namespace Engine
 
 
             //Link Travel Quests with their Destination Location
-            UpdateTravelQuests();
+            //UpdateTravelQuests();
             //((TravelQuest)quests[2]).RequiredLocation = FindLocationByID(8);
         }
 

@@ -774,7 +774,7 @@ namespace UI
 
             using (Stream resourceStream =
                 thisAssembly.GetManifestResourceStream(
-                    thisAssembly.GetName().Name + ".Images.Icons." + imageName + ".png"))
+                    thisAssembly.GetName().Name + ".Images" + imageName + ".png"))
 
             {
                 if (resourceStream != null)
@@ -1332,6 +1332,11 @@ namespace UI
         {
             gameSession.CurrentPlayer.DebugAddAll();
             UpdateUI();
+        }
+
+        private void MainScreen_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
